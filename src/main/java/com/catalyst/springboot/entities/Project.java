@@ -29,7 +29,7 @@ public class Project {
 	
 	private Integer projectId;
 	private String name;
-	private String techLeadId;
+	private Dev techLeadId;
 	private Set<Dev> devs;
 	
 	
@@ -62,13 +62,15 @@ public class Project {
 	/**
 	 * @return the techLeadId
 	 */
-	public String getTechLeadId() {
+	@OneToOne
+	@JoinColumn(name="devId")
+	public Dev getTechLeadId() {
 		return techLeadId;
 	}
 	/**
 	 * @param techLeadId the techLeadId to set
 	 */
-	public void setTechLeadId(String techLeadId) {
+	public void setTechLeadId(Dev techLeadId) {
 		this.techLeadId = techLeadId;
 	}
 	/**
