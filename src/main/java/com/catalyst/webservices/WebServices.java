@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebServices {
 
 	
-	@RequestMapping(value="/project/create", method=RequestMethod.POST)
-	public void createProject(@RequestBody Project project){
-		projectService.add(project);
-	}
+//	@RequestMapping(value="/project/create", method=RequestMethod.POST)
+//	public void createProject(@RequestBody Project project){
+//		projectService.add(project);
+//	}
+	
+	
 }

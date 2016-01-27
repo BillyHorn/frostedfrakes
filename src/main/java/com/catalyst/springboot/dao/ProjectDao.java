@@ -17,8 +17,8 @@ public class ProjectDao {
 		this.em = em;
 	}
 	
-	public void add(Project project){
-		em.persist(project);
-		em.flush();
-	}
+//	public void add(Project project){
+//		em.persist(project);
+//		em.flush();
+//	}
 }
