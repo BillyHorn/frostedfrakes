@@ -6,3 +6,19 @@ footer {
     margin: 1em;
     border-top: 1px solid #ddd;
 }
+
+.report-buttons {
+    width: 5em;
+}
+
+.navbar {
+    background-color: #013C6B;
+}
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #96CCFE;
+}

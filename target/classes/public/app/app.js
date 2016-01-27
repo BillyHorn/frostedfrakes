@@ -10,6 +10,10 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/home',
             templateUrl: 'views/partials/home.html',
             controller: 'homeCtrl'
+        }).state('create-report', {
+            url: '/create',
+            templateUrl: 'views/partials/report/create-report.html',
+            controller: 'createReportCtrl'
         });
 
 }]);
