@@ -3,16 +3,16 @@
         <label for="project-name"> Project Name:
             <input type="text" ng-model="name" placeholder="Project Name:" name="project-name"/></label>
         <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-options="user.id as user.name for user in users"></select></label>
-        <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-options="user.id as user.name for user in users"></select>
-            <button type="button" ng-click="addUser()"></button>
+            <select name="tech-lead" ng-model="techId" ng-options="user as user.name for user in users"></select></label>{{techId}}
+        <label for="tech-lead">Users:
+            <select name="user-person" ng-model="userList" ng-options="user as user.name for user in users | filter : techIdFilter(id, techId)"></select>
+            <button type="button" ng-click="addUser()">Add User</button>
         </label>
         <div ng-show="assignedUsers.length">
             <div ng-repeat="user in assignedUsers">
                 {{user.name}}
             </div>
         </div>
-        <button type="button" type="submit"></button>
+        <button type="button" type="submit">Create</button>
     </form>
 </div>
