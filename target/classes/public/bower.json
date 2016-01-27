@@ -1,0 +1,22 @@
+{
+  "name": "Expense Reports",
+  "homepage": "https://github.com/artatro/frostedfrakes",
+  "authors": [
+    "The Frosted Frakes"
+  ],
+  "description": "group project 2",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "angular": "~1.4.9"
+  }
+}

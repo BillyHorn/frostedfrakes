@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: mKness
 Build-Jdk: 1.8.0_60
-=======
-Built-By: kmatthiesen
-Build-Jdk: 1.8.0_66
->>>>>>> origin/EFF-7
 Created-By: Maven Integration for Eclipse
 
