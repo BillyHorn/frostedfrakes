@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-angular.module('app').controller('createProjectCtrl', ['$scope', function($scope) {
-    $scope.assignedUsers = [];
-    
-=======
 angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
-    $scope.project.assignedUsers = [];
+    $scope.project = {};
+	$scope.project.assignedUsers = [];
     $scope.userHolders = [];
 
     httpService.getUsers().then(function(response){
@@ -13,9 +9,10 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
     });
 
     $scope.addUser = function(){
-        $scope.project.assignedUsers.push($scope.userList);
+        $scope.project.assignedUsers.push($scope.userToAdd);
+        console.log($scope.userToAdd);
         for (i=0; i<$scope.project.users.length; i++) {
-            if ($scope.userList.devid !== $scope.project.users[i].devid){
+            if ($scope.userToAdd.devId !== $scope.project.users[i].devId){
                 $scope.userHolders.push($scope.project.users[i]);
             }
         }
@@ -31,5 +28,4 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
         });
     };
 
->>>>>>> c55cd04e45f9d2ad9c1a9c5ee0caaec9ab7dfd1a
 }]);

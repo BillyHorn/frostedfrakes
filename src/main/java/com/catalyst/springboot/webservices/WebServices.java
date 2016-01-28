@@ -31,13 +31,7 @@ public class WebServices {
 	}
 	
 	@RequestMapping(value="/users", method = RequestMethod.GET)
-	public List<Dev> getUsers() {
-//		List<UserTesting> stuff = new ArrayList<UserTesting>();
-//		stuff.add(new UserTesting("Person1", 1));
-//		stuff.add(new UserTesting("Person2", 2));
-//		stuff.add(new UserTesting("Person3", 3));
-//		return stuff;
-		
+	public List<Dev> getUsers() {		
 		return service.get();
 		
 	}

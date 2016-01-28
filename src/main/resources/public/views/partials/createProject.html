@@ -5,12 +5,12 @@
         <label for="tech-lead">Tech Lead:
             <select name="tech-lead" ng-model="project.techlead" ng-options="user as user.email for user in project.users"></select></label>{{techId}}
         <label for="tech-lead">Users:
-            <select name="user-person" ng-model="userList" ng-options="user as user.email for user in project.users | filter : techIdFilter(devid, project.techId)"></select>
+            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in project.users | filter : techIdFilter(devId, project.techId)"></select>
             <button type="button" ng-click="addUser()">Add User</button>
         </label>
         <div ng-show="project.assignedUsers.length">
             <div ng-repeat="user in project.assignedUsers">
-                {{user.name}}
+                {{user.email}}
             </div>
         </div>
         <button type="button" type="submit">Create</button>
