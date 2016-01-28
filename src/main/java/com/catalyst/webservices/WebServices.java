@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.servicesimpl.Serviceimpl;
 
 
 @RestController
@@ -14,12 +15,19 @@ public class WebServices {
 	
 
 	@Autowired
-	private Dao reportService;
+	private Serviceimpl reportService;
 
-	public void setReportService(Dao reportService) {
+	
+     
+	/**
+	 * @param reportService the reportService to set
+	 */
+	public void setReportService(Serviceimpl reportService) {
 		this.reportService = reportService;
 	}
-     
+
+
+
 	/**
 	 * POST
 	 * Add a new report from the home page

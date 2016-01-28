@@ -1,7 +1,6 @@
 package com.catalyst.springboot.services;
 import java.util.List;
 import com.catalyst.springboot.entities.Report;
-import com.catalyst.springboot.entities.User;
 
 public interface Service {
 	
