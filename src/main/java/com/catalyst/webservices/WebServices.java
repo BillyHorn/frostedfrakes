@@ -36,8 +36,12 @@ public class WebServices {
 	}
 
 	/**
-	 * POST
-	 * add a new report to the list
+	 * POST - addReport()
+	 * use Serviceimpl object reportService to
+	 * add a new report the the service layer
+	 * using a report that was obtained via
+	 * RestController
+	 * 
 	 * @author wPerlichek
 	 *
 	 */

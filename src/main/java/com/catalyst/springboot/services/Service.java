@@ -5,6 +5,6 @@ import com.catalyst.springboot.entities.Report;
 public interface Service {
 	
 	/* addReport: add new expense report to List */
-	List<Report> addReport(Report reportIN);
+	public void addReport(Report reportIN);
 
 }

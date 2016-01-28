@@ -18,12 +18,15 @@ public class Serviceimpl implements Service {
 	}
 
 	/**
-	 * Add report
+	 * addReport()
+	 * 
+	 * add the report to the DAO layer
+	 * 
+	 * @author wPerlichek
 	 *
 	 */
-	public List<Report> addReport(Report reportIN) {
-		//reportDao.addReport(reportIN);
-		return null;
+	public void addReport(Report reportIN) {
+		reportDao.addReport(reportIN);
 	}
 
 }
