@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.catalyst.springboot.entities.Dev;
+import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.services.DevService;
+import com.catalyst.springboot.services.ProjectService;
 
 @RestController
 public class WebServices {
@@ -18,6 +20,16 @@ public class WebServices {
 	@Autowired
 	DevService service;
 	
+	@Autowired 
+	ProjectService projectService;
+	
+	/**
+	 * @param projectService the projectService to set
+	 */
+	public void setProjectService(ProjectService projectService) {
+		this.projectService = projectService;
+	}
+
 	/**
 	 * @param service the service to set
 	 */
@@ -26,8 +38,13 @@ public class WebServices {
 	}
 
 	@RequestMapping(value="/project/create", method=RequestMethod.POST)
-	public void createProject(@RequestBody Object project){
-		
+	public void createProject(@RequestBody Project project){
+		projectService.add(project);
+	}
+	
+	@RequestMapping(value="/project/get", method=RequestMethod.GET)
+	public List<Project> createProject(@RequestBody Object project){
+		return projectService.get();
 	}
 	
 	@RequestMapping(value="/users", method = RequestMethod.GET)

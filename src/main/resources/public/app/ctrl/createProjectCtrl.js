@@ -6,6 +6,9 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
     httpService.getUsers().then(function(response){
         console.log(response);
         $scope.project.users = response.data;
+        $scope.project.users.unshift({email : "Select a User"});
+        //$scope.project.techLeadId = $scope.project.users[0];
+        //$scope.project.userToAdd = $scope.project.users[0];
     });
 
     $scope.addUser = function(){
@@ -20,12 +23,25 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
         $scope.userHolders = [];
     };
 
+    $scope.addTech = function() {
+        console.log("This is my tech lead: " + $scope.techlead.email);
+        $scope.project.techLeadId = $scope.techlead;
+    };
+
     $scope.createProject = function(){
+        console.log($scope.project);
         httpService.createProject($scope.project).then(function(){
             $state.go('home');
         }, function(response){
             console.log(response);
         });
+    };
+
+    $scope.filterId = function($user){
+        if ($scope.project.techLeadId === undefined) {
+            return true;
+        }
+        return $scope.project.techLeadId.devId !== $user.devId;
     };
 
 }]);
