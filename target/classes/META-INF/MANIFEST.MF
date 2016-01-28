@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: wperlichek
 =======
 <<<<<<< HEAD
@@ -11,6 +12,9 @@ Built-By: spallipatt
 >>>>>>> sprint1
 =======
 Built-By: spallipatt
+>>>>>>> sprint1
+=======
+Built-By: mKness
 >>>>>>> sprint1
 Build-Jdk: 1.8.0_60
 Created-By: Maven Integration for Eclipse

@@ -1,8 +1,4 @@
 package com.catalyst.webservices;
-<<<<<<< HEAD
-=======
-
->>>>>>> sprint1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +11,7 @@ import com.catalyst.springboot.servicesimpl.Serviceimpl;
 
 import com.catalyst.springboot.dao.impl.Daoimpl;
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.Employee;
+
 
 @RestController
 public class WebServices {

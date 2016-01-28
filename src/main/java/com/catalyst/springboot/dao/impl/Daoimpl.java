@@ -3,7 +3,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.Employee;
+
+
 import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
 
@@ -18,6 +19,8 @@ public class Daoimpl implements Dao {
 	public void add(User user) {
 		// TODO Auto-generated method stub
 		
+
+>>>>>>> sprint1
 
 public class Daoimpl {
 
