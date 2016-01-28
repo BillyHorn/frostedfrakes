@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.catalyst.springboot.dao.impl.Daoimpl;
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.Employee;
+
 
 @RestController
 public class WebServices {

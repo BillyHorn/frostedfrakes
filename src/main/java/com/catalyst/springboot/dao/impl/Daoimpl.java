@@ -3,7 +3,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.Employee;
 
 public class Daoimpl {
 
