@@ -22,10 +22,12 @@ public class Daoimpl {
 	/**
 	 * Adds a new Employee to the database. 
 	 * @param employee
+	 * @return 
 	 */
-	public void createEmployeeUserName(Employee employee) {
+	public Employee createEmployeeUserName(Employee employee) {
 		em.persist(employee);
 		em.flush();
+		return employee;
 	}
 	
 	

@@ -18,17 +18,20 @@ public class WebServices {
 	// TODO check for mapping value
 	// Front end  : expecting Employee as Json . 
 	//should have username password and role as user (default) 
+	
 	@RequestMapping(value = "/regesterNewEmployee", method = RequestMethod.POST)
-	public String addNewUser(@RequestBody Employee employee) {
+	public Employee addNewUser(@RequestBody Employee employee) {
 
 		String username = employee.getUsername();
 		Employee value = dao.checkUserName(username);
 		if (value != null) {
 			String message= "User Name Exists";
-			return message; 
+			return value; 
 		} else {
-			dao.createEmployeeUserName(employee);
+			String message= "Regestration Sucess";
+			return  dao.createEmployeeUserName(employee);
+			
 		}
-		return null;
+		
 	}
 }
