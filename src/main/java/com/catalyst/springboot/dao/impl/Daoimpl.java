@@ -1,6 +1,8 @@
 package com.catalyst.springboot.dao.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Employee;
 import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
@@ -26,23 +28,27 @@ public class Daoimpl {
 		this.em = em;
 
 	}
-	//TODO Employee.class
-	// check if a perticular username exists
-	public Employee checkUserName(String username) {
-		return em.createQuery("SELECT c FROM viewName c WHERE c.username = :username ", Employee.class)
-				.setParameter("username", username).getSingleResult();
+	
+	/**
+	 * check if a particular Developer exists
+	 * @param email
+	 * @return
+	 */
+	public Dev checkUserName(String email) {
+		return em.createQuery("SELECT c FROM dev c WHERE c.email = :email ", Dev.class)
+				.setParameter("email", email).getSingleResult();
 	}
 	
 	
 	/**
-	 * Adds a new Employee to the database. 
-	 * @param employee
+	 * Adds a new Developer to the database. 
+	 * @param dev
 	 * @return 
 	 */
-	public Employee createEmployeeUserName(Employee employee) {
-		em.persist(employee);
+	public Dev register(Dev dev) {
+		em.persist(dev);
 		em.flush();
-		return employee;
+		return dev;
 	}
 	
 	

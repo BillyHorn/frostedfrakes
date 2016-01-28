@@ -1,4 +1,8 @@
 package com.catalyst.webservices;
+<<<<<<< HEAD
+=======
+
+>>>>>>> sprint1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +14,7 @@ import com.catalyst.springboot.servicesimpl.Serviceimpl;
 
 
 import com.catalyst.springboot.dao.impl.Daoimpl;
+import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Employee;
 
 @RestController
@@ -45,16 +50,16 @@ public class WebServices {
 
 
 	@RequestMapping(value = "/regesterNewEmployee", method = RequestMethod.POST)
-	public Employee addNewUser(@RequestBody Employee employee) {
+	public Dev addNewUser(@RequestBody Dev dev) {
 
-		String username = employee.getUsername();
-		Employee value = dao.checkUserName(username);
+		String email = dev.getEmail();
+		Dev value = dao.checkUserName(email);
 		if (value != null) {
 			String message= "User Name Exists";
 			return value; 
 		} else {
 			String message= "Regestration Sucess";
-			return  dao.createEmployeeUserName(employee);
+			return  dao.register(dev);
 			
 		}
 		
