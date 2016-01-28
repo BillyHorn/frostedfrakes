@@ -1,23 +1,32 @@
 package com.catalyst.springboot.dao.impl;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import com.catalyst.springboot.entities.Employee;
 
-import com.catalyst.springboot.dao.Dao;
+public class Daoimpl {
 
-import com.catalyst.springboot.entities.User;
-
-public class Daoimpl implements Dao {
-
-	/*@Override
-	public void add(User user) {
-		// TODO Auto-generated method stub
-		
+	@PersistenceContext
+	private EntityManager em;
+	
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
-
-	@Override
-	public List<User> getAllusername() {
-		// TODO Auto-generated method stub
-		return null;
+	//TODO Employee.class
+	// check if a perticular username exists
+	public Employee checkUserName(String username) {
+		return em.createQuery("SELECT c FROM viewName c WHERE c.username = :username ", Employee.class)
+				.setParameter("username", username).getSingleResult();
 	}
-*/
+	
+	
+	/**
+	 * Adds a new Employee to the database. 
+	 * @param employee
+	 */
+	public void createEmployeeUserName(Employee employee) {
+		em.persist(employee);
+		em.flush();
+	}
+	
 	
 }
