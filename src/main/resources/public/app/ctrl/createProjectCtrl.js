@@ -10,7 +10,7 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
     $scope.addUser = function(){
         $scope.project.assignedUsers.push($scope.userList);
         for (i=0; i<$scope.project.users.length; i++) {
-            if ($scope.userList.id !== $scope.project.users[i].id){
+            if ($scope.userList.devid !== $scope.project.users[i].devid){
                 $scope.userHolders.push($scope.project.users[i]);
             }
         }
