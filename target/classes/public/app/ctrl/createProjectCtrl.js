@@ -1,5 +1,5 @@
 angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
-    $scope.project.assignedUsers = {};
+    $scope.project.assignedUsers = [];
     $scope.userHolders = [];
 
     httpService.getUsers().then(function(response){
