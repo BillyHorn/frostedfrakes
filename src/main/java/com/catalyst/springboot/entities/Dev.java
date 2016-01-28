@@ -19,15 +19,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 @Entity
 public class Dev {
-	
-	
+		
 	private Integer devId;
 	private String email;
 	private String password;
 	private String role;
 	private Set<Report> reports;
-	
-	
+		
 	
 	/**
 	 * @return the DevId
