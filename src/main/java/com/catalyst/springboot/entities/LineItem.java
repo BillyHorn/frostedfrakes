@@ -1,6 +1,7 @@
 package com.catalyst.springboot.entities;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -28,8 +30,9 @@ public class LineItem {
 	private Integer lineItemId;
 	private Report report;
 	private Date date;
-	//@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private String category;
+	private Integer value;
+	private Category category;
+	private Set<Receipt> receipts;
 	
 	/**
 	 * @return the lineItemId
@@ -72,18 +75,45 @@ public class LineItem {
 		this.date = date;
 	}
 	/**
+	 * @return the value
+	 */
+	public Integer getValue() {
+		return value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+	/**
 	 * @return the category
 	 */
-	public String getCategory() {
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="categoryId")
+	public Category getCategory() {
 		return category;
 	}
 	/**
 	 * @param category the category to set
 	 */
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 	
+	/**
+	 * @return the receipts
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="lineItem")
+	public Set<Receipt> getReceipts() {
+		return receipts;
+	}
+	/**
+	 * @param receipts the receipts to set
+	 */
+	public void setReceipts(Set<Receipt> receipts) {
+		this.receipts = receipts;
+	}
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
