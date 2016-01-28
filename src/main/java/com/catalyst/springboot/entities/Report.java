@@ -1,6 +1,4 @@
 package com.catalyst.springboot.entities;
-
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -74,7 +72,7 @@ public class Report {
 	public void setDev(Dev dev) {
 		this.dev = dev;
 	}
-
+	
 	/**
 	 * @return the notes
 	 */
@@ -82,6 +80,7 @@ public class Report {
 		return notes;
 	}
 
+	
 	/**
 	 * @param notes the notes to set
 	 */
@@ -89,6 +88,7 @@ public class Report {
 		this.notes = notes;
 	}
 
+	
 	/**
 	 * @return the rejectionNotes
 	 */
@@ -96,6 +96,7 @@ public class Report {
 		return rejectionNotes;
 	}
 
+	
 	/**
 	 * @param rejectionNotes the rejectionNotes to set
 	 */
@@ -103,6 +104,7 @@ public class Report {
 		this.rejectionNotes = rejectionNotes;
 	}
 
+	
 	/**
 	 * @return the state
 	 */

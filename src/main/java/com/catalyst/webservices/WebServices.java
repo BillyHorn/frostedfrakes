@@ -9,24 +9,30 @@ import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.servicesimpl.Serviceimpl;
 
 
+import com.catalyst.springboot.dao.impl.Daoimpl;
+import com.catalyst.springboot.entities.Employee;
+
 @RestController
 public class WebServices {
 
+	@Autowired
+	private Daoimpl dao;
+
+	// TODO check for mapping value
+	// Front end  : expecting Employee as Json . 
+	//should have username password and role as user (default) 
 	
 
 	@Autowired
 	private Serviceimpl reportService;
 
 	
-     
 	/**
 	 * @param reportService the reportService to set
 	 */
 	public void setReportService(Serviceimpl reportService) {
 		this.reportService = reportService;
 	}
-
-
 
 	/**
 	 * POST
@@ -38,7 +44,20 @@ public class WebServices {
 	} 
 
 
-	
+	@RequestMapping(value = "/regesterNewEmployee", method = RequestMethod.POST)
+	public Employee addNewUser(@RequestBody Employee employee) {
 
-	
+		String username = employee.getUsername();
+		Employee value = dao.checkUserName(username);
+		if (value != null) {
+			String message= "User Name Exists";
+			return value; 
+		} else {
+			String message= "Regestration Sucess";
+			return  dao.createEmployeeUserName(employee);
+			
+		}
+		
+	}
+
 }
