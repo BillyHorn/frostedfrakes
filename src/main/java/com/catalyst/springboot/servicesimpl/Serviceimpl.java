@@ -17,7 +17,10 @@ public class Serviceimpl implements Service {
 //		this.reportDao = reportDao;
 //	}
 
-	/* ADD REPORT */
+	/**
+	 * Add report
+	 *
+	 */
 	public List<Report> addReport(Report reportIN) {
 		//reportDao.addReport(reportIN);
 		return null;
