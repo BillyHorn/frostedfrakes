@@ -10,7 +10,12 @@ import com.catalyst.webservices.WebServices;
 
 
 /**
- * 
+ * WebServiceTest
+ * create a mock Serviceimpl and set
+ * it as the report service for WebService
+ * verify that additions of reports work
+ * by calling the addReport function from
+ * the mock Serviceimpl object
  * 
  * @author wPerlichek
  *
