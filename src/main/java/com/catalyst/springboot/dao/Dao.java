@@ -6,8 +6,14 @@ import com.catalyst.springboot.entities.Report;
 public interface Dao {
 
 	/**
-	 * add a new report to the DB
+	 * addReport()
 	 * 
+	 * Send a report from DAO to DB
+	 * after it has been received from
+	 * Service layer
+	 * 
+	 * @author wPerlichek
+	 *
 	 */
 	void addReport(Report report);
 

@@ -18,9 +18,11 @@ public class Serviceimpl implements Service {
 	}
 
 	/**
-	 * addReport
+	 * addReport()
 	 * 
-	 * 
+	 * Send a report to the DAO layer
+	 * after it has been received from
+	 * WebServices
 	 * 
 	 * @author wPerlichek
 	 *
