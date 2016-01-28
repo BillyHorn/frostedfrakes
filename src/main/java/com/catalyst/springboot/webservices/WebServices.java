@@ -14,10 +14,10 @@ import com.catalyst.springboot.entities.UserTesting;
 public class WebServices {
 
 	
-//	@RequestMapping(value="/project/create", method=RequestMethod.POST)
-//	public void createProject(@RequestBody Project project){
-//		projectService.add(project);
-//	}
+	@RequestMapping(value="/project/create", method=RequestMethod.POST)
+	public void createProject(@RequestBody Object project){
+		
+	}
 	
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public List<UserTesting> getUsers() {
@@ -27,4 +27,6 @@ public class WebServices {
 		stuff.add(new UserTesting("Person3", 3));
 		return stuff;
 	}
+	
+	
 }

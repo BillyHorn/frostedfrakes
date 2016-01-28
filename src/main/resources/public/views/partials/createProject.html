@@ -1,15 +1,15 @@
 <div class="panel">
     <form id="create-project" ng-submit="createProject()">
         <label for="project-name"> Project Name:
-            <input type="text" ng-model="name" placeholder="Project Name:" name="project-name"/></label>
+            <input type="text" ng-model="project.name" placeholder="Project Name:" name="project-name"/></label>
         <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-model="techId" ng-options="user as user.name for user in users"></select></label>{{techId}}
+            <select name="tech-lead" ng-model="project.techId" ng-options="user as user.name for user in project.users"></select></label>{{techId}}
         <label for="tech-lead">Users:
-            <select name="user-person" ng-model="userList" ng-options="user as user.name for user in users | filter : techIdFilter(id, techId)"></select>
+            <select name="user-person" ng-model="userList" ng-options="user as user.name for user in project.users | filter : techIdFilter(id, project.techId)"></select>
             <button type="button" ng-click="addUser()">Add User</button>
         </label>
-        <div ng-show="assignedUsers.length">
-            <div ng-repeat="user in assignedUsers">
+        <div ng-show="project.assignedUsers.length">
+            <div ng-repeat="user in project.assignedUsers">
                 {{user.name}}
             </div>
         </div>
