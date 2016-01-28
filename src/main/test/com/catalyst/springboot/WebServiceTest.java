@@ -9,6 +9,12 @@ import com.catalyst.springboot.servicesimpl.Serviceimpl;
 import com.catalyst.webservices.WebServices;
 
 
+/**
+ * 
+ * 
+ * @author wPerlichek
+ *
+ */
 public class WebServiceTest {
 	
 	private Serviceimpl mockService;

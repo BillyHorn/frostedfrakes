@@ -7,15 +7,15 @@ import com.catalyst.springboot.services.Service;
 
 public class Serviceimpl implements Service {
 	
-//	@Autowired
-//	private Dao reportDao;
-//	
-//	/**
-//	 * @param reportDao the reportDao to set
-//	 */
-//	public void setReportDao(Dao reportDao) {
-//		this.reportDao = reportDao;
-//	}
+	@Autowired
+	private Dao reportDao;
+	
+	/**
+	 * @param reportDao the reportDao to set
+	 */
+	public void setReportDao(Dao reportDao) {
+		this.reportDao = reportDao;
+	}
 
 	/**
 	 * Add report

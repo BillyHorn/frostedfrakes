@@ -37,7 +37,9 @@ public class WebServices {
 
 	/**
 	 * POST
-	 * Add a new report from the home page
+	 * add a new report to the list
+	 * @author wPerlichek
+	 *
 	 */
 	@RequestMapping(value="/home", method=RequestMethod.POST)
 	public void addReport(@RequestBody Report report){
