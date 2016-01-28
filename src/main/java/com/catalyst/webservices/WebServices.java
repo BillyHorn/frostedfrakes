@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
 
+
 @RestController
 public class WebServices {
 
 	
+
 	@Autowired
 	private Dao reportService;
 
@@ -26,5 +28,9 @@ public class WebServices {
 	public void addReport(@RequestBody Report report){
 		  reportService.addReport(report);
 	} 
+
+
+	
+
 	
 }
