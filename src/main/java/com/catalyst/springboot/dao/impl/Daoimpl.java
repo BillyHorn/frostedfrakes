@@ -1,10 +1,8 @@
 package com.catalyst.springboot.dao.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import com.catalyst.springboot.entities.Dev;
-
-
+import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
 
@@ -18,19 +16,17 @@ public class Daoimpl implements Dao {
 	/*@Override
 	public void add(User user) {
 		// TODO Auto-generated method stub
-		
+		*/
 
->>>>>>> sprint1
+//public class Daoimpl {
 
-public class Daoimpl {
-
-	@PersistenceContext
-	private EntityManager em;
-	
-	public void setEm(EntityManager em) {
-		this.em = em;
-
-	}
+//	@PersistenceContext
+//	private EntityManager em;
+//	
+//	public void setEm(EntityManager em) {
+//		this.em = em;
+//
+//	}
 	
 	/**
 	 * check if a particular Developer exists

@@ -1,21 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 Built-By: wperlichek
-=======
-<<<<<<< HEAD
-Built-By: mKness
-=======
-Built-By: spallipatt
->>>>>>> 519d4015645daca4df3da9a82f2a727d5af05cff
->>>>>>> sprint1
-=======
-Built-By: spallipatt
->>>>>>> sprint1
-=======
-Built-By: mKness
->>>>>>> sprint1
 Build-Jdk: 1.8.0_60
 Created-By: Maven Integration for Eclipse
 
