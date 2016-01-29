@@ -14,6 +14,7 @@ import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;
+import com.catalyst.springboot.services.ReportService;
 
 @RestController
 public class WebServices {
@@ -24,7 +25,8 @@ public class WebServices {
 	@Autowired 
 	ProjectService projectService;
 	
-	
+	@Autowired 
+	ReportService reportService;
 	
 	/**
 	 * @param projectService the projectService to set
@@ -38,6 +40,13 @@ public class WebServices {
 	 */
 	public void setService(DevService service) {
 		this.service = service;
+	}
+
+	/**
+	 * @param reportService the reportService to set
+	 */
+	public void setReportService(ReportService reportService) {
+		this.reportService = reportService;
 	}
 
 	@RequestMapping(value="/project/create", method=RequestMethod.POST)
@@ -67,6 +76,6 @@ public class WebServices {
 	 */
 	@RequestMapping(value="/report/create", method=RequestMethod.POST)
 	public void addReport(@RequestBody Report report){
-		  //reportService.addReport(report);
+		  reportService.add(report);
 	} 
 }

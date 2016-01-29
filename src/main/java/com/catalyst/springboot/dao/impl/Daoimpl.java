@@ -11,7 +11,8 @@ public class Daoimpl implements Dao {
 
 	
 	public void addReport(Report report) {
-		// logic here 
+		em.persist(report);
+		em.flush();
 	}
 
 

@@ -1,4 +1,5 @@
 package com.catalyst.springboot.entities;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -30,6 +32,8 @@ public class Report {
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
 	private Project project;
+	@Transient
+	private List<LineItem> lineItemsToConvert;
 
 	
 	/**
@@ -135,6 +139,19 @@ public class Report {
 		this.project = project;
 	}
 
+	/**
+	 * @return the lineItemsToConvert
+	 */
+	@Transient
+	public List<LineItem> getLineItemsToConvert() {
+		return lineItemsToConvert;
+	}
+	/**
+	 * @param lineItemsToConvert the lineItemsToConvert to set
+	 */
+	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
+		this.lineItemsToConvert = lineItemsToConvert;
+	}
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);

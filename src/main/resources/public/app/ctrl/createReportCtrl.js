@@ -4,6 +4,8 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 	$scope.users = [];
 	$scope.report = {};
 	
+	#scope.report.lineItemsToConvert = [];
+	
 	
     $scope.createReport = function(){
         console.log($scope.report);
