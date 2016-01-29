@@ -4,7 +4,7 @@
   
   <form id="create-report" ng-submit="createReport()" novalidate>
 	 <label for="report-name"> Report Name:
-     	<input type="text" ng-model="report.name" placeholder="Report Name" name="report-name"/>
+     	<input type="text" ng-model="report.name" name="report-name"/>
      </label><br>
     
    <!-- users that can be added on to the creation of the report -->
@@ -27,8 +27,38 @@
         <select name="user" ng-model="approver" ng-options="user as user.email for user in users"></select>
         <button type="button" ng-click="addApprover()">Add Approver</button>
      </label><br>
+     
+    
+    <!-- line item fields -->
+     
+     <label for="mileage"> Mileage:
+      <input type="text">
+     </label><br>
+     
+     <label for="Per Diem"> Per Diem:
+     <input type="text">
+     </label><br>
+     
+     <label for="Lodging"> Lodging:
+     <input type="text">
+     </label><br>
+     
+     <label for="Travel"> Travels:
+     <input type="text">
+     </label><br>
+     
+       <label for="Meals"> Meals:
+     <input type="text">
+     </label><br>
    
+     <label for="Entertainment"> Entertainment:
+     <input type="text">
+     </label><br>
+     
+      <label for="Other"> Other:
+     <input type="text">
+     </label><br>
+     
   </form>
-  
   
 </div>

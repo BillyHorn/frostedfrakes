@@ -24,8 +24,6 @@ public class ProjectService {
 		this.projectDao = projectDao;
 	}
 
-
-
 	public void add(Project project) {
 		project.setUsers(convertDevs(project.getDevsToConvert()));
 		projectDao.add(project);
