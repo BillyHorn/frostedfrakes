@@ -3,7 +3,12 @@ angular.module('app').service('httpService', ['$http', function($http){
         return $http.get('/users');
     }
 
+    function createProject(data){
+        return $http.post('/project/create', data);
+    }
+
     return {
-        getUsers : getUsers
+        getUsers : getUsers,
+        createProject : createProject
     };
 }]);

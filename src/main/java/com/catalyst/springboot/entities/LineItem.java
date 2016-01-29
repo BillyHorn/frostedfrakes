@@ -1,7 +1,9 @@
 package com.catalyst.springboot.entities;
 
 import java.sql.Date;
+
 import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -30,9 +34,11 @@ public class LineItem {
 	private Integer lineItemId;
 	private Report report;
 	private Date date;
+
 	private Integer value;
 	private Category category;
 	private Set<Receipt> receipts;
+
 	
 	/**
 	 * @return the lineItemId
@@ -74,6 +80,7 @@ public class LineItem {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	/**
 	 * @return the value
 	 */
@@ -92,11 +99,9 @@ public class LineItem {
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="categoryId")
 	public Category getCategory() {
+
 		return category;
 	}
-	/**
-	 * @param category the category to set
-	 */
 	public void setCategory(Category category) {
 		this.category = category;
 	}
@@ -114,6 +119,7 @@ public class LineItem {
 	public void setReceipts(Set<Receipt> receipts) {
 		this.receipts = receipts;
 	}
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);

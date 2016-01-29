@@ -3,6 +3,7 @@ package com.catalyst.springboot.entities;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Project {
 	private Dev techLeadId;
 	private Set<Dev> devs;
 	private Set<Report> reports;
+
 	
 	
 	/**
@@ -94,6 +96,7 @@ public class Project {
 		this.devs = devs;
 	}
 	
+
 	/**
 	 * @return the reports
 	 */
@@ -107,6 +110,7 @@ public class Project {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
