@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import com.catalyst.springboot.services.Service;
 import com.catalyst.springboot.servicesimpl.Serviceimpl;
-import com.catalyst.webservices.WebServices;
 
 /**
  * WebServiceTest
@@ -24,7 +23,7 @@ public class WebServiceTest {
 	
 	/* create Serviceimpl and WebServices objects */
 	private Serviceimpl mockService;
-	private WebServices WebService;
+	//private WebServices WebService;
 	
 	/* create a mock of Serviceimpl class and set 
 	 * it to WebService Object
@@ -32,8 +31,8 @@ public class WebServiceTest {
 	@Before
 	public void createWebService() throws Exception{
 		mockService = mock(Serviceimpl.class);
-		WebService = new WebServices();
-		WebService.setReportService(mockService);
+		//WebService = new WebServices();
+		//WebService.setReportService(mockService);
 	}
 	
 	

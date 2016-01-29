@@ -22,13 +22,13 @@ public class Daoimpl implements Dao {
 
 //public class Daoimpl {
 
-//	@PersistenceContext
-//	private EntityManager em;
-//	
-//	public void setEm(EntityManager em) {
-//		this.em = em;
-//
-//	}
+	@PersistenceContext
+	private EntityManager em;
+	
+	public void setEm(EntityManager em) {
+		this.em = em;
+
+	}
 	
 	/**
 	 * check if a particular Developer exists

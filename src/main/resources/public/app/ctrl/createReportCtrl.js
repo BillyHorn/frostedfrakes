@@ -1,5 +1,10 @@
 angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
 
+	$scope.projects = [];
+	$scope.users = [];
+	$scope.report = {};
+	
+	
     $scope.createReport = function(){
         console.log($scope.report);
         httpService.createReport($scope.report).then(function(){
@@ -21,12 +26,18 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 	  
 	 
 	  $scope.addSubmitter = function(){
-		  	$scope.submitter = $scope.users.email;
+		  	//$scope.submitter = $scope.users.email;
+		  	$scope.report.submitter = $scope.submitter;
 	  };
 	  
 	  
 	  $scope.addProject = function(){
-		    $scope.project = $scope.projects.name;
+		   // $scope.project = $scope.projects.name;
+		    $scope.report.project = $scope.activeProject;
 	  };
+	  
+	  $scope.addApprover = function(){
+		  $scope.report.approver = $scope.approver;
+	  }
 	 
 }]);

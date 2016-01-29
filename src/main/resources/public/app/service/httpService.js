@@ -5,7 +5,7 @@ angular.module('app').service('httpService', ['$http', function($http){
     }
     
     function getProjects(){
-    	return $http.get('/projects');
+    	return $http.get('/project/get');
     }
 
     function createProject(data){

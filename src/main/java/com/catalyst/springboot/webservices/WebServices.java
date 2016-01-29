@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
+import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;
 
@@ -22,6 +23,8 @@ public class WebServices {
 	
 	@Autowired 
 	ProjectService projectService;
+	
+	
 	
 	/**
 	 * @param projectService the projectService to set
@@ -43,15 +46,27 @@ public class WebServices {
 	}
 	
 	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> createProject(@RequestBody Object project){
+	public List<Project> createProject(){
 		return projectService.get();
 	}
 	
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public List<Dev> getUsers() {		
 		return service.get();
-		
 	}
 	
-	
+	/**
+	 * POST - addReport()
+	 * use Serviceimpl object reportService to
+	 * add a new report the the service layer
+	 * using a report that was obtained via
+	 * RestController
+	 * 
+	 * @author wPerlichek
+	 *
+	 */
+	@RequestMapping(value="/report/create", method=RequestMethod.POST)
+	public void addReport(@RequestBody Report report){
+		  //reportService.addReport(report);
+	} 
 }
