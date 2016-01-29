@@ -127,6 +127,11 @@ public class Report {
 		this.project = project;
 	}
 
+	
+	/**
+	 * overrides objects hashCode to provide a code specific to the reportId
+	 */
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -134,6 +139,9 @@ public class Report {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to report
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Report)){
