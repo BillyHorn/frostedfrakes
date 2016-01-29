@@ -43,7 +43,7 @@ public class WebServices {
 	}
 	
 	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> createProject(@RequestBody Object project){
+	public List<Project> createProject(){
 		return projectService.get();
 	}
 	
