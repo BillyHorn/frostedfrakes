@@ -1,25 +1,23 @@
 angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
     $scope.project = {};
-	$scope.project.assignedUsers = [];
+	$scope.project.devsToConvert = [];
     $scope.userHolders = [];
 
     httpService.getUsers().then(function(response){
         console.log(response);
-        $scope.project.users = response.data;
-        $scope.project.users.unshift({email : "Select a User"});
-        //$scope.project.techLeadId = $scope.project.users[0];
-        //$scope.project.userToAdd = $scope.project.users[0];
+        $scope.users = response.data;
+        //$scope.project.users.unshift({email : "Select a User"});
     });
 
     $scope.addUser = function(){
-        $scope.project.assignedUsers.push($scope.userToAdd);
+        $scope.project.devsToConvert.push($scope.userToAdd);
         console.log($scope.userToAdd);
-        for (i=0; i<$scope.project.users.length; i++) {
-            if ($scope.userToAdd.devId !== $scope.project.users[i].devId){
-                $scope.userHolders.push($scope.project.users[i]);
+        for (i=0; i<$scope.users.length; i++) {
+            if ($scope.userToAdd.devId !== $scope.users[i].devId){
+                $scope.userHolders.push($scope.users[i]);
             }
         }
-        $scope.project.users = $scope.userHolders;
+        $scope.users = $scope.userHolders;
         $scope.userHolders = [];
     };
 

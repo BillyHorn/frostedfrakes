@@ -1,13 +1,13 @@
 <div class="panel">
     <form id="create-project" ng-submit="createProject()" novalidate>
         <label for="project-name"> Project Name:
-            <input type="text" ng-model="project.email" placeholder="Project Name" name="project-name"/></label>
+            <input type="text" ng-model="project.name" placeholder="Project Name" name="project-name"/></label>
         <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-model="techlead" ng-options="user as user.email for user in project.users"></select>
+            <select name="tech-lead" ng-model="techlead" ng-options="user as user.email for user in users"></select>
             <button type="button" ng-click="addTech()">Add Tech Lead</button>
         </label>
         <label for="tech-lead">Users:
-            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in project.users | filter : filterId"></select>
+            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in users | filter : filterId"></select>
             <button type="button" ng-click="addUser()">Add User</button>
         </label>
         <button type="button" type="submit" ng-click="createProject()">Create</button>
@@ -15,9 +15,9 @@
     <div ng-show="project.techLeadId.email.length">
         Tech Lead: {{project.techLeadId.email}}
     </div>
-    <div ng-show="project.assignedUsers.length">
+    <div ng-show="project.devsToConvert.length">
         Users:
-        <div ng-repeat="user in project.assignedUsers">
+        <div ng-repeat="user in project.devsToConvert">
             {{user.email}}
         </div>
     </div>
