@@ -29,7 +29,7 @@ public class ProjectDao {
 	}
 	
 	public List<Project> get(){
-		return em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
+		return em.createQuery("SELECT p FROM Project p LEFT JOIN FETCH p.devs", Project.class).getResultList();
 	}
 	
 //	public void add(Project project){
