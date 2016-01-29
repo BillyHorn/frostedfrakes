@@ -24,6 +24,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/createProject',
             templateUrl: 'views/partials/createProject.html',
             controller: "createProjectCtrl"
+        })
+
+        .state('myReports', {
+            url: '/myReports',
+            templateUrl: 'views/partials/myReports.html',
+            controller: "myReportsCtrl"
         });
 
 }]);
