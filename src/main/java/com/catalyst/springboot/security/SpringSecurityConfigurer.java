@@ -54,6 +54,7 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	CustomAuthenticationFailureHandler authFailure;
+	CustomAuthenticationFailureHandler authSuccess;
 
 	@Bean
 	CustomAuthenticationFailureHandler authenticationHandler() {
@@ -65,6 +66,10 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	  */
 	public void setAuthFailure(CustomAuthenticationFailureHandler authFailure) {
 	 this.authFailure = authFailure;
+	}
+	
+	public void setAuthSuccess(CustomAuthenticationFailureHandler authSuccess) {
+		this.authSuccess = authSuccess;
 	}
 	
 }
