@@ -27,7 +27,7 @@ public class ProjectDao {
 		for (Dev dev : project.getUsers()){
 			System.out.println(dev.getEmail());
 		}
-		
+		em.flush();
 		em.persist(project);
 		
 		

@@ -7,7 +7,7 @@
             <button type="button" ng-click="addTech()">Add Tech Lead</button>
         </label>
         <label for="tech-lead">Users:
-            <select name="user-person" ng-model="userToAdd" ng-options="user.devId as user.email for user in users | filter : filterId"></select>
+            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in users | filter : filterId"></select>
             <button type="button" ng-click="addUser()">Add User</button>
         </label>
         <button type="button" type="submit" ng-click="createProject()">Create</button>
@@ -15,9 +15,9 @@
     <div ng-show="project.techLeadId.email.length">
         Tech Lead: {{project.techLeadId.email}}
     </div>
-    <div ng-show="project.devs.length">
+    <div ng-show="project.devsToConvert.length">
         Users:
-        <div ng-repeat="user in project.devs">
+        <div ng-repeat="user in project.devsToConvert">
             {{user.email}}
         </div>
     </div>

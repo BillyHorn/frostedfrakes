@@ -1,6 +1,6 @@
 angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
     $scope.project = {};
-	$scope.project.devs = [];
+	$scope.project.devsToConvert = [];
     $scope.userHolders = [];
 
     httpService.getUsers().then(function(response){
@@ -10,10 +10,10 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
     });
 
     $scope.addUser = function(){
-        $scope.project.devs.push($scope.userToAdd);
+        $scope.project.devsToConvert.push($scope.userToAdd);
         console.log($scope.userToAdd);
         for (i=0; i<$scope.users.length; i++) {
-            if ($scope.userToAdd !== $scope.users[i].devId){
+            if ($scope.userToAdd.devId !== $scope.users[i].devId){
                 $scope.userHolders.push($scope.users[i]);
             }
         }
