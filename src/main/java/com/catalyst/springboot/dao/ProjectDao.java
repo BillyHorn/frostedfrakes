@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
+import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
 
 @Transactional
@@ -22,6 +23,10 @@ public class ProjectDao {
 	}
 
 	public void add(Project project) {
+		System.out.println(project.getName() + " " + project.getTechLeadId().getEmail());
+		for (Dev dev : project.getUsers()){
+			System.out.println(dev.getEmail());
+		}
 		
 		em.persist(project);
 		
