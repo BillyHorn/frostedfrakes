@@ -3,7 +3,12 @@ angular.module('app').service('httpService', ['$http', function($http){
         return $http.get('/users');
     }
 
+    function getReport() {
+      return $http.get('/report:' + reportid);
+    }
+
     return {
-        getUsers : getUsers
+        getUsers : getUsers,
+        getReport : getReport
     };
 }]);

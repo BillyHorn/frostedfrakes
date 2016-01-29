@@ -18,6 +18,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/createProject',
             templateUrl: 'views/partials/createProject.html',
             controller: "createProjectCtrl"
-        });
+        })
 
+        .state('viewReport', {
+          url: '/viewReport',
+          templateUrl: 'views/partials/viewReport.html',
+          controller: "viewReportCtrl" // TODO going to want resolve to do get request @mKness
+        });
 }]);
