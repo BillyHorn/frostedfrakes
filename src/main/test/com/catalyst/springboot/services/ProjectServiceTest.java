@@ -51,10 +51,14 @@ public class ProjectServiceTest {
 	public void addProjectTest(){
 		Set<Dev> devSet = mock(Set.class);
 		List<Dev> devsToConvert = mock(List.class);
+		devsToConvert = Arrays.asList(dev);
+		Iterator iterator = mock(Iterator.class);
 		
 		
 		when(project.getDevsToConvert()).thenReturn(devsToConvert);
-		when(mockService.convertDevs(anyObject())).thenReturn(devSet);
+		when(service.convertDevs(anyObject())).thenReturn(devSet);
+		when(iterator.hasNext()).thenReturn(true, false);
+		
 		
 		service.add(project);
 		verify(dao).add(project);
