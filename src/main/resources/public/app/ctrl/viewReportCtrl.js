@@ -4,21 +4,27 @@ angular.module('app').controller('viewReportCtrl', ['$scope', function($scope) {
         reportid:"1",
         notes:"These are notes",
         rejectionnotes:"these are rejection notes",
-        state:"4",
+        state:"3",
         dev:"Billy McBillerson",
         projectname:"Frosted Frakes",
         lineitems: [
           {lineitemid:"2",
-           date:"this is a date",
+           date:"",
            value: "55",
-           categoryid: "categoryid",
+           category: "Lodging",
            reportid: "1"},
            {lineitemid:"3",
-            date:"this is a date",
+            date:"",
             value: "75",
-            categoryid: "categoryid",
+            category: "Other",
             reportid: "1"}
         ]
+      }
+
+      $scope.devs = {
+        name1 : "chad",
+        name2 : "brad",
+        name3 : "phil"
       }
       // end dummy report
 }])
