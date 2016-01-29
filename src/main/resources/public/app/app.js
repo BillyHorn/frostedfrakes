@@ -1,15 +1,24 @@
 angular.module('app', ['ui.router']);
 
+<<<<<<< HEAD
 angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider){
 
     $urlRouterProvider.otherwise('/loginPage');
+=======
+
+angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+
+
+    $urlRouterProvider.otherwise('/home');
+>>>>>>> sprint1
 
     $stateProvider
 
         .state('home', {
             url: '/home',
             templateUrl: 'views/partials/home.html',
+<<<<<<< HEAD
             controller: 'homeCtrl',
             resolve:{
             	login: function(logoutService){
@@ -29,6 +38,15 @@ function($stateProvider, $urlRouterProvider){
             		return logoutService.getLogoutStatus();
             	},
             }
+=======
+            controller: 'homeCtrl'
+        })
+
+        .state('createProject', {
+            url: '/createProject',
+            templateUrl: 'views/partials/createProject.html',
+            controller: "createProjectCtrl"
+>>>>>>> sprint1
         });
 
 }]);
