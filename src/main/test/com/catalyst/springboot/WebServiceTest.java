@@ -36,7 +36,10 @@ public class WebServiceTest {
 		WebService.setReportService(mockService);
 	}
 	
-	/* test WebService object by calling a function
+	
+	/* addReportTest()
+	 * 
+	 * test WebService object by calling a function
 	 * in the Serviceimpl object that requires
 	 * the WebService
 	 */

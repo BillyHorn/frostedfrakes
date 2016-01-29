@@ -28,7 +28,7 @@ public class Report {
 	private Dev dev;
 	private String notes;
 	private String rejectionNotes;
-	private String state;
+	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
 	private Project project;
 	
 	/**

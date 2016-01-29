@@ -32,7 +32,7 @@ public class ServiceimplTest {
 		serviceTarget.setReportDao(mockDao);
 	}
 	
-	/* use the Serviceimpl object to add a report  verify success */
+	/* use the Serviceimpl object to add a report verify success */
 	@Test
 	public void testAddReport(){
 		serviceTarget.addReport(null);
