@@ -1,5 +1,4 @@
 angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
-	
 
     $scope.createReport = function(){
         console.log($scope.report);
