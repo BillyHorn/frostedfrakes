@@ -23,10 +23,6 @@ public class ProjectDao {
 	}
 
 	public void add(Project project) {
-		System.out.println(project.getName() + " " + project.getTechLeadId().getEmail());
-		for (Dev dev : project.getUsers()){
-			System.out.println(dev.getEmail());
-		}
 		em.flush();
 		em.persist(project);
 		
@@ -37,8 +33,4 @@ public class ProjectDao {
 		return em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
 	}
 	
-//	public void add(Project project){
-//		em.persist(project);
-//		em.flush();
-//	}
 }

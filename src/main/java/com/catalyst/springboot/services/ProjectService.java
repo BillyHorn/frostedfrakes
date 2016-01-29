@@ -27,7 +27,8 @@ public class ProjectService {
 
 
 	public void add(Project project) {
-		project.setUsers(convertDevs(project.getDevsToConvert()));
+		List<Dev> devsToConvert = project.getDevsToConvert();
+		project.setUsers(convertDevs(devsToConvert));
 		projectDao.add(project);
 	}
 	
