@@ -6,9 +6,16 @@ angular.module('app').service('httpService', ['$http', function($http){
     function createProject(data){
         return $http.post('/project/create', data);
     }
-
+    
     return {
         getUsers : getUsers,
-        createProject : createProject
+        createProject : createProject,
+        getProjectts: getProjects
     };
+    
+    function createReport(data){
+    	return $http.post('/project/createReport', data);
+    }
+    
+
 }]);
