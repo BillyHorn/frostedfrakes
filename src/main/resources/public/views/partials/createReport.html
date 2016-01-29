@@ -1,23 +1,30 @@
 <div class = panel>
 
-  <!--  create a new report  -->
-  <form id="create-report" ng-submit="createReport()" novalidate>
+  <!--  create a new report  with a name  -->
   
+  <form id="create-report" ng-submit="createReport()" novalidate>
 	 <label for="report-name"> Report Name:
-     	<input type="text" ng-model="?????????" placeholder="Report Name" name="report-name"/>
+     	<input type="text" ng-model="project" placeholder="Report Name" name="report-name"/>
      </label>
-     
-     <label for="tech-lead">Submitter:
-        <select name="user" ng-model="submitter" ng-options="user as user.email for user in project.users"></select>
+    
+   <!-- users that can be added on to the creation of the report -->
+   
+     <label for="Submitter">Submitter:
+        <select name="user" ng-model="users" ng-options="user as user.email for user in report.users"></select>
         <button type="button" ng-click="addSubmitter()">Add Submitter</button>
      </label>
      
   <!-- pull existing projects that can be added to the report -->
   
+    <label for="Project">Projects:
+        <select name="project" ng-model="project" ng-options="project as project.name for project in projects"></select>
+        <button type="button" ng-click="addProject()">Add Project</button>
+     </label>
+     
+   <!-- pull all potential approvers to be added to the report -->
+   
      
   </form>
   
-
- 
   
 </div>

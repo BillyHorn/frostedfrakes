@@ -19,7 +19,8 @@ angular.module('app').service('httpService', ['$http', function($http){
     return {
         getUsers : getUsers,
         createProject : createProject,
-        getProjects: getProjects
+        getProjects: getProjects,
+        createReport: createReport
     };
       
 }]);
