@@ -107,6 +107,10 @@ public class Project {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
+	
+	/**
+	 * overrides objects hashCode to provide a code specific to the projectId
+	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -114,6 +118,9 @@ public class Project {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to project
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Project)){

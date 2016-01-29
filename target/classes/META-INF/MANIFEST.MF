@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: mKness
-=======
-Built-By: spallipatt
->>>>>>> 519d4015645daca4df3da9a82f2a727d5af05cff
 Build-Jdk: 1.8.0_60
 Created-By: Maven Integration for Eclipse
 
