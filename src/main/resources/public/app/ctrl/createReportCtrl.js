@@ -9,5 +9,6 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 	        $scope.reports.projects = response.data;
 	        $scope.project.projects.unshift({name : "Select a Project"});
 	    });
-
+	  
+	  
 }]);
