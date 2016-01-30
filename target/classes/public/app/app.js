@@ -18,6 +18,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/createProject',
             templateUrl: 'views/partials/createProject.html',
             controller: "createProjectCtrl"
+        })
+        
+        .state('registration', {
+            url: '/registration',
+            templateUrl: 'views/partials/registration.html',
+            controller: "registrationCtrl"
         });
 
 }]);
