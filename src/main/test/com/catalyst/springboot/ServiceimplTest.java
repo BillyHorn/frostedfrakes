@@ -2,9 +2,12 @@ package com.catalyst.springboot;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import com.catalyst.springboot.dao.Dao;
+import com.catalyst.springboot.dao.impl.Daoimpl;
 import com.catalyst.springboot.services.ReportService;
 
 
@@ -23,13 +26,13 @@ public class ServiceimplTest {
 	
 	/* create Serviceimpl and Dao objects */
 	private ReportService serviceTarget;
-	private Dao mockDao;
+	private Daoimpl mockDao;
 	
 	/* assign a mock dao to the Serviceimpl object */
 	@Before
 	public void serviceTestSetup(){
 		serviceTarget = new ReportService();
-		mockDao = mock(Dao.class);
+		mockDao = mock(Daoimpl.class);
 		serviceTarget.setReportDao(mockDao);
 	}
 	

@@ -25,7 +25,7 @@ public class WebServiceTest {
 	
 	/* create Serviceimpl and WebServices objects */
 	private ReportService mockService;
-	//private WebServices WebService;
+	
 	
 	/* create a mock of Serviceimpl class and set 
 	 * it to WebService Object

@@ -26,12 +26,18 @@ public class ReportService {
 		this.reportDao = reportDao;
 	}
 
+	/** ADD
+	 * add a new report
+	 * @param report
+	 * @author wPerlichek
+	 */
 	public void add(Report report) {
 		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
 //		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
 		reportDao.addReport(report);
 	}
 	
+	/* PLEASE DO NOT DELETE wPerlichek */
 //	public Set<LineItem> convertLineItems(List<LineItem> LineItemToConvert){
 //		Set<LineItem> lineItems = new HashSet<LineItem>();
 //		for (LineItem lineItem : LineItemToConvert){
@@ -39,7 +45,14 @@ public class ReportService {
 //		}
 //		return lineItems;
 //	}
+	/* /PLEASE DO NOT DELETE wPerlichek */
 	
+	
+	/** GET
+	 * get available reports
+	 * @param none
+	 * @author wPerlichek
+	 */
 	public List<Report> getReport(){
 		return reportDao.getReport();
 	}
