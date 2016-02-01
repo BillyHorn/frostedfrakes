@@ -25,8 +25,6 @@ public class ProjectDao {
 	public void add(Project project) {
 		em.flush();
 		em.persist(project);
-		
-		
 	}
 	
 	public List<Project> get(){
