@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.catalyst.springboot.dao.impl.Daoimpl;
+import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
 
 
@@ -14,25 +13,30 @@ import com.catalyst.springboot.entities.Dev;
 public class WebServices {
 
 	@Autowired
-	private Daoimpl dao;
+	private ProjectDao dao;
 
-	// TODO check for mapping value
-	// Front end  : expecting Employee as Json . 
-	//should have username password and role as user (default) 
 	
-	@RequestMapping(value = "/regesterNewEmployee", method = RequestMethod.POST)
-	public Dev addNewUser(@RequestBody Dev dev) {
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(ProjectDao dao) {
+		this.dao = dao;
+	}
 
-		String email = dev.getEmail();
-		Dev value = dao.checkUserName(email);
-		if (value != null) {
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public Dev addNewUser(@RequestBody Dev dev) {
+		String email = dev.getEmail();	
+		Dev value = dao.checkUserName(email);	
+
+		if (value != null) {			 
 			String message= "User Name Exists";
-			return value; 
+			System.out.println("----------->webservice message "+message);
+			return null; 
 		} else {
+			dao.register(dev);
 			String message= "Regestration Sucess";
-			return  dao.register(dev);
-			
+			System.out.println("--------->webservice "+message);
+			return  dev;			
 		}
-		
 	}
 }
