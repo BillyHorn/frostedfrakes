@@ -53,7 +53,7 @@ public class Report {
 	/**
 	 * @return the lineItems
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="report")
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="report")
 	public Set<LineItem> getLineItems() {
 		return lineItems;
 	}

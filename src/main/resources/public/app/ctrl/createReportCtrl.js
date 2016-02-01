@@ -41,6 +41,7 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 
     $scope.createReport = function(){
         console.log($scope.report);
+		$scope.report.state=1;
         httpService.createReport($scope.report).then(function(){
             $state.go('home');
         }, function(response){

@@ -57,7 +57,7 @@ public class LineItem {
 	/**
 	 * @return the reportId
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="reportId")
 	public Report getReport() {
 		return report;
@@ -96,7 +96,7 @@ public class LineItem {
 	/**
 	 * @return the category
 	 */
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="categoryId")
 	public Category getCategory() {
 
@@ -109,7 +109,7 @@ public class LineItem {
 	/**
 	 * @return the receipts
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="lineItem")
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="lineItem")
 	public Set<Receipt> getReceipts() {
 		return receipts;
 	}

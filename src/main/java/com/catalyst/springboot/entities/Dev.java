@@ -24,7 +24,7 @@ public class Dev {
 	private String email;
 	private String password;
 	private String role;
-	private Set<Report> reports;
+//	private Set<Report> reports;
 		
 	
 	/**
@@ -85,20 +85,20 @@ public class Dev {
 		this.role = role;
 	}
 
-	/**
-	 * @return the reports
-	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="dev") 
-	public Set<Report> getReports() {
-		return reports;
-	}
-
-	/**
-	 * @param reports the reports to set
-	 */
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
-	}
+//	/**
+//	 * @return the reports
+//	 */
+//	@OneToMany(cascade=CascadeType.MERGE, mappedBy="dev") 
+//	public Set<Report> getReports() {
+//		return reports;
+//	}
+//
+//	/**
+//	 * @param reports the reports to set
+//	 */
+//	public void setReports(Set<Report> reports) {
+//		this.reports = reports;
+//	}
 
 	@Override
 	public int hashCode() {
