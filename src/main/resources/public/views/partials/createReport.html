@@ -1,44 +1,48 @@
 <div class = panel>
 
   <!--  create a new report  with a name  -->
-  
+
   <form id="create-report" ng-submit="createReport()" novalidate>
-	 <label for="report-name"> Report Name:
-     	<input type="text" ng-model="report.name" name="report-name"/>
-     </label><br>
-    
+	 <!-- <label for="report-name"> Report Name:
+     	<input type="text" ng-model="report.name" name="report-name" required/>
+     </label><br> -->
+
    <!-- users that can be added on to the creation of the report -->
-   
+
      <label for="Submitter">Submitter:
-        <select name="user" ng-model="submitter" ng-options="user as user.email for user in users"></select>
+        <select name="user" ng-model="dev" ng-options="user as user.email for user in users" required></select>
         <button type="button" ng-click="addSubmitter()">Add Submitter</button>
      </label><br>
-    
+
   <!-- pull existing projects that can be added to the report -->
-  
+
     <label for="Project">Projects:
-        <select name="project" ng-model="activeProject" ng-options="project as project.name for project in projects"></select>
+        <select name="project" ng-model="activeProject" ng-options="project as project.name for project in projects" required></select>
         <button type="button" ng-click="addProject()">Add Project</button>
      </label><br>
-     
+
    <!-- pull all potential approvers to be added to the report -->
-   
-     <label for="Approver">Approver(s):
-        <select name="user" ng-model="approver" ng-options="user as user.email for user in users"></select>
+
+     <!-- <label for="Approver">Approver(s):
+        <select name="user" ng-model="approver" ng-options="user as user.email for user in users" required></select>
         <button type="button" ng-click="addApprover()">Add Approver</button>
-     </label><br>
-     
+     </label><br> -->
+
     <!-- line item fields -->
-    <button id="lineItemButton' ng-click="createNewLineItem()"> Add line item </button>
+    <button id="lineItemButton" ng-click="createNewLineItem()" type="button"> Add line item </button>
     <div ng-repeat="item in addLineItem">
-    <div ng-model="addLineItem[item]"
-    <select name="lineItems" ng-model="addLineItem[item.category]" ng-options="category as category.name for category in categories"></select>
+        <div ng-model="report.lineItemsToConvert[$index]">
+            <select name="lineItems" ng-model="report.lineItemsToConvert[$index].category" ng-options="category as category.value for category in categories" required></select>
+            <input type="text" ng-model="report.lineItemsToConvert[$index].value" placeholder="amount" required />
+            <input type="date" ng-model="report.lineItemsToConvert[$index].date" required />
+            {{report.lineItemsToConvert[$index] | json}}
+        </div>
     </div>
-    </div>
-    {{addLineItem | json}}
-    
-   
-     
+    <button type="submit">Save Report</button>
+
+
+
+
   </form>
-  
+
 </div>

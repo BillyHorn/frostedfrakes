@@ -1,4 +1,6 @@
 package com.catalyst.springboot.dao.impl;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -18,6 +20,10 @@ public class Daoimpl {
 	public void addReport(Report report) {
 		em.persist(report);
 		em.flush();
+	}
+	
+	public List<Report> getReport(){
+		return em.createQuery("SELECT r.reportId, r.dev.email, r.lineItems FROM Report r", Report.class).getResultList();
 	}
 
 

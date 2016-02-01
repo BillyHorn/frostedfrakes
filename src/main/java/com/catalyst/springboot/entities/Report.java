@@ -21,7 +21,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author mKness
  *
  */
-@Entity
+@Entity(name = "Report")
 public class Report {
 
 	
@@ -66,7 +66,7 @@ public class Report {
 	/**
 	 * @return the userId
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="devId")
 	public Dev getDev() {
 		return dev;
@@ -127,7 +127,7 @@ public class Report {
 	/**
 	 * @return the project
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="projectId")
 	public Project getProject() {
 		return project;

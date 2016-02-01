@@ -40,4 +40,8 @@ public class ReportService {
 		return lineItems;
 	}
 	
+	public List<Report> getReport(){
+		return reportDao.getReport();
+	}
+	
 }

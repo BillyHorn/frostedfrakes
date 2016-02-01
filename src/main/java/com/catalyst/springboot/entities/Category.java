@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author mKness
  *
  */
-@Entity
+@Entity(name = "category")
 public class Category {
 
 	

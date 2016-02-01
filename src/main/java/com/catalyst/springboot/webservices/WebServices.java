@@ -59,7 +59,7 @@ public class WebServices {
 	}
 	
 	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> createProject(){
+	public List<Project> getProject(){
 		return projectService.get();
 	}
 	
@@ -82,4 +82,10 @@ public class WebServices {
 	public void addReport(@RequestBody Report report){
 		  reportService.add(report);
 	} 
+	
+	@RequestMapping(value="/report/get", method=RequestMethod.GET)
+	public List<Report> getReport(){
+		return reportService.getReport();
+	}
+	
 }
