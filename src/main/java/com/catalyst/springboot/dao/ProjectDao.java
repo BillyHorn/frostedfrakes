@@ -8,9 +8,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
-import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
 
+
+/**
+ * Communicates with the database regarding projects.
+ * @author kmatthiesen
+ *
+ */
 @Transactional
 @Component 
 public class ProjectDao {
@@ -29,6 +34,11 @@ public class ProjectDao {
 		
 	}
 	
+	/**
+	 * Gets a list of all projects from the database.
+	 * 
+	 * @return The list of projects from the database.
+	 */
 	public List<Project> get(){
 		return em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
 	}
