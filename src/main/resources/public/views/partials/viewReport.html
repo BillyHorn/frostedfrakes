@@ -2,11 +2,11 @@
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
-      <input type="projectName" class="form-control" id="inputProjectName" ng-model="report.projectname" readonly>
+      <input type="projectName" class="form-control" id="inputProjectName" ng-model="report.projectname" >
     </fieldset>
     <fieldset class="form-group">
-      <label for="dev"> Submitter </label> <!-- TODO use ng-show to hide when this isnt editable @mKness -->
-      <select class="form-control" name="dev" id="inputDev" ng-model="report.dev" >
+      <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->
+      <select class="form-control" name="dev" id="inputDev" ng-model="report.dev" readonly>
         <option value="{{report.dev}}">{{report.dev}}</option>
         <option ng-repeat="dev in devs" value="{{dev}}">{{dev}}</option>
       </select>
