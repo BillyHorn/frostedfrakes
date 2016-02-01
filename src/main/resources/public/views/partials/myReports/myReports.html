@@ -1,16 +1,24 @@
 <div class="col-md-10 col-md-offset-1">
 
-  <ul class="nav nav-tabs">
-    <li><a ui-sref="myReports.saved">Saved Reports</a></li>
-    <li><a ui-sref="myReports.submitted">Submitted Reports</a></li>
-    <li><a ui-sref="myReports.approved">Accepted Reports</a></li>
-    <li><a ui-sref="myReports.rejected">Rejected Reports</a></li>
-  </ul>
-  <br>
+  <!-- <ul class="nav nav-tabs">
+  <li><a ui-sref="myReports.saved">Saved Reports</a></li>
+  <li><a ui-sref="myReports.submitted">Submitted Reports</a></li>
+  <li><a ui-sref="myReports.approved">Accepted Reports</a></li>
+  <li><a ui-sref="myReports.rejected">Rejected Reports</a></li>
+</ul> -->
 
-  <div ui-view></div>
+<div>
+  <uib-tabset>
+    <uib-tab ng-repeat="t in tabs" heading="{{t.heading}}" select="go(t.route)" active="t.active">
+    </uib-tab>
+  </uib-tabset>
+</div>
+
+<br>
+
+<div ui-view></div>
 
 </div>
 
 
-  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>

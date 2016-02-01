@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router', 'mgcrea.ngStrap']);
+angular.module('app', ['ui.router', 'ui.bootstrap']);
 
 
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
