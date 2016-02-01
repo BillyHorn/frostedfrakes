@@ -21,7 +21,7 @@ public class HomeController {
 	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 	public String loginPage(){
 		System.out.println("request mapping to login");
-		return "/views/partials/login.html";	
+		return "/views/login.html";	
 	}
 	
 /*	@RequestMapping(value ="/loginPage", method = RequestMethod.POST)
