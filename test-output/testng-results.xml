@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="10594" started-at="2016-02-01T17:26:32Z" finished-at="2016-02-01T17:26:43Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="10594" started-at="2016-02-01T17:26:32Z" finished-at="2016-02-01T17:26:43Z">
+      <class name="com.catalyst.springboot.security.LoginSeleniumTest">
+        <test-method status="PASS" signature="LoginFailure()[pri:0, instance:com.catalyst.springboot.security.LoginSeleniumTest@39fb3ab6]" name="LoginFailure" duration-ms="7728" started-at="2016-02-01T09:26:33Z" finished-at="2016-02-01T09:26:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginFailure -->
+        <test-method status="PASS" signature="LoginPageTest()[pri:0, instance:com.catalyst.springboot.security.LoginSeleniumTest@39fb3ab6]" name="LoginPageTest" duration-ms="218" started-at="2016-02-01T09:26:40Z" finished-at="2016-02-01T09:26:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginPageTest -->
+        <test-method status="PASS" signature="LoginSuccess()[pri:0, instance:com.catalyst.springboot.security.LoginSeleniumTest@39fb3ab6]" name="LoginSuccess" duration-ms="2607" started-at="2016-02-01T09:26:40Z" finished-at="2016-02-01T09:26:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginSuccess -->
+      </class> <!-- com.catalyst.springboot.security.LoginSeleniumTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

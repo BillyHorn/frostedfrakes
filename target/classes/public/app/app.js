@@ -1,5 +1,5 @@
-angular.module('app', ['ui.router']);
 
+angular.module('app', ['ui.router']);
 
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
@@ -27,3 +27,4 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
         });
 
 }]);
+

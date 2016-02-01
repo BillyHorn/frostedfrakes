@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -48,6 +47,9 @@ public class Category {
 		this.value = value;
 	}
 	
+	/**
+	 * overrides objects hashCode to provide a code specific to the categoryId
+	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -55,6 +57,9 @@ public class Category {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to category
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){

@@ -1,14 +1,12 @@
 package com.catalyst.springboot.entities;
 
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -100,6 +98,9 @@ public class Dev {
 		this.reports = reports;
 	}
 
+	/**
+	 * overrides objects hashCode to provide a code specific to the devId
+	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -107,6 +108,9 @@ public class Dev {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to dev
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Dev)){
