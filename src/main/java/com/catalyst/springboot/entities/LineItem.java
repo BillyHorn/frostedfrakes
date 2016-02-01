@@ -1,7 +1,9 @@
 package com.catalyst.springboot.entities;
 
 import java.sql.Date;
+
 import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,11 +13,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * Models line item
@@ -23,16 +29,18 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author mKness
  *
  */
-@Entity
+@Entity(name = "lineitem")
 public class LineItem {
 	
 	
 	private Integer lineItemId;
 	private Report report;
 	private Date date;
+
 	private Integer value;
 	private Category category;
 	private Set<Receipt> receipts;
+
 	
 	/**
 	 * @return the lineItemId
@@ -51,8 +59,9 @@ public class LineItem {
 	/**
 	 * @return the reportId
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="reportId")
+	@JsonBackReference
 	public Report getReport() {
 		return report;
 	}
@@ -74,6 +83,7 @@ public class LineItem {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	/**
 	 * @return the value
 	 */
@@ -89,14 +99,12 @@ public class LineItem {
 	/**
 	 * @return the category
 	 */
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="categoryId")
 	public Category getCategory() {
+
 		return category;
 	}
-	/**
-	 * @param category the category to set
-	 */
 	public void setCategory(Category category) {
 		this.category = category;
 	}
@@ -104,7 +112,7 @@ public class LineItem {
 	/**
 	 * @return the receipts
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="lineItem")
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="lineItem")
 	public Set<Receipt> getReceipts() {
 		return receipts;
 	}
@@ -114,10 +122,7 @@ public class LineItem {
 	public void setReceipts(Set<Receipt> receipts) {
 		this.receipts = receipts;
 	}
-	
-	/**
-	 * overrides objects hashCode to provide a code specific to the lineItemId
-	 */
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -125,9 +130,6 @@ public class LineItem {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to lineItem
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){

@@ -10,12 +10,16 @@ import javax.persistence.OneToMany;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Models dev object
  * @author mKness
  *
  */
+
 @Entity(name="dev")
+
 public class Dev {
 		
 	private Integer devId;
@@ -101,7 +105,8 @@ public class Dev {
 	/**
 	 * @return the reports
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="dev") 
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="dev")
+	@JsonBackReference
 	public Set<Report> getReports() {
 		return reports;
 	}
@@ -113,9 +118,6 @@ public class Dev {
 		this.reports = reports;
 	}
 
-	/**
-	 * overrides objects hashCode to provide a code specific to the devId
-	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -123,9 +125,6 @@ public class Dev {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to dev
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Dev)){

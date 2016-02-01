@@ -1,5 +1,5 @@
 package com.catalyst.springboot.entities;
-
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,9 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * models a report filled with line items
@@ -20,7 +24,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author mKness
  *
  */
-@Entity
+@Entity(name = "Report")
 public class Report {
 
 	
@@ -29,8 +33,11 @@ public class Report {
 	private Dev dev;
 	private String notes;
 	private String rejectionNotes;
-	private String state;
+	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
 	private Project project;
+	@Transient
+	private List<LineItem> lineItemsToConvert;
+
 	
 	/**
 	 * @return the reportId
@@ -49,7 +56,8 @@ public class Report {
 	/**
 	 * @return the lineItems
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="report")
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="report")
+	@JsonManagedReference
 	public Set<LineItem> getLineItems() {
 		return lineItems;
 	}
@@ -62,8 +70,9 @@ public class Report {
 	/**
 	 * @return the userId
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="devId")
+	@JsonManagedReference
 	public Dev getDev() {
 		return dev;
 	}
@@ -73,30 +82,39 @@ public class Report {
 	public void setDev(Dev dev) {
 		this.dev = dev;
 	}
+	
 	/**
 	 * @return the notes
 	 */
 	public String getNotes() {
 		return notes;
 	}
+
+	
 	/**
 	 * @param notes the notes to set
 	 */
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+
+	
 	/**
 	 * @return the rejectionNotes
 	 */
 	public String getRejectionNotes() {
 		return rejectionNotes;
 	}
+
+	
 	/**
 	 * @param rejectionNotes the rejectionNotes to set
 	 */
 	public void setRejectionNotes(String rejectionNotes) {
 		this.rejectionNotes = rejectionNotes;
 	}
+
+	
 	/**
 	 * @return the state
 	 */
@@ -110,11 +128,13 @@ public class Report {
 		this.state = state;
 	}
 	
+
 	/**
 	 * @return the project
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="projectId")
+	@JsonManagedReference
 	public Project getProject() {
 		return project;
 	}
@@ -124,10 +144,20 @@ public class Report {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
+
 	/**
-	 * overrides objects hashCode to provide a code specific to the reportId
+	 * @return the lineItemsToConvert
 	 */
+	@Transient
+	public List<LineItem> getLineItemsToConvert() {
+		return lineItemsToConvert;
+	}
+	/**
+	 * @param lineItemsToConvert the lineItemsToConvert to set
+	 */
+	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
+		this.lineItemsToConvert = lineItemsToConvert;
+	}
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -135,9 +165,6 @@ public class Report {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to report
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Report)){
