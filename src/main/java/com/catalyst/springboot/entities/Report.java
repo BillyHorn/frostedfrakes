@@ -27,6 +27,7 @@ public class Report {
 	private Integer reportId;
 	private Set<LineItem> lineItems;
 	private Dev dev;
+	private String name;
 	private String notes;
 	private String rejectionNotes;
 	private String state;
@@ -73,6 +74,18 @@ public class Report {
 	 */
 	public void setDev(Dev dev) {
 		this.dev = dev;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	/**
 	 * @return the notes

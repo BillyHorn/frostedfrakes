@@ -21,13 +21,16 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
         })
 
         .state('viewReport', {
-          url: '/viewReport',
+          url: '/viewReport/:reportid',
           templateUrl: 'views/partials/viewReport.html',
           controller: "viewReportCtrl", // TODO going to want resolve to do get request @mKness
           resolve: {
-            getProjects: function(httpService) {
+            getProjects: ['httpService',function(httpService) {
               return httpService.getProjects();
-            },
+            }],
+            getReport: ['httpService','$stateParams',function(httpService,$stateParams) {
+              return httpService.getReport($stateParams.reportid);
+            })]
           }
         });
 }]);

@@ -1,6 +1,6 @@
 angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects', function($scope, getProjects) {
       // dummy report for creating this independent of backend
-      $scope.report = {
+      /*$scope.report = {
         reportid:"1",
         notes:"These are notes",
         rejectionnotes:"these are rejection notes",
@@ -25,9 +25,10 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects', fun
         name1 : "chad",
         name2 : "brad",
         name3 : "phil"
-      }
+      }*/
       // end dummy report
 
+      $scope.report = getReport.data;
       $scope.projects = getProjects.data;
       console.log(JSON.stringify($scope.projects));
 }])
