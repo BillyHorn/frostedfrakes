@@ -1,18 +1,24 @@
 <div class="panel">
-    <form id="create-project" ng-submit="createProject()">
+    <form id="create-project" ng-submit="createProject()" novalidate>
         <label for="project-name"> Project Name:
-            <input type="text" ng-model="project.email" placeholder="Project Name:" name="project-name"/></label>
+            <input type="text" ng-model="project.name" placeholder="Project Name" name="project-name"/></label>
         <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-model="project.techlead" ng-options="user as user.email for user in project.users"></select></label>{{techId}}
+            <select name="tech-lead" ng-model="techlead" ng-options="user as user.email for user in users"></select>
+            <button type="button" ng-click="addTech()">Add Tech Lead</button>
+        </label>
         <label for="tech-lead">Users:
-            <select name="user-person" ng-model="userList" ng-options="user as user.email for user in project.users | filter : techIdFilter(devid, project.techId)"></select>
+            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in users | filter : filterId"></select>
             <button type="button" ng-click="addUser()">Add User</button>
         </label>
-        <div ng-show="project.assignedUsers.length">
-            <div ng-repeat="user in project.assignedUsers">
-                {{user.name}}
-            </div>
-        </div>
-        <button type="button" type="submit">Create</button>
+        <button type="button" type="submit" ng-click="createProject()">Create</button>
     </form>
+    <div ng-show="project.techLeadId.email.length">
+        Tech Lead: {{project.techLeadId.email}}
+    </div>
+    <div ng-show="project.devsToConvert.length">
+        Users:
+        <div ng-repeat="user in project.devsToConvert">
+            {{user.email}}
+        </div>
+    </div>
 </div>

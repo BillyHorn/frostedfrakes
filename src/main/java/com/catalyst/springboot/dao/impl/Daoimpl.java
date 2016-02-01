@@ -2,7 +2,9 @@ package com.catalyst.springboot.dao.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+
 import com.catalyst.springboot.entities.Dev;
+
 
 public class Daoimpl {
 
@@ -12,6 +14,7 @@ public class Daoimpl {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
+
 	
 	/**
 	 * check if a particular Developer exists
@@ -34,6 +37,7 @@ public class Daoimpl {
 		em.flush();
 		return dev;
 	}
+
 	
 	
 }

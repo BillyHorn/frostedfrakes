@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -120,6 +119,11 @@ public class LineItem {
 		this.receipts = receipts;
 	}
 
+	
+	/**
+	 * overrides objects hashCode to provide a code specific to the lineItemId
+	 */
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -127,6 +131,9 @@ public class LineItem {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to lineItem
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){
