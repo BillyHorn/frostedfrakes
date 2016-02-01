@@ -31,16 +31,16 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 	        $scope.users = response.data;
 	    });
 
-
-	  $scope.addSubmitter = function(){
-		  	//$scope.submitter = $scope.users.email;
-		  	$scope.report.dev = $scope.dev;
-	  };
-
-
-	  $scope.addProject = function(){
-		   // $scope.project = $scope.projects.name;
-		    $scope.report.project = $scope.activeProject;
-	  };
+	  // 
+	//   $scope.addSubmitter = function(){
+	// 	  	//$scope.submitter = $scope.users.email;
+	// 	  	$scope.report.dev = $scope.dev;
+	//   };
+	  //
+	  //
+	//   $scope.addProject = function(){
+	// 	   // $scope.project = $scope.projects.name;
+	// 	    $scope.report.project = $scope.activeProject;
+	//   };
 
 }]);

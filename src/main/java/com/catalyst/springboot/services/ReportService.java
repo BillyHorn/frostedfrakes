@@ -28,17 +28,17 @@ public class ReportService {
 
 	public void add(Report report) {
 		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
-		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
+//		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
 		reportDao.addReport(report);
 	}
 	
-	public Set<LineItem> convertLineItems(List<LineItem> LineItemToConvert){
-		Set<LineItem> lineItems = new HashSet<LineItem>();
-		for (LineItem lineItem : LineItemToConvert){
-			lineItems.add(lineItem);
-		}
-		return lineItems;
-	}
+//	public Set<LineItem> convertLineItems(List<LineItem> LineItemToConvert){
+//		Set<LineItem> lineItems = new HashSet<LineItem>();
+//		for (LineItem lineItem : LineItemToConvert){
+//			lineItems.add(lineItem);
+//		}
+//		return lineItems;
+//	}
 	
 	public List<Report> getReport(){
 		return reportDao.getReport();

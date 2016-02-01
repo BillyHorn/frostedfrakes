@@ -7,15 +7,15 @@
    <!-- users that can be added on to the creation of the report -->
 
      <label for="Submitter">Submitter:
-        <select name="user" ng-model="dev" ng-options="user as user.email for user in users" required></select>
-        <button type="button" ng-click="addSubmitter()">Add Submitter</button>
+        <select name="user" ng-model="report.dev" ng-options="user as user.email for user in users" required></select>
+        <!-- <button type="button" ng-click="addSubmitter()">Add Submitter</button> -->
      </label><br>
 
   <!-- pull existing projects that can be added to the report -->
 
     <label for="Project">Projects:
-        <select name="project" ng-model="activeProject" ng-options="project as project.name for project in projects" required></select>
-        <button type="button" ng-click="addProject()">Add Project</button>
+        <select name="project" ng-model="report.project" ng-options="project as project.name for project in projects" required></select>
+        <!-- <button type="button" ng-click="addProject()">Add Project</button> -->
      </label><br>
 
     <button type="submit">Save Report</button>

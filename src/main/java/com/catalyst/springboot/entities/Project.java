@@ -36,7 +36,7 @@ public class Project {
 	private String name;
 	private Dev techLeadId;
 	private Set<Dev> devs;
-//	private Set<Report> reports;
+	private Set<Report> reports;
 	@Transient
 	private List<Dev> devsToConvert;
 
@@ -101,19 +101,19 @@ public class Project {
 	}
 	
 
-//	/**
-//	 * @return the reports
-//	 */
-//	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
-//	public Set<Report> getReports() {
-//		return reports;
-//	}
-//	/**
-//	 * @param reports the reports to set
-//	 */
-//	public void setReports(Set<Report> reports) {
-//		this.reports = reports;
-//	}
+	/**
+	 * @return the reports
+	 */
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
+	public Set<Report> getReports() {
+		return reports;
+	}
+	/**
+	 * @param reports the reports to set
+	 */
+	public void setReports(Set<Report> reports) {
+		this.reports = reports;
+	}
 
 	/**
 	 * @return the devsToConvert

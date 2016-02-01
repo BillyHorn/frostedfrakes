@@ -23,7 +23,7 @@ public class Daoimpl {
 	}
 	
 	public List<Report> getReport(){
-		return em.createQuery("SELECT r.reportId, r.dev.email, r.lineItems FROM Report r", Report.class).getResultList();
+		return em.createQuery("SELECT r FROM Report r", Report.class).getResultList();
 	}
 
 
