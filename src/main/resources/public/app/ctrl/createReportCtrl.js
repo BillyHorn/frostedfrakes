@@ -4,12 +4,6 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 	$scope.users = [];
 	$scope.report = {};
 
-	/* this array is the model for the line item input
-	 * field and contains all line items inputted
-	 * by the user from the createReport.html page
-	 */
-
-
     $scope.createReport = function(){
         console.log($scope.report);
 		$scope.report.state=1;
