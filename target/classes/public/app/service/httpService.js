@@ -3,25 +3,23 @@ angular.module('app').service('httpService', ['$http', function($http){
         return $http.get('/users');
     }
 
-<<<<<<< HEAD
 
     function getReport() {
       return $http.get('/report:' + reportid);
-
-=======
->>>>>>> EFF-7
+    }
     function createProject(data){
         return $http.post('/project/create', data);
 
     }
 
+    function getProjects() {
+      return $http.get('/project/get');
+    }
+
     return {
         getUsers : getUsers,
-        getReport : getReport
-        createProject : createProject
-<<<<<<< HEAD
-
-=======
->>>>>>> EFF-7
+        getReport : getReport,
+        createProject : createProject,
+        getProjects : getProjects
     };
 }]);

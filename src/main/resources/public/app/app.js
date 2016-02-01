@@ -23,6 +23,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
         .state('viewReport', {
           url: '/viewReport',
           templateUrl: 'views/partials/viewReport.html',
-          controller: "viewReportCtrl" // TODO going to want resolve to do get request @mKness
+          controller: "viewReportCtrl", // TODO going to want resolve to do get request @mKness
+          resolve: {
+            getProjects: function(httpService) {
+              return httpService.getProjects();
+            },
+          }
         });
 }]);

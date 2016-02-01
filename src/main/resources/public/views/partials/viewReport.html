@@ -2,7 +2,10 @@
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
-      <input type="projectName" class="form-control" id="inputProjectName" ng-model="report.projectname" >
+      <select class="form-control" name="projectName" id="inputProjectName" ng-model="report.dev">
+        <option value="{{report.projectname}}">{{report.projectname}}</option>
+        <option ng-repeat="p in projects" value="{{p.name}}">{{p.name}}</option>
+      </select>
     </fieldset>
     <fieldset class="form-group">
       <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->

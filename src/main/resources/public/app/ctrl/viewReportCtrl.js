@@ -1,4 +1,4 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', function($scope) {
+angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects', function($scope, getProjects) {
       // dummy report for creating this independent of backend
       $scope.report = {
         reportid:"1",
@@ -27,4 +27,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', function($scope) {
         name3 : "phil"
       }
       // end dummy report
+
+      $scope.projects = getProjects.data;
+      console.log(JSON.stringify($scope.projects));
 }])
