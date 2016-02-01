@@ -10,7 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.webservices.WebServices;
+//import com.catalyst.springboot.webservices.WebServices;
+import com.catalyst.webservices.WebServices;
 
 public class WebservicesTest {
 
