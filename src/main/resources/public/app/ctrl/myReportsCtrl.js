@@ -4,14 +4,16 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
 
   $scope.whichReports = myReportsService.namedState(state);
   $scope.filteredReports = myReportsService.filterReports(state);
+  $scope.panelType = myReportsService.panelState(state);
 
+  // turn this into a value
   $scope.tabs = [
     { heading: "Saved", route:"myReports.saved", active:false },
     { heading: "Submitted", route:"myReports.submitted", active:false },
     { heading: "Approved", route:"myReports.approved", active:false },
     { heading: "Rejected", route:"myReports.rejected", active:false }
   ];
-  
+
   $scope.go = function(route){
     $state.go(route);
   };

@@ -32,6 +32,24 @@ angular.module('app').service('myReportsService', ['$http', function($http){
     }
   }
 
+  // returns a nicely formatted title based upon current state
+  function panelState(state) {
+
+    switch(state) {
+      case "myReports.saved":
+        return "panel-default";
+      case "myReports.submitted":
+        return "panel-info";
+      case "myReports.approved":
+        return "panel-success";
+      case "myReports.rejected":
+        return "panel-danger";
+      default:
+        return "panel-info";
+    }
+  }
+
+  // maybe abstract these things into 1 function
   // returns a number (matching the db) based upon current state
   function numberedState(state) {
 
@@ -101,6 +119,7 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   return {
     getReports : getReports,
     namedState : namedState,
-    filterReports : filterReports
+    filterReports : filterReports,
+    panelState : panelState
   };
 }]);
