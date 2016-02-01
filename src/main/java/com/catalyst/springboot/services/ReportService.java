@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.catalyst.springboot.dao.Dao;
+import com.catalyst.springboot.dao.impl.Daoimpl;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.Report;
@@ -16,9 +17,15 @@ import com.catalyst.springboot.entities.Report;
 public class ReportService {
 	
 	@Autowired
-	private Dao reportDao;
+	private Daoimpl reportDao;
 	
-	
+	/**
+	 * @param reportDao the reportDao to set
+	 */
+	public void setReportDao(Daoimpl reportDao) {
+		this.reportDao = reportDao;
+	}
+
 	public void add(Report report) {
 		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
 		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
@@ -33,6 +40,4 @@ public class ReportService {
 		return lineItems;
 	}
 	
-
-
 }

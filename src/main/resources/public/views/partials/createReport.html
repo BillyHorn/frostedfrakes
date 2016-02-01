@@ -28,36 +28,16 @@
         <button type="button" ng-click="addApprover()">Add Approver</button>
      </label><br>
      
-    
     <!-- line item fields -->
-     
-     <label for="mileage"> Mileage:
-      <input type="text" ng-model = "??????">
-     </label><br>
-     
-     <label for="Per Diem"> Per Diem:
-     <input type="text">
-     </label><br>
-     
-     <label for="Lodging"> Lodging:
-     <input type="text">
-     </label><br>
-     
-     <label for="Travel"> Travels:
-     <input type="text">
-     </label><br>
-     
-       <label for="Meals"> Meals:
-     <input type="text">
-     </label><br>
+    <button id="lineItemButton' ng-click="createNewLineItem()"> Add line item </button>
+    <div ng-repeat="item in addLineItem">
+    <div ng-model="addLineItem[item]"
+    <select name="lineItems" ng-model="addLineItem[item.category]" ng-options="category as category.name for category in categories"></select>
+    </div>
+    </div>
+    {{addLineItem | json}}
+    
    
-     <label for="Entertainment"> Entertainment:
-     <input type="text">
-     </label><br>
-     
-      <label for="Other"> Other:
-     <input type="text">
-     </label><br>
      
   </form>
   

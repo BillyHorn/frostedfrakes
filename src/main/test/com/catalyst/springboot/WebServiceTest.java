@@ -2,10 +2,12 @@ package com.catalyst.springboot;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
-import com.catalyst.springboot.services.Service;
-import com.catalyst.springboot.servicesimpl.Serviceimpl;
+
+import com.catalyst.springboot.services.ReportService;
+
 
 /**
  * WebServiceTest
@@ -22,7 +24,7 @@ import com.catalyst.springboot.servicesimpl.Serviceimpl;
 public class WebServiceTest {
 	
 	/* create Serviceimpl and WebServices objects */
-	private Serviceimpl mockService;
+	private ReportService mockService;
 	//private WebServices WebService;
 	
 	/* create a mock of Serviceimpl class and set 
@@ -30,7 +32,7 @@ public class WebServiceTest {
 	 */
 	@Before
 	public void createWebService() throws Exception{
-		mockService = mock(Serviceimpl.class);
+		mockService = mock(ReportService.class);
 		//WebService = new WebServices();
 		//WebService.setReportService(mockService);
 	}
@@ -44,7 +46,7 @@ public class WebServiceTest {
 	 */
 	@Test
 	public void addReportTest() throws Exception{
-		mockService.addReport(null);
-		verify(mockService, times(1)).addReport(null);
+		mockService.add(null);
+		verify(mockService, times(1)).add(null);
 	}
 }

@@ -5,7 +5,8 @@ import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 import com.catalyst.springboot.dao.Dao;
-import com.catalyst.springboot.servicesimpl.Serviceimpl;
+import com.catalyst.springboot.services.ReportService;
+
 
 /**
  * ServiceimplTest
@@ -21,13 +22,13 @@ import com.catalyst.springboot.servicesimpl.Serviceimpl;
 public class ServiceimplTest {
 	
 	/* create Serviceimpl and Dao objects */
-	private Serviceimpl serviceTarget;
+	private ReportService serviceTarget;
 	private Dao mockDao;
 	
 	/* assign a mock dao to the Serviceimpl object */
 	@Before
 	public void serviceTestSetup(){
-		serviceTarget = new Serviceimpl();
+		serviceTarget = new ReportService();
 		mockDao = mock(Dao.class);
 		serviceTarget.setReportDao(mockDao);
 	}
@@ -35,7 +36,7 @@ public class ServiceimplTest {
 	/* use the Serviceimpl object to add a report verify success */
 	@Test
 	public void testAddReport(){
-		serviceTarget.addReport(null);
+		serviceTarget.add(null);
 		verify(mockDao, times(1)).addReport(null);
 	}
 	

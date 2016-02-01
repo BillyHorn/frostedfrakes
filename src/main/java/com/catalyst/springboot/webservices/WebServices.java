@@ -48,6 +48,10 @@ public class WebServices {
 	public void setReportService(ReportService reportService) {
 		this.reportService = reportService;
 	}
+	
+	public ReportService getReportService () {
+		return this.reportService;
+	}
 
 	@RequestMapping(value="/project/create", method=RequestMethod.POST)
 	public void createProject(@RequestBody Project project){

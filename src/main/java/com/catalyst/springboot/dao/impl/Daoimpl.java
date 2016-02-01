@@ -1,13 +1,18 @@
 package com.catalyst.springboot.dao.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Component;
+
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
 
-
-public class Daoimpl implements Dao {
+@Transactional
+@Component
+public class Daoimpl {
 
 	
 	public void addReport(Report report) {
