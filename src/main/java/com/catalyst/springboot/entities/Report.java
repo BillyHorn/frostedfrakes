@@ -31,6 +31,7 @@ public class Report {
 	private String rejectionNotes;
 	private String state;
 	private Project project;
+
 	
 	/**
 	 * @return the reportId
@@ -110,6 +111,7 @@ public class Report {
 		this.state = state;
 	}
 	
+
 	/**
 	 * @return the project
 	 */
@@ -124,6 +126,7 @@ public class Report {
 	public void setProject(Project project) {
 		this.project = project;
 	}
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
