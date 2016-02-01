@@ -114,6 +114,10 @@ public class LineItem {
 	public void setReceipts(Set<Receipt> receipts) {
 		this.receipts = receipts;
 	}
+	
+	/**
+	 * overrides objects hashCode to provide a code specific to the lineItemId
+	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -121,6 +125,9 @@ public class LineItem {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to lineItem
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){
