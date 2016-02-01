@@ -6,10 +6,8 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 
     $scope.createReport = function(){
         console.log($scope.report);
-        
         /* 1 is defined as "saved" */
 		$scope.report.state=1;
-		
         httpService.createReport($scope.report).then(function(){
             $state.go('home');
         }, function(response){
@@ -17,16 +15,9 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
         });
       };
       
-      $scope.submitReport = function{
-      
+      $scope.submitReport = function(){
         /* 2 is defined as "submitted" */
       	$scope.report.state=2;
-      	
-      	httpService.createReport($scope.report).then(function(){
-            $state.go('home');
-        }, function(response){
-            console.log(response);
-        });
       };
 
 

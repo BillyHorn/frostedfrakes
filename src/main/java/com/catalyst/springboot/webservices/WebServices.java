@@ -83,6 +83,21 @@ public class WebServices {
 		  reportService.add(report);
 	} 
 	
+	/**
+	 * PUT - submitReport()
+	 * 
+	 * change the state of a report that has
+	 * already been submitted from "1" (saved)
+	 * to "2" (submitted)
+	 * 
+	 * @author wPerlichek
+	 *
+	 */
+	@RequestMapping(value="/report/submit", method=RequestMethod.PUT)
+	public void submitReport(@RequestBody Report report){
+		  /*    */
+	} 
+	
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)
 	public List<Report> getReport(){
 		return reportService.getReport();
