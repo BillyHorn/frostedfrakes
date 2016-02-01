@@ -29,6 +29,12 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("brad").password("root").roles("user");
+		
+		auth.jdbcAuthentication()
+		   .dataSource(datasource)
+		   .passwordEncoder(encoder())
+		   .usersByUsernameQuery("SELECT email, password,isactive FROM dev WHERE email=? ")
+		   .authoritiesByUsernameQuery("SELECT email, role FROM dev WHERE email=?");
 	}
 	
 	@Override
@@ -43,7 +49,7 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	 public void configure(WebSecurity web) throws Exception {
-	  web.ignoring().antMatchers("/css/**", "/vendor/**", "/app/**", "/views/**");
+	  web.ignoring().antMatchers("/css/**", "/vendor/**", "/app/**", "/views/**", "/register");
 	  
 	 }
 	

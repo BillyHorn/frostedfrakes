@@ -22,6 +22,7 @@ public class Dev {
 	private String email;
 	private String password;
 	private String role;
+	private Boolean isactive;
 	private Set<Report> reports;
 		
 	
@@ -39,6 +40,20 @@ public class Dev {
 	 */
 	public void setDevId(Integer devId) {
 		this.devId = devId;
+	}
+
+	/**
+	 * @return the isactive
+	 */
+	public Boolean getIsactive() {
+		return isactive;
+	}
+
+	/**
+	 * @param isactive the isactive to set
+	 */
+	public void setIsactive(Boolean isactive) {
+		this.isactive = isactive;
 	}
 
 	/**

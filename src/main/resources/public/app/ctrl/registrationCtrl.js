@@ -8,11 +8,13 @@ angular
 						'registrationFactory',
 						function($scope, $state, registrationFactory) {
 
-							console.log(registrationFactory);
+							console.log("registrationFactory");
 
 							$scope.registration = function() {
-								$scope.register.role = "developer";
+								$scope.register.role = "dev";
+								$scope.register.isactive = true;
 								console.log($scope.register);
+								console.log("scope.register ");
 								if ($scope.register.password == $scope.register.verifypassword) {
 									registrationFactory
 											.registerCheck($scope.register)
