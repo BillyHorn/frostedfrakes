@@ -115,6 +115,7 @@ public class Project {
 		this.reports = reports;
 	}
 
+
 	/**
 	 * @return the devsToConvert
 	 */
@@ -128,6 +129,12 @@ public class Project {
 	public void setDevsToConvert(List<Dev> devsToConvert) {
 		this.devsToConvert = devsToConvert;
 	}
+
+	
+	/**
+	 * overrides objects hashCode to provide a code specific to the projectId
+	 */
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -135,6 +142,9 @@ public class Project {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals to provide one specific to project
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Project)){
