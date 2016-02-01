@@ -21,6 +21,8 @@ import javax.persistence.UniqueConstraint;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Models a project
  * foriegn key of userId for tech lead
@@ -105,6 +107,7 @@ public class Project {
 	 * @return the reports
 	 */
 	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
+	@JsonBackReference
 	public Set<Report> getReports() {
 		return reports;
 	}
@@ -114,6 +117,7 @@ public class Project {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
+
 
 
 	/**
@@ -130,11 +134,6 @@ public class Project {
 		this.devsToConvert = devsToConvert;
 	}
 
-	
-	/**
-	 * overrides objects hashCode to provide a code specific to the projectId
-	 */
-
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -142,9 +141,6 @@ public class Project {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to project
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Project)){

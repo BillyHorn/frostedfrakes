@@ -48,9 +48,6 @@ public class Category {
 		this.value = value;
 	}
 	
-	/**
-	 * overrides objects hashCode to provide a code specific to the categoryId
-	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -58,9 +55,6 @@ public class Category {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to category
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){

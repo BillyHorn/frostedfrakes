@@ -66,9 +66,6 @@ public class Receipt {
 		this.images = images;
 	}
 	
-	/**
-	 * overrides objects hashCode to provide a code specific to the recieptId
-	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -76,9 +73,6 @@ public class Receipt {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to Reciept
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Receipt)){

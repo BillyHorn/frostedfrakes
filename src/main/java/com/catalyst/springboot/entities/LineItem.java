@@ -21,6 +21,8 @@ import javax.persistence.OneToOne;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Models line item
  * Foreign keys - report and category
@@ -59,6 +61,7 @@ public class LineItem {
 	 */
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="reportId")
+	@JsonBackReference
 	public Report getReport() {
 		return report;
 	}
@@ -120,11 +123,11 @@ public class LineItem {
 		this.receipts = receipts;
 	}
 
+
 	
 	/**
 	 * overrides objects hashCode to provide a code specific to the lineItemId
 	 */
-
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -132,9 +135,6 @@ public class LineItem {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to lineItem
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){

@@ -15,6 +15,9 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * models a report filled with line items
  * has one user and one report associated with it
@@ -54,6 +57,7 @@ public class Report {
 	 * @return the lineItems
 	 */
 	@OneToMany(cascade=CascadeType.MERGE, mappedBy="report")
+	@JsonManagedReference
 	public Set<LineItem> getLineItems() {
 		return lineItems;
 	}
@@ -68,6 +72,7 @@ public class Report {
 	 */
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="devId")
+	@JsonManagedReference
 	public Dev getDev() {
 		return dev;
 	}
@@ -129,6 +134,7 @@ public class Report {
 	 */
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="projectId")
+	@JsonManagedReference
 	public Project getProject() {
 		return project;
 	}
@@ -147,18 +153,14 @@ public class Report {
 	public List<LineItem> getLineItemsToConvert() {
 		return lineItemsToConvert;
 	}
+
 	/**
 	 * @param lineItemsToConvert the lineItemsToConvert to set
 	 */
 	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
 		this.lineItemsToConvert = lineItemsToConvert;
 	}
-
 	
-	/**
-	 * overrides objects hashCode to provide a code specific to the reportId
-	 */
-
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -166,9 +168,6 @@ public class Report {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to report
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Report)){
