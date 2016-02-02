@@ -58,7 +58,7 @@ public class WebServices {
 	 * @return The list of all projects in the database.
 	 */
 	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> createProject(){
+	public List<Project> getProjects(){
 		return projectService.get();
 	}
 	

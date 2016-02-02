@@ -43,7 +43,11 @@ public class DevDao {
 //				.add(Projections.property("role"), "role"))
 //				.setResultTransformer(Transformers.aliasToBean(Dev.class)).list();
 //		return devs;
-		return em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
+		List<Dev> devs = em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
+		for (Dev dev : devs) {
+			dev.setPassword(null);
+		}
+		return devs;
 	}
 	
 	
