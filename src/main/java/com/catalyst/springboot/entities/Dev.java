@@ -1,30 +1,36 @@
 package com.catalyst.springboot.entities;
 
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Models dev object
  * @author mKness
  *
  */
-@Entity
+
+@Entity(name="dev")
+
 public class Dev {
 		
 	private Integer devId;
 	private String email;
 	private String password;
 	private String role;
-	private Set<Report> reports;
+	private Boolean isactive;
 		
 	
 	/**
@@ -41,6 +47,20 @@ public class Dev {
 	 */
 	public void setDevId(Integer devId) {
 		this.devId = devId;
+	}
+
+	/**
+	 * @return the isactive
+	 */
+	public Boolean getIsactive() {
+		return isactive;
+	}
+
+	/**
+	 * @param isactive the isactive to set
+	 */
+	public void setIsactive(Boolean isactive) {
+		this.isactive = isactive;
 	}
 
 	/**
@@ -83,21 +103,6 @@ public class Dev {
 	 */
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	/**
-	 * @return the reports
-	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="dev") 
-	public Set<Report> getReports() {
-		return reports;
-	}
-
-	/**
-	 * @param reports the reports to set
-	 */
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
 	}
 
 	@Override

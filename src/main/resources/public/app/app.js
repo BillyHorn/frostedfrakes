@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 angular.module('app', ['ui.router', 'ui.bootstrap']);
 
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
@@ -17,6 +18,18 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     controller: 'homeCtrl'
   })
 
+  .state('registration', {
+    url: '/registration',
+    templateUrl: 'views/partials/registration.html',
+    controller: "registrationCtrl"
+  })
+
+  .state('create-project', {
+    url: '/create-project',
+    templateUrl: 'views/partials/create-project.html',
+    controller: "createProjectCtrl"
+  })
+
   .state('create-report', {
     url: '/create',
     templateUrl: 'views/partials/report/create-report.html',
@@ -34,6 +47,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     templateUrl: 'views/partials/my-reports/my-reports.html',
     controller: "myReportsCtrl"
   })
+  
       // sub-routes
       .state('my-reports.saved', {
         url: '/saved',
