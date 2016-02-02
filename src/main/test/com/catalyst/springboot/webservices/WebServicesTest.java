@@ -33,7 +33,7 @@ public class WebServicesTest {
 	@Test
 	public void createProjectTest(){
 		webService.createProject(null);
-		verify(projectService).add(eq(null));
+		verify(projectService).add((Project) eq(null));
 	}
 	
 	@Test

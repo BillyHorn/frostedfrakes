@@ -1,20 +1,50 @@
 package com.catalyst.springboot.dao.impl;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 
 
 import com.catalyst.springboot.entities.Dev;
 
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Component;
+
+import com.catalyst.springboot.entities.Report;
+
+
+@Transactional
+@Component
 public class Daoimpl {
+
+	
+	public void addReport(Report report) {
+		em.persist(report);
+		em.flush();
+	}
+	
+	public List<Report> getReport(){
+		return em.createQuery("SELECT r FROM Report r", Report.class).getResultList();
+	}
+
+
+	/*@Override
+	public void add(User user) {
+		// TODO Auto-generated method stub
+		*/
+
+//public class Daoimpl {
 
 	@PersistenceContext
 	private EntityManager em;
 	
 	public void setEm(EntityManager em) {
 		this.em = em;
-	}
 
+	}
 	
 	/**
 	 * check if a particular Developer exists

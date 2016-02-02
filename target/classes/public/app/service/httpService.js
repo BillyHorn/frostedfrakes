@@ -1,14 +1,32 @@
 angular.module('app').service('httpService', ['$http', function($http){
+
+
+    // Gets all users from the database
     function getUsers(){
         return $http.get('/users');
     }
 
+    // Gets all projects from the database
+    function getProjects(){
+    	return $http.get('/project/get');
+    }
+
+    // Creates a new project in the database
     function createProject(data){
         return $http.post('/project/create', data);
     }
 
+    // Creates a new report in the database
+    function createReport(data){
+    	return $http.post('/report/create', data);
+    }
+
+    // The list of all available functions
     return {
         getUsers : getUsers,
-        createProject : createProject
+        createProject : createProject,
+        getProjects: getProjects,
+        createReport: createReport
     };
+
 }]);

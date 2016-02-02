@@ -18,6 +18,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/createProject',
             templateUrl: 'views/partials/createProject.html',
             controller: "createProjectCtrl"
-        });
+            	
+        }).state('createReport', {
+    		url: '/createReport',
+    		templateUrl: 'views/partials/createReport.html',
+    		controller: "createReportCtrl"
+    	});
 
 }]);

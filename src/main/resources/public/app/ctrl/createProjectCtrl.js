@@ -1,6 +1,9 @@
 angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', '$state', function($scope, httpService, $state) {
+
+
     $scope.project = {};
 	$scope.project.devsToConvert = [];
+
     $scope.userHolders = [];
 
     // Gets a list of all users from the database.

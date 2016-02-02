@@ -12,9 +12,9 @@ public class HomeController {
 		return "/views/index.html";
 	}
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home() {
 		return "/views/partials/home.html";
-	}
+	}*/
 	
 }
