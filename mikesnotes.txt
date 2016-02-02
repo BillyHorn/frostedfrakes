@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/10065002/jackson-serialization-of-entities-with-birectional-relationships-avoiding-cyc
+  - talks about using @JsonIdentityInfo
+    including a maven dependency
