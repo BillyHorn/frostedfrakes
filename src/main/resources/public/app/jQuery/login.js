@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	console.log("login.js");
 	
+	$('#errorLog').hide();
+	
 	$('#login-form').keypress(function(e){
 		if(e.keyCode == 13){
 			$('#submitLogin').click();
@@ -32,8 +34,9 @@ $(document).ready(function(){
 	    window.location.href = "/";
 
 	  }).fail(function() {
+		$('#errorLog').show();
 		$('#errorLog').empty();
-	    $('#errorLog').append("<p>Error: Your username and password is incorrect!</p>");
+	    $('#errorLog').append("<p><strong>Error:</strong> Your username and password is incorrect!</p>");
 	    $('#errorLog').fadeIn();
 	  });
 	}

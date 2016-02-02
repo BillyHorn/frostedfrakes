@@ -63,7 +63,8 @@
 											</div>
 										</div>
 									</div>
-									<div id="errorLog">
+									<div id="errorLog" class="alert alert-danger">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
 									</div>
 								</form>
 								<form id="register-form" method="post" role="form"
@@ -93,8 +94,8 @@
 											<div ng-controller="registrationCtrl"
 												class="col-sm-6 col-sm-offset-3">
 												<button ng-click="registration()" type="button" tabindex="4" class="btn form-control btn-register" id="createbtn">Create</button>
-												<div id="errorLog">
-													{{message}}
+												<div id="errorLog" class={{alert}} ng-show="value">
+													<strong>{{type}}</strong>{{message}}
 												</div>
 											</div>
 										</div>
