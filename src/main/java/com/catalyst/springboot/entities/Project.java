@@ -106,8 +106,7 @@ public class Project {
 	/**
 	 * @return the reports
 	 */
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
-	@JsonBackReference
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
 	public Set<Report> getReports() {
 		return reports;
 	}

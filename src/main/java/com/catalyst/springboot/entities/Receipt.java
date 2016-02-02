@@ -42,8 +42,7 @@ public class Receipt {
 	/**
 	 * @return the lineItem
 	 */
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="lineItemId")
+	@ManyToOne(optional = false)
 	public LineItem getLineItem() {
 		return lineItem;
 	}

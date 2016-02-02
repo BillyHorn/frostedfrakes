@@ -56,8 +56,7 @@ public class Report {
 	/**
 	 * @return the lineItems
 	 */
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="report")
-	@JsonManagedReference
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="report")
 	public Set<LineItem> getLineItems() {
 		return lineItems;
 	}
@@ -70,9 +69,7 @@ public class Report {
 	/**
 	 * @return the userId
 	 */
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="devId")
-	@JsonManagedReference
+	@ManyToOne(optional = false)
 	public Dev getDev() {
 		return dev;
 	}
@@ -132,9 +129,7 @@ public class Report {
 	/**
 	 * @return the project
 	 */
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="projectId")
-	@JsonManagedReference
+	@ManyToOne(optional = false)
 	public Project getProject() {
 		return project;
 	}

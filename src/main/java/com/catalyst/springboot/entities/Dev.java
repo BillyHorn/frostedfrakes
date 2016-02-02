@@ -90,9 +90,7 @@ public class Dev {
 	/**
 	 * @return the reports
 	 */
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="dev")
-	@JsonBackReference
-
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="dev")
 	public Set<Report> getReports() {
 		return reports;
 	}
