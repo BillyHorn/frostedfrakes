@@ -21,13 +21,6 @@
         <button type="button" ng-click="addProject()">Add Project</button>
      </label><br>
 
-   <!-- pull all potential approvers to be added to the report -->
-
-     <!-- <label for="Approver">Approver(s):
-        <select name="user" ng-model="approver" ng-options="user as user.email for user in users" required></select>
-        <button type="button" ng-click="addApprover()">Add Approver</button>
-     </label><br> -->
-
     <!-- line item fields -->
     <button id="lineItemButton" ng-click="createNewLineItem()" type="button"> Add line item </button>
     <div ng-repeat="item in addLineItem">
