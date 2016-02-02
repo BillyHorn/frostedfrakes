@@ -2,13 +2,14 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
 
   // pull the current state
   var state = $state.current.name;
-  // get all reports associated with a user from the backend
-  var reports = myReportsService.getReports();
 
   // a name string used for the title of a display panel
   $scope.whichReports = myReportsService.namedState(state);
   // an array of reports, filtered by current state
-  $scope.filteredReports = myReportsService.filterReports(state);
+  myReportsService.filterReports(state).then(function(res){
+    $scope.filteredReports = res;
+  });
+
   // a string containing a bootstrap panel-type, for display purposes
   $scope.panelType = myReportsService.panelState(state);
 

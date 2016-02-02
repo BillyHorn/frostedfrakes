@@ -4,15 +4,21 @@ angular.module('app').service('myReportsService', ['$http', function($http){
 
   // filter and return a list of a devs reports according to the current state
   function filterReports(state) {
-    var reports = getReports();
-    var filteredReports = [];
-    var stateNumber = numberedState(state);
 
-    filteredReports = reports.filter(function(element) {
-      return element.state == stateNumber;
+    return getReports().then(function(response) {
+      var filteredReports = [];
+      var stateNumber = numberedState(state);
+
+      var reports = response.data;
+
+      filteredReports = reports.filter(function(element) {
+        return element.state == stateNumber;
+      });
+
+      return filteredReports;
     });
 
-    return filteredReports;
+
   }
 
   // returns a nicely formatted title based upon current state
@@ -50,12 +56,12 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   }
 
   /* now, I know what you're thinking. these functions are all the same, and I
-   * should abstract them into one function. I did that. It made everything
-   * very difficult to read, and made function calls make way less sense.
-   * this is better. trust me.
-   *
-   * returns a number (matching the db) based upon current state
-   */
+  * should abstract them into one function. I did that. It made everything
+  * very difficult to read, and made function calls make way less sense.
+  * this is better. trust me.
+  *
+  * returns a number (matching the db) based upon current state
+  */
   function numberedState(state) {
 
     switch(state) {
@@ -73,86 +79,26 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   }
 
   /* a function which will eventually pull reports from the backend. for now
-   * it just shoots out dummy data.
-   */
+  * it just shoots out dummy data.
+  */
   function getReports(){
 
-    // commented until route set up, etc.
     // return $http.get('/reports');
 
+    return $http.get("/report/get");
+
     // dummy return variables
-    return [
-      {
-        reportID: 1,
-        name: "Report 1",
-        dev: "SomeUser",
-        notes: "this is why I should not be rejected",
-        rejectionNotes: "here is why you were rejected",
-        project: "Project1",
-        state: 3,
-        lineItems: []
-      },
-      {
-        reportID: 2,
-        name: "Report 2",
-        dev: "SomeOtherUser",
-        notes: "Nothing to Say",
-        rejectionNotes: "",
-        project: "Project1",
-        state: 4,
-        lineItems: []
-      },
-      {
-        reportID: 3,
-        name: "Report 3",
-        dev: "SomeUser",
-        notes: "Why do you always reject me?",
-        rejectionNotes: "",
-        project: "Project2",
-        state: 1,
-        lineItems: []
-      },
-      {
-        reportID: 4,
-        name: "Report 4",
-        dev: "SomeThirdUser",
-        notes: "I should not be rejected",
-        rejectionNotes: "",
-        project: "Project1",
-        state: 2,
-        lineItems: []
-      },
-      {
-        reportID: 5,
-        name: "Report 5",
-        dev: "SomeUser",
-        notes: "",
-        rejectionNotes: "",
-        project: "Project1",
-        state: 2,
-        lineItems: []
-      },
-      {
-        reportID: 6,
-        name: "Report 6",
-        dev: "SomeThirdUser",
-        notes: "",
-        rejectionNotes: "",
-        project: "Project2",
-        state: 1,
-        lineItems: []
-      },
-      {
-        reportID: 7,
-        name: "Report 7",
-        dev: "SomeOtherUser",
-        notes: "I should not be rejected",
-        rejectionNotes: "",
-        project: "Project1",
-        state: 1,
-        lineItems: []
-      }
-    ];
+    // return [
+    //   {
+    //     reportid: 2,
+    //     name: "Report 2",
+    //     devid: "SomeOtherUser",
+    //     notes: "Nothing to Say",
+    //     rejectionnotes: "",
+    //     projectid: "Project1",
+    //     state: 4
+    //   }
+    // ];
   }
 
   return {
