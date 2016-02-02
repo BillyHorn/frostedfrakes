@@ -1,5 +1,7 @@
 package com.catalyst.springboot.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -11,8 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.catalyst.springboot.entities.Dev;
+import com.catalyst.springboot.entities.Project;
 
-@Service
 @Transactional
 @Component
 public class ProjectDao {
@@ -23,6 +25,17 @@ public class ProjectDao {
 
 	public void setEm(EntityManager em) {
 		this.em = em;
+	}
+
+	public void add(Project project) {
+		em.flush();
+		em.persist(project);
+		
+		
+	}
+	
+	public List<Project> get(){
+		return em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
 	}
 	
 	@Autowired(required = false)

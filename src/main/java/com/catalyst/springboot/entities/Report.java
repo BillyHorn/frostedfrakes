@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,12 +31,11 @@ public class Report {
 
 	
 	private Integer reportId;
-	private Set<LineItem> lineItems;
-	private Dev dev;
 	private String notes;
+	private Dev dev;
+	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
-	private Project project;
 	@Transient
 	private List<LineItem> lineItemsToConvert;
 
@@ -54,35 +54,6 @@ public class Report {
 	public void setReportId(Integer reportId) {
 		this.reportId = reportId;
 	}
-	/**
-	 * @return the lineItems
-	 */
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="report")
-	@JsonManagedReference
-	public Set<LineItem> getLineItems() {
-		return lineItems;
-	}
-	/**
-	 * @param lineItems the lineItems to set
-	 */
-	public void setLineItems(Set<LineItem> lineItems) {
-		this.lineItems = lineItems;
-	}
-	/**
-	 * @return the userId
-	 */
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="devId")
-	@JsonIgnore
-	public Dev getDev() {
-		return dev;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setDev(Dev dev) {
-		this.dev = dev;
-	}
 	
 	/**
 	 * @return the notes
@@ -100,6 +71,34 @@ public class Report {
 	}
 
 	
+	/**
+	 * @return the dev
+	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name="devId")
+	public Dev getDev() {
+		return dev;
+	}
+	/**
+	 * @param dev the dev to set
+	 */
+	public void setDev(Dev dev) {
+		this.dev = dev;
+	}
+	/**
+	 * @return the project
+	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name="projectId")
+	public Project getProject() {
+		return project;
+	}
+	/**
+	 * @param project the project to set
+	 */
+	public void setProject(Project project) {
+		this.project = project;
+	}
 	/**
 	 * @return the rejectionNotes
 	 */
@@ -128,23 +127,7 @@ public class Report {
 	public void setState(String state) {
 		this.state = state;
 	}
-	
 
-	/**
-	 * @return the project
-	 */
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="projectId")
-	@JsonManagedReference
-	public Project getProject() {
-		return project;
-	}
-	/**
-	 * @param project the project to set
-	 */
-	public void setProject(Project project) {
-		this.project = project;
-	}
 
 	/**
 	 * @return the lineItemsToConvert
@@ -153,12 +136,14 @@ public class Report {
 	public List<LineItem> getLineItemsToConvert() {
 		return lineItemsToConvert;
 	}
+
 	/**
 	 * @param lineItemsToConvert the lineItemsToConvert to set
 	 */
 	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
 		this.lineItemsToConvert = lineItemsToConvert;
 	}
+	
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
