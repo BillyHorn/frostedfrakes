@@ -15,10 +15,10 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
   // turn this into a value
   // data to populate navigation tabs with
   $scope.tabs = [
-    { heading: "Saved", route:"myReports.saved", active:false },
-    { heading: "Submitted", route:"myReports.submitted", active:false },
-    { heading: "Approved", route:"myReports.approved", active:false },
-    { heading: "Rejected", route:"myReports.rejected", active:false }
+    { heading: "Saved", route:"my-reports.saved", active:false },
+    { heading: "Submitted", route:"my-reports.submitted", active:false },
+    { heading: "Approved", route:"my-reports.approved", active:false },
+    { heading: "Rejected", route:"my-reports.rejected", active:false }
   ];
 
   // a function for navicating between states

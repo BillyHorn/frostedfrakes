@@ -19,13 +19,13 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   function namedState(state) {
 
     switch(state) {
-      case "myReports.saved":
+      case "my-reports.saved":
       return "Saved";
-      case "myReports.submitted":
+      case "my-reports.submitted":
       return "Submitted";
-      case "myReports.rejected":
+      case "my-reports.rejected":
       return "Rejected";
-      case "myReports.approved":
+      case "my-reports.approved":
       return "Approved";
       default:
       return "Something's Gone Wrong";
@@ -36,13 +36,13 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   function panelState(state) {
 
     switch(state) {
-      case "myReports.saved":
+      case "my-reports.saved":
       return "panel-default";
-      case "myReports.submitted":
+      case "my-reports.submitted":
       return "panel-info";
-      case "myReports.approved":
+      case "my-reports.approved":
       return "panel-success";
-      case "myReports.rejected":
+      case "my-reports.rejected":
       return "panel-danger";
       default:
       return "panel-info";
@@ -59,13 +59,13 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   function numberedState(state) {
 
     switch(state) {
-      case "myReports.saved":
+      case "my-reports.saved":
       return 1;
-      case "myReports.submitted":
+      case "my-reports.submitted":
       return 2;
-      case "myReports.rejected":
+      case "my-reports.rejected":
       return 3;
-      case "myReports.approved":
+      case "my-reports.approved":
       return 4;
       default:
       return "Something's Gone Wrong";

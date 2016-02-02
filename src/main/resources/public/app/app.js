@@ -1,11 +1,14 @@
 angular.module('app', ['ui.router', 'ui.bootstrap']);
 
-
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
+  // redirect from the base myreports state so that only child-states exist
+  $urlRouterProvider.when('/my-reports', '/my-reports/saved');
 
+  // and anything other than a state can send you back to home.
   $urlRouterProvider.otherwise('/home');
 
+  // states for each necessary route
   $stateProvider
 
   .state('home', {
@@ -20,39 +23,39 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     controller: 'createReportCtrl'
   })
 
-  .state('createProject', {
-    url: '/createProject',
-    templateUrl: 'views/partials/createProject.html',
+  .state('create-project', {
+    url: '/create-project',
+    templateUrl: 'views/partials/create-project.html',
     controller: "createProjectCtrl"
   })
 
-  .state('myReports', {
-    url: '/myReports',
-    templateUrl: 'views/partials/myReports/myReports.html',
+  .state('my-reports', {
+    url: '/my-reports',
+    templateUrl: 'views/partials/my-reports/my-reports.html',
     controller: "myReportsCtrl"
   })
       // sub-routes
-      .state('myReports.saved', {
+      .state('my-reports.saved', {
         url: '/saved',
-        templateUrl: 'views/partials/myReports/viewReports.html',
+        templateUrl: 'views/partials/my-reports/view-reports.html',
         controller: 'myReportsCtrl'
       })
 
-      .state('myReports.submitted', {
+      .state('my-reports.submitted', {
         url: '/submitted',
-        templateUrl: 'views/partials/myReports/viewReports.html',
+        templateUrl: 'views/partials/my-reports/view-reports.html',
         controller: 'myReportsCtrl'
       })
 
-      .state('myReports.approved', {
+      .state('my-reports.approved', {
         url: '/approved',
-        templateUrl: 'views/partials/myReports/viewReports.html',
+        templateUrl: 'views/partials/my-reports/view-reports.html',
         controller: 'myReportsCtrl'
       })
 
-      .state('myReports.rejected', {
+      .state('my-reports.rejected', {
         url: '/rejected',
-        templateUrl: 'views/partials/myReports/viewReports.html',
+        templateUrl: 'views/partials/my-reports/view-reports.html',
         controller: 'myReportsCtrl'
       });
 
