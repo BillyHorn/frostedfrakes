@@ -2,8 +2,6 @@ package com.catalyst.springboot.dao;
 
 
 import static org.mockito.Mockito.*;
-import static org.mockito.Matchers.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +13,12 @@ import org.junit.Test;
 
 import com.catalyst.springboot.entities.Project;
 
+
 public class ProjectDaoTest {
 
-	
 	private ProjectDao dao;
 	private EntityManager mockEm;
-
+	
 	@Before
 	public void setup() {
 		dao = new ProjectDao();
@@ -46,5 +44,11 @@ public class ProjectDaoTest {
 		
 		dao.get();
 		verify(query).getResultList();
+	}
+	
+	@Test
+	public void registerTest() {
+		dao.register(null);
+		verify(mockEm).persist(null);
 	}
 }

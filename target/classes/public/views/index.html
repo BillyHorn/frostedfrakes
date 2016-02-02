@@ -29,8 +29,10 @@
                 </li>
                 <li>
                     <a ui-sref="home">Option 3</a>
-
                 </li>
+            </ul>
+            <ul class = "navbar navbar-nav navbar-right">
+            	<li><a href="/logout">Logout</a>
             </ul>
         </div>
     </div>
@@ -46,17 +48,21 @@
 <script type="text/javascript" src="../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../vendor/angular/angular.js"></script>
 <script type="text/javascript" src="../vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
-
 <script type="text/javascript" src="../app/app.js"></script>
 <script type="text/javascript" src="../app/ctrl/homeCtrl.js"></script>
+
+<!-- regestration scripts -->
+<script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
+<script type="text/javascript" src="../app/service/registrationFactory.js"></script>
+
+<!-- login/logout scripts -->
+<script type="text/javascript" src="../app/ctrl/loginCtrl.js"></script>
+<script type="text/javascript" src="../app/service/httpService.js"></script>
 <script type="text/javascript" src="../app/ctrl/createProjectCtrl.js"></script>
 <script type="text/javascript" src="../app/ctrl/createReportCtrl.js"></script>
 
 <script type="text/javascript" src="../app/service/httpService.js"></script>
-
-
-
-
+<script type="text/javascript" src="../app/service/currentUser.js"></script>
 
 </body>
 

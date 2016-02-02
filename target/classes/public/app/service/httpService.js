@@ -21,12 +21,24 @@ angular.module('app').service('httpService', ['$http', function($http){
     	return $http.post('/report/create', data);
     }
 
+    function login(loginData){
+    		return $http.post("/loginPage", loginData);
+    }
+
+    //Requests the current users information
+    function currentUser(){
+        return $http.get('/security/current');
+    }
+
     // The list of all available functions
     return {
         getUsers : getUsers,
         createProject : createProject,
         getProjects: getProjects,
-        createReport: createReport
+        createReport: createReport,
+        login: login,
+        currentUser : currentUser
     };
+
 
 }]);

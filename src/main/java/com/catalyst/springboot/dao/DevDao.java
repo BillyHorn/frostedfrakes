@@ -44,11 +44,20 @@ public class DevDao {
 //				.setResultTransformer(Transformers.aliasToBean(Dev.class)).list();
 //		return devs;
 		List<Dev> devs = em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
-		for (Dev dev : devs) {
-			dev.setPassword(null);
-		}
+//		for (Dev dev : devs) {
+//			dev.setPassword(null);
+//		}
 		return devs;
 	}
+
+
+	public Dev getEmployeeByUsername(String username) {
+		Dev dev = em.createQuery("SELECT d from dev d WHERE d.email = :email", Dev.class)
+				.setParameter("email", username).getSingleResult();
+		return dev;
+	}
+	
+	
 	
 	
 }

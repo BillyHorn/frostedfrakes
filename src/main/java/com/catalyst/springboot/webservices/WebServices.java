@@ -1,13 +1,15 @@
 package com.catalyst.springboot.webservices;
 
+import java.security.Principal;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalyst.springboot.dao.DevDao;
+import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
@@ -25,7 +27,35 @@ import com.catalyst.springboot.services.ReportService;
 public class WebServices {
 
 	@Autowired
-	DevService service;
+	private ProjectDao dao;
+
+	
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(ProjectDao dao) {
+		this.dao = dao;
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public Dev addNewUser(@RequestBody Dev dev) {
+		String email = dev.getEmail();	
+		Dev value = dao.checkUserName(email);	
+
+		if (value != null) {			 
+			String message= "User Name Exists";
+			System.out.println("----------->webservice message "+message);
+			return null; 
+		} else {
+			dao.register(dev);
+			String message= "Regestration Sucess";
+			System.out.println("--------->webservice "+message);
+			return  dev;			
+		}
+	}
+	
+	@Autowired
+	DevService devService;
 	
 	@Autowired 
 	ProjectService projectService;
@@ -44,7 +74,7 @@ public class WebServices {
 	 * @param service the service to set
 	 */
 	public void setService(DevService service) {
-		this.service = service;
+		this.devService = service;
 	}
 
 	
@@ -91,7 +121,7 @@ public class WebServices {
 	 */
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public List<Dev> getUsers() {		
-		return service.get();
+		return devService.get();
 	}
 	
 	/**
@@ -112,6 +142,11 @@ public class WebServices {
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)
 	public List<Report> getReport(){
 		return reportService.getReport();
+	}
+	
+	@RequestMapping(value="/security/current", method = RequestMethod.GET)
+	public Dev currentUser(Principal principal) {
+		return devService.getEmployeeByUsername(principal.getName());
 	}
 	
 }
