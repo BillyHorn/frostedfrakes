@@ -4,9 +4,11 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -26,7 +28,6 @@ public class Dev {
 	private String email;
 	private String password;
 	private String role;
-	private Set<Report> reports;
 		
 	
 	/**
@@ -85,23 +86,6 @@ public class Dev {
 	 */
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	/**
-	 * @return the reports
-	 */
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="dev")
-	@JsonBackReference
-
-	public Set<Report> getReports() {
-		return reports;
-	}
-
-	/**
-	 * @param reports the reports to set
-	 */
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
 	}
 
 	@Override

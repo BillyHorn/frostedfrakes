@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,6 @@ public class Project {
 	private String name;
 	private Dev techLeadId;
 	private Set<Dev> devs;
-	private Set<Report> reports;
 	@Transient
 	private List<Dev> devsToConvert;
 
@@ -101,24 +101,6 @@ public class Project {
 	public void setUsers(Set<Dev> devs) {
 		this.devs = devs;
 	}
-	
-
-	/**
-	 * @return the reports
-	 */
-	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
-	@JsonBackReference
-	public Set<Report> getReports() {
-		return reports;
-	}
-	/**
-	 * @param reports the reports to set
-	 */
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
-	}
-
-
 
 	/**
 	 * @return the devsToConvert
