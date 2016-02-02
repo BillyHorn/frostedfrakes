@@ -20,50 +20,55 @@ angular.module('app').service('myReportsService', ['$http', function($http){
 
     switch(state) {
       case "myReports.saved":
-        return "Saved";
+      return "Saved";
       case "myReports.submitted":
-        return "Submitted";
+      return "Submitted";
       case "myReports.rejected":
-        return "Rejected";
+      return "Rejected";
       case "myReports.approved":
-        return "Approved";
+      return "Approved";
       default:
-        return "Something's Gone Wrong";
+      return "Something's Gone Wrong";
     }
   }
 
-  // returns a nicely formatted title based upon current state
+  // returns a bootstrap panel type based upon current state for stylin purposes
   function panelState(state) {
 
     switch(state) {
       case "myReports.saved":
-        return "panel-default";
+      return "panel-default";
       case "myReports.submitted":
-        return "panel-info";
+      return "panel-info";
       case "myReports.approved":
-        return "panel-success";
+      return "panel-success";
       case "myReports.rejected":
-        return "panel-danger";
+      return "panel-danger";
       default:
-        return "panel-info";
+      return "panel-info";
     }
   }
 
-  // maybe abstract these things into 1 function
-  // returns a number (matching the db) based upon current state
+  /* now, I know what you're thinking. these functions are all the same, and I
+   * should abstract them into one function. I did that. It made everything
+   * very difficult to read, and made function calls make way less sense.
+   * this is better. trust me.
+   *
+   * returns a number (matching the db) based upon current state
+   */
   function numberedState(state) {
 
     switch(state) {
       case "myReports.saved":
-        return 1;
+      return 1;
       case "myReports.submitted":
-        return 2;
+      return 2;
       case "myReports.rejected":
-        return 3;
+      return 3;
       case "myReports.approved":
-        return 4;
+      return 4;
       default:
-        return "Something's Gone Wrong";
+      return "Something's Gone Wrong";
     }
   }
 

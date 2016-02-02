@@ -1,5 +1,7 @@
-.content {
-  margin-top: 5em;
+@media screen and (max-width: 700px){
+  .report-buttons{
+    text-align: center;
+  }
 }
 
 footer {
@@ -7,18 +9,8 @@ footer {
   border-top: 1px solid #ddd;
 }
 
-.report-buttons{
-    text-align: left;
-}
-
-@media screen and (max-width: 700px){
-    .report-buttons{
-        text-align: center;
-    }
-}
-
-.report-button {
-  width: 6em;
+.content {
+  margin-top: 5em;
 }
 
 .navbar {
@@ -33,15 +25,25 @@ footer {
   color: #96CCFE;
 }
 
-#projectDropdown {
-  display: block;
-  width: 100%;
+.panel-body {
+  padding: 15px 0px;
 }
 
-.panel-body {
-    padding: 15px 0px;
+.report-button {
+  width: 6em;
+}
+
+.report-buttons{
+  text-align: left;
 }
 
 .vertical-break {
-  padding: 0 1em;
+  margin: 0 1em;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #ddd;
+}
+
+#projectDropdown {
+  display: block;
+  width: 100%;
 }
