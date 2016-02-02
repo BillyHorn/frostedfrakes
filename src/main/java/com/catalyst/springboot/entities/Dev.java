@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Models dev object
@@ -106,7 +108,7 @@ public class Dev {
 	 * @return the reports
 	 */
 	@OneToMany(cascade=CascadeType.MERGE, mappedBy="dev")
-	@JsonBackReference
+	@JsonIgnore
 	public Set<Report> getReports() {
 		return reports;
 	}

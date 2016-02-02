@@ -16,6 +16,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -72,7 +73,7 @@ public class Report {
 	 */
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="devId")
-	@JsonManagedReference
+	@JsonIgnore
 	public Dev getDev() {
 		return dev;
 	}
