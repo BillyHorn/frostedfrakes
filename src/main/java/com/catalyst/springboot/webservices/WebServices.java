@@ -93,9 +93,9 @@ public class WebServices {
 	 * @author wPerlichek
 	 *
 	 */
-	@RequestMapping(value="/report/submit", method=RequestMethod.PUT)
+	@RequestMapping(value="/report/Submit", method=RequestMethod.POST)
 	public void submitReport(@RequestBody Report report){
-		  /*    */
+		   reportService.add(report);
 	} 
 	
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)

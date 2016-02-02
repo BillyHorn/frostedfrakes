@@ -52,7 +52,7 @@ public class ReportService {
 	 * @author wPerlichek
 	 */
 	public List<Report> getReport(){
-		return reportDao.getReport();
+		return reportDao.getReport().getState();
 	}
 	
 }
