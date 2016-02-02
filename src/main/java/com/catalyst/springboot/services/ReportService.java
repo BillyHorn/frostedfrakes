@@ -35,6 +35,15 @@ public class ReportService {
 		reportDao.addReport(report);
 	}
 	
+	/** ADD
+	 * add a new report
+	 * @param report
+	 * @author wPerlichek
+	 */
+	public void submitReport(Report report) {
+		reportDao.submitReport(report);
+	}
+	
 	/* PLEASE DO NOT DELETE wPerlichek */
 //	public Set<LineItem> convertLineItems(List<LineItem> LineItemToConvert){
 //		Set<LineItem> lineItems = new HashSet<LineItem>();
@@ -52,7 +61,7 @@ public class ReportService {
 	 * @author wPerlichek
 	 */
 	public List<Report> getReport(){
-		return reportDao.getReport().getState();
+		return reportDao.getReport();
 	}
 	
 }

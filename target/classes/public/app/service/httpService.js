@@ -7,6 +7,10 @@ angular.module('app').service('httpService', ['$http', function($http){
     function getProjects(){
     	return $http.get('/project/get');
     }
+    
+    function getReports(){
+        return $http.get('/report/get');
+    }
 
     function createProject(data){
         return $http.post('/project/create', data);
@@ -16,33 +20,25 @@ angular.module('app').service('httpService', ['$http', function($http){
     	return $http.post('/report/create', data);
     }
     
-<<<<<<< HEAD
     /* submit existing report that has been saved */
     function submitReport(data){
-    	return $http.post('/report/Submit', data);
+    	return $http.put('/report/Submit', data);
     }
     
-=======
->>>>>>> sprint1
+    
     return {
         getUsers : getUsers,
         createProject : createProject,
         getProjects: getProjects,
         createReport: createReport,
-<<<<<<< HEAD
-        submitReport: submitReport
-=======
+        submitReport: submitReport,
         login: login,
-		getUsers : getUsers
->>>>>>> sprint1
+        getReports: getReports
     };
 
-function login(loginData){
+    function login(loginData){
 		return $http.post("/loginPage", loginData);
 	}
 
-	function getUsers(){
-	    return $http.get('/users');
-	}
 }]);
     

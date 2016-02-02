@@ -22,6 +22,11 @@ public class Daoimpl {
 		em.flush();
 	}
 	
+	public void submitReport(Report report) {
+		em.merge(report);
+		em.flush();
+	}
+	
 	public List<Report> getReport(){
 		return em.createQuery("SELECT r FROM Report r", Report.class).getResultList();
 	}

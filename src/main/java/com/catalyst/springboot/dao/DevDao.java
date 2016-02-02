@@ -25,5 +25,4 @@ public class DevDao {
 		return em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
 	}
 	
-	
 }

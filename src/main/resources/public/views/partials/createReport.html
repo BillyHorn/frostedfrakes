@@ -18,9 +18,14 @@
      </label><br>
 
     <button type="submit">Save Report</button>
-    
+    <br>
+    <br>
+
   </form>
-  
-  <button ng-click="submitReport()">Submit Report</button>
-  
+
+       <label for="Report">Select a report to submit:
+        <select name="savedReports" ng-model="availableReports" ng-options="savedReports as savedReports.reportId for savedReports in saves" required></select>
+        <button ng-click="submitReport()"> Submit </button>
+     </label><br>
+ 
 </div>
