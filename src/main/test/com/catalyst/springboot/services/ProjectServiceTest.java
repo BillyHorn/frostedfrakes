@@ -56,7 +56,7 @@ public class ProjectServiceTest {
 		
 		
 		when(project.getDevsToConvert()).thenReturn(devsToConvert);
-		when(service.convertDevs(anyObject())).thenReturn(devSet);
+		when(service.convertDevs((List<Dev>) anyObject())).thenReturn(devSet);
 		when(iterator.hasNext()).thenReturn(true, false);
 		
 		
