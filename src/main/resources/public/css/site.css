@@ -37,3 +37,11 @@ footer {
   display: block;
   width: 100%;
 }
+
+.panel-body {
+    padding: 15px 0px;
+}
+
+.vertical-break {
+  padding: 0 1em;
+}

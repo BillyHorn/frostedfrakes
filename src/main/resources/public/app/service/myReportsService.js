@@ -79,6 +79,7 @@ angular.module('app').service('myReportsService', ['$http', function($http){
     return [
       {
         reportID: 1,
+        name: "Report 1",
         dev: "SomeUser",
         notes: "this is why I should not be rejected",
         rejectionNotes: "here is why you were rejected",
@@ -88,6 +89,7 @@ angular.module('app').service('myReportsService', ['$http', function($http){
       },
       {
         reportID: 2,
+        name: "Report 2",
         dev: "SomeOtherUser",
         notes: "Nothing to Say",
         rejectionNotes: "",
@@ -97,6 +99,7 @@ angular.module('app').service('myReportsService', ['$http', function($http){
       },
       {
         reportID: 3,
+        name: "Report 3",
         dev: "SomeUser",
         notes: "Why do you always reject me?",
         rejectionNotes: "",
@@ -106,11 +109,42 @@ angular.module('app').service('myReportsService', ['$http', function($http){
       },
       {
         reportID: 4,
+        name: "Report 4",
         dev: "SomeThirdUser",
         notes: "I should not be rejected",
         rejectionNotes: "",
         project: "Project1",
         state: 2,
+        lineItems: []
+      },
+      {
+        reportID: 5,
+        name: "Report 5",
+        dev: "SomeUser",
+        notes: "",
+        rejectionNotes: "",
+        project: "Project1",
+        state: 2,
+        lineItems: []
+      },
+      {
+        reportID: 6,
+        name: "Report 6",
+        dev: "SomeThirdUser",
+        notes: "",
+        rejectionNotes: "",
+        project: "Project2",
+        state: 1,
+        lineItems: []
+      },
+      {
+        reportID: 7,
+        name: "Report 7",
+        dev: "SomeOtherUser",
+        notes: "I should not be rejected",
+        rejectionNotes: "",
+        project: "Project1",
+        state: 1,
         lineItems: []
       }
     ];
