@@ -4,9 +4,11 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -90,7 +92,8 @@ public class Dev {
 	/**
 	 * @return the reports
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="dev")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="devId", nullable = true, insertable = false)
 	public Set<Report> getReports() {
 		return reports;
 	}

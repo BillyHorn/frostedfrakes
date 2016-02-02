@@ -21,7 +21,6 @@ public class Receipt {
 
 	
 	private Integer receiptId;
-	private LineItem lineItem;
 	private String images;
 	
 	
@@ -38,19 +37,6 @@ public class Receipt {
 	 */
 	public void setReciptId(Integer reciptId) {
 		this.receiptId = reciptId;
-	}
-	/**
-	 * @return the lineItem
-	 */
-	@ManyToOne(optional = false)
-	public LineItem getLineItem() {
-		return lineItem;
-	}
-	/**
-	 * @param lineItemId the lineItem to set
-	 */
-	public void setLineItem(LineItem lineItem) {
-		this.lineItem = lineItem;
 	}
 	/**
 	 * @return the images

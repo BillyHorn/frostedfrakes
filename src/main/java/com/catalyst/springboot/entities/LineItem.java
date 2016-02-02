@@ -34,9 +34,7 @@ public class LineItem {
 	
 	
 	private Integer lineItemId;
-	private Report report;
 	private Date date;
-
 	private Integer value;
 	private Category category;
 	private Set<Receipt> receipts;
@@ -56,19 +54,7 @@ public class LineItem {
 	public void setLineItemId(Integer lineItemId) {
 		this.lineItemId = lineItemId;
 	}
-	/**
-	 * @return the reportId
-	 */
-	@ManyToOne(optional = false)
-	public Report getReport() {
-		return report;
-	}
-	/**
-	 * @param reportId the reportId to set
-	 */
-	public void setReport(Report report) {
-		this.report = report;
-	}
+
 	/**
 	 * @return the date
 	 */
@@ -110,7 +96,8 @@ public class LineItem {
 	/**
 	 * @return the receipts
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="lineItem")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="lineItemId", nullable = true, insertable = false)
 	public Set<Receipt> getReceipts() {
 		return receipts;
 	}

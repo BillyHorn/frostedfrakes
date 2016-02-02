@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,11 +31,9 @@ public class Report {
 	
 	private Integer reportId;
 	private Set<LineItem> lineItems;
-	private Dev dev;
 	private String notes;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
-	private Project project;
 	@Transient
 	private List<LineItem> lineItemsToConvert;
 
@@ -56,7 +55,8 @@ public class Report {
 	/**
 	 * @return the lineItems
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="report")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="reportId", nullable = true, insertable = false)
 	public Set<LineItem> getLineItems() {
 		return lineItems;
 	}
@@ -65,19 +65,6 @@ public class Report {
 	 */
 	public void setLineItems(Set<LineItem> lineItems) {
 		this.lineItems = lineItems;
-	}
-	/**
-	 * @return the userId
-	 */
-	@ManyToOne(optional = false)
-	public Dev getDev() {
-		return dev;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setDev(Dev dev) {
-		this.dev = dev;
 	}
 	
 	/**
@@ -123,21 +110,6 @@ public class Report {
 	 */
 	public void setState(String state) {
 		this.state = state;
-	}
-	
-
-	/**
-	 * @return the project
-	 */
-	@ManyToOne(optional = false)
-	public Project getProject() {
-		return project;
-	}
-	/**
-	 * @param project the project to set
-	 */
-	public void setProject(Project project) {
-		this.project = project;
 	}
 
 

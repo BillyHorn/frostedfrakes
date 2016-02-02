@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -106,7 +107,8 @@ public class Project {
 	/**
 	 * @return the reports
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="projectId", nullable = true, insertable = false)
 	public Set<Report> getReports() {
 		return reports;
 	}
