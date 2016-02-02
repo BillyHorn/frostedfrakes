@@ -16,17 +16,30 @@ angular.module('app').service('httpService', ['$http', function($http){
     	return $http.post('/report/create', data);
     }
     
+
     /* submit existing report that has been saved */
     function submitReport(data){
     	return $http.post('/report/Submit', data);
     }
     
+
+
     return {
         getUsers : getUsers,
         createProject : createProject,
         getProjects: getProjects,
         createReport: createReport,
         submitReport: submitReport
+        login: login,
+		getUsers : getUsers
     };
 
+function login(loginData){
+		return $http.post("/loginPage", loginData);
+	}
+
+	function getUsers(){
+	    return $http.get('/users');
+	}
 }]);
+    

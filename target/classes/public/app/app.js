@@ -1,5 +1,5 @@
-angular.module('app', ['ui.router']);
 
+angular.module('app', ['ui.router']);
 
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
@@ -18,11 +18,19 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/createProject',
             templateUrl: 'views/partials/createProject.html',
             controller: "createProjectCtrl"
-            	
-        }).state('createReport', {
+        })
+       
+        .state('registration', {
+            url: '/registration',
+            templateUrl: 'views/partials/registration.html',
+            controller: "registrationCtrl"
+        })
+        
+        .state('createReport', {
     		url: '/createReport',
     		templateUrl: 'views/partials/createReport.html',
     		controller: "createReportCtrl"
     	});
 
 }]);
+
