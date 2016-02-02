@@ -28,7 +28,6 @@ public class Dev {
 	private String email;
 	private String password;
 	private String role;
-	private Set<Report> reports;
 		
 	
 	/**
@@ -87,22 +86,6 @@ public class Dev {
 	 */
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	/**
-	 * @return the reports
-	 */
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="devId", nullable = true, insertable = false)
-	public Set<Report> getReports() {
-		return reports;
-	}
-
-	/**
-	 * @param reports the reports to set
-	 */
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
 	}
 
 	@Override

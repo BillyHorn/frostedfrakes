@@ -30,8 +30,9 @@ public class Report {
 
 	
 	private Integer reportId;
-	private Set<LineItem> lineItems;
 	private String notes;
+	private Dev dev;
+	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
 	@Transient
@@ -52,20 +53,6 @@ public class Report {
 	public void setReportId(Integer reportId) {
 		this.reportId = reportId;
 	}
-	/**
-	 * @return the lineItems
-	 */
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="reportId", nullable = true, insertable = false)
-	public Set<LineItem> getLineItems() {
-		return lineItems;
-	}
-	/**
-	 * @param lineItems the lineItems to set
-	 */
-	public void setLineItems(Set<LineItem> lineItems) {
-		this.lineItems = lineItems;
-	}
 	
 	/**
 	 * @return the notes
@@ -83,6 +70,34 @@ public class Report {
 	}
 
 	
+	/**
+	 * @return the dev
+	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name="devId")
+	public Dev getDev() {
+		return dev;
+	}
+	/**
+	 * @param dev the dev to set
+	 */
+	public void setDev(Dev dev) {
+		this.dev = dev;
+	}
+	/**
+	 * @return the project
+	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name="projectId")
+	public Project getProject() {
+		return project;
+	}
+	/**
+	 * @param project the project to set
+	 */
+	public void setProject(Project project) {
+		this.project = project;
+	}
 	/**
 	 * @return the rejectionNotes
 	 */

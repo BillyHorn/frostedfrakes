@@ -22,6 +22,7 @@ public class Receipt {
 	
 	private Integer receiptId;
 	private String images;
+	private LineItem lineItem;
 	
 	
 	/**
@@ -49,6 +50,21 @@ public class Receipt {
 	 */
 	public void setImages(String images) {
 		this.images = images;
+	}
+	
+	/**
+	 * @return the lineItem
+	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name="lineItemId")
+	public LineItem getLineItem() {
+		return lineItem;
+	}
+	/**
+	 * @param lineItem the lineItem to set
+	 */
+	public void setLineItem(LineItem lineItem) {
+		this.lineItem = lineItem;
 	}
 	
 	@Override

@@ -37,8 +37,7 @@ public class LineItem {
 	private Date date;
 	private Integer value;
 	private Category category;
-	private Set<Receipt> receipts;
-
+	private Report report;
 	
 	/**
 	 * @return the lineItemId
@@ -94,21 +93,19 @@ public class LineItem {
 	}
 	
 	/**
-	 * @return the receipts
+	 * @return the report
 	 */
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="lineItemId", nullable = true, insertable = false)
-	public Set<Receipt> getReceipts() {
-		return receipts;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="reportId")
+	public Report getReport() {
+		return report;
 	}
 	/**
-	 * @param receipts the receipts to set
+	 * @param report the report to set
 	 */
-	public void setReceipts(Set<Receipt> receipts) {
-		this.receipts = receipts;
+	public void setReport(Report report) {
+		this.report = report;
 	}
-
-
 	
 	/**
 	 * overrides objects hashCode to provide a code specific to the lineItemId
