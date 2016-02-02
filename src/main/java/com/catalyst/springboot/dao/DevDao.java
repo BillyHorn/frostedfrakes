@@ -28,6 +28,7 @@ public class DevDao {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
+	
 
 	/**
 	 * Gets the list of users minus the passwords from the database. 
@@ -35,7 +36,14 @@ public class DevDao {
 	 * @return The list of users from the database.
 	 */
 	public List<Dev> get(){
-		return em.createQuery("SELECT d.email, d.role, d.id FROM dev d", Dev.class).getResultList();
+//		Session session = Application.sessionFactory.getCurrentSession();
+//		List<Dev> devs = session.createCriteria(Dev.class).setProjection(Projections.projectionList()
+//				.add(Projections.property("email"), "email")
+//				.add(Projections.property("devid"), "devid")
+//				.add(Projections.property("role"), "role"))
+//				.setResultTransformer(Transformers.aliasToBean(Dev.class)).list();
+//		return devs;
+		return em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
 	}
 	
 	

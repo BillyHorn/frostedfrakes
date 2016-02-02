@@ -3,7 +3,7 @@
         <label for="project-name"> Project Name:
             <input type="text" ng-model="project.name" placeholder="Project Name" name="project-name"/></label>
         <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-model="techlead" ng-options="user as user.email for user in users"></select>
+            <select name="tech-lead" ng-model="project.techLeadId" ng-options="user as user.email for user in users"></select>
             <button type="button" ng-click="addTech()">Add Tech Lead</button>
         </label>
         <label for="tech-lead">Users:

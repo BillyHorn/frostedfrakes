@@ -14,9 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import javax.persistence.Transient;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * Models a project
@@ -101,7 +105,8 @@ public class Project {
 	/**
 	 * @return the reports
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy="project")
+	@JsonBackReference
 	public Set<Report> getReports() {
 		return reports;
 	}
@@ -111,7 +116,6 @@ public class Project {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
-
 
 	/**
 	 * @return the devsToConvert
@@ -127,10 +131,6 @@ public class Project {
 		this.devsToConvert = devsToConvert;
 	}
 
-	
-	/**
-	 * overrides objects hashCode to provide a code specific to the projectId
-	 */
 
 	@Override
 	public int hashCode() {
@@ -139,9 +139,6 @@ public class Project {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to project
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Project)){
