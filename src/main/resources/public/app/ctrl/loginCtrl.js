@@ -17,7 +17,7 @@ function($scope, $state, httpService) {
     		console.log(acceptResponse);
     		$state.go("home");
     	},function(response){
-    		console.log(response);
+    		console.log("error message"+response);
     	});
     }
     

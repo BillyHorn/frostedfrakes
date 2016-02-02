@@ -1,6 +1,18 @@
 $(document).ready(function(){
 	console.log("login.js");
 	
+	$('#login-form').keypress(function(e){
+		if(e.keyCode == 13){
+			$('#submitLogin').click();
+		}
+	});
+	
+	$('#register-form').keypress(function(e){
+		if(e.keyCode == 13){
+			$('#createbtn').click();
+		}
+	});
+	
 	$("#submitLogin").click(function(event){
 		console.log("creating data");
 		event.preventDefault();
@@ -20,8 +32,9 @@ $(document).ready(function(){
 	    window.location.href = "/";
 
 	  }).fail(function() {
-		$('#errorLog').clear;
-	    $('#errorLog').append("<p>Wrong Credentials</p>");
+		$('#errorLog').empty();
+	    $('#errorLog').append("<p>Error: Your username and password is incorrect!</p>");
+	    $('#errorLog').fadeIn();
 	  });
 	}
 });	
