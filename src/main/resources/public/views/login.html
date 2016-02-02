@@ -92,10 +92,10 @@
 										<div class="row">
 											<div ng-controller="registrationCtrl"
 												class="col-sm-6 col-sm-offset-3">
-												<button ng-click="registration()" type="button" class="btn btn-default" id="createbtn">Create</button>
-											</div>
-											<div class="message" ng-controller="registrationCtrl" >{{message}}
-												{{$scope.data.sucess}}
+												<button ng-click="registration()" type="button" tabindex="4" class="btn form-control btn-register" id="createbtn">Create</button>
+												<div id="errorLog">
+													{{message}}
+												</div>
 											</div>
 										</div>
 									</div>

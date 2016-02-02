@@ -23,6 +23,7 @@ angular
 														console.log(sucess);
 														var message = "";
 														if (sucess.data == '') {
+															console.log("duplicate")
 															$scope.message = "User Name Exists! Please try with different username";
 														} else {
 															$scope.message = "Regestration Sucess";

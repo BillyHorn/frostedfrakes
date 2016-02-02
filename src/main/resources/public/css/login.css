@@ -100,9 +100,10 @@ body {
 
 #errorLog{
 	background-color: #D83A3A;
-	border-radius: 10px;
+	border-radius: 3px;
 	text-align: center;
 	font-size: 20px;
+	margin-top: 20px;
 }
 
 
