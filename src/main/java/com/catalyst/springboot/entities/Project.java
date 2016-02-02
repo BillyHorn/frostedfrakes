@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * Models a project
@@ -33,7 +36,6 @@ public class Project {
 	private String name;
 	private Dev techLeadId;
 	private Set<Dev> devs;
-	private Set<Report> reports;
 	@Transient
 	private List<Dev> devsToConvert;
 
@@ -96,22 +98,6 @@ public class Project {
 	public void setUsers(Set<Dev> devs) {
 		this.devs = devs;
 	}
-	
-
-	/**
-	 * @return the reports
-	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
-	public Set<Report> getReports() {
-		return reports;
-	}
-	/**
-	 * @param reports the reports to set
-	 */
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
-	}
-
 
 	/**
 	 * @return the devsToConvert
@@ -127,7 +113,7 @@ public class Project {
 		this.devsToConvert = devsToConvert;
 	}
 
-	
+
 	/**
 	 * overrides objects hashCode to provide a code specific to the projectId
 	 */
@@ -139,9 +125,6 @@ public class Project {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to project
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Project)){

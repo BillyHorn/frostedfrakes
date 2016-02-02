@@ -21,8 +21,8 @@ public class Receipt {
 
 	
 	private Integer receiptId;
-	private LineItem lineItem;
 	private String images;
+	private LineItem lineItem;
 	
 	
 	/**
@@ -40,20 +40,6 @@ public class Receipt {
 		this.receiptId = reciptId;
 	}
 	/**
-	 * @return the lineItem
-	 */
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="lineItemId")
-	public LineItem getLineItem() {
-		return lineItem;
-	}
-	/**
-	 * @param lineItemId the lineItem to set
-	 */
-	public void setLineItem(LineItem lineItem) {
-		this.lineItem = lineItem;
-	}
-	/**
 	 * @return the images
 	 */
 	public String getImages() {
@@ -67,8 +53,20 @@ public class Receipt {
 	}
 	
 	/**
-	 * overrides objects hashCode to provide a code specific to the recieptId
+	 * @return the lineItem
 	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name="lineItemId")
+	public LineItem getLineItem() {
+		return lineItem;
+	}
+	/**
+	 * @param lineItem the lineItem to set
+	 */
+	public void setLineItem(LineItem lineItem) {
+		this.lineItem = lineItem;
+	}
+	
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -76,9 +74,6 @@ public class Receipt {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to Reciept
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Receipt)){

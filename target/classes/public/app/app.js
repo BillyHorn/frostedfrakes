@@ -1,5 +1,5 @@
-angular.module('app', ['ui.router']);
 
+angular.module('app', ['ui.router']);
 
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
@@ -19,6 +19,21 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             templateUrl: 'views/partials/createProject.html',
             controller: "createProjectCtrl"
         })
+<<<<<<< HEAD
+=======
+       
+        .state('registration', {
+            url: '/registration',
+            templateUrl: 'views/partials/registration.html',
+            controller: "registrationCtrl"
+        })
+        
+        .state('createReport', {
+    		url: '/createReport',
+    		templateUrl: 'views/partials/createReport.html',
+    		controller: "createReportCtrl"
+    	});
+>>>>>>> sprint1
 
         .state('viewReport', {
           url: '/viewReport/:reportid',
@@ -34,3 +49,4 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
           }
         });
 }]);
+

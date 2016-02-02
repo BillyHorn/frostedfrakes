@@ -20,24 +20,23 @@ import javax.persistence.OneToOne;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Models line item
  * Foreign keys - report and category
  * @author mKness
  *
  */
-@Entity
+@Entity(name = "lineitem")
 public class LineItem {
 	
 	
 	private Integer lineItemId;
-	private Report report;
 	private Date date;
-
 	private Integer value;
 	private Category category;
-	private Set<Receipt> receipts;
-
+	private Report report;
 	
 	/**
 	 * @return the lineItemId
@@ -53,20 +52,7 @@ public class LineItem {
 	public void setLineItemId(Integer lineItemId) {
 		this.lineItemId = lineItemId;
 	}
-	/**
-	 * @return the reportId
-	 */
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="reportId")
-	public Report getReport() {
-		return report;
-	}
-	/**
-	 * @param reportId the reportId to set
-	 */
-	public void setReport(Report report) {
-		this.report = report;
-	}
+
 	/**
 	 * @return the date
 	 */
@@ -95,7 +81,7 @@ public class LineItem {
 	/**
 	 * @return the category
 	 */
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="categoryId")
 	public Category getCategory() {
 
@@ -106,24 +92,23 @@ public class LineItem {
 	}
 	
 	/**
-	 * @return the receipts
+	 * @return the report
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="lineItem")
-	public Set<Receipt> getReceipts() {
-		return receipts;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="reportId")
+	public Report getReport() {
+		return report;
 	}
 	/**
-	 * @param receipts the receipts to set
+	 * @param report the report to set
 	 */
-	public void setReceipts(Set<Receipt> receipts) {
-		this.receipts = receipts;
+	public void setReport(Report report) {
+		this.report = report;
 	}
-
 	
 	/**
 	 * overrides objects hashCode to provide a code specific to the lineItemId
 	 */
-
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -131,9 +116,6 @@ public class LineItem {
 		return builder.toHashCode();
 	}
 
-	/**
-	 * overrides objects equals to provide one specific to lineItem
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof LineItem)){
