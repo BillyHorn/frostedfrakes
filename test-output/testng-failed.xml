@@ -6,4 +6,14 @@
       <class name="com.catalyst.springboot.security.LoginSeleniumTest"/>
     </classes>
   </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.catalyst.springboot.security.LoginSeleniumTest">
+        <methods>
+          <include name="LoginPageTest"/>
+          <include name="LoginFailure"/>
+        </methods>
+      </class> <!-- com.catalyst.springboot.security.LoginSeleniumTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
