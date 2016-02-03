@@ -1,5 +1,6 @@
 package com.catalyst.springboot.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,8 +46,15 @@ public class ProjectDao {
 	 * 
 	 * @return The list of projects from the database.
 	 */
-	public List<Project> get(){
-		return em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
+	public List<Project> getByDev(Dev dev){
+		List<Project> list = em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
+		List<Project> projects = new ArrayList<Project>();
+		for (Project proj : list){
+			if (proj.getUsers().contains(dev)){
+				projects.add(proj);
+			}
+		}
+		return projects;
 	}
 	
 	@Autowired(required = false)
