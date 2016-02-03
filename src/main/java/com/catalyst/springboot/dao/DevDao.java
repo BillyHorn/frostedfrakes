@@ -51,6 +51,8 @@ public class DevDao {
 				.setParameter("email", username).getSingleResult();
 		return dev;
 	}
+
+
 	
 	
 	

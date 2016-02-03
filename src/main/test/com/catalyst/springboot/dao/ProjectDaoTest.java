@@ -42,7 +42,7 @@ public class ProjectDaoTest {
 		when(mockEm.createQuery(anyString(), eq(Project.class))).thenReturn(query);
 		when(query.getResultList()).thenReturn(expected);
 		
-		dao.get();
+		//dao.getByDev(dev)
 		verify(query).getResultList();
 	}
 	

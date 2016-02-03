@@ -1,15 +1,8 @@
-<div class = panel>
+<div class = "panel">
 
   <!--  create a new report  with a name  -->
 
-  <form id="create-report" ng-submit="createReport()" novalidate>
-
-   <!-- users that can be added on to the creation of the report -->
-
-     <label for="Submitter">Submitter:
-        <select name="user" ng-model="report.dev" ng-options="user as user.email for user in users" required></select>
-        <!-- <button type="button" ng-click="addSubmitter()">Add Submitter</button> -->
-     </label><br>
+  <form id="create-report" ng-submit="createReport()" novalidate ng-show="projects.length">
 
   <!-- pull existing projects that can be added to the report -->
 
@@ -18,8 +11,12 @@
         <!-- <button type="button" ng-click="addProject()">Add Project</button> -->
      </label><br>
 
-    <button type="submit">Save Report</button>
+    <button type="submit">Create Report</button>
 
   </form>
+
+  <div ng-show="!projects.length">
+      You are not assigned to any projects
+  </div>
 
 </div>

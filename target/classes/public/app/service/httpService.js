@@ -1,4 +1,4 @@
-angular.module('app').service('httpService', ['$http', function($http){
+angular.module('app').service('httpService', ['$http', 'currentUser', function($http, currentUser){
 
 
     // Gets all users from the database
@@ -8,7 +8,7 @@ angular.module('app').service('httpService', ['$http', function($http){
 
     // Gets all projects from the database
     function getProjects(){
-    	return $http.get('/project/get');
+    	return $http.get('/project/get/' + currentUser.getUser().email);
     }
 
     // Creates a new project in the database
@@ -26,7 +26,7 @@ angular.module('app').service('httpService', ['$http', function($http){
     }
 
     //Requests the current users information
-    function currentUser(){
+    function currentDev(){
         return $http.get('/security/current');
     }
 
@@ -37,7 +37,7 @@ angular.module('app').service('httpService', ['$http', function($http){
         getProjects: getProjects,
         createReport: createReport,
         login: login,
-        currentUser : currentUser
+        currentUser : currentDev
     };
 
 

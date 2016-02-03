@@ -31,13 +31,6 @@ public class Daoimpl {
 	}
 
 
-	/*@Override
-	public void add(User user) {
-		// TODO Auto-generated method stub
-		*/
-
-//public class Daoimpl {
-
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -66,6 +59,11 @@ public class Daoimpl {
 		em.persist(dev);
 		em.flush();
 		return dev;
+	}
+
+	public List<Report> getReportByDevId(Dev dev) {
+		return em.createQuery("SELECT r FROM Report r WHERE r.dev = :dev ", Report.class)
+				.setParameter("dev", dev).getResultList();
 	}
 
 	

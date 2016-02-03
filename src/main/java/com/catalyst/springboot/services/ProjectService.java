@@ -55,8 +55,8 @@ public class ProjectService {
 	 * 
 	 * @return The List of all projects
 	 */
-	public List<Project> get(){
-		return projectDao.get();
+	public List<Project> getByDev(Dev dev){
+		return projectDao.getByDev(dev);
 	}
 	
 	

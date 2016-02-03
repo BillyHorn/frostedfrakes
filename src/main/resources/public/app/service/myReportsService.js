@@ -1,4 +1,4 @@
-angular.module('app').service('myReportsService', ['$http', function($http){
+angular.module('app').service('myReportsService', ['$http', 'currentUser', function($http, currentUser){
 
   // pull the current state in order to send appropriate information
 
@@ -82,7 +82,7 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   * it just shoots out dummy data.
   */
   function getReports(){
-    return $http.get("/report/get");
+    return $http.get("/report/get/" + currentUser.getUser().email);
   }
 
   return {
