@@ -128,9 +128,10 @@ public class WebServices {
 	 * 
 	 * @return The list of all projects in the database.
 	 */
-	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> getProjects(){
-		return projectService.get();
+	@RequestMapping(value="/project/get/{email}", method=RequestMethod.GET)
+	public List<Project> getProjects(@PathVariable String email){
+		Dev dev = devService.getEmployeeByUsername(email);
+		return projectService.getByDev(dev);
 	}
 	
 	/**
@@ -166,6 +167,12 @@ public class WebServices {
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)
 	public List<Report> getReport(){
 		return reportService.getReport();
+	}
+	
+	@RequestMapping(value="/report/get/{email}", method=RequestMethod.GET)
+	public List<Report> getReportByDevId(@PathVariable String email){
+		Dev dev = devService.getEmployeeByUsername(email);
+		return reportService.getReportByDevId(dev);
 	}
 	
 	/**

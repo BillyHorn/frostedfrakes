@@ -33,13 +33,6 @@ public class Daoimpl {
 	}
 
 
-	/*@Override
-	public void add(User user) {
-		// TODO Auto-generated method stub
-		*/
-
-//public class Daoimpl {
-
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -71,6 +64,7 @@ public class Daoimpl {
 		return dev;
 	}
 
+
 	/**
 	 * 
 	 * @param report
@@ -78,6 +72,12 @@ public class Daoimpl {
 	public void updateReport(Report report) {
 		em.merge(report);
 		em.flush();
+	}
+	
+	public List<Report> getReportByDevId(Dev dev) {
+		return em.createQuery("SELECT r FROM Report r WHERE r.dev = :dev ", Report.class)
+				.setParameter("dev", dev).getResultList();
+
 	}
 
 	

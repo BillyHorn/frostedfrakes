@@ -1,4 +1,4 @@
-angular.module('app').service('httpService', ['$http', function($http){
+angular.module('app').service('httpService', ['$http', 'currentUser', function($http, currentUser){
 
 
   function getReport(reportid) {

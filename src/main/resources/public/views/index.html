@@ -12,26 +12,35 @@
 </head>
 <body ng-app="app">
 <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="navCtrl">
-    <div class="container">
+
+    <div class="container-fluid">
 
       <div class="navbar-header">
-        <div class="navbar-brand">
-          Expense Report
-        </div>
+
+        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+          <div class="navbar-brand">
+            Expense Report
+          </div>
+
       </div>
-      <div class="navbar-collapse">
+      <div class="collapse navbar-collapse" uib-collapse="isCollapsed" ng-click="isCollapsed = !isCollapsed">
         <ul class="nav navbar-nav">
           <li>
-            <a ui-sref="home">Home</a>
+            <a ui-sref="home" ng-show="!admin()">Home</a>
           </li>
           <li>
-            <a ui-sref="create-report">Create New Report</a>
+            <a ui-sref="create-report" ng-show="!admin()">Create New Report</a>
           </li>
           <li>
-            <a ui-sref="my-reports">View My Reports</a>
+            <a ui-sref="my-reports" ng-show="!admin()">View My Reports</a>
           </li>
           <li>
-            <a ui-sref="create-project">Create Project</a>
+            <a ui-sref="create-project" ng-show="admin()">Create Project</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
