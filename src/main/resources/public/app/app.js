@@ -23,6 +23,13 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     controller: "registrationCtrl"
   })
 
+    .state('logout', {
+    url: '/logout',
+    controller: function($scope, $route) {
+      $route.reload();
+    }
+  })
+
   .state('create-report', {
     url: '/create-report',
     templateUrl: 'views/partials/create-report.html',

@@ -6,12 +6,13 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
 
     $scope.userHolders = [];
 
+    // Gets a list of all users from the database.
     httpService.getUsers().then(function(response){
         console.log(response);
         $scope.users = response.data;
-        //$scope.project.users.unshift({email : "Select a User"});
     });
 
+    // Adds a dev from the list of users to the list of assigned users
     $scope.addUser = function(){
         $scope.project.devsToConvert.push($scope.userToAdd);
         console.log($scope.userToAdd);
@@ -24,11 +25,7 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
         $scope.userHolders = [];
     };
 
-    $scope.addTech = function() {
-        console.log("This is my tech lead: " + $scope.techlead.email);
-        $scope.project.techLeadId = $scope.techlead;
-    };
-
+    // Creates a new project by sending $scope.project to the httpService
     $scope.createProject = function(){
         console.log($scope.project);
         httpService.createProject($scope.project).then(function(){
@@ -38,6 +35,8 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
         });
     };
 
+    // Filters our the current selected techlead user from the list of available
+    // users
     $scope.filterId = function($user){
         if ($scope.project.techLeadId === undefined) {
             return true;

@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.catalyst.springboot.dao.DevDao;
 import com.catalyst.springboot.entities.Dev;
 
+/**
+ * Holds services relevant to devs 
+ * @author kmatthiesen
+ *
+ */
 @Service
 public class DevService {
 	
@@ -21,8 +26,25 @@ public class DevService {
 		this.devdao = devdao;
 	}
 	
+	
+	/**
+	 * Gets all devs from the database
+	 * 
+	 * @return The list of all devs
+	 */
 	public List<Dev> get(){
 		return devdao.get();
+	}
+	
+	/**
+	 * Get Dev by username
+	 * 
+	 * @param username the username to get
+	 * @return 
+	 */
+	public Dev getEmployeeByUsername(String username) {
+		return devdao.getEmployeeByUsername(username);
+
 	}
 	
 	

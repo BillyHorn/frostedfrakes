@@ -1,5 +1,6 @@
 package com.catalyst.springboot.webservices;
 
+import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,15 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalyst.springboot.dao.DevDao;
 import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
-
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;
 import com.catalyst.springboot.services.ReportService;
 
+/**
+ * Controls the webserivces used to direct the api calls.
+ * 
+ * @author kmatthiesen
+ *
+ */
 @RestController
 public class WebServices {
 
@@ -48,7 +55,7 @@ public class WebServices {
 	}
 	
 	@Autowired
-	DevService service;
+	DevService devService;
 	
 	@Autowired 
 	ProjectService projectService;
@@ -67,9 +74,10 @@ public class WebServices {
 	 * @param service the service to set
 	 */
 	public void setService(DevService service) {
-		this.service = service;
+		this.devService = service;
 	}
 
+	
 	/**
 	 * @param reportService the reportService to set
 	 */
@@ -77,23 +85,43 @@ public class WebServices {
 		this.reportService = reportService;
 	}
 	
+	 /**
+	 * Api used to create a project.
+	 * 
+	 * @param project The project to be created.
+	 */
 	public ReportService getReportService () {
 		return this.reportService;
 	}
 
+	/**
+	 * Api used to create a project.
+	 * 
+	 * @param project The project to be created.
+	 */
 	@RequestMapping(value="/project/create", method=RequestMethod.POST)
 	public void createProject(@RequestBody Project project){
 		projectService.add(project);
 	}
 	
+	/**
+	 * API used to get all projects.
+	 * 
+	 * @return The list of all projects in the database.
+	 */
 	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> getProject(){
+	public List<Project> getProjects(){
 		return projectService.get();
 	}
 	
+	/**
+	 * API used to get all users.
+	 * 
+	 * @return The list of all users in the database.
+	 */
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public List<Dev> getUsers() {		
-		return service.get();
+		return devService.get();
 	}
 	
 	/**
@@ -115,4 +143,16 @@ public class WebServices {
 	public List<Report> getReport(){
 		return reportService.getReport();
 	}
+	
+	/**
+	 * Gets the current users information
+	 * 
+	 * @param principal
+	 * @return
+	 */
+	@RequestMapping(value="/security/current", method = RequestMethod.GET)
+	public Dev currentUser(Principal principal) {
+		return devService.getEmployeeByUsername(principal.getName());
+	}
+	
 }

@@ -11,7 +11,7 @@
 
 </head>
 <body ng-app="app">
-  <div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="navCtrl">
     <div class="container">
       <div class="navbar-header">
         <div class="navbar-brand">
@@ -65,6 +65,7 @@
   <!-- services -->
   <script type="text/javascript" src="../app/service/myReportsService.js"></script>
   <script type="text/javascript" src="../app/service/httpService.js"></script>
+  <script type="text/javascript" src="../app/service/currentUser.js"></script>
 
   <!-- regestration scripts -->
   <script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
@@ -75,7 +76,7 @@
   <script type="text/javascript" src="../app/service/httpService.js"></script>
   <script type="text/javascript" src="../app/ctrl/createProjectCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/createReportCtrl.js"></script>
-
+  <script type="text/javascript" src="../app/ctrl/navCtrl.js"></script>
 
 </body>
 

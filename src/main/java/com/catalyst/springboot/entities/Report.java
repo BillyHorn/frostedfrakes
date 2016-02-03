@@ -36,6 +36,7 @@ public class Report {
 	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
+
 	@Transient
 	private List<LineItem> lineItemsToConvert;
 
@@ -143,7 +144,7 @@ public class Report {
 	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
 		this.lineItemsToConvert = lineItemsToConvert;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);

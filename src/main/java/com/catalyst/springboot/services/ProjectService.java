@@ -11,11 +11,19 @@ import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
 
+/**
+ * Holds services relevant to projects.
+ * @author kmatthiesen
+ *
+ */
 @Service
 public class ProjectService {
 	
 	@Autowired
 	private ProjectDao projectDao;
+	
+	@Autowired
+	private Converters convert;
 	
 	/**
 	 * @param projectDao the projectDao to set
@@ -23,22 +31,34 @@ public class ProjectService {
 	public void setProjectDao(ProjectDao projectDao) {
 		this.projectDao = projectDao;
 	}
+	
+	/**
+	 * @param convert the convert to set
+	 */
+	public void setConvert(Converters convert) {
+		this.convert = convert;
+	}
 
+	/**
+	 * Adds a new project to the database.
+	 * 
+	 * @param project The project to be added
+	 */
 	public void add(Project project) {
-		project.setUsers(convertDevs(project.getDevsToConvert()));
+		List<Dev> devsToConvert = project.getDevsToConvert();
+		project.setUsers(convert.convertDevs(devsToConvert));
 		projectDao.add(project);
 	}
 	
+	/**
+	 * Retrieves all projects from the database.
+	 * 
+	 * @return The List of all projects
+	 */
 	public List<Project> get(){
 		return projectDao.get();
 	}
 	
-	public Set<Dev> convertDevs(List<Dev> devsToConvert){
-		Set<Dev> devs = new HashSet<Dev>();
-		for (Dev dev : devsToConvert){
-			devs.add(dev);
-		}
-		return devs;
-	}
+	
 	
 }

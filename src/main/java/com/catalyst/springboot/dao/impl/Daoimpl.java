@@ -3,14 +3,18 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+
+
+import com.catalyst.springboot.entities.Dev;
+
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
-import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.dao.ProjectDao;
-import com.catalyst.springboot.dao.Dao;
 import com.catalyst.springboot.entities.Report;
+
 
 @Transactional
 @Component
