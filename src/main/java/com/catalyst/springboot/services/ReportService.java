@@ -65,4 +65,13 @@ public class ReportService {
 	{
 		return reportDao.getReportById(reportId);
 	}
+
+	/**
+	 * 
+	 * @param report the report to be merged into db
+	 */
+	public void update(Report report) {
+		reportDao.updateReport(report);
+	}
+
 }

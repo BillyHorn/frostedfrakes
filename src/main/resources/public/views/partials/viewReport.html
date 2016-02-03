@@ -2,21 +2,15 @@
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
-      <select class="form-control" name="projectName" id="inputProjectName" ng-model="report.dev">
-        <option value="{{report.projectname}}">{{report.projectname}}</option>
-        <option ng-repeat="p in projects" value="{{p.name}}">{{p.name}}</option>
-      </select>
+      <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects">  </select>
     </fieldset>
     <fieldset class="form-group">
       <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->
-      <select class="form-control" name="dev" id="inputDev" ng-model="report.dev" readonly>
-        <option value="{{report.dev}}">{{report.dev}}</option>
-        <option ng-repeat="dev in devs" value="{{dev}}">{{dev}}</option>
-      </select>
+      <input type="text" class="form-control" ng-model="report.dev.email" id="inputState" readonly>
     </fieldset>
     <fieldset class="form-group">
       <label for="state"> State </label>
-      <input type="text" class="form-control" ng-model="report.state" id="inputState" readonly>
+      <input type="text" class="form-control" ng-model="state" id="inputState" readonly>
     </fieldset>
     <fieldset class="form-group" ng-show="report.state == 3"> <!-- only show if rejected -->
       <label for="rejectionNotes"> Rejection Notes </label>
@@ -53,9 +47,11 @@
     <!-- end lineitems -->
     <fieldset class="form-group">
       <label for="notes">Notes</label>
-      <textarea class="form-control" id="inputNotes"></textarea>
+      <textarea class="form-control" id="inputNotes" ng-model="report.notes"></textarea>
     </fieldset>
     <button class="btn btn-primary">Cancel</button>
-    <button type="submit" class="btn btn-primary" ng-disabled="reportForm.$invalid">Submit</button>
+    <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
+    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
   </form>
 </div> <!-- /container -->
+<!-- ng-disabled="reportForm.$invalid" -->

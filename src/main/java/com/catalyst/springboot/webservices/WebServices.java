@@ -134,11 +134,31 @@ public class WebServices {
 		  reportService.add(report);
 	} 
 	
+	/**
+	 * 
+	 * 
+	 * @return all reports
+	 */
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)
 	public List<Report> getReport(){
 		return reportService.getReport();
 	}
 	
+	/**
+	 * gets a report from the viewReport page and merge it into the db
+	 * 
+	 * @param report to be merged into the db
+	 */
+	@RequestMapping(value="/report", method=RequestMethod.PUT)
+	public void putReport(@RequestBody Report report) {
+		reportService.update(report);
+	}
+	
+	/**
+	 * 
+	 * @param reportId the spacific report to be returned
+	 * @return the report
+	 */
 	@RequestMapping(value="/report/{reportId}", method=RequestMethod.GET)
 	public Report getReportById(@PathVariable Integer reportId){
 		return reportService.getReportById(reportId);

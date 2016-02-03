@@ -71,6 +71,15 @@ public class Daoimpl {
 		return dev;
 	}
 
+	/**
+	 * 
+	 * @param report
+	 */
+	public void updateReport(Report report) {
+		em.merge(report);
+		em.flush();
+	}
+
 	
 	
 }

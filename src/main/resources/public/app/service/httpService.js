@@ -21,6 +21,9 @@ angular.module('app').service('httpService', ['$http', function($http){
     return $http.post('/report/create', data);
   }
 
+  function putReport(data){
+    return $http.put('/report', data);
+  }
 
 
   function login(loginData){
@@ -36,6 +39,7 @@ angular.module('app').service('httpService', ['$http', function($http){
     getProjects : getProjects,
     createProject : createProject,
     createReport: createReport,
+    putReport: putReport,
     login: login,
   };
 }]);
