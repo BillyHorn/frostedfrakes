@@ -1,54 +1,41 @@
 angular.module('app').service('httpService', ['$http', function($http){
 
-    function getUsers(){
-        return $http.get('/users');
-    }
+  function getReport(reportid) {
+    return $http.get('/report/' + reportid);
+  }
 
-<<<<<<< HEAD
+  function getProjects(){
+    return $http.get('/project/get');
+  }
 
-    function getReport() {
-      return $http.get('/report:' + reportid);
-    }
-=======
-    function getProjects(){
-    	return $http.get('/project/get');
-    }
+  function createProject(data){
+    return $http.post('/project/create', data);
 
->>>>>>> sprint1
-    function createProject(data){
-        return $http.post('/project/create', data);
+  }
 
-    }
+  function getProjects() {
+    return $http.get('/project/get');
+  }
 
-    function getProjects() {
-      return $http.get('/project/get');
-    }
+  function createReport(data){
+    return $http.post('/report/create', data);
+  }
 
-    function createReport(data){
-    	return $http.post('/report/create', data);
-    }
-    
-    return {
-        getUsers : getUsers,
-<<<<<<< HEAD
-        getReport : getReport,
-        createProject : createProject,
-        getProjects : getProjects
-=======
-        createProject : createProject,
-        getProjects: getProjects,
-        createReport: createReport,
-        login: login,
-		getUsers : getUsers
->>>>>>> sprint1
-    };
 
-function login(loginData){
-		return $http.post("/loginPage", loginData);
-	}
 
-	function getUsers(){
-	    return $http.get('/users');
-	}
+  function login(loginData){
+    return $http.post("/loginPage", loginData);
+  }
+
+  function getUsers(){
+    return $http.get('/users');
+  }
+  return {
+    getUsers : getUsers,
+    getReport : getReport,
+    getProjects : getProjects,
+    createProject : createProject,
+    createReport: createReport,
+    login: login,
+  };
 }]);
-    

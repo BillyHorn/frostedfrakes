@@ -30,7 +30,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     		url: '/createReport',
     		templateUrl: 'views/partials/createReport.html',
     		controller: "createReportCtrl"
-    	});
+    	})
 
         .state('viewReport', {
           url: '/viewReport/:reportid',
@@ -42,7 +42,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             }],
             getReport: ['httpService','$stateParams',function(httpService,$stateParams) {
               return httpService.getReport($stateParams.reportid);
-            })]
+            }]
           }
         });
 }]);

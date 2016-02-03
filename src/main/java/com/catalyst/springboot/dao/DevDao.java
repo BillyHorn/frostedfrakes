@@ -35,7 +35,7 @@ public class DevDao {
 	 * @return The list of users from the database.
 	 */
 	public List<Dev> get(){
-		return em.createQuery("SELECT d.email, d.role, d.id FROM dev d", Dev.class).getResultList();
+		return em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
 	}
 	
 	

@@ -1,11 +1,4 @@
-angular
-		.module('app')
-		.controller(
-				'registrationCtrl',
-				[
-						'$scope',
-						'$state',
-						'registrationFactory',
+angular.module('app').controller('registrationCtrl',	['$scope','$state','registrationFactory',
 						function($scope, $state, registrationFactory) {
 
 							console.log("registrationFactory");
@@ -37,4 +30,4 @@ angular
 									$scope.message = "Password Verification Failed ";
 								}
 							};
-						} ])
+						}])

@@ -2,6 +2,7 @@ package com.catalyst.springboot.webservices;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -137,4 +138,10 @@ public class WebServices {
 	public List<Report> getReport(){
 		return reportService.getReport();
 	}
+	
+	@RequestMapping(value="/report/{reportId}", method=RequestMethod.GET)
+	public Report getReportById(@PathVariable Integer reportId){
+		return reportService.getReportById(reportId);
+	}
 }
+

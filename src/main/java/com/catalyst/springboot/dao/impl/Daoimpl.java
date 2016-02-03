@@ -27,6 +27,10 @@ public class Daoimpl {
 	public List<Report> getReport(){
 		return em.createQuery("SELECT r FROM Report r", Report.class).getResultList();
 	}
+	
+	public Report getReportById(Integer reportId){
+		return em.createQuery("SELECT r FROM Report r WHERE r.reportId = :reportId", Report.class).setParameter("reportId", reportId).getSingleResult();
+	}
 
 
 	/*@Override
