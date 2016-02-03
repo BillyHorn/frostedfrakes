@@ -1,0 +1,45 @@
+<form class="form-horizontal" role="form">
+
+  <div class="form-group">
+
+    <label class="control-label col-md-2 col-xs-2" for="project-name">Name:</label>
+    <div class="col-md-8 col-xs-8">
+      <input type="text" class="form-control" id="project-name" ng-model="projectName" placeholder="Enter a name for your project" required>
+    </div>
+
+    <div class="dropdown col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-4">
+      <button class="btn btn-default dropdown-toggle" type="button" id="projectDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Project
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="projectDropdown">
+        <li><a href="#">Replace these</a></li>
+        <li><a href="#">with ng-repeat</a></li>
+        <li><a href="#">of db projects</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">maybe new project link?</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <label class="control-label col-md-2" for="comment">Comment:</label>
+    <div class="col-md-10">
+      <textarea class="form-control" rows="5" id="comment" placeholder="Provide some detailed information pertaining to your expenses"></textarea>
+    </div>
+
+
+  </div>
+
+  <div class="form-group">
+
+    <div class="col-md-10 col-md-offset-2 col-xs-12 col-xs-offset-0 report-buttons">
+      <button type="submit" class="report-button btn btn-primary" ng-class="nameExists(projectName) || !projectName.length ? 'disabled' : ''">Submit</button>
+      <button class="report-button btn btn-info" ng-class="nameExists(projectName) || !projectName.length ? 'disabled' : ''">Save</button>
+      <button type="reset" class="report-button btn btn-warning">Reset</button>
+    </div>
+
+  </div>
+</form>

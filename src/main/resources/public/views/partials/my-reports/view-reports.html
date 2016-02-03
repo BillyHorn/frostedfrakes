@@ -1,0 +1,9 @@
+<div class="panel" ng-class="panelType">
+  <div class="panel-heading">{{whichReports}} Reports</div>
+
+  <div class="panel-body">
+    <div class="list-group">
+      <a ng-repeat="report in filteredReports" href="#" class="list-group-item">{{report.project.name}} <span class="vertical-break"></span> {{report.reportId}}</a>
+    </div>
+  </div>
+</div>

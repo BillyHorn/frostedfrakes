@@ -36,5 +36,16 @@ public class DevService {
 		return devdao.get();
 	}
 	
+	/**
+	 * Get Dev by username
+	 * 
+	 * @param username the username to get
+	 * @return 
+	 */
+	public Dev getEmployeeByUsername(String username) {
+		return devdao.getEmployeeByUsername(username);
+
+	}
+	
 	
 }

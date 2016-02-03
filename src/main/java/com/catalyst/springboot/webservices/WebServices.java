@@ -1,5 +1,6 @@
 package com.catalyst.springboot.webservices;
 
+import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalyst.springboot.dao.DevDao;
 import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
-
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.services.DevService;
@@ -55,7 +56,7 @@ public class WebServices {
 	}
 	
 	@Autowired
-	DevService service;
+	DevService devService;
 	
 	@Autowired  
 	ProjectService projectService;
@@ -74,17 +75,22 @@ public class WebServices {
 	 * @param service the service to set
 	 */
 	public void setService(DevService service) {
-		this.service = service;
+		this.devService = service;
 	}
 
 	
-	/*
+	/**
 	 * @param reportService the reportService to set
 	 */
 	public void setReportService(ReportService reportService) {
 		this.reportService = reportService;
 	}
 	
+	 /**
+	 * Api used to create a project.
+	 * 
+	 * @param project The project to be created.
+	 */
 	public ReportService getReportService () {
 		return this.reportService;
 	}
@@ -105,7 +111,7 @@ public class WebServices {
 	 * @return The list of all projects in the database.
 	 */
 	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> getProject(){
+	public List<Project> getProjects(){
 		return projectService.get();
 	}
 	
@@ -116,7 +122,7 @@ public class WebServices {
 	 */
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public List<Dev> getUsers() {		
-		return service.get();
+		return devService.get();
 	}
 	
 	/**
@@ -163,5 +169,17 @@ public class WebServices {
 	public Report getReportById(@PathVariable Integer reportId){
 		return reportService.getReportById(reportId);
 	}
+	
+	/**
+	 * Gets the current users information
+	 * 
+	 * @param principal
+	 * @return
+	 */
+	@RequestMapping(value="/security/current", method = RequestMethod.GET)
+	public Dev currentUser(Principal principal) {
+		return devService.getEmployeeByUsername(principal.getName());
+	}
+	
 }
 

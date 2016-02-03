@@ -22,11 +22,21 @@ public class ProjectService {
 	@Autowired
 	private ProjectDao projectDao;
 	
+	@Autowired
+	private Converters convert;
+	
 	/**
 	 * @param projectDao the projectDao to set
 	 */
 	public void setProjectDao(ProjectDao projectDao) {
 		this.projectDao = projectDao;
+	}
+
+	/**
+	 * @param convert the convert to set
+	 */
+	public void setConvert(Converters convert) {
+		this.convert = convert;
 	}
 
 
@@ -37,7 +47,7 @@ public class ProjectService {
 	 */
 	public void add(Project project) {
 		List<Dev> devsToConvert = project.getDevsToConvert();
-		project.setUsers(convertDevs(devsToConvert));
+		project.setUsers(convert.convertDevs(devsToConvert));
 		projectDao.add(project);
 	}
 	
@@ -50,18 +60,6 @@ public class ProjectService {
 		return projectDao.get();
 	}
 	
-	/**
-	 * Converts the list of devs assigned to a project to a hashset.
-	 * 
-	 * @param devsToConvert The list of devs to convert
-	 * @return The hashset of devs
-	 */
-	public Set<Dev> convertDevs(List<Dev> devsToConvert){
-		Set<Dev> devs = new HashSet<Dev>();
-		for (Dev dev : devsToConvert){
-			devs.add(dev);
-		}
-		return devs;
-	}
+	
 	
 }

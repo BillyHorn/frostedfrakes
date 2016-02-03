@@ -1,8 +1,54 @@
-.content {
-    margin-top: 5em;
+@media screen and (max-width: 700px){
+  .report-buttons{
+    text-align: center;
+  }
 }
 
 footer {
+<<<<<<< HEAD
     margin: 1em;
     border-top: 1px solid #ddd;
+=======
+  margin: 1em;
+  border-top: 1px solid #ddd;
+}
+
+.content {
+  margin-top: 5em;
+}
+
+.navbar {
+  background-color: #013C6B;
+}
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #96CCFE;
+}
+
+.panel-body {
+  padding: 15px 0px;
+}
+
+.report-button {
+  width: 6em;
+}
+
+.report-buttons{
+  text-align: left;
+}
+
+.vertical-break {
+  margin: 0 1em;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #ddd;
+}
+
+#projectDropdown {
+  display: block;
+  width: 100%;
+>>>>>>> sprint1
 }

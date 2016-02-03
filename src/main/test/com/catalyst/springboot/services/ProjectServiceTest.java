@@ -22,18 +22,19 @@ public class ProjectServiceTest {
 
 	private ProjectService service;
 	private ProjectDao dao;
-	private ProjectService mockService;
 	private Dev dev;
 	private Project project;
+	private Converters convert;
 	
 	@Before
 	public void setup() {
 		service = new ProjectService();
+		convert = mock(Converters.class);
 		dao = mock(ProjectDao.class);
-		service.setProjectDao(dao);
-		mockService = mock(ProjectService.class);
 		dev = mock(Dev.class);
 		project = mock(Project.class);
+		service.setProjectDao(dao);
+		service.setConvert(convert);
 	}
 	
 	@Test
@@ -56,25 +57,15 @@ public class ProjectServiceTest {
 		
 		
 		when(project.getDevsToConvert()).thenReturn(devsToConvert);
-		when(service.convertDevs((List<Dev>) anyObject())).thenReturn(devSet);
+
 		when(iterator.hasNext()).thenReturn(true, false);
+		when(convert.convertDevs((List<Dev>) anyObject())).thenReturn(devSet);
+
 		
 		
 		service.add(project);
 		verify(dao).add(project);
 	}
 	
-	@Test
-	public void ConvertDevsTest(){
-		Set<Dev> devs = mock(Set.class);
-		List<Dev> devsToConvert = mock(List.class);
-		devsToConvert = Arrays.asList(dev);
-		Iterator iterator = mock(Iterator.class);
-		
-		when(iterator.hasNext()).thenReturn(true, false);
-		
-		service.convertDevs(devsToConvert);
-		assertEquals(devs, devs);
-		
-	}
+
 }

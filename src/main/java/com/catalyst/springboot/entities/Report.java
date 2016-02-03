@@ -37,6 +37,7 @@ public class Report {
 	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
+
 	@Transient
 	private List<LineItem> lineItemsToConvert;
 
@@ -156,7 +157,7 @@ public class Report {
 	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
 		this.lineItemsToConvert = lineItemsToConvert;
 	}
-	
+
 	/**
 	 * overrides objects hashCode to provide a code specific to the reportId
 	 */

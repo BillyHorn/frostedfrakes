@@ -2,8 +2,6 @@ package com.catalyst.springboot.dao;
 
 
 import static org.mockito.Mockito.*;
-import static org.mockito.Matchers.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import static org.mockito.Mockito.verify;
 import javax.persistence.EntityManager;
 import org.junit.Before;
 import org.junit.Test;
+
 
 
 public class ProjectDaoTest {
@@ -54,6 +53,8 @@ public class ProjectDaoTest {
 		dao.get();
 		verify(query).getResultList();
 	}
+
+	@Test
 	public void registerTest() {
 		dao.register(null);
 		verify(mockEm).persist(null);
