@@ -9,8 +9,6 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
       $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
       // converts the state from number to a string so it is humanreadable
       $scope.state = stateConverterService.getString($scope.report.state);
-      //console.log(JSON.stringify($scope.report));
-      //console.log(JSON.stringify($scope.projects)); //TODO
 
       // submits the report to the db with either a saved or submitted status based on which button was clicked
       // also will update all lineitems assoicated with the report TODO only update modified line items
@@ -20,8 +18,12 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
         httpService.putReport($scope.report);
         // iterate through the lineitems and send all of them to update
         for(var i = 0; i < $scope.lineitems.length; i++) {
-          console.log(JSON.stringify($scope.lineitems[i]));
           httpService.putLineItem($scope.lineitems[i]);
         }
+      }
+
+      // add a new line item to the list
+      $scope.addLineItem = function(){
+        $scope.lineitems.push({});
       }
 }])
