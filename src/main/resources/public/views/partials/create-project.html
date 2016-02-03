@@ -9,12 +9,12 @@
 
         <!-- Drop down for the techlead of a project -->
         <label for="tech-lead">Tech Lead:
-            <select name="tech-lead" ng-model="project.techLeadId" ng-options="user as user.email for user in users"></select>
+            <select name="tech-lead" ng-model="project.techLeadId" ng-options="user as user.email for user in users | filter : notAdmin"></select>
         </label>
 
         <!-- Drop down for adding users to a project -->
         <label for="tech-lead">Users:
-            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in users | filter : filterId"></select>
+            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in users | filter : filterId | filter : notAdmin"></select>
             <button type="button" ng-click="addUser()">Add User</button>
         </label>
         <button type="button" type="submit" ng-click="createProject()">Create</button>

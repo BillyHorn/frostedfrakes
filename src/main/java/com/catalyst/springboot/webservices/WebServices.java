@@ -3,6 +3,7 @@ package com.catalyst.springboot.webservices;
 import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -109,9 +110,10 @@ public class WebServices {
 	 * 
 	 * @return The list of all projects in the database.
 	 */
-	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> getProjects(){
-		return projectService.get();
+	@RequestMapping(value="/project/get/{email}", method=RequestMethod.GET)
+	public List<Project> getProjects(@PathVariable String email){
+		Dev dev = devService.getEmployeeByUsername(email);
+		return projectService.getByDev(dev);
 	}
 	
 	/**
@@ -142,6 +144,12 @@ public class WebServices {
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)
 	public List<Report> getReport(){
 		return reportService.getReport();
+	}
+	
+	@RequestMapping(value="/report/get/{email}", method=RequestMethod.GET)
+	public List<Report> getReportByDevId(@PathVariable String email){
+		Dev dev = devService.getEmployeeByUsername(email);
+		return reportService.getReportByDevId(dev);
 	}
 	
 	/**

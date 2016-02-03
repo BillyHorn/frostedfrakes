@@ -54,5 +54,10 @@ public class ReportService {
 	public List<Report> getReport(){
 		return reportDao.getReport();
 	}
+
+	public List<Report> getReportByDevId(Dev dev) {
+		// TODO Auto-generated method stub
+		return reportDao.getReportByDevId(dev);
+	}
 	
 }

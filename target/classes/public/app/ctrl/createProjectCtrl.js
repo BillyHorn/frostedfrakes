@@ -44,4 +44,13 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
         return $scope.project.techLeadId.devId !== $user.devId;
     };
 
+    $scope.notAdmin = function($user) {
+        if ($user.role == 'admin'){
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+
 }]);
