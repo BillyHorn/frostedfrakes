@@ -21,11 +21,14 @@
     <br>
     <br>
 
+ <!-- obtain all existing reports. if report is selected and submit button activated, report
+       state if changed to "2", which is submitted -->
+   
   </form>
-
-       <label for="Report">Select a report to submit:
-        <select name="savedReports" ng-model="availableReports" ng-options="savedReports as savedReports.reportId for savedReports in saves" required></select>
-        <button ng-click="submitReport()"> Submit </button>
+  
+     <label for="Report">Select a report to submit:
+        <select name="savedReports" ng-model="selectedReport" ng-options="savedReports as savedReports.reportId for savedReports in saves" required></select>
+        <button ng-click="submitReport()"> Submit Report </button>
      </label><br>
- 
+
 </div>

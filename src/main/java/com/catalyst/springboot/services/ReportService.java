@@ -23,6 +23,16 @@ public class ReportService {
 	public void setReportDao(Daoimpl reportDao) {
 		this.reportDao = reportDao;
 	}
+	
+	@Autowired
+	private Daoimpl submitDao;
+	
+	/**
+	 * @param submitDao the submitDao to set
+	 */
+	public void setSubmitDao(Daoimpl submitDao) {
+		this.submitDao = submitDao;
+	}
 
 	/** ADD
 	 * add a new report
@@ -41,7 +51,7 @@ public class ReportService {
 	 * @author wPerlichek
 	 */
 	public void submitReport(Report report) {
-		reportDao.submitReport(report);
+		submitDao.submitReport(report);
 	}
 	
 	/* PLEASE DO NOT DELETE wPerlichek */

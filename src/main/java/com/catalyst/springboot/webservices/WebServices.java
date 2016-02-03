@@ -123,7 +123,7 @@ public class WebServices {
 	 */
 	@RequestMapping(value="/report/Submit", method=RequestMethod.PUT)
 	public void submitReport(@RequestBody Report report){
-		   reportService.submitReport(report);
+		reportService.submitReport(report);
 	} 
 	
 	@RequestMapping(value="/report/get", method=RequestMethod.GET)
