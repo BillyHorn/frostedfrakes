@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.catalyst.springboot.dao.DevDao;
 import com.catalyst.springboot.dao.ProjectDao;
+import com.catalyst.springboot.entities.Category;
 import com.catalyst.springboot.entities.Dev;
+import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.services.CategoryService;
 import com.catalyst.springboot.services.DevService;
+import com.catalyst.springboot.services.LineItemService;
 import com.catalyst.springboot.services.ProjectService;
 import com.catalyst.springboot.services.ReportService;
 
@@ -64,6 +68,12 @@ public class WebServices {
 	@Autowired 
 	ReportService reportService;
 	
+	@Autowired
+	LineItemService lineItemService;
+	
+	@Autowired
+	CategoryService categoryService;
+	
 	/**
 	 * @param projectService the projectService to set
 	 */
@@ -84,6 +94,14 @@ public class WebServices {
 	 */
 	public void setReportService(ReportService reportService) {
 		this.reportService = reportService;
+	}
+	
+	/**
+	 * 
+	 * @param lineItemService
+	 */
+	public void setLineItemService(LineItemService lineItemService) {
+		this.lineItemService = lineItemService;
 	}
 	
 	 /**
@@ -170,6 +188,35 @@ public class WebServices {
 		return reportService.getReportById(reportId);
 	}
 	
+	/**
+	 * 
+	 * @param reportId used to grab all lineitems assoicated with given report
+	 * @return the list of lineitems assoicated with the given reportId
+	 */
+	@RequestMapping(value="/lineitems/{reportId}", method=RequestMethod.GET)
+	public List<LineItem> getLineItemsByReportId(@PathVariable Integer reportId)
+	{
+		return lineItemService.getLineItemsByReportId(reportId);
+	}
+	
+	/**
+	 * 
+	 * @param lineItem merges the lineItem into the db
+	 */
+	@RequestMapping(value="/lineitems", method=RequestMethod.PUT)
+	public void updateLineItem(@RequestBody LineItem lineItem)
+	{
+		lineItemService.updateLineItem(lineItem);
+	}
+	
+	/**
+	 * 
+	 * @return all the categories
+	 */
+	@RequestMapping(value="/categories", method=RequestMethod.GET) 
+	public List<Category> getCategories() {
+		return categoryService.getCategories();
+	}
 	/**
 	 * Gets the current users information
 	 * 

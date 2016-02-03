@@ -38,6 +38,18 @@ angular.module('app').service('httpService', ['$http', function($http){
   function currentUser(){
       return $http.get('/security/current');
   }
+
+  function getLineItems(reportid) {
+    return $http.get('/lineitems/' + reportid);
+  }
+
+  function putLineItem(lineItem) {
+    return $http.put('/lineitems', lineItem);
+  }
+
+  function getCategories(){
+    return $http.get('/categories');
+  }
   return {
     getUsers : getUsers,
     getReport : getReport,
@@ -46,6 +58,9 @@ angular.module('app').service('httpService', ['$http', function($http){
     createReport: createReport,
     putReport: putReport,
     login: login,
-    currentUser : currentUser
+    currentUser : currentUser,
+    getLineItems : getLineItems,
+    putLineItem : putLineItem,
+    getCategories : getCategories
   };
 }]);

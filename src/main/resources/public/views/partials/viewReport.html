@@ -17,20 +17,12 @@
       <textarea type="text" class="form-control" ng-model="report.rejectionnotes" id="inputRejectionNotes" readonly></textarea>
     </fieldset>
     <!-- begin lineitems -->
-    <fieldset ng-repeat="li in report.lineitems" class="col-sm-offset-1">
+    <fieldset ng-repeat="li in lineitems" class="col-sm-offset-1">
       <legend>Line Item </legend>
       <ng-form name="categoryForm">
           <label for="category"> Category</label>
-          <select class="form-control" name="category" ng-model="li.category">
-            <option value="Mileage">Mileage</option>
-            <option value="Per Diem">Per Diem</option>
-            <option value="Lodging">Lodging</option>
-            <option value="Travel">Travel</option>
-            <option value="Meals">Meals</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Parking">Parking</option>
-            <option value="Other">Other</option>
-          </select>
+          <p> selected category: {{li.category}} </p>
+          <select class="form-control" name="category" ng-model="li.category" ng-options="category as category.value for category in categories"> </select>
       </ng-form>
       <ng-form name="valueForm">
         <fieldset class="form-group" ng-class="{'has-error' : valueForm.value.$invalid && !valueForm.value.$pristine}">

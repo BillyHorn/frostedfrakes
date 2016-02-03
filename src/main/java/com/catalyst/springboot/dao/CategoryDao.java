@@ -8,17 +8,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
+import com.catalyst.springboot.entities.Category;
 import com.catalyst.springboot.entities.LineItem;
 
-/**
- * Communicates with the database concerning devs.
- * @author kmatthiesen
- *
- */
 @Transactional
 @Component 
-public class ListItemDao {
-	
+public class CategoryDao {
+
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -30,6 +26,10 @@ public class ListItemDao {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
+	
+	public List<Category> getCategoies() {
+		return em.createQuery("SELECT c FROM category c",Category.class).getResultList();
+	}
 
 	/**
 	 * This function fetches all the line items.
@@ -40,21 +40,4 @@ public class ListItemDao {
 		List<LineItem> lineItems = em.createQuery("SELECT l FROM lineitem l", LineItem.class).getResultList();
 		return lineItems;
 	}
-
-	/**
-	 * Gets a user by username
-	 * 
-	 * @param username The username to get
-	 * @return The user object minus the password
-	 */
-	public LineItem getLineItemByReportId(String reportID) {
-		LineItem lineitem = em
-				.createQuery("SELECT l from lineitem l WHERE l.reportid = :reportID", LineItem.class)
-				.setParameter("reportID", reportID).getSingleResult();
-		return lineitem;
-	}
-	
-	
-	
-	
 }

@@ -47,6 +47,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
       }],
       getReport: ['httpService','$stateParams',function(httpService,$stateParams) {
         return httpService.getReport($stateParams.reportid);
+      }],
+      getLineItems: ['httpService','$stateParams', function(httpService,$stateParams){
+        return httpService.getLineItems($stateParams.reportid);
+      }],
+      getCategories: ['httpService', function(httpService){
+        return httpService.getCategories();
       }]
     }
   })
