@@ -110,9 +110,10 @@ public class WebServices {
 	 * 
 	 * @return The list of all projects in the database.
 	 */
-	@RequestMapping(value="/project/get", method=RequestMethod.GET)
-	public List<Project> getProjects(){
-		return projectService.get();
+	@RequestMapping(value="/project/get/{email}", method=RequestMethod.GET)
+	public List<Project> getProjects(@PathVariable String email){
+		Dev dev = devService.getEmployeeByUsername(email);
+		return projectService.getByDev(dev);
 	}
 	
 	/**
@@ -145,6 +146,12 @@ public class WebServices {
 		return reportService.getReport();
 	}
 	
+	@RequestMapping(value="/report/get/{email}", method=RequestMethod.GET)
+	public List<Report> getReportByDevId(@PathVariable String email){
+		Dev dev = devService.getEmployeeByUsername(email);
+		return reportService.getReportByDevId(dev);
+	}
+	
 	/**
 	 * Gets the current users information
 	 * 
@@ -167,5 +174,15 @@ public class WebServices {
 		List<Project> list= projectService.getTechLeadProjects(dev);
 		return reportService.getTechLeadReports(list);
 	}
+	
+	/**
+	 * This is an endpoint for updating reports
+	 * 
+	 * @param report this is the report to be updated
+	 */
+	@RequestMapping(value = "/report/update", method = RequestMethod.PUT)
+	 public void approveOrRejectReport(@RequestBody Report report) {
+		reportService.update(report);
+	 }
 	
 }

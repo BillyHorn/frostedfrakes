@@ -1,4 +1,4 @@
-angular.module('app').service('httpService', ['$http', function($http){
+angular.module('app').service('httpService', ['$http', 'currentUser', function($http, currentUser){
 
 
     // Gets all users from the database
@@ -8,7 +8,7 @@ angular.module('app').service('httpService', ['$http', function($http){
 
     // Gets all projects from the database
     function getProjects(){
-    	return $http.get('/project/get');
+    	return $http.get('/project/get/' + currentUser.getUser().email);
     }
 
     // Creates a new project in the database
@@ -30,8 +30,20 @@ angular.module('app').service('httpService', ['$http', function($http){
     }
 
     //Requests the current users information
-    function currentUser(){
+    function currentDev(){
         return $http.get('/security/current');
+    }
+    
+    //Change state of report in backend to accepted (4)
+    function approveReport(report) {
+    	report.state = 4;
+    	return $http.put('/report/update', report);
+    }
+    
+    //Change state of report in backend to rejected (3)
+    function rejectReport(report) {
+    	report.state = 3;
+    	return $http.put('/report/update', report);
     }
 
     // The list of all available functions
@@ -41,8 +53,10 @@ angular.module('app').service('httpService', ['$http', function($http){
         getProjects: getProjects,
         createReport: createReport,
         login: login,
-        currentUser : currentUser,
-        pendingReports : pendingReports
+        pendingReports : pendingReports,
+        currentUser : currentDev,
+        approveReport : approveReport,
+        rejectReport : rejectReport
     };
 
 

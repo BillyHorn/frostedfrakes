@@ -31,13 +31,6 @@ public class Daoimpl {
 	}
 
 
-	/*@Override
-	public void add(User user) {
-		// TODO Auto-generated method stub
-		*/
-
-//public class Daoimpl {
-
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -56,6 +49,15 @@ public class Daoimpl {
 				.setParameter("email", email).getSingleResult();
 	}
 	
+	/**
+	 * This function is to update report object in db
+	 * 
+	 * @param report this is the report to be updated
+	 */
+	public void update(Report report) {
+		em.merge(report);
+		em.flush();
+	}
 	
 	/**
 	 * Adds a new Developer to the database. 
@@ -66,6 +68,11 @@ public class Daoimpl {
 		em.persist(dev);
 		em.flush();
 		return dev;
+	}
+
+	public List<Report> getReportByDevId(Dev dev) {
+		return em.createQuery("SELECT r FROM Report r WHERE r.dev = :dev ", Report.class)
+				.setParameter("dev", dev).getResultList();
 	}
 
 	

@@ -1,10 +1,14 @@
 <div>
-<uib-accordion ng-repeat="report in myPendingReports" close-others="oneAtATime">
+<uib-accordion ng-repeat="report in myPendingReports | filter: stateCheck"  close-others="oneAtATime">
   <uib-accordion-group heading="{{report.project.name}}">
      <div class="panel-body">
     	<div class="list-group">
 	       {{report.dev.email}}
     	</div>
+  	</div>
+  	<div>
+  		<button ng-click="approveReport(report)" type="button" class="btn btn-success">Accept</button>
+  		<button ng-click="rejectReport(report)" type="button" class="btn btn-danger">Reject</button>
   	</div>
   </uib-accordion-group>
 </uib-accordion>
