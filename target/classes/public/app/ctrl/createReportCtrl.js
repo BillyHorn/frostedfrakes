@@ -49,7 +49,6 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
         });
       };
 
-
       // add new line item
       $scope.createNewLineItem = function(){
       $scope.addLineItem.push({});
@@ -66,29 +65,13 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 	        $scope.users = response.data;
 	    });
 
-<<<<<<< HEAD
-	  //
-	//   $scope.addSubmitter = function(){
-	// 	  	//$scope.submitter = $scope.users.email;
-	// 	  	$scope.report.dev = $scope.dev;
-=======
-
 	  $scope.addSubmitter = function(){
 		  	$scope.report.dev = $scope.dev;
 	  };
-
 
 	  $scope.addProject = function(){
 		   // $scope.project = $scope.projects.name;
 		    $scope.report.project = $scope.activeProject;
 	  };
 
-	//   $scope.addApprover = function(){
-	// 	  $scope.report.approver = $scope.approver;
->>>>>>> sprint1
-	//   };
-
-	//   $scope.addLineItems = function(){
-	//   	  $scope.report.lineItems = $scope.report.lineItemsToConvert;
-	//   };
 }]);

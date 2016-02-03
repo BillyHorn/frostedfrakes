@@ -82,23 +82,7 @@ angular.module('app').service('myReportsService', ['$http', function($http){
   * it just shoots out dummy data.
   */
   function getReports(){
-
-    // return $http.get('/reports');
-
     return $http.get("/report/get");
-
-    // dummy return variables
-    // return [
-    //   {
-    //     reportid: 2,
-    //     name: "Report 2",
-    //     devid: "SomeOtherUser",
-    //     notes: "Nothing to Say",
-    //     rejectionnotes: "",
-    //     projectid: "Project1",
-    //     state: 4
-    //   }
-    // ];
   }
 
   return {
