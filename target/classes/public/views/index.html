@@ -12,13 +12,21 @@
 </head>
 <body ng-app="app">
 <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="navCtrl">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
-        <div class="navbar-brand">
-          Expense Report
-        </div>
+
+        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+          <div class="navbar-brand">
+            Expense Report
+          </div>
+
       </div>
-      <div class="navbar-collapse">
+      <div class="collapse navbar-collapse" uib-collapse="isCollapsed" ng-click="isCollapsed = !isCollapsed">
         <ul class="nav navbar-nav">
           <li>
             <a ui-sref="home">Home</a>
