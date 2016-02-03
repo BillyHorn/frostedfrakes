@@ -99,13 +99,17 @@ body {
 }
 
 #errorLog{
-	background-color: #D83A3A;
+	width: 100%;
 	border-radius: 3px;
 	text-align: center;
-	font-size: 20px;
+	font-size: 15px;
 	margin-top: 20px;
+	margin-bottom: 0px;
 }
 
+.panel-body{
+	padding-bottom: 0px;
+}
 
 
 
