@@ -3,6 +3,7 @@ package com.catalyst.springboot.webservices;
 import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -153,6 +154,18 @@ public class WebServices {
 	@RequestMapping(value="/security/current", method = RequestMethod.GET)
 	public Dev currentUser(Principal principal) {
 		return devService.getEmployeeByUsername(principal.getName());
+	}
+	
+	/**
+	 * if tech lead, gets the current users
+	 * pending reports
+	 */
+	
+	@RequestMapping(value="/pendingReports/{email}", method = RequestMethod.GET)
+	public List<Report> currentUser(@PathVariable String email) {
+		Dev dev = devService.getEmployeeByUsername(email);
+		List<Project> list= projectService.getTechLeadProjects(dev);
+		return reportService.getTechLeadReports(list);
 	}
 	
 }

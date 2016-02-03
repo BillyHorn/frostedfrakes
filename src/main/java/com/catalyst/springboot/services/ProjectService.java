@@ -58,6 +58,13 @@ public class ProjectService {
 	public List<Project> get(){
 		return projectDao.get();
 	}
+
+	public List<Project> getTechLeadProjects(Dev dev) {
+		// TODO Auto-generated method stub
+		return projectDao.getTechLeadProjects(dev);
+	}
+	
+	
 	
 	
 	

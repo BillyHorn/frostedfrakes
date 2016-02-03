@@ -22,7 +22,11 @@ angular.module('app').service('httpService', ['$http', function($http){
     }
 
     function login(loginData){
-    		return $http.post("/loginPage", loginData);
+    	return $http.post("/loginPage", loginData);
+    }
+    
+    function pendingReports(devId){
+    	return $http.get("/pendingReports/" + devId);
     }
 
     //Requests the current users information
@@ -37,7 +41,8 @@ angular.module('app').service('httpService', ['$http', function($http){
         getProjects: getProjects,
         createReport: createReport,
         login: login,
-        currentUser : currentUser
+        currentUser : currentUser,
+        pendingReports : pendingReports
     };
 
 
