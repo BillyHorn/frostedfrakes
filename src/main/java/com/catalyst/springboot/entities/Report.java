@@ -38,9 +38,6 @@ public class Report {
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
 
-	@Transient
-	private List<LineItem> lineItemsToConvert;
-
 	
 	/**
 	 * @return the reportId
@@ -142,21 +139,6 @@ public class Report {
 		this.state = state;
 	}
 
-
-	/**
-	 * @return the lineItemsToConvert
-	 */
-	@Transient
-	public List<LineItem> getLineItemsToConvert() {
-		return lineItemsToConvert;
-	}
-
-	/**
-	 * @param lineItemsToConvert the lineItemsToConvert to set
-	 */
-	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
-		this.lineItemsToConvert = lineItemsToConvert;
-	}
 
 	/**
 	 * overrides objects hashCode to provide a code specific to the reportId

@@ -5,49 +5,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   // redirect from the base myreports state so that only child-states exist
   $urlRouterProvider.when('/my-reports', '/my-reports/saved');
 
-<<<<<<< HEAD
-    $urlRouterProvider.otherwise('/home');
 
-    $stateProvider
-
-        .state('home', {
-            url: '/home',
-            templateUrl: 'views/partials/home.html',
-            controller: 'homeCtrl'
-        })
-
-        .state('createProject', {
-            url: '/createProject',
-            templateUrl: 'views/partials/createProject.html',
-            controller: "createProjectCtrl"
-        })
-
-        .state('registration', {
-            url: '/registration',
-            templateUrl: 'views/partials/registration.html',
-            controller: "registrationCtrl"
-        })
-
-        .state('createReport', {
-    		url: '/createReport',
-    		templateUrl: 'views/partials/createReport.html',
-    		controller: "createReportCtrl"
-    	})
-
-        .state('viewReport', {
-          url: '/viewReport/:reportid',
-          templateUrl: 'views/partials/viewReport.html',
-          controller: "viewReportCtrl", // TODO going to want resolve to do get request @mKness
-          resolve: {
-            getProjects: ['httpService',function(httpService) {
-              return httpService.getProjects();
-            }],
-            getReport: ['httpService','$stateParams',function(httpService,$stateParams) {
-              return httpService.getReport($stateParams.reportid);
-            }]
-          }
-        });
-=======
   // and anything other than a state can send you back to home.
   $urlRouterProvider.otherwise('/home');
 
@@ -77,6 +35,20 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     url: '/create-report',
     templateUrl: 'views/partials/create-report.html',
     controller: 'createReportCtrl'
+  })
+
+  .state('viewReport', {
+    url: '/viewReport/:reportid',
+    templateUrl: 'views/partials/viewReport.html',
+    controller: "viewReportCtrl", // TODO going to want resolve to do get request @mKness
+    resolve: {
+      getProjects: ['httpService',function(httpService) {
+        return httpService.getProjects();
+      }],
+      getReport: ['httpService','$stateParams',function(httpService,$stateParams) {
+        return httpService.getReport($stateParams.reportid);
+      }]
+    }
   })
 
   .state('create-project', {
@@ -116,5 +88,4 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
         controller: 'myReportsCtrl'
       });
 
->>>>>>> sprint1
 }]);
