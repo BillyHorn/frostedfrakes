@@ -1,50 +1,9 @@
 angular.module('app').service('httpService', ['$http', 'currentUser', function($http, currentUser){
 
 
-<<<<<<< HEAD
   function getReport(reportid) {
     return $http.get('/report/' + reportid);
   }
-=======
-    // Gets all users from the database
-    function getUsers(){
-        return $http.get('/users');
-    }
-
-    // Gets all projects from the database
-    function getProjects(){
-    	return $http.get('/project/get/' + currentUser.getUser().email);
-    }
-
-    // Creates a new project in the database
-    function createProject(data){
-        return $http.post('/project/create', data);
-    }
-
-    // Creates a new report in the database
-    function createReport(data){
-    	return $http.post('/report/create', data);
-    }
-
-    function login(loginData){
-    		return $http.post("/loginPage", loginData);
-    }
-
-    //Requests the current users information
-    function currentDev(){
-        return $http.get('/security/current');
-    }
-
-    // The list of all available functions
-    return {
-        getUsers : getUsers,
-        createProject : createProject,
-        getProjects: getProjects,
-        createReport: createReport,
-        login: login,
-        currentUser : currentDev
-    };
->>>>>>> origin/sprint1
 
   function getProjects(){
     return $http.get('/project/get');
@@ -56,7 +15,7 @@ angular.module('app').service('httpService', ['$http', 'currentUser', function($
   }
 
   function getProjects() {
-    return $http.get('/project/get');
+    return $http.get('/project/get/' + currentUser.getUser().email);
   }
 
   function createReport(data){
@@ -67,7 +26,6 @@ angular.module('app').service('httpService', ['$http', 'currentUser', function($
     return $http.put('/report', data);
   }
 
-
   function login(loginData){
     return $http.post("/loginPage", loginData);
   }
@@ -76,7 +34,7 @@ angular.module('app').service('httpService', ['$http', 'currentUser', function($
     return $http.get('/users');
   }
   //Requests the current users information
-  function currentUser(){
+  function currentDev(){
       return $http.get('/security/current');
   }
 
@@ -99,7 +57,7 @@ angular.module('app').service('httpService', ['$http', 'currentUser', function($
     createReport: createReport,
     putReport: putReport,
     login: login,
-    currentUser : currentUser,
+    currentUser : currentDev,
     getLineItems : getLineItems,
     putLineItem : putLineItem,
     getCategories : getCategories
