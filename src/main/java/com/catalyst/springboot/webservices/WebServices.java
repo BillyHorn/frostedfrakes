@@ -144,6 +144,12 @@ public class WebServices {
 		return reportService.getReport();
 	}
 	
+	/**
+	 * Gets the current users information
+	 * 
+	 * @param principal
+	 * @return
+	 */
 	@RequestMapping(value="/security/current", method = RequestMethod.GET)
 	public Dev currentUser(Principal principal) {
 		return devService.getEmployeeByUsername(principal.getName());

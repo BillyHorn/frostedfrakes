@@ -5,8 +5,8 @@ angular
 				[
 						'$scope',
 						'$state',
-						'registrationFactory', 'currentUser',
-						function($scope, $state, registrationFactory, currentUser) {
+						'registrationFactory',
+						function($scope, $state, registrationFactory) {
 
 							console.log("registrationFactory");
 
@@ -38,7 +38,7 @@ angular
 								}
 							};
 
-							currentUser.setUser(null);
+
 
 
 						}]);

@@ -36,21 +36,16 @@ public class DevDao {
 	 * @return The list of users from the database.
 	 */
 	public List<Dev> get(){
-//		Session session = Application.sessionFactory.getCurrentSession();
-//		List<Dev> devs = session.createCriteria(Dev.class).setProjection(Projections.projectionList()
-//				.add(Projections.property("email"), "email")
-//				.add(Projections.property("devid"), "devid")
-//				.add(Projections.property("role"), "role"))
-//				.setResultTransformer(Transformers.aliasToBean(Dev.class)).list();
-//		return devs;
 		List<Dev> devs = em.createQuery("SELECT d FROM dev d", Dev.class).getResultList();
-//		for (Dev dev : devs) {
-//			dev.setPassword(null);
-//		}
 		return devs;
 	}
 
-
+	/**
+	 * Gets a user by username
+	 * 
+	 * @param username The username to get
+	 * @return The user object minus the password
+	 */
 	public Dev getEmployeeByUsername(String username) {
 		Dev dev = em.createQuery("SELECT d from dev d WHERE d.email = :email", Dev.class)
 				.setParameter("email", username).getSingleResult();

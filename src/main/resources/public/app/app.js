@@ -12,14 +12,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
             url: '/home',
             templateUrl: 'views/partials/home.html',
             controller: 'homeCtrl',
-            resolve: {
-                userRole: ['currentUser','httpService', function(currentUser, httpService){
-                    httpService.currentUser().then(function(response){
-                        currentUser.setUser(response.data);
-                    });
-                    return currentUser.getUser();
-                }]
-            }
+            // resolve: {
+            //     userRole: ['currentUser','httpService', function(currentUser, httpService){
+            //         httpService.currentUser().then(function(response){
+            //             currentUser.setUser(response.data);
+            //         });
+            //         return currentUser.getUser();
+            //     }]
+            // }
         })
 
         .state('createProject', {
@@ -38,6 +38,13 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     		url: '/createReport',
     		templateUrl: 'views/partials/createReport.html',
     		controller: "createReportCtrl"
+    	})
+
+        .state('logout', {
+    		url: '/logout',
+    		controller: function($scope, $route) {
+    			$route.reload();
+    		}
     	});
 
 }]);
