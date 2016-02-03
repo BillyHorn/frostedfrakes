@@ -1,45 +1,58 @@
 package com.catalyst.springboot.webservices;
 
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Matchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
-//import com.catalyst.springboot.webservices.WebServices;
+import com.catalyst.springboot.entities.Project;
+import com.catalyst.springboot.services.DevService;
+import com.catalyst.springboot.services.ProjectService;
 
-
-public class WebservicesTest {
-
-	private ProjectDao mockDao;
-	private WebServices webservices;
-	private Dev mockDev;
+public class WebServicesTest {
 	
+	private DevService devService;
+	private ProjectService projectService;
+	private WebServices webService;
+
 	@Before
-	public void createWebServices() throws Exception {
-		mockDao = mock(ProjectDao.class);
-		webservices = new WebServices();
-		webservices.setDao(mockDao);
-		
+	public void setup(){
+		devService = mock(DevService.class);
+		projectService = mock(ProjectService.class);
+		webService = new WebServices();
+		webService.setProjectService(projectService);
+		webService.setService(devService);
 	}
 	
 	@Test
-	public void addNewUserTest() throws Exception {
-		//webservices.addNewUser(null);
-		when(mockDev.getEmail()).thenReturn("test");
-		when(mockDao.checkUserName(anyString())).thenReturn(mockDev);
-		
-
-		verify(mockDao, times(1)).checkUserName(anyString());
-		verify(mockDao,times(1)).register(mockDev);
-		
+	public void createProjectTest(){
+		webService.createProject(null);
+		verify(projectService).add((Project) eq(null));
 	}
 	
+	@Test
+	public void getProjectTest(){
+		List<Project> projList = new ArrayList<Project>();
+		
+		when(projectService.get()).thenReturn(projList);
+		
+		webService.getProjects();
+		verify(projectService).get();
+	}
 	
+	@Test
+	public void getUsersTest(){
+		List<Dev> devs = new ArrayList<Dev>();
+		
+		when(devService.get()).thenReturn(devs);
+		
+		webService.getUsers();
+		verify(devService).get();
+	}
 }
