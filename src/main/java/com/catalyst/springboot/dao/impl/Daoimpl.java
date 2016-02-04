@@ -19,9 +19,10 @@ import com.catalyst.springboot.entities.Report;
 public class Daoimpl {
 
 	
-	public void addReport(Report report) {
+	public Integer addReport(Report report) {
 		em.persist(report);
 		em.flush();
+		return report.getReportId();
 	}
 	
 	public List<Report> getReport(){

@@ -155,8 +155,9 @@ public class WebServices {
 	 *
 	 */
 	@RequestMapping(value="/report/create", method=RequestMethod.POST)
-	public void addReport(@RequestBody Report report){
-		  reportService.add(report);
+	public Integer addReport(@RequestBody Report report){
+		int id = reportService.add(report);
+		return id;
 	} 
 	
 	/**
