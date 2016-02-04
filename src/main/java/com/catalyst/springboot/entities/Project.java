@@ -115,6 +115,10 @@ public class Project {
 		this.devsToConvert = devsToConvert;
 	}
 
+
+	/**
+	 * overrides objects hashCode to provide a code specific to the projectId
+	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);

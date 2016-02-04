@@ -1,5 +1,6 @@
-angular.module('app').controller('registrationCtrl',['$scope','$state','registrationFactory',
-function($scope, $state, registrationFactory) {
+
+angular.module('app').controller('registrationCtrl',	['$scope','$state','registrationFactory',
+						function($scope, $state, registrationFactory) {
 
 	$scope.registration = function() {
 

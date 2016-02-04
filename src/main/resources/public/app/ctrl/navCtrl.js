@@ -2,7 +2,10 @@ angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'httpServi
 
     httpService.currentUser().then(function(response){
         currentUser.setUser(response.data);
+        $scope.currentUser = response.data;
     });
+    $scope.currentUser = {};
+    $scope.currentUser.role="user";
 
     $scope.logout = function() {
         currentUser.setUser({});
@@ -10,7 +13,6 @@ angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'httpServi
     };
 
     $scope.admin = function() {
-        $scope.currentUser = currentUser.getUser();
         if ($scope.currentUser.role === 'admin'){
             return true;
         } else {

@@ -31,14 +31,12 @@ public class Report {
 
 	
 	private Integer reportId;
+	private String name;
 	private String notes;
 	private Dev dev;
 	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
-
-	@Transient
-	private List<LineItem> lineItemsToConvert;
 
 	
 	/**
@@ -87,6 +85,18 @@ public class Report {
 		this.dev = dev;
 	}
 	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
 	 * @return the project
 	 */
 	@ManyToOne(optional = false)
@@ -131,20 +141,8 @@ public class Report {
 
 
 	/**
-	 * @return the lineItemsToConvert
+	 * overrides objects hashCode to provide a code specific to the reportId
 	 */
-	@Transient
-	public List<LineItem> getLineItemsToConvert() {
-		return lineItemsToConvert;
-	}
-
-	/**
-	 * @param lineItemsToConvert the lineItemsToConvert to set
-	 */
-	public void setLineItemsToConvert(List<LineItem> lineItemsToConvert) {
-		this.lineItemsToConvert = lineItemsToConvert;
-	}
-
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);

@@ -13,6 +13,14 @@ import org.junit.Test;
 
 import com.catalyst.springboot.entities.Project;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
+import javax.persistence.EntityManager;
+import org.junit.Before;
+import org.junit.Test;
+
+
 
 public class ProjectDaoTest {
 
@@ -45,7 +53,7 @@ public class ProjectDaoTest {
 		//dao.getByDev(dev)
 		verify(query).getResultList();
 	}
-	
+
 	@Test
 	public void registerTest() {
 		dao.register(null);

@@ -5,6 +5,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   // redirect from the base myreports state so that only child-states exist
   $urlRouterProvider.when('/my-reports', '/my-reports/saved');
 
+
   // and anything other than a state can send you back to home.
   $urlRouterProvider.otherwise('/home');
 
@@ -34,6 +35,26 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     url: '/create-report',
     templateUrl: 'views/partials/create-report.html',
     controller: 'createReportCtrl'
+  })
+
+  .state('viewReport', {
+    url: '/viewReport/:reportid',
+    templateUrl: 'views/partials/viewReport.html',
+    controller: "viewReportCtrl", // TODO going to want resolve to do get request @mKness
+    resolve: {
+      getProjects: ['httpService',function(httpService) {
+        return httpService.getProjects();
+      }],
+      getReport: ['httpService','$stateParams',function(httpService,$stateParams) {
+        return httpService.getReport($stateParams.reportid);
+      }],
+      getLineItems: ['httpService','$stateParams', function(httpService,$stateParams){
+        return httpService.getLineItems($stateParams.reportid);
+      }],
+      getCategories: ['httpService', function(httpService){
+        return httpService.getCategories();
+      }]
+    }
   })
 
   .state('create-project', {

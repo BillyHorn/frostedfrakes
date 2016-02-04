@@ -5,9 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
-
 import com.catalyst.springboot.entities.Dev;
-
 
 import javax.transaction.Transactional;
 
@@ -29,6 +27,10 @@ public class Daoimpl {
 	public List<Report> getReport(){
 		return em.createQuery("SELECT r FROM Report r", Report.class).getResultList();
 	}
+	
+	public Report getReportById(Integer reportId){
+		return em.createQuery("SELECT r FROM Report r WHERE r.reportId = :reportId", Report.class).setParameter("reportId", reportId).getSingleResult();
+	}
 
 
 	@PersistenceContext
@@ -38,6 +40,7 @@ public class Daoimpl {
 		this.em = em;
 
 	}
+
 	
 	/**
 	 * check if a particular Developer exists
@@ -69,10 +72,11 @@ public class Daoimpl {
 		em.flush();
 		return dev;
 	}
-
+	
 	public List<Report> getReportByDevId(Dev dev) {
 		return em.createQuery("SELECT r FROM Report r WHERE r.dev = :dev ", Report.class)
 				.setParameter("dev", dev).getResultList();
+
 	}
 
 	

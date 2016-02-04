@@ -12,25 +12,35 @@
 </head>
 <body ng-app="app">
 <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="navCtrl">
-    <div class="container">
+
+    <div class="container-fluid">
+
       <div class="navbar-header">
-        <div class="navbar-brand">
-          Expense Report
-        </div>
+
+        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+          <div class="navbar-brand">
+            Expense Report
+          </div>
+
       </div>
-      <div class="navbar-collapse">
+      <div class="collapse navbar-collapse" uib-collapse="isCollapsed" ng-click="isCollapsed = !isCollapsed">
         <ul class="nav navbar-nav">
           <li>
-            <a ui-sref="home" ng-show="!admin()">Home</a>
+            <a ui-sref="home" ng-show="!admin()" ng-cloak>Home</a>
           </li>
           <li>
-            <a ui-sref="create-report" ng-show="!admin()">Create New Report</a>
+            <a ui-sref="create-report" ng-show="!admin()" ng-cloak>Create New Report</a>
           </li>
           <li>
-            <a ui-sref="my-reports" ng-show="!admin()">View My Reports</a>
+            <a ui-sref="my-reports" ng-show="!admin()" ng-cloak>View My Reports</a>
           </li>
           <li>
-            <a ui-sref="create-project" ng-show="admin()">Create Project</a>
+            <a ui-sref="create-project" ng-show="admin()" ng-cloak>Create Project</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -58,6 +68,16 @@
 
   <!-- our base app -->
   <script type="text/javascript" src="../app/app.js"></script>
+  <script type="text/javascript" src="../app/ctrl/viewReportCtrl.js"></script>
+  <script type="text/javascript" src="../app/ctrl/createProjectCtrl.js"></script>
+  <script type="text/javascript" src="../app/service/httpService.js"></script>
+  <script type="text/javascript" src="../app/values/projectApiValue.js"></script>
+  <script type="text/javascript" src="../app/stateLogging.js"></script>
+
+  <!-- regestration scripts -->
+  <script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
+  <script type="text/javascript" src="../app/service/registrationFactory.js"></script>
+
   <!-- controllers -->
   <script type="text/javascript" src="../app/ctrl/homeCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/createReportCtrl.js"></script>
@@ -67,10 +87,9 @@
   <script type="text/javascript" src="../app/service/httpService.js"></script>
   <script type="text/javascript" src="../app/service/currentUser.js"></script>
 
-  <!-- regestration scripts -->
-  <script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
-  <script type="text/javascript" src="../app/service/registrationFactory.js"></script>
-
+  <script type="text/javascript" src="../app/service/httpService.js"></script>
+  <script type="text/javascript" src="../app/service/projectFinderService.js"></script>
+  <script type="text/javascript" src="../app/service/stateConverterService.js"></script>
   <!-- login/logout scripts -->
   <script type="text/javascript" src="../app/ctrl/loginCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/createProjectCtrl.js"></script>

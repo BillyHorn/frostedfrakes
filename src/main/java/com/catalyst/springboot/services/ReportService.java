@@ -83,4 +83,14 @@ public class ReportService {
 		return reportDao.getReportByDevId(dev);
 	}
 	
+	/** GET
+	 * get a single report based on id
+	 * @param reportId, the id of the report to return
+	 * @return the report
+	 * @author mKness
+	 */
+	public Report getReportById(Integer reportId)
+	{
+		return reportDao.getReportById(reportId);
+	}
 }
