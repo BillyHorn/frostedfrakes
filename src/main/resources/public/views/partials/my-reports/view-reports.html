@@ -3,7 +3,7 @@
 
   <div class="panel-body">
     <div class="list-group">
-      <a ng-repeat="report in filteredReports" href="#" class="list-group-item">{{report.project.name}} <span class="vertical-break"></span> {{report.reportId}}</a>
+      <a ng-repeat="report in filteredReports" ui-sref="viewReport({reportid : report.reportId})" class="list-group-item">{{report.project.name}} <span class="vertical-break"></span> {{report.reportId}}</a>
     </div>
   </div>
 </div>
