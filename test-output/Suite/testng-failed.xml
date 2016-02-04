@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="tests">
+  <test name="Register Test">
+    <classes>
+      <class name="com.catalyst.springboot.selenium.test.RegisterTest"/>
+    </classes>
+  </test> <!-- Register Test -->
+  <test name="Login Test">
+    <classes>
+      <class name="com.catalyst.springboot.selenium.modal.LoginTest"/>
+    </classes>
+  </test> <!-- Login Test -->
+  <test name="Register Test(failed)" parallel="tests">
+    <classes>
+      <class name="com.catalyst.springboot.selenium.test.RegisterTest">
+        <methods>
+          <include name="setup"/>
+          <include name="invalidRegisterTest"/>
+        </methods>
+      </class> <!-- com.catalyst.springboot.selenium.test.RegisterTest -->
+      <class name="com.catalyst.springboot.selenium.modal.LoginTest">
+        <methods>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.catalyst.springboot.selenium.modal.LoginTest -->
+    </classes>
+  </test> <!-- Register Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
