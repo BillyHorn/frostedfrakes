@@ -48,4 +48,8 @@ public class LineItemService {
 		lineItemDao.deleteLineItem(lineItemId);
 	}
 
+	public List<LineItem> getPendingLineItems(Integer id) {
+		return lineItemDao.getPendingLineItems(id);
+	}
+
 }

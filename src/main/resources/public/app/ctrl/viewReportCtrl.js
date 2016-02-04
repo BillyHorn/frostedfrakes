@@ -12,7 +12,6 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
 
       $scope.lineitems = getLineItems.data;
       $scope.categories = getCategories.data;
-      console.log(JSON.stringify($scope.lineitems));
       // loop to change date strings into date objects
 
 
@@ -37,24 +36,24 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
         if(state == 2){
           $state.go('my-reports.submitted');
         }
-      }
+    };
 
       // add a new line item to the list
       $scope.addLineItem = function(){
         $scope.lineitems.push({});
-      }
+    };
 
       // delete the assoicated line item from the db and the list displayed
       $scope.deleteLineItem = function(lineItem) {
           httpService.deleteLineItem(lineItem.lineItemId);
-          var index = findIndex($scope.lineitems, lineItem)
+          var index = findIndex($scope.lineitems, lineItem);
           $scope.lineitems.splice(index,1);
 
-      }
+      };
 
       $scope.cancel = function() {
         $state.go('my-reports');
-      }
+    };
 
       // helper function to find the index of the the obj in the array
       function findIndex(array, obj) {
@@ -66,4 +65,4 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
           }
         }
       }
-}])
+}]);

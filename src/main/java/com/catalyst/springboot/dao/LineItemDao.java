@@ -68,6 +68,11 @@ public class LineItemDao {
 		em.remove(lineItem);
 		em.flush();
 	}
+
+	public List<LineItem> getPendingLineItems(Integer id) {
+		return em.createQuery("SELECT l from lineitem l WHERE l.report.project.techLeadId.devId = :id", LineItem.class)
+				.setParameter("id", id).getResultList();
+	}
 	
 	
 	
