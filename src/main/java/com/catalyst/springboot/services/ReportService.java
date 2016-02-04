@@ -28,11 +28,12 @@ public class ReportService {
 	 * add a new report
 	 * @param report
 	 * @author wPerlichek
+	 * @return 
 	 */
-	public void add(Report report) {
+	public Integer add(Report report) {
 		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
 //		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
-		reportDao.addReport(report);
+		return reportDao.addReport(report);
 	}
 	
 	/* PLEASE DO NOT DELETE wPerlichek */

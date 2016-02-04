@@ -9,11 +9,11 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
 
 
     $scope.createReport = function(){
-        console.log($scope.report);
 		$scope.report.dev = currentUser.getUser();
 		$scope.report.state=1;
-        httpService.createReport($scope.report).then(function(){
-            $state.go('home');
+        httpService.createReport($scope.report).then(function(response){
+			$scope.report.reportId = response.data;
+            $state.go('viewReport', ({reportid : $scope.report.reportId}));
         }, function(response){
             console.log(response);
         });
