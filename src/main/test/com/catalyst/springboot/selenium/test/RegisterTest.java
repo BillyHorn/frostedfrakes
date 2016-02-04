@@ -38,12 +38,12 @@ public class RegisterTest {
 		_driver.manage().window().maximize();
 
 	}
-	
+	/*
 	@AfterClass
 	public void teardown(){
 		_driver.quit();
 	}
-	
+	*/
 	@Test
 	public void invalidRegisterTest() {
 		_register = PageFactory.initElements(_driver, RegisterPage.class);

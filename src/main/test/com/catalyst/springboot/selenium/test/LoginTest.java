@@ -33,12 +33,12 @@ public class LoginTest {
 		_driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		_driver.manage().window().maximize();
 	}
-	
+	/*
 	@AfterClass
 	public void teardown(){
 		_driver.quit();
 	}
-	
+	*/
 	@Test
 	public void invalidLoginTest() throws InterruptedException {
 		// to get current method name
