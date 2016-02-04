@@ -9,7 +9,6 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
       $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
       // converts the state from number to a string so it is humanreadable
       $scope.state = stateConverterService.getString($scope.report.state);
-      console.log(JSON.stringify($scope.lineitems));
       // submits the report to the db with either a saved or submitted status based on which button was clicked
       // also will update all lineitems assoicated with the report TODO only update modified line items
       $scope.putReport = function(state){
@@ -19,7 +18,6 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
         // iterate through the lineitems and send all of them to update
         for(var i = 0; i < $scope.lineitems.length; i++) {
           $scope.lineitems[i].report = $scope.report;
-          console.log(JSON.stringify($scope.lineitems[i]));
           httpService.putLineItem($scope.lineitems[i]);
         }
         if(state == 1){
@@ -38,8 +36,8 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
       // delete the assoicated line item from the db and the list displayed
       $scope.deleteLineItem = function(lineItem) {
           httpService.deleteLineItem(lineItem.lineItemId);
-          /*var index = findIndex($scope.lineitems, lineItem)
-          $scope.lineitems.splice(index,1);*/
+          var index = findIndex($scope.lineitems, lineItem)
+          $scope.lineitems.splice(index,1);
 
       }
 
