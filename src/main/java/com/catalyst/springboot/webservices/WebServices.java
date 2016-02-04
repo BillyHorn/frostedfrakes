@@ -206,7 +206,7 @@ public class WebServices {
 		return lineItemService.getLineItemsByReportId(reportId);
 	}
 	
-	/**
+	/** UPDATE
 	 * 
 	 * @param lineItem merges the lineItem into the db
 	 */
@@ -214,6 +214,16 @@ public class WebServices {
 	public void updateLineItem(@RequestBody LineItem lineItem)
 	{
 		lineItemService.updateLineItem(lineItem);
+	}
+	
+	/** DELETE
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	@RequestMapping(value="/lineitems/{lineItemId}", method=RequestMethod.DELETE)
+	public void deleteLineItem(@PathVariable Integer lineItemId)
+	{
+		lineItemService.deleteLineItem(lineItemId);
 	}
 	
 	/**

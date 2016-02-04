@@ -38,7 +38,14 @@ public class LineItemService {
 	 */
 	public void updateLineItem(LineItem lineItem) {
 		lineItemDao.updateLineItem(lineItem);
-		
+	}
+
+	/**
+	 * 
+	 * @param lineItem the lineItem to be deleted from the db
+	 */
+	public void deleteLineItem(Integer lineItemId) {
+		lineItemDao.deleteLineItem(lineItemId);
 	}
 
 }

@@ -46,6 +46,10 @@ angular.module('app').service('httpService', ['$http', 'currentUser', function($
     return $http.put('/lineitems', lineItem);
   }
 
+  function deleteLineItem(lineItemId) {
+    return $http.delete('/lineitems/' + lineItemId);
+  }
+
   function getCategories(){
     return $http.get('/categories');
   }
@@ -60,6 +64,7 @@ angular.module('app').service('httpService', ['$http', 'currentUser', function($
     currentUser : currentDev,
     getLineItems : getLineItems,
     putLineItem : putLineItem,
-    getCategories : getCategories
+    getCategories : getCategories,
+    deleteLineItem : deleteLineItem
   };
 }]);

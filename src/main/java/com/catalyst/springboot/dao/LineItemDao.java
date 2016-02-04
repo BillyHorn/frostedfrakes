@@ -58,6 +58,16 @@ public class LineItemDao {
 		em.merge(lineItem);
 		em.flush();
 	}
+
+	/**
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	public void deleteLineItem(Integer lineItemId) {
+		LineItem lineItem = em.find(LineItem.class, lineItemId);
+		em.remove(lineItem);
+		em.flush();
+	}
 	
 	
 	
