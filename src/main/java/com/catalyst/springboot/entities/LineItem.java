@@ -34,7 +34,7 @@ public class LineItem {
 	
 	private Integer lineItemId;
 	private Date date;
-	private Integer value;
+	private Double value;
 	private Category category;
 	private Report report;
 	
@@ -69,13 +69,13 @@ public class LineItem {
 	/**
 	 * @return the value
 	 */
-	public Integer getValue() {
+	public Double getValue() {
 		return value;
 	}
 	/**
 	 * @param value the value to set
 	 */
-	public void setValue(Integer value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 	/**
@@ -128,5 +128,18 @@ public class LineItem {
 		return builder.isEquals();
 		
 	}
-
+	
+	/**
+	 * overrides objects toString method for error logging
+	 */
+	@Override
+	public String toString() {
+		String rtn = "ID: " + lineItemId + 
+					"  Date:  " + date + 
+					"  Value: " + value +
+					"  Category: " + category +
+					"  ReportId: " + report.getReportId();
+				
+		return rtn;
+	}
 }

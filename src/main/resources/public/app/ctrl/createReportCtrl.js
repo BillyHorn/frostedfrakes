@@ -26,7 +26,6 @@ angular.module('app').controller('createReportCtrl', ['$scope', 'httpService', '
       };
 
 	  httpService.getProjects().then(function(response){
-		    console.log(response);
 	        $scope.projects = response.data;
 	    });
 

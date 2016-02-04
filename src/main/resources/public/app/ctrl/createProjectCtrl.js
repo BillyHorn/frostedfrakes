@@ -8,7 +8,6 @@ angular.module('app').controller('createProjectCtrl', ['$scope', 'httpService', 
 
     // Gets a list of all users from the database.
     httpService.getUsers().then(function(response){
-        console.log(response);
         $scope.users = response.data;
     });
 
