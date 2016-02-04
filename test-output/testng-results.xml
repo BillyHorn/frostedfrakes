@@ -2,35 +2,67 @@
 <testng-results skipped="0" failed="1" total="3" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="14586" started-at="2016-02-04T21:53:03Z" finished-at="2016-02-04T21:53:17Z">
+  <suite name="Suite" duration-ms="20865" started-at="2016-02-04T22:25:30Z" finished-at="2016-02-04T22:25:51Z">
     <groups>
     </groups>
-    <test name="Login Test" duration-ms="11062" started-at="2016-02-04T21:53:03Z" finished-at="2016-02-04T21:53:14Z">
+    <test name="Login Test" duration-ms="15550" started-at="2016-02-04T22:25:30Z" finished-at="2016-02-04T22:25:46Z">
       <class name="com.catalyst.springboot.selenium.modal.LoginTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.catalyst.springboot.selenium.modal.LoginTest@2669b199]" name="setup" is-config="true" duration-ms="6902" started-at="2016-02-04T13:53:03Z" finished-at="2016-02-04T13:53:10Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.catalyst.springboot.selenium.modal.LoginTest@2669b199]" name="setup" is-config="true" duration-ms="11271" started-at="2016-02-04T14:25:30Z" finished-at="2016-02-04T14:25:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="invalidLoginTest()[pri:0, instance:com.catalyst.springboot.selenium.modal.LoginTest@2669b199]" name="invalidLoginTest" duration-ms="2776" started-at="2016-02-04T13:53:10Z" finished-at="2016-02-04T13:53:12Z">
+        <test-method status="PASS" signature="invalidLoginTest()[pri:0, instance:com.catalyst.springboot.selenium.modal.LoginTest@2669b199]" name="invalidLoginTest" duration-ms="2791" started-at="2016-02-04T14:25:41Z" finished-at="2016-02-04T14:25:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidLoginTest -->
-        <test-method status="PASS" signature="validLoginTest()[pri:0, instance:com.catalyst.springboot.selenium.modal.LoginTest@2669b199]" name="validLoginTest" duration-ms="1367" started-at="2016-02-04T13:53:12Z" finished-at="2016-02-04T13:53:14Z">
+        <test-method status="PASS" signature="validLoginTest()[pri:0, instance:com.catalyst.springboot.selenium.modal.LoginTest@2669b199]" name="validLoginTest" duration-ms="1479" started-at="2016-02-04T14:25:44Z" finished-at="2016-02-04T14:25:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validLoginTest -->
       </class> <!-- com.catalyst.springboot.selenium.modal.LoginTest -->
     </test> <!-- Login Test -->
-    <test name="Register Test" duration-ms="14586" started-at="2016-02-04T21:53:03Z" finished-at="2016-02-04T21:53:17Z">
+    <test name="Register Test" duration-ms="20865" started-at="2016-02-04T22:25:30Z" finished-at="2016-02-04T22:25:51Z">
       <class name="com.catalyst.springboot.selenium.test.RegisterTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.catalyst.springboot.selenium.test.RegisterTest@2c9f9fb0]" name="setup" is-config="true" duration-ms="7061" started-at="2016-02-04T13:53:03Z" finished-at="2016-02-04T13:53:10Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.catalyst.springboot.selenium.test.RegisterTest@2c9f9fb0]" name="setup" is-config="true" duration-ms="8073" started-at="2016-02-04T14:25:30Z" finished-at="2016-02-04T14:25:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="FAIL" signature="invalidRegisterTest()[pri:0, instance:com.catalyst.springboot.selenium.test.RegisterTest@2c9f9fb0]" name="invalidRegisterTest" duration-ms="7501" started-at="2016-02-04T13:53:10Z" finished-at="2016-02-04T13:53:17Z">
-          <exception class="java.lang.NullPointerException">
+        <test-method status="FAIL" signature="invalidRegisterTest()[pri:0, instance:com.catalyst.springboot.selenium.test.RegisterTest@2c9f9fb0]" name="invalidRegisterTest" duration-ms="12700" started-at="2016-02-04T14:25:38Z" finished-at="2016-02-04T14:25:51Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"id","selector":"messages"}
+  (Session info: chrome=48.0.2564.97)
+  (Driver info: chromedriver=2.19.346078 (6f1f0cde889532d48ce8242342d0b84f94b114a1),platform=Windows NT 6.3 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.14 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.44.0', revision: '76d78cf323ce037c5f92db6c1bba601c2ac43ad8', time: '2014-10-23 13:11:40'
+System info: host: 'PC10356', ip: '172.17.40.38', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\SPALLI~1\AppData\Local\Temp\scoped_dir4864_24486}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=48.0.2564.97, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 57fb350af0a5ecc9b1af33181a5ec90e]]>
+            </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"id","selector":"messages"}
+  (Session info: chrome=48.0.2564.97)
+  (Driver info: chromedriver=2.19.346078 (6f1f0cde889532d48ce8242342d0b84f94b114a1),platform=Windows NT 6.3 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.14 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.44.0', revision: '76d78cf323ce037c5f92db6c1bba601c2ac43ad8', time: '2014-10-23 13:11:40'
+System info: host: 'PC10356', ip: '172.17.40.38', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\SPALLI~1\AppData\Local\Temp\scoped_dir4864_24486}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=48.0.2564.97, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 57fb350af0a5ecc9b1af33181a5ec90e
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:393)
+	at org.openqa.selenium.By$ById.findElement(By.java:214)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
 	at com.catalyst.springboot.selenium.modal.RegisterPage.validateRegister(RegisterPage.java:50)
 	at com.catalyst.springboot.selenium.modal.RegisterPage.registerfunctionality(RegisterPage.java:35)
 	at com.catalyst.springboot.selenium.test.RegisterTest.invalidRegisterTest(RegisterTest.java:61)
@@ -56,7 +88,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidRegisterTest -->
