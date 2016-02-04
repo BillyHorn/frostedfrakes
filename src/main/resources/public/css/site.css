@@ -5,12 +5,8 @@
 }
 
 footer {
-<<<<<<< HEAD
     margin: 1em;
     border-top: 1px solid #ddd;
-=======
-  margin: 1em;
-  border-top: 1px solid #ddd;
 }
 
 .content {
@@ -50,5 +46,8 @@ footer {
 #projectDropdown {
   display: block;
   width: 100%;
->>>>>>> sprint1
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
 }
