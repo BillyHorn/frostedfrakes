@@ -3,13 +3,15 @@
   <uib-accordion-group heading="{{report.project.name}}">
      <div class="panel-body">
     	<div class="list-group">
-	       {{report.dev.email}}
+	       {{report.dev.email}}'s Report <span class="vertical-break"></span> {{report.reportId}}
     	</div>
+        <!-- <div class="list-group" ng-repeat="item in lineItems">
+            {{item.category.value}} <span class="vertical-break"></span> {{item.value}} <span class="vertical-break"></span> {{item.report.reportId}}
+        </div> -->
   	</div>
   	<div>
   		<button ng-click="approveReport(report)" type="button" class="btn btn-success">Accept</button>
   		<button type="button" class="btn btn-danger" ng-click="open(report)">Reject</button>
-  		{{report}}
   	</div>
   </uib-accordion-group>
 </uib-accordion>
@@ -28,8 +30,3 @@
 	</div>
 </script>
 </div>
-
-
-
-
-<!-- <button ng-click="rejectReport(report)" type="button" class="btn btn-danger">Reject</button> -->

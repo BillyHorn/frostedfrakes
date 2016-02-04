@@ -207,7 +207,7 @@ public class WebServices {
 		return lineItemService.getLineItemsByReportId(reportId);
 	}
 	
-	/**
+	/** UPDATE
 	 * 
 	 * @param lineItem merges the lineItem into the db
 	 */
@@ -215,6 +215,16 @@ public class WebServices {
 	public void updateLineItem(@RequestBody LineItem lineItem)
 	{
 		lineItemService.updateLineItem(lineItem);
+	}
+	
+	/** DELETE
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	@RequestMapping(value="/lineitems/{lineItemId}", method=RequestMethod.DELETE)
+	public void deleteLineItem(@PathVariable Integer lineItemId)
+	{
+		lineItemService.deleteLineItem(lineItemId);
 	}
 	
 	/**
@@ -258,5 +268,14 @@ public class WebServices {
 		reportService.update(report);
 	 }
 	
+	/** 
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	@RequestMapping(value="/lineitems/pending/{id}", method=RequestMethod.GET)
+	public List<LineItem> getPendingLineItems(@PathVariable Integer id)
+	{
+		return lineItemService.getPendingLineItems(id);
+	}
 }
 
