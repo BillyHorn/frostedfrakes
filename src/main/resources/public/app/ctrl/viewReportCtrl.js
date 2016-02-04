@@ -3,8 +3,18 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
 
       $scope.report = getReport.data;
       $scope.projects = getProjects.data;
+      for(var i = 0; i < getLineItems.data.length; i++)
+      {
+        var tempDate = new Date(getLineItems.data[i].date);
+        tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
+        getLineItems.data[i].date = tempDate;
+      }
+
       $scope.lineitems = getLineItems.data;
       $scope.categories = getCategories.data;
+      // loop to change date strings into date objects
+
+
       // the index of the reports assoiciated project in the projects array used for default value in the ng-option
       $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
       // converts the state from number to a string so it is humanreadable
