@@ -214,6 +214,7 @@ public class WebServices {
 	@RequestMapping(value="/lineitems", method=RequestMethod.PUT)
 	public void updateLineItem(@RequestBody LineItem lineItem)
 	{
+		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + lineItem.toString());
 		lineItemService.updateLineItem(lineItem);
 	}
 	

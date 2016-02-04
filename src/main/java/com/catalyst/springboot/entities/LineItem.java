@@ -128,5 +128,18 @@ public class LineItem {
 		return builder.isEquals();
 		
 	}
-
+	
+	/**
+	 * overrides objects toString method for error logging
+	 */
+	@Override
+	public String toString() {
+		String rtn = "ID: " + lineItemId + 
+					"  Date:  " + date + 
+					"  Value: " + value +
+					"  Category: " + category +
+					"  ReportId: " + report.getReportId();
+				
+		return rtn;
+	}
 }

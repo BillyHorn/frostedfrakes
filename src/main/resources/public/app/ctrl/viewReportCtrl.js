@@ -1,5 +1,5 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'httpService', 'getLineItems', 'getCategories',
-      function($scope, getProjects, getReport, projectFinderService, stateConverterService, httpService, getLineItems, getCategories) {
+angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'httpService', 'getLineItems', 'getCategories','$state',
+      function($scope, getProjects, getReport, projectFinderService, stateConverterService, httpService, getLineItems, getCategories, $state) {
 
       $scope.report = getReport.data;
       $scope.projects = getProjects.data;
@@ -18,7 +18,15 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
         httpService.putReport($scope.report);
         // iterate through the lineitems and send all of them to update
         for(var i = 0; i < $scope.lineitems.length; i++) {
+          $scope.lineitems[i].report = $scope.report;
+          console.log(JSON.stringify($scope.lineitems[i]));
           httpService.putLineItem($scope.lineitems[i]);
+        }
+        if(state == 1){
+          $state.go('my-reports.saved');
+        }
+        if(state == 2){
+          $state.go('my-reports.submitted');
         }
       }
 
@@ -33,6 +41,10 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
           /*var index = findIndex($scope.lineitems, lineItem)
           $scope.lineitems.splice(index,1);*/
 
+      }
+
+      $scope.cancel = function() {
+        $state.go('my-reports');
       }
 
       // helper function to find the index of the the obj in the array
