@@ -38,20 +38,18 @@ public class RegisterTest {
 		_driver.manage().window().maximize();
 
 	}
-	/*
+	
 	@AfterClass
 	public void teardown(){
 		_driver.quit();
 	}
-	*/
+	
 	@Test
 	public void invalidRegisterTest() {
 		_register = PageFactory.initElements(_driver, RegisterPage.class);
 		_driver.findElement(_registerlink).click();
 		
-		boolean r= _driver.findElement(By.id("register-form-link")).isDisplayed();	
-		boolean u = _driver.findElement(By.id("username")).isDisplayed();
-		System.out.println("r u ---------->"+r + u );
+		
 		
 		if(_driver.findElement(By.id("register-form-link")).isDisplayed()){	
 			System.out.println("inside if ");

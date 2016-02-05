@@ -41,6 +41,7 @@ public class LoginTest {
 		Exception e = new Exception();
 		e.fillInStackTrace();
 		String methodName = e.getStackTrace()[0].getMethodName();
+		System.out.println("methodName---->" + methodName);
 		XMLReader xmldata = new XMLReader();
 		xmldata.readingxml(methodName);
 

@@ -14,15 +14,13 @@
     </fieldset>
     <fieldset class="form-group" ng-show="report.state == 3"> <!-- only show if rejected -->
       <label for="rejectionNotes"> Rejection Notes </label>
-      <textarea type="text" class="form-control" ng-model="report.rejectionnotes" id="inputRejectionNotes" readonly></textarea>
+      <textarea type="text" class="form-control" ng-model="report.rejectionNotes" id="inputRejectionNotes" readonly></textarea>
     </fieldset>
     <!-- begin lineitems -->
-    <fieldset ng-repeat="li in lineitems" class="col-sm-offset-1">
-      <legend>Line Item </legend>
+    <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1">
       <ng-form name="categoryForm">
-          <label for="category"> Category</label>
-          <p> selected category: {{li.category}} </p>
-          <select class="form-control" name="category" ng-model="li.category" ng-options="category as category.value for category in categories"> </select>
+        <label for="category"> Category</label> <span class="horizontal-break"></span> selected category: {{li.category.value}}
+        <select class="line-item-select form-control" name="category" ng-model="li.category" ng-options="category as category.value for category in categories"> </select>
       </ng-form>
       <ng-form name="valueForm">
         <fieldset class="form-group" ng-class="{'has-error' : valueForm.value.$invalid && !valueForm.value.$pristine}">
@@ -35,13 +33,15 @@
         <label> Date</label>
         <input type="date" class="form-control" name="date" ng-model="li.date" required> </input>
       </ng-form>
+      <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)"> Delete Line Item </button>
     </fieldset>
+    <button class="btn btn-primary" ng-click="addLineItem()"> Add Line Item </button>
     <!-- end lineitems -->
     <fieldset class="form-group">
       <label for="notes">Notes</label>
       <textarea class="form-control" id="inputNotes" ng-model="report.notes"></textarea>
     </fieldset>
-    <button class="btn btn-primary">Cancel</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
   </form>

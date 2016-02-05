@@ -92,6 +92,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
         url: '/rejected',
         templateUrl: 'views/partials/my-reports/view-reports.html',
         controller: 'myReportsCtrl'
+      })
+
+      .state('my-reports.submitted-to-me', {
+        url: '/submitted-to-me',
+        templateUrl: 'views/partials/my-reports/submitted-to-me.html',
+        controller: 'submittedToMeCtrl'
       });
 
 }]);

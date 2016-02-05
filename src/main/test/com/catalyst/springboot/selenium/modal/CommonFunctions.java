@@ -3,14 +3,58 @@ package com.catalyst.springboot.selenium.modal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class CommonFunctions {
+
+	/**
+	 * Method to select the value from a list box using its value.
+	 * 
+	 * @param elementname
+	 * @param value
+	 */
+	public static void selectlistvalue(WebElement elementname, String value) {
+		if (value != null && !value.isEmpty()) {
+			Select sel = new Select(elementname);
+			sel.selectByValue(value);
+		} else {
+			System.out.println("The value for the Webelement" + elementname + "is" + value);
+		}
+	}
+
+	/**
+	 * Method to verify a particular text exists in a page.
+	 * 
+	 * @param driver
+	 * @param textToVerify
+	 * @return
+	 */
+	public static boolean isTextPresent(WebDriver driver, String textToVerify) {
+		textToVerify = textToVerify.replace(" ", "\\s*");
+		String pageSource = driver.getPageSource();
+		String[] pageSourceLines = pageSource.trim().split("\\n");
+		String pageSourceWithoutNewlines = "";
+		for (String pageSourceLine : pageSourceLines) {
+			pageSourceWithoutNewlines += pageSourceLine + " ";
+		}
+
+		pageSourceWithoutNewlines = pageSourceWithoutNewlines.trim();
+
+		Pattern p = Pattern.compile(textToVerify);
+		Matcher m = p.matcher(pageSourceWithoutNewlines);
+		if (m.find())
+			return true;
+
+		return false;
+	}
 
 	/**
 	 * Method to populate Text field.
@@ -64,16 +108,17 @@ public class CommonFunctions {
 
 	/**
 	 * Method to navigate to different tabs in the Application.
+	 * 
 	 * @param driver
 	 * @param Pagename
 	 */
-	
-	public static void navigatetoPage(WebDriver driver,String Pagename, By locator){
-		if (Pagename.equalsIgnoreCase("login")){
+
+	public static void navigatetoPage(WebDriver driver, String Pagename, By locator) {
+		if (Pagename.equalsIgnoreCase("login")) {
 			driver.findElement(locator).click();
-		}else if(Pagename.equalsIgnoreCase("Register")){
+		} else if (Pagename.equalsIgnoreCase("Register")) {
 			driver.findElement(locator).click();
 		}
 	}
-	
+
 }

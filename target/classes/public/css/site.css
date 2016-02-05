@@ -37,10 +37,27 @@ footer {
   text-align: left;
 }
 
-.vertical-break {
+.horizontal-break {
   margin: 0 1em;
-  border-left: 1px solid #bbb;
   border-right: 1px solid #ddd;
+}
+
+.line-item-select {
+  margin-bottom: 5px;
+}
+
+.line-item {
+  border-top: 1px solid #ddd;
+  padding: 5px 0;
+  margin-bottom: 15px;
+}
+
+.remove-line-item-btn {
+  margin-top: 15px;
+}
+
+.small-legend {
+  font-size: 1em;
 }
 
 #projectDropdown {

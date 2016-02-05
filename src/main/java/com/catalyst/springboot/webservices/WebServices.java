@@ -207,7 +207,7 @@ public class WebServices {
 		return lineItemService.getLineItemsByReportId(reportId);
 	}
 	
-	/**
+	/** UPDATE
 	 * 
 	 * @param lineItem merges the lineItem into the db
 	 */
@@ -215,6 +215,16 @@ public class WebServices {
 	public void updateLineItem(@RequestBody LineItem lineItem)
 	{
 		lineItemService.updateLineItem(lineItem);
+	}
+	
+	/** DELETE
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	@RequestMapping(value="/lineitems/{lineItemId}", method=RequestMethod.DELETE)
+	public void deleteLineItem(@PathVariable Integer lineItemId)
+	{
+		lineItemService.deleteLineItem(lineItemId);
 	}
 	
 	/**
@@ -236,5 +246,36 @@ public class WebServices {
 		return devService.getEmployeeByUsername(principal.getName());
 	}
 	
+	/**
+	 * if tech lead, gets the current users
+	 * pending reports
+	 */
+	
+	@RequestMapping(value="/pendingReports/{email}", method = RequestMethod.GET)
+	public List<Report> currentUser(@PathVariable String email) {
+		Dev dev = devService.getEmployeeByUsername(email);
+		List<Project> list= projectService.getTechLeadProjects(dev);
+		return reportService.getTechLeadReports(list);
+	}
+	
+	/**
+	 * This is an endpoint for updating reports
+	 * 
+	 * @param report this is the report to be updated
+	 */
+	@RequestMapping(value = "/report/update", method = RequestMethod.PUT)
+	 public void approveOrRejectReport(@RequestBody Report report) {
+		reportService.update(report);
+	 }
+	
+	/** 
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	@RequestMapping(value="/lineitems/pending/{id}", method=RequestMethod.GET)
+	public List<LineItem> getPendingLineItems(@PathVariable Integer id)
+	{
+		return lineItemService.getPendingLineItems(id);
+	}
 }
 

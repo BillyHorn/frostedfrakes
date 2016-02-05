@@ -53,6 +53,15 @@ public class Daoimpl {
 				.setParameter("email", email).getSingleResult();
 	}
 	
+	/**
+	 * This function is to update report object in db
+	 * 
+	 * @param report this is the report to be updated
+	 */
+	public void update(Report report) {
+		em.merge(report);
+		em.flush();
+	}
 	
 	/**
 	 * Adds a new Developer to the database. 
@@ -63,16 +72,6 @@ public class Daoimpl {
 		em.persist(dev);
 		em.flush();
 		return dev;
-	}
-
-
-	/**
-	 * 
-	 * @param report
-	 */
-	public void updateReport(Report report) {
-		em.merge(report);
-		em.flush();
 	}
 	
 	public List<Report> getReportByDevId(Dev dev) {

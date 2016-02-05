@@ -95,6 +95,12 @@ public class ProjectDao {
 		return dev;
 	}
 
+	public List<Project> getTechLeadProjects(Dev dev) {
+		// TODO Auto-generated method stub
+		return em.createQuery("SELECT p FROM Project p WHERE p.techLeadId = :dev", Project.class)
+				.setParameter("dev", dev).getResultList();
+	}
+
 }
 
 

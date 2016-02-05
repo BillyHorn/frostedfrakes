@@ -48,7 +48,7 @@ public class LoginPage {
 	 */
 	public void clickRegisterpage(){
 		CommonFunctions.navigatetoPage(_driver, register, _registerlink);	
-		_driver.switchTo().frame(_driver.findElement(By.id("register-form")));
+		//_driver.switchTo().frame(_driver.findElement(By.id("register-form")));
 	}
 	/**
 	 * click Loginpage

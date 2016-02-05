@@ -12,7 +12,7 @@
 	</invalidLoginTest>
 	
 	<validLoginTest id="1">
-		<username>brad</username>
+		<username>admin</username>
 		<password>root</password>	
 	</validLoginTest>
 	

@@ -58,6 +58,21 @@ public class LineItemDao {
 		em.merge(lineItem);
 		em.flush();
 	}
+
+	/**
+	 * 
+	 * @param lineItem the lineitem being removed from the db
+	 */
+	public void deleteLineItem(Integer lineItemId) {
+		LineItem lineItem = em.find(LineItem.class, lineItemId);
+		em.remove(lineItem);
+		em.flush();
+	}
+
+	public List<LineItem> getPendingLineItems(Integer id) {
+		return em.createQuery("SELECT l from lineitem l WHERE l.report.project.techLeadId.devId = :id", LineItem.class)
+				.setParameter("id", id).getResultList();
+	}
 	
 	
 	
