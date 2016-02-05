@@ -7,35 +7,36 @@
  *  4 - approved
  */
 
-angular.module('app').service('stateConverterService', function(){
+angular.module('app').service('stateConverterService', ['savedState','submittedState','rejectedState','approvedState',
+ function(savedState, submittedState, rejectedState, approvedState){
 
   function getString(number) {
-    if(number == 1) {
+    if(number == savedState) {
       return "saved";
     }
-    if(number == 2) {
+    if(number == submittedState) {
       return "submitted";
     }
-    if(number == 3) {
+    if(number == rejectedState) {
       return "rejected";
     }
-    if(number == 4) {
+    if(number == approvedState) {
       return "approved";
     }
   }
 
   function getNumber(string) {
     if(string == "saved") {
-      return 1;
+      return savedState;
     }
     if(string == "submitted") {
-      return 2;
+      return submittedState;
     }
     if(string == "rejected") {
-      return 3;
+      return rejectedState;
     }
     if(string == "approved") {
-      return 4;
+      return approvedState;
     }
   }
 
@@ -43,4 +44,4 @@ angular.module('app').service('stateConverterService', function(){
     getString : getString,
     getNumber : getNumber
   }
-});
+}]);

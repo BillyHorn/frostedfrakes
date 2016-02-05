@@ -1,6 +1,6 @@
-angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'httpService', '$state', function($scope, currentUser, httpService, $state) {
+angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'loginService', '$state', function($scope, currentUser, loginService, $state) {
 
-    httpService.currentUser().then(function(response){
+    loginService.currentDev().then(function(response){
         currentUser.setUser(response.data);
         $scope.currentUser = response.data;
     });
@@ -19,6 +19,4 @@ angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'httpServi
             return false;
         }
     };
-
-
 }]);

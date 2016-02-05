@@ -1,19 +1,23 @@
 angular.module('app').service('lineItemsHttp', ['$http',
   function($http){
+
+    // local var to hold end point name
+    var lineItemsEndPoint = "/lineitems";
+
     function getLineItems(reportid) {
-      return $http.get('/lineitems/' + reportid);
+      return $http.get(lineItemsEndPoint + '/' + reportid);
     }
 
     function putLineItem(lineItem) {
-      return $http.put('/lineitems', lineItem);
+      return $http.put(lineItemsEndPoint, lineItem);
     }
 
     function deleteLineItem(lineItemId) {
-      return $http.delete('/lineitems/' + lineItemId);
+      return $http.delete(lineItemsEndPoint + '/' + lineItemId);
     }
 
-    function getPendingLineItems(id){
-        return $http.get('/lineitems/pending/' + id);
+    function getPendingLineItems(id){ // TODO what is this id most likely reportId
+        return $http.get(lineItemsEndPoint + '/pending/' + id);
     }
 
     return {

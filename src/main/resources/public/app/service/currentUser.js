@@ -13,6 +13,4 @@ angular.module('app').service('currentUser', function(){
         getUser : getUser,
         setUser : setUser
     };
-
-
 });

@@ -5,5 +5,4 @@ angular.module('app').service('registrationFactory',['$http',function($http){
 			return $http.post('/register', register);
 		}
 	};
-
 }]);

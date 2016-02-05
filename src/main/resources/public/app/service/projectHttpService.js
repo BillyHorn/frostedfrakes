@@ -1,13 +1,17 @@
-angular.module('app').service('projectHttp',['$http',
-  function($http){
-    // Gets all projects from the database
+angular.module('app').service('projectHttp',['$http','currentUser',
+  function($http, currentUser){
+
+    // local var to hold end point name
+    var projectEndPoint = "/project";
+
+    // Gets all projects from the database for the user logged in
     function getProjects(){
-      return $http.get('/project/get/' + currentUser.getUser().email);
+      return $http.get(projectEndPoint + '/get/' + currentUser.getUser().email);
     }
 
     // Creates a new project in the database
     function createProject(data){
-        return $http.post('/project/create', data);
+        return $http.post(projectEndPoint + '/create', data);
     }
 
     return {

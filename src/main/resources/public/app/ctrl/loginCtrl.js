@@ -4,22 +4,17 @@
  * taken to the home page
  */
 
-angular.module('app').controller('loginCtrl', ['$scope', '$state', 'httpService',
-function($scope, $state, httpService) {
-    $scope.welcome = "hello testing angular";
+angular.module('app').controller('loginCtrl', ['$scope', '$state', 'loginService',
+function($scope, $state, loginService) {
 
+   $scope.login = function(){
+     $scope.userLogin = 'username=' + $scope.username + '&password=' + $scope.password;
 
-
-    $scope.login = function(){
-    	$scope.userLogin = 'username=' + $scope.username + '&password=' + $scope.password;
-
-    	httpService.login($scope.userLogin).then(function(acceptResponse){
-    		console.log(acceptResponse);
-    		$state.go("home");
-    	},function(response){
-    		console.log("error message"+response);
-    	});
-    };
-
-
-}]);
+     loginService.login($scope.userLogin)
+        .then(function(acceptResponse){
+          $state.go("home");
+        },function(response){
+          console.log("ERROR MESSAGE: " + response);
+     });
+   };
+ }]);

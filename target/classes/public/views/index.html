@@ -65,11 +65,11 @@
 
   <!-- our base app -->
   <script type="text/javascript" src="../app/app.js"></script>
-  <script type="text/javascript" src="../app/ctrl/viewReportCtrl.js"></script>
-  <script type="text/javascript" src="../app/ctrl/createProjectCtrl.js"></script>
-  <script type="text/javascript" src="../app/service/httpService.js"></script>
-  <script type="text/javascript" src="../app/values/projectApiValue.js"></script>
   <script type="text/javascript" src="../app/stateLogging.js"></script>
+
+  <!-- routes -->
+  <script type="text/javascript" src="../app/routes/routes.js"></script>
+  <script type="text/javascript" src="../app/routes/myReportsRoutes.js"></script>
 
   <!-- regestration scripts -->
   <script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
@@ -77,21 +77,34 @@
 
   <!-- controllers -->
   <script type="text/javascript" src="../app/ctrl/homeCtrl.js"></script>
-  <script type="text/javascript" src="../app/ctrl/createReportCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/myReportsCtrl.js"></script>
-  <!-- services -->
-  <script type="text/javascript" src="../app/service/myReportsService.js"></script>
-  <script type="text/javascript" src="../app/service/httpService.js"></script>
-  <script type="text/javascript" src="../app/service/currentUser.js"></script>
-
-  <script type="text/javascript" src="../app/service/httpService.js"></script>
-  <script type="text/javascript" src="../app/service/projectFinderService.js"></script>
-  <script type="text/javascript" src="../app/service/stateConverterService.js"></script>
-  <!-- login/logout scripts -->
-  <script type="text/javascript" src="../app/ctrl/loginCtrl.js"></script>
+  <script type="text/javascript" src="../app/ctrl/viewReportCtrl.js"></script>
+  <script type="text/javascript" src="../app/ctrl/navCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/createProjectCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/createReportCtrl.js"></script>
-  <script type="text/javascript" src="../app/ctrl/navCtrl.js"></script>
+
+  <!-- services -->
+  <script type="text/javascript" src="../app/service/myReportsService.js"></script>
+  <script type="text/javascript" src="../app/service/currentUser.js"></script>
+  <script type="text/javascript" src="../app/service/projectFinderService.js"></script>
+  <script type="text/javascript" src="../app/service/stateConverterService.js"></script>
+
+  <!-- values -->
+  <script type="text/javascript" src="../app/values/approvedStateValue.js"></script>
+  <script type="text/javascript" src="../app/values/rejectedStateValue.js"></script>
+  <script type="text/javascript" src="../app/values/savedStateValue.js"></script>
+  <script type="text/javascript" src="../app/values/submittedStateValue.js"></script>
+
+  <!-- http services -->
+  <script type="text/javascript" src="../app/service/categoriesHttpService.js"></script>
+  <script type="text/javascript" src="../app/service/devHttpService.js"></script>
+  <script type="text/javascript" src="../app/service/lineItemsHttpService.js"></script>
+  <script type="text/javascript" src="../app/service/loginService.js"></script>
+  <script type="text/javascript" src="../app/service/projectHttpService.js"></script>
+  <script type="text/javascript" src="../app/service/reportHttpService.js"></script>
+
+  <!-- login/logout scripts -->
+  <script type="text/javascript" src="../app/ctrl/loginCtrl.js"></script>
   <script type="text/javascript" src="../app/ctrl/submittedToMeCtrl.js"></script>
 
 </body>

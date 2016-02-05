@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	console.log("login.js");
-
 	$('#errorLog').hide();
 
 	$('#login-form').keypress(function(e){
@@ -16,14 +14,12 @@ $(document).ready(function(){
 	});
 
 	$("#submitLogin").click(function(event){
-		console.log("creating data");
 		event.preventDefault();
 		var data = 'username=' + $('#inputUsername').val() + '&password=' + $('#inputPassword').val();
 		loginPage(data);
 	});
 
 	function loginPage(data){
-		console.log("requesting permissions");
 	  $.ajax({
 	    data: data,
 	    timeout: 1000,

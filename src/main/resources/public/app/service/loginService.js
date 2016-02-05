@@ -1,4 +1,4 @@
-angular.module('app', ['$http',
+angular.module('app').service('loginService', ['$http',
   function($http){
 
     function login(loginData){

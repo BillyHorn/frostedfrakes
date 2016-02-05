@@ -1,11 +1,10 @@
-angular.module('app').service('myReportsService', ['$http', 'currentUser', function($http, currentUser){
-
-  // pull the current state in order to send appropriate information
+angular.module('app').service('myReportsService', ['reportHttp', 'currentUser', 'savedState','submittedState','rejectedState','approvedState',
+  function(reportHttp, currentUser, savedState, submittedState, rejectedState, approvedState){
 
   // filter and return a list of a devs reports according to the current state
   function filterReports(state) {
-
-    return getReports().then(function(response) {
+    // get reports for the current user
+    return reportHttp.getReports(currentUser.getUser().email).then(function(response) {
       var filteredReports = [];
       var stateNumber = numberedState(state);
 
@@ -14,44 +13,39 @@ angular.module('app').service('myReportsService', ['$http', 'currentUser', funct
       filteredReports = reports.filter(function(element) {
         return element.state == stateNumber;
       });
-
       return filteredReports;
     });
-
-
   }
 
   // returns a nicely formatted title based upon current state
   function namedState(state) {
-
     switch(state) {
       case "my-reports.saved":
-      return "Saved";
+        return "Saved";
       case "my-reports.submitted":
-      return "Submitted";
+        return "Submitted";
       case "my-reports.rejected":
-      return "Rejected";
+        return "Rejected";
       case "my-reports.approved":
-      return "Approved";
+        return "Approved";
       default:
-      return "Something's Gone Wrong";
+        return "Something's Gone Wrong";
     }
   }
 
-  // returns a bootstrap panel type based upon current state for stylin purposes
+  // returns a bootstrap panel type based upon current state for styling purposes
   function panelState(state) {
-
     switch(state) {
       case "my-reports.saved":
-      return "panel-default";
+        return "panel-default";
       case "my-reports.submitted":
-      return "panel-info";
+        return "panel-info";
       case "my-reports.approved":
-      return "panel-success";
+        return "panel-success";
       case "my-reports.rejected":
-      return "panel-danger";
+        return "panel-danger";
       default:
-      return "panel-info";
+        return "panel-info";
     }
   }
 
@@ -63,30 +57,21 @@ angular.module('app').service('myReportsService', ['$http', 'currentUser', funct
   * returns a number (matching the db) based upon current state
   */
   function numberedState(state) {
-
     switch(state) {
       case "my-reports.saved":
-      return 1;
+        return savedState;
       case "my-reports.submitted":
-      return 2;
+        return submittedState;
       case "my-reports.rejected":
-      return 3;
+        return rejectedState;
       case "my-reports.approved":
-      return 4;
+        return approvedState;
       default:
-      return "Something's Gone Wrong";
+        return "Something's Gone Wrong";
     }
   }
 
-  /* a function which will eventually pull reports from the backend. for now
-  * it just shoots out dummy data.
-  */
-  function getReports(){
-    return $http.get("/report/get/" + currentUser.getUser().email);
-  }
-
   return {
-    getReports : getReports,
     namedState : namedState,
     filterReports : filterReports,
     panelState : panelState

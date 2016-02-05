@@ -6,7 +6,6 @@
      for(var i = 0; i < projects.length; i++) {
        if(projects[i].projectId == id)
        {
-
          return i;
        }
      }
