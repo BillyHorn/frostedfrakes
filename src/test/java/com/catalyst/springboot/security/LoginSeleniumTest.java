@@ -11,7 +11,7 @@ import junit.framework.Assert;
 
 public class LoginSeleniumTest extends PageObjectTest{
 	
-	@Test
+/*	@Test
 	public void LoginPageTest(){
 		LoginPage loginPage = new LoginPage(getDriver());
 		
@@ -38,5 +38,5 @@ public class LoginSeleniumTest extends PageObjectTest{
 		String actualUrl = loginPage.loginFailureCheck();
 		
 		Assert.assertEquals(expectedUrl, actualUrl);
-	}
+	}*/
 }
