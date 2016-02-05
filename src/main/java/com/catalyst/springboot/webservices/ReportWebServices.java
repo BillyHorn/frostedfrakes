@@ -39,8 +39,7 @@ public class ReportWebServices {
 	 */
 	@RequestMapping(value="/report/create", method=RequestMethod.POST)
 	public Integer addReport(@RequestBody Report report){
-		int id = reportService.add(report);
-		return id;
+		return reportService.add(report).getReportId();
 	} 
 	
 	/**
@@ -55,8 +54,7 @@ public class ReportWebServices {
 	
 	@RequestMapping(value="/report/get/{email}", method=RequestMethod.GET)
 	public List<Report> getReportByDevId(@PathVariable String email){
-		Dev dev = devService.getEmployeeByUsername(email);
-		return reportService.getReportByDevId(dev);
+		return reportService.getReportByDevId(email);
 	}
 	
 	/**
@@ -85,9 +83,9 @@ public class ReportWebServices {
 	 */
 	@RequestMapping(value="/pendingReports/{email}", method = RequestMethod.GET)
 	public List<Report> currentUser(@PathVariable String email) {
-		Dev dev = devService.getEmployeeByUsername(email);
-		List<Project> list= projectService.getTechLeadProjects(dev);
-		return reportService.getTechLeadReports(list);
+//		Dev dev = devService.getEmployeeByUsername(email);
+//		List<Project> list= projectService.getTechLeadProjects(dev);
+		return reportService.getTechLeadReport(email);
 	}
 	
 	/**

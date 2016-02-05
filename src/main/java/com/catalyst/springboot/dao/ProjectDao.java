@@ -8,11 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
 
@@ -57,12 +53,7 @@ public class ProjectDao {
 		return projects;
 	}
 	
-	@Autowired(required = false)
-	private BCryptPasswordEncoder encoder;
 	
-	public void setEncoder(BCryptPasswordEncoder encoder) {
-		this.encoder = encoder;
-	}
 
 	/**
 	 * check if a particular Developer exists
@@ -81,19 +72,7 @@ public class ProjectDao {
 
 	}
 
-	/**
-	 * Adds a new Developer to the database.
-	 * with encrypted password 
-	 * @param dev
-	 * @return
-	 */
-	public Dev register(Dev dev) {
-		String encryptedPass = encoder.encode(dev.getPassword());
-		dev.setPassword(encryptedPass);
-		em.persist(dev);
-		em.flush();
-		return dev;
-	}
+	
 
 	public List<Project> getTechLeadProjects(Dev dev) {
 		// TODO Auto-generated method stub

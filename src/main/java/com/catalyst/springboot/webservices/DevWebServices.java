@@ -31,14 +31,10 @@ public class DevWebServices {
 		String email = dev.getEmail();	
 		Dev value = devService.checkUserName(email);	
 
-		if (value != null) {			 
-			String message= "User Name Exists";
-			System.out.println("----------->webservice message "+message);
+		if (value != null) {
 			return null; 
 		} else {
 			devService.register(dev);
-			String message= "Regestration Sucess";
-			System.out.println("--------->webservice "+message);
 			return  dev;			
 		}
 	}

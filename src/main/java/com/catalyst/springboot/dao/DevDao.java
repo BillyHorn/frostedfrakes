@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.catalyst.springboot.entities.Dev;
@@ -22,6 +24,9 @@ public class DevDao {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Autowired(required = false)
+	private BCryptPasswordEncoder encoder;
+	
 	/**
 	 * @param em the em to set
 	 */
@@ -29,6 +34,12 @@ public class DevDao {
 		this.em = em;
 	}
 	
+	/**
+	 * @param encoder the encoder to set
+	 */
+	public void setEncoder(BCryptPasswordEncoder encoder) {
+		this.encoder = encoder;
+	}
 
 	/**
 	 * Gets the list of users minus the passwords from the database. 
@@ -47,15 +58,25 @@ public class DevDao {
 	 * @param username The username to get
 	 * @return The user object minus the password
 	 */
-	public Dev getEmployeeByUsername(String username) {
+	public Dev getDevByUsername(String username) {
 		Dev dev = em.createQuery("SELECT d from dev d WHERE d.email = :email", Dev.class)
 				.setParameter("email", username).getSingleResult();
 		return dev;
 	}
-
-
 	
-	
-	
+	/**
+	 * Adds a new Developer to the database.
+	 * with encrypted password 
+	 * @param dev
+	 * @return
+	 */
+	public Dev register(Dev dev) {
+		String encryptedPass = encoder.encode(dev.getPassword());
+		dev.setPassword(encryptedPass);
+		em.persist(dev);
+		em.flush();
+		return dev;
+	}
+		
 	
 }

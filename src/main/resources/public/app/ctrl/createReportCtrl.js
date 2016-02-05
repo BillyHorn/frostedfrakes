@@ -22,7 +22,7 @@ angular.module('app').controller('createReportCtrl', ['savedState','$scope', 're
 
       };
 
-	  httpService.getProjects().then(function(response){
+	  projectHttp.getProjects().then(function(response){
 	        $scope.projects = response.data;
 	    });
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
+import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;
 
 @RestController
@@ -19,6 +20,9 @@ public class ProjectWebServices {
 	@Autowired  
 	ProjectService projectService;
 	
+	@Autowired
+	DevService devService;
+	
 	/**
 	 * @param projectService the projectService to set
 	 */
@@ -26,6 +30,13 @@ public class ProjectWebServices {
 		this.projectService = projectService;
 	}
 	
+	/**
+	 * @param devService the devService to set
+	 */
+	public void setDevService(DevService devService) {
+		this.devService = devService;
+	}
+
 	/**
 	 * Api used to create a project.
 	 * 

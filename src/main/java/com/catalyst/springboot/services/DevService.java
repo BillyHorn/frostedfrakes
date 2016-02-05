@@ -43,8 +43,19 @@ public class DevService {
 	 * @return 
 	 */
 	public Dev getEmployeeByUsername(String username) {
-		return devdao.getEmployeeByUsername(username);
+		return devdao.getDevByUsername(username);
 
+	}
+
+
+	public Dev checkUserName(String email) {
+		return devdao.getDevByUsername(email);
+	}
+
+
+	public void register(Dev dev) {
+		// TODO Auto-generated method stub
+		devdao.register(dev);
 	}
 	
 	

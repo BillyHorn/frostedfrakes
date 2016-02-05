@@ -1,14 +1,9 @@
 package com.catalyst.springboot.services;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.catalyst.springboot.dao.Dao;
-import com.catalyst.springboot.dao.impl.Daoimpl;
-import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.LineItem;
+import com.catalyst.springboot.dao.ReportDao;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
 
@@ -17,12 +12,12 @@ import com.catalyst.springboot.entities.Report;
 public class ReportService {
 	
 	@Autowired
-	private Daoimpl reportDao;
+	private ReportDao reportDao;
 	
 	/**
 	 * @param reportDao the reportDao to set
 	 */
-	public void setReportDao(Daoimpl reportDao) {
+	public void setReportDao(ReportDao reportDao) {
 		this.reportDao = reportDao;
 	}
 	
@@ -41,22 +36,11 @@ public class ReportService {
 	 * @author wPerlichek
 	 * @return 
 	 */
-	public Integer add(Report report) {
+	public Report add(Report report) {
 		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
 //		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
 		return reportDao.addReport(report);
-	}
-	
-	/* PLEASE DO NOT DELETE wPerlichek */
-//	public Set<LineItem> convertLineItems(List<LineItem> LineItemToConvert){
-//		Set<LineItem> lineItems = new HashSet<LineItem>();
-//		for (LineItem lineItem : LineItemToConvert){
-//			lineItems.add(lineItem);
-//		}
-//		return lineItems;
-//	}
-	/* /PLEASE DO NOT DELETE wPerlichek */
-	
+	}	
 	
 	/** GET
 	 * get available reports
@@ -66,22 +50,24 @@ public class ReportService {
 	public List<Report> getReport(){
 		return reportDao.getReport();
 	}
-	public List<Report> getTechLeadReports(List<Project> list) {
-		List<Report> allReports = reportDao.getReport();  
-		List<Report> techLeadReports = new ArrayList<Report>();
-		for (Report report : allReports){
-			for(Project pro: list){
-				if(report.getProject().getProjectId() == pro.getProjectId()){
-					techLeadReports.add(report);
-				}
-			}
-		}
-		return techLeadReports;
-	}
 	
-	public List<Report> getReportByDevId(Dev dev) {
+	
+//	public List<Report> getTechLeadReports(List<Project> list) {
+//		List<Report> allReports = reportDao.getReport();  
+//		List<Report> techLeadReports = new ArrayList<Report>();
+//		for (Report report : allReports){
+//			for(Project pro: list){
+//				if(report.getProject().getProjectId() == pro.getProjectId()){
+//					techLeadReports.add(report);
+//				}
+//			}
+//		}
+//		return techLeadReports;
+//	}
+	
+	public List<Report> getReportByDevId(String email) {
 		// TODO Auto-generated method stub
-		return reportDao.getReportByDevId(dev);
+		return reportDao.getReportByDevId(email);
 	}
 	
 	/** GET
@@ -93,5 +79,10 @@ public class ReportService {
 	public Report getReportById(Integer reportId)
 	{
 		return reportDao.getReportById(reportId);
+	}
+
+	public List<Report> getTechLeadReport(String email) {
+		// TODO Auto-generated method stub
+		return reportDao.getTechLeadReport(email);
 	}
 }
