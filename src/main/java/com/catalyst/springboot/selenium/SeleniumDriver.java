@@ -19,13 +19,17 @@ public class SeleniumDriver {
 			{
 				_driver = new FirefoxDriver();				
 			}
+			
 			else if (SeleniumSettings.getBrowser() == SeleniumSettings.CHROME)
-			{
+			{  
+				
+				
 				System.setProperty("webdriver.chrome.driver", 
 						SeleniumSettings.getDriver(SeleniumSettings.CHROME));
 				_driver = new ChromeDriver();
 				
 			}
+			
 			else
 			{
 				System.setProperty("webdriver.ie.driver", 
