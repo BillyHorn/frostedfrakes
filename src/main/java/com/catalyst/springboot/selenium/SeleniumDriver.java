@@ -24,8 +24,8 @@ public class SeleniumDriver {
 			{  
 				
 				
-				System.setProperty("webdriver.chrome.driver", 
-						SeleniumSettings.getDriver(SeleniumSettings.CHROME));
+				System.setProperty("webdriver.chrome.driver",
+			            "C:\\Users\\wperlichek\\Desktop");
 				_driver = new ChromeDriver();
 				
 			}
