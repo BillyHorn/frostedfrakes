@@ -1,6 +1,7 @@
 <div>
 <uib-accordion ng-repeat="report in myPendingReports | filter: stateCheck"  close-others="oneAtATime">
-  <uib-accordion-group heading="{{report.project.name}}">
+  <uib-accordion-group heading="{{report.project.name}} - {{report.reportId}}">
+    <div class="report-accordion">
      <div class="panel-body">
     	<div class="list-group">
 	       {{report.dev.email}}'s Report <span class="vertical-break"></span> {{report.reportId}}
@@ -13,6 +14,7 @@
   		<button ng-click="approveReport(report)" type="button" class="btn btn-success">Accept</button>
   		<button type="button" class="btn btn-danger" ng-click="open(report)">Reject</button>
   	</div>
+  </div>
   </uib-accordion-group>
 </uib-accordion>
 </div>
