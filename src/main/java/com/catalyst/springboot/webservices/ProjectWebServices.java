@@ -42,7 +42,7 @@ public class ProjectWebServices {
 	 * 
 	 * @param project The project to be created.
 	 */
-	@RequestMapping(value="/project/create", method=RequestMethod.POST)
+	@RequestMapping(value="/project", method=RequestMethod.POST)
 	public void createProject(@RequestBody Project project){
 		projectService.add(project);
 	}
@@ -52,7 +52,7 @@ public class ProjectWebServices {
 	 * 
 	 * @return The list of all projects in the database.
 	 */
-	@RequestMapping(value="/project/get/{email}", method=RequestMethod.GET)
+	@RequestMapping(value="/project/{email}", method=RequestMethod.GET)
 	public List<Project> getProjects(@PathVariable String email){
 		Dev dev = devService.getEmployeeByUsername(email);
 		return projectService.getByDev(dev);

@@ -6,19 +6,19 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
 
     // Creates a new report in the database
     function createReport(data){
-    	return $http.post(reportEndPoint + '/create', data);
+    	return $http.post(reportEndPoint, data);
     }
 
     //Change state of report in backend to approved (4)
     function approveReport(report) {
     	report.state = approvedState;
-    	return $http.put(reportEndPoint + '/update', report);
+    	return $http.put(reportEndPoint, report);
     }
 
     //Change state of report in backend to rejected (3)
     function rejectReport(report) {
     	report.state = rejectedState;
-    	return $http.put(reportEndPoint + '/update', report);
+    	return $http.put(reportEndPoint, report);
     }
 
     function getReport(reportid) {
@@ -30,15 +30,15 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     }
 
     function pendingReports(devId){ // TODO fix this endpoint
-    	return $http.get("/pendingReports/" + devId);
+    	return $http.get(reportEndPoint + '/pending/' + devId);
     }
 
     // get reports for the user provided
     function getReports(user)
     {
-      return $http.get(reportEndPoint + '/get/' + user);
+      return $http.get(reportEndPoint + '/' + user);
     }
-    
+
     return {
       createReport : createReport,
       approveReport : approveReport,

@@ -6,12 +6,12 @@ angular.module('app').service('projectHttp',['$http','currentUser',
 
     // Gets all projects from the database for the user logged in
     function getProjects(){
-      return $http.get(projectEndPoint + '/get/' + currentUser.getUser().email);
+      return $http.get(projectEndPoint + '/' + currentUser.getUser().email);
     }
 
     // Creates a new project in the database
     function createProject(data){
-        return $http.post(projectEndPoint + '/create', data);
+        return $http.post(projectEndPoint, data);
     }
 
     return {

@@ -37,7 +37,7 @@ public class ReportWebServices {
 	 * @author wPerlichek
 	 *
 	 */
-	@RequestMapping(value="/report/create", method=RequestMethod.POST)
+	@RequestMapping(value="/report", method=RequestMethod.POST)
 	public Integer addReport(@RequestBody Report report){
 		return reportService.add(report).getReportId();
 	} 
@@ -47,12 +47,12 @@ public class ReportWebServices {
 	 * 
 	 * @return all reports
 	 */
-	@RequestMapping(value="/report/get", method=RequestMethod.GET)
+	@RequestMapping(value="/report", method=RequestMethod.GET)
 	public List<Report> getReport(){
 		return reportService.getReport();
 	}
 	
-	@RequestMapping(value="/report/get/{email}", method=RequestMethod.GET)
+	@RequestMapping(value="/report/{email}", method=RequestMethod.GET)
 	public List<Report> getReportByDevId(@PathVariable String email){
 		return reportService.getReportByDevId(email);
 	}
@@ -81,7 +81,7 @@ public class ReportWebServices {
 	 * if tech lead, gets the current users
 	 * pending reports
 	 */
-	@RequestMapping(value="/pendingReports/{email}", method = RequestMethod.GET)
+	@RequestMapping(value="/report/pending/{email}", method = RequestMethod.GET)
 	public List<Report> currentUser(@PathVariable String email) {
 //		Dev dev = devService.getEmployeeByUsername(email);
 //		List<Project> list= projectService.getTechLeadProjects(dev);
@@ -93,7 +93,7 @@ public class ReportWebServices {
 	 * 
 	 * @param report this is the report to be updated
 	 */
-	@RequestMapping(value = "/report/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "/report", method = RequestMethod.PUT)
 	 public void approveOrRejectReport(@RequestBody Report report) {
 		reportService.update(report);
 	 }
