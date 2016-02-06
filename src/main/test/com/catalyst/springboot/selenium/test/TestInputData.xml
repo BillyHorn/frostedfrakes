@@ -13,7 +13,13 @@
 	
 	<validLoginTest id="1">
 		<username>admin</username>
-		<password>root</password>	
+		<password>admin</password>	
 	</validLoginTest>
+	
+	<AdminTest id="1">
+		<username>admin</username>
+		<password>admin</password>	
+	</AdminTest>
+	
 	
 </TestIputData>

@@ -6,14 +6,4 @@
       <class name="com.catalyst.springboot.selenium.test.AdminTest"/>
     </classes>
   </test> <!-- Default test -->
-  <test name="Default test(failed)">
-    <classes>
-      <class name="com.catalyst.springboot.selenium.test.AdminTest">
-        <methods>
-          <include name="CreateProjectvalidation"/>
-          <include name="setup"/>
-        </methods>
-      </class> <!-- com.catalyst.springboot.selenium.test.AdminTest -->
-    </classes>
-  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

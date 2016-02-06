@@ -11,8 +11,15 @@
 
      <test name="Login Test">
      <classes>
-      <class name="com.catalyst.springboot.selenium.modal.LoginTest"/> 
+      <class name="com.catalyst.springboot.selenium.test.LoginTest"/> 
     </classes>
-    
-  </test> <!-- Test -->
+  </test>
+  
+   <test name="Admin Test">
+     <classes>
+      <class name="com.catalyst.springboot.selenium.test.AdminTest"/> 
+    </classes>
+  </test>
+  
+   <!-- Test -->
 </suite> <!-- Suite -->

@@ -14,7 +14,20 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonFunctions {
-
+	/**
+	 * Method to check for the page to Load.
+	 * @param driver
+	 * @return
+	 */		
+	public static void waitforPageLoad(WebDriver driver){
+		System.out.println("waitforPageLoad");
+		WebDriverWait wait = new WebDriverWait(driver,20,500);
+		Boolean Pageloading = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-mask")));
+		if (Pageloading){
+			System.out.println("The loading mask on the page disappeared and the page loaded successfully");						
+		}else
+			System.out.println("The loading mask on the page appeared and the page was not loaded successfully,Kindly increase the time-out");
+	}
 	/**
 	 * Method to select the value from a list box using its value.
 	 * 

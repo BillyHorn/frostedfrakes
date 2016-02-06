@@ -16,13 +16,18 @@ public class LoginPage {
 	private  WebDriver _driver;
 	String register="Register";
 	String login= "Login";
+	
 	public LoginPage(WebDriver _driver){
+		System.out.println("3");
 		this._driver=_driver;
+		System.out.println(_driver);
 	}
 	/**
 	 *checking ogin with invalid credencials  
 	 */
 	public boolean loginTest(String username, String password){
+		System.out.println("4");
+		System.out.println (_driver + ":" + username  );
 		CommonFunctions.populateField(_driver, _username, username);
 		CommonFunctions.populateField(_driver, _password, password);
 		_driver.findElement(_submitBtn).click();
@@ -37,6 +42,7 @@ public class LoginPage {
 		
 	}
 	public boolean validateLogin(){
+		System.out.println("5");
 		if(_driver.getTitle().equalsIgnoreCase("Expense Reports")){
 			return true;
 		}else{
