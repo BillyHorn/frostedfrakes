@@ -1,0 +1,74 @@
+@media screen and (max-width: 700px){
+  .report-buttons{
+    text-align: center;
+  }
+}
+
+footer {
+    margin: 1em;
+    border-top: 1px solid #ddd;
+}
+
+.report-accordion {
+  padding: 0 15px;
+}
+
+.content {
+  margin-top: 5em;
+}
+
+.navbar {
+  background-color: #013C6B;
+}
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #96CCFE;
+}
+
+.panel-body {
+  padding: 15px 0px;
+}
+
+.report-button {
+  width: 6em;
+}
+
+.report-buttons{
+  text-align: left;
+}
+
+.horizontal-break {
+  margin: 0 1em;
+  border-right: 1px solid #ddd;
+}
+
+.line-item-select {
+  margin-bottom: 5px;
+}
+
+.line-item {
+  border-top: 1px solid #ddd;
+  padding: 5px 0;
+  margin-bottom: 15px;
+}
+
+.remove-line-item-btn {
+  margin-top: 15px;
+}
+
+.small-legend {
+  font-size: 1em;
+}
+
+#projectDropdown {
+  display: block;
+  width: 100%;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}

@@ -1,0 +1,34 @@
+<div>
+<uib-accordion ng-repeat="report in myPendingReports | filter: stateCheck"  close-others="oneAtATime">
+  <uib-accordion-group heading="{{report.project.name}} - {{report.reportId}}">
+    <div class="report-accordion">
+     <div class="panel-body">
+    	<div class="list-group">
+	       {{report.dev.email}}'s Report <span class="vertical-break"></span> {{report.reportId}}
+    	</div>
+        <!-- <div class="list-group" ng-repeat="item in lineItems">
+            {{item.category.value}} <span class="vertical-break"></span> {{item.value}} <span class="vertical-break"></span> {{item.report.reportId}}
+        </div> -->
+  	</div>
+  	<div>
+  		<button ng-click="approveReport(report)" type="button" class="btn btn-success">Accept</button>
+  		<button type="button" class="btn btn-danger" ng-click="open(report)">Reject</button>
+  	</div>
+  </div>
+  </uib-accordion-group>
+</uib-accordion>
+</div>
+<div ng-controller="submittedToMeCtrl">
+<script type="text/ng-template" id="myModalContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Reason For Rejection</h3>
+	</div>
+	<div class="modal-body">
+		<textarea ng-model="report.rejectionNotes" class="form-control" rows="5" id="comment"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" type="button" ng-click="rejectReport(); cancel()">Submit</button>
+		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</script>
+</div>

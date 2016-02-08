@@ -1,0 +1,49 @@
+<div class="container">
+  <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
+    <fieldset class="form-group">
+      <label for="projectName">Project Name </label>
+      <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects">  </select>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->
+      <input type="text" class="form-control" ng-model="report.dev.email" id="inputState" readonly>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="state"> State </label>
+      <input type="text" class="form-control" ng-model="state" id="inputState" readonly>
+    </fieldset>
+    <fieldset class="form-group" ng-show="report.state == 3"> <!-- only show if rejected -->
+      <label for="rejectionNotes"> Rejection Notes </label>
+      <textarea type="text" class="form-control" ng-model="report.rejectionNotes" id="inputRejectionNotes" readonly></textarea>
+    </fieldset>
+    <!-- begin lineitems -->
+    <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1">
+      <ng-form name="categoryForm">
+        <label for="category"> Category</label> <span class="horizontal-break"></span> selected category: {{li.category.value}}
+        <select class="line-item-select form-control" name="category" ng-model="li.category" ng-options="category as category.value for category in categories"> </select>
+      </ng-form>
+      <ng-form name="valueForm">
+        <fieldset class="form-group" ng-class="{'has-error' : valueForm.value.$invalid && !valueForm.value.$pristine}">
+          <label> Value</label>
+          <input type="value" class="form-control" name="value" ng-model="li.value" ng-pattern="/^[0-9]+\.[0-9]{2}$/" required> </input>
+          <p ng-show="valueForm.value.$invalid && !valueForm.value.$pristine" class="help-block"> Must be a dollar value </p>
+        </fieldset>
+      </ng-form>
+      <ng-form name="dateForm">
+        <label> Date</label>
+        <input type="date" class="form-control" name="date" ng-model="li.date" required> </input>
+      </ng-form>
+      <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)"> Delete Line Item </button>
+    </fieldset>
+    <button class="btn btn-primary" ng-click="addLineItem()"> Add Line Item </button>
+    <!-- end lineitems -->
+    <fieldset class="form-group">
+      <label for="notes">Notes</label>
+      <textarea class="form-control" id="inputNotes" ng-model="report.notes"></textarea>
+    </fieldset>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
+    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
+  </form>
+</div> <!-- /container -->
+<!-- ng-disabled="reportForm.$invalid" -->

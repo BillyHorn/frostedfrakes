@@ -1,0 +1,14 @@
+<div class="col-md-10 col-md-offset-1">
+
+<div>
+  <uib-tabset>
+    <uib-tab ng-repeat="t in tabs" heading="{{t.heading}}" select="go(t.route)" active="t.active">
+    </uib-tab>
+  </uib-tabset>
+</div>
+
+<br>
+
+<div ui-view></div>
+
+</div>
