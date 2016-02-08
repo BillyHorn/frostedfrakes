@@ -42,11 +42,13 @@
       <textarea class="form-control" id="inputNotes" ng-model="report.notes"></textarea>
     </fieldset>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
-    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
+
+<button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2">Save</button>
+
+    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2">Submit</button>
 
 <!-- if report state is "saved", hide this button, if "submitted" show the user a button to unsubmit and  change state from submitted back to saved using unSubmit() function @wPerlichek -->
-<button type="button" class="btn btn-primary"  ng-click="unSubmit(1)" ng-hide="report.state == 1" >Unsubmit </button>
+   <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1" >Unsubmit</button>
 
   </form>
 </div> <!-- /container -->

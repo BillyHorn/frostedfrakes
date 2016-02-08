@@ -39,8 +39,9 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     /* change state of report from "submitted" (2)
     /* to "saved" (1) when the user clicks the 
     /* unsubmit button from the view reports page */
-    $scope.unSubmit = function(state){
-      $scope.report.state = state;
+    $scope.unSubmit = function(){
+       reportHttp.unSubmitReport($scope.report);
+       $state.go('my-reports.saved');
     };
 
     // add a new line item to the list

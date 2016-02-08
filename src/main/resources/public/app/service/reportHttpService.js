@@ -39,6 +39,17 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       return $http.get(reportEndPoint + '/email/' + user);
     }
 
+    /* @author wPerlichek
+    /* unSubmitReport()
+    /* change state of an existing report
+    /* from submitted (2) back to saved */
+    function unSubmitReport(report){
+      /* change report state to 1 */
+      report.state = 1;
+      /* put request to update the existing report */
+      return $http.put(reportEndPoint, report);
+    }
+
     return {
       createReport : createReport,
       approveReport : approveReport,
@@ -46,6 +57,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       getReport : getReport,
       getReports : getReports,
       putReport : putReport,
-      pendingReports : pendingReports
+      pendingReports : pendingReports,
+      unSubmitReport: unSubmitReport
     }
   }]);
