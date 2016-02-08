@@ -22,7 +22,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     }
 
     function getReport(reportid) {
-      return $http.get(reportEndPoint + '/' + reportid);
+      return $http.get(reportEndPoint + '/id/' + reportid);
     }
 
     function putReport(data){
@@ -36,7 +36,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     // get reports for the user provided
     function getReports(user)
     {
-      return $http.get(reportEndPoint + '/' + user);
+      return $http.get(reportEndPoint + '/email/' + user);
     }
 
     return {

@@ -52,7 +52,7 @@ public class ReportWebServices {
 		return reportService.getReport();
 	}
 	
-	@RequestMapping(value="/report/{email}", method=RequestMethod.GET)
+	@RequestMapping(value="/report/email/{email}", method=RequestMethod.GET)
 	public List<Report> getReportByDevId(@PathVariable String email){
 		return reportService.getReportByDevId(email);
 	}
@@ -72,7 +72,7 @@ public class ReportWebServices {
 	 * @param reportId the spacific report to be returned
 	 * @return the report
 	 */
-	@RequestMapping(value="/report/{reportId}", method=RequestMethod.GET)
+	@RequestMapping(value="/report/id/{reportId}", method=RequestMethod.GET)
 	public Report getReportById(@PathVariable Integer reportId){
 		return reportService.getReportById(reportId);
 	}
@@ -88,13 +88,4 @@ public class ReportWebServices {
 		return reportService.getTechLeadReport(email);
 	}
 	
-	/**
-	 * This is an endpoint for updating reports
-	 * 
-	 * @param report this is the report to be updated
-	 */
-	@RequestMapping(value = "/report", method = RequestMethod.PUT)
-	 public void approveOrRejectReport(@RequestBody Report report) {
-		reportService.update(report);
-	 }
 }
