@@ -10,7 +10,7 @@
     </fieldset>
     <fieldset class="form-group">
       <label for="state"> State </label>
-      <input type="text" class="form-control" ng-model="state" id="inputState" readonly>
+      <input type="text" class="form-control" ng-model="state" id="inputState" ng-hide "report.state == 2" readonly>
     </fieldset>
     <fieldset class="form-group" ng-show="report.state == 3"> <!-- only show if rejected -->
       <label for="rejectionNotes"> Rejection Notes </label>
@@ -18,7 +18,7 @@
     </fieldset>
     <!-- begin lineitems -->
     <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1" ng-readonly="report.state == 2">
-      <ng-form name="categoryForm">
+      <ng-form name="categoryForm" ng-readonly="report.state == 2">
         <label for="category"> Category</label> <span class="horizontal-break"></span> selected category: {{li.category.value}}
         <select class="line-item-select form-control" name="category" ng-model="li.category" ng-options="category as category.value for category in categories" ng-readonly="report.state == 2"> </select>
       </ng-form>
@@ -39,7 +39,7 @@
     <!-- end lineitems -->
     <fieldset class="form-group">
       <label for="notes">Notes</label>
-      <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-hide="report.state == 2"></textarea>
+      <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2"   ng-show="report.state == 2 || report.state == 1"></textarea>
     </fieldset>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 
