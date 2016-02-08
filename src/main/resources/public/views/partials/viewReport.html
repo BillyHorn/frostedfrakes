@@ -20,7 +20,7 @@
     <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1" ng-readonly="report.state == 2">
       <ng-form name="categoryForm" ng-readonly="report.state == 2">
         <label for="category"> Category</label> <span class="horizontal-break"></span> selected category: {{li.category.value}}
-        <select class="line-item-select form-control" name="category" ng-model="li.category" ng-options="category as category.value for category in categories" ng-readonly="report.state == 2"> </select>
+        <select class="line-item-select form-control" name="category" value="report.category.value" ng-model="li.category" ng-options="category as category.value for category in categories" ng-readonly="report.state == 2"> </select>
       </ng-form>
       <ng-form name="valueForm">
         <fieldset class="form-group" ng-class="{'has-error' : valueForm.value.$invalid && !valueForm.value.$pristine}">

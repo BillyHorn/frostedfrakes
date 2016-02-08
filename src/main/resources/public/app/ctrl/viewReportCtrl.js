@@ -42,6 +42,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     /* send user back to save/edit page */
     $scope.unSubmit = function(){
        reportHttp.unSubmitReport($scope.report);
+       /* direct path saved view of the previously submitted report */
        $state.go('my-reports.saved' + '/' + $scope.reportId);
     };
 
