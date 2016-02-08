@@ -25,7 +25,7 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 			$scope.animationsEnabled = !$scope.animationsEnabled;
 		};
 
-		$scope.stateCheck = function($report){
+		$scope.stateCheck = function($report, submittedState){
 			if ($report.state == submittedState) {
 				return true;
 			} else {

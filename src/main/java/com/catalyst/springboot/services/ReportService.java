@@ -82,7 +82,6 @@ public class ReportService {
 	}
 
 	public List<Report> getTechLeadReport(String email) {
-		// TODO Auto-generated method stub
 		return reportDao.getTechLeadReport(email);
 	}
 }
