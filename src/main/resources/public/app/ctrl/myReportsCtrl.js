@@ -20,7 +20,8 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
     { heading: "Submitted", route:"my-reports.submitted", active:false },
     { heading: "Approved", route:"my-reports.approved", active:false },
     { heading: "Rejected", route:"my-reports.rejected", active:false },
-    { heading: "Pending", route:"my-reports.submitted-to-me", active:false}
+    { heading: "Pending", route:"my-reports.submitted-to-me", active:false},
+    { heading: "Reviewed", route:"my-reports.previouslyReviewed", active:false}
   ];
 
   // a function for navicating between states

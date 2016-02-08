@@ -1,5 +1,5 @@
 angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'currentUser', 'reportHttp', '$uibModal', 'submittedState',
-	function($scope, $state, currentUser, reportHttp, $uibModal, $uibModalInstance, submittedState) {
+	function($scope, $state, currentUser, reportHttp, $uibModal, submittedState) {
 
 		$scope.user = currentUser.getUser();
 
@@ -25,7 +25,7 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 			$scope.animationsEnabled = !$scope.animationsEnabled;
 		};
 
-		$scope.stateCheck = function($report, submittedState){
+		$scope.stateCheck = function($report){
 			if ($report.state == submittedState) {
 				return true;
 			} else {
