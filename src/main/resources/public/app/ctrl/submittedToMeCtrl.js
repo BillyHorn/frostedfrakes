@@ -20,7 +20,7 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 				}
 			});
 		};
-
+		
 		$scope.toggleAnimation = function () {
 			$scope.animationsEnabled = !$scope.animationsEnabled;
 		};

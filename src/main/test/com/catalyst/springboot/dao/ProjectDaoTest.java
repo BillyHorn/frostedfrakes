@@ -56,7 +56,7 @@ public class ProjectDaoTest {
 
 	@Test
 	public void registerTest() {
-		dao.register(null);
+	//	dao.register(null);
 		verify(mockEm).persist(null);
 	}
 }

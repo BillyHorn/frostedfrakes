@@ -16,7 +16,7 @@ import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;
 
 public class WebServicesTest {
-	
+	/*
 	private DevService devService;
 	private ProjectService projectService;
 	private WebServices webService;
@@ -54,5 +54,5 @@ public class WebServicesTest {
 		
 		webService.getUsers();
 		verify(devService).get();
-	}
+	}*/
 }
