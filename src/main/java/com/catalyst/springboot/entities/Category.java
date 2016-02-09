@@ -47,6 +47,9 @@ public class Category {
 		this.value = value;
 	}
 	
+	/**
+	 * overrides objects hashCode function to provide one specific to category
+	 */
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -54,9 +57,12 @@ public class Category {
 		return builder.toHashCode();
 	}
 
+	/**
+	 * overrides objects equals function to provide one specific to category
+	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof LineItem)){
+		if(!(obj instanceof Category)){
 			return false;
 		}
 		Category category = (Category) obj;
