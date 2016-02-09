@@ -18,7 +18,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Component 
 public class ReportLoggingInterceptor extends HandlerInterceptorAdapter{
 
-	public boolean preHandle(HttpServletRequest request, 
+	/*public boolean preHandle(HttpServletRequest request, 
 			HttpServletResponse response, Object Handler) throws Exception {
 		System.out.println("INTERCEPTED "+ response.getStatus()+" Post???????????????????????????????????????&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
@@ -28,7 +28,7 @@ public class ReportLoggingInterceptor extends HandlerInterceptorAdapter{
 		}
 		return true;
 	}
-	
+	*/
 	/**
 	 * helper function to extract the body of a put request
 	 * @param request

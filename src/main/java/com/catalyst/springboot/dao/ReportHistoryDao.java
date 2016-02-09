@@ -1,6 +1,9 @@
 package com.catalyst.springboot.dao;
 
 import java.util.List;
+import java.util.Date;
+
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
+import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.entities.ReportHistory;
 
 /**
@@ -39,7 +43,31 @@ public class ReportHistoryDao {
 	 * @return
 	 */
 	public List<ReportHistory> getReportHistory(Integer reportId) {
-		return em.createQuery("SECLECT r from reporthistory r WHERE r.report.reportId = :reportId", ReportHistory.class)
+		return em.createQuery("SELECT r from reporthistory r WHERE r.report.reportId = :reportId", ReportHistory.class)
 					.setParameter("reportId", reportId).getResultList();
 	}
+
+	/**
+	 * add an entry in report history for the creation of the given report
+	 * 		
+	 * @param rtnReport the report being logged
+	 * @author mKness
+	 */
+	public void createLog(ReportHistory reportHistory) {	
+		em.persist(reportHistory);
+		em.flush();
+	}
+
+	/**
+	 * add an entry in report history for an edit of the given report
+	 * 
+	 * @param reportHistory
+	 * @author mKness
+	 */
+	public void updateLog(ReportHistory reportHistory) {
+		em.persist(reportHistory);
+		em.flush();
+	}
+	
+	
 }

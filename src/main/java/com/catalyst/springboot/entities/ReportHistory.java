@@ -20,6 +20,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * 
  * @author mKness
  *
+ * action -
+ * 	0 - created
+ *  1 - saved
+ *  2 - submitted
+ *  3 - rejected
+ *  4 - approved
  */
 @Entity(name="reporthistory")
 public class ReportHistory {
