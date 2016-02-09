@@ -19,60 +19,64 @@ public class EmailHandler {
 		this.javaMailSender = javaMailSender;
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @param project
+	 * @author kmatthiesen
+	 */
 	public void youSubmitted(String email, String project) {
-
-		MimeMessage mail = javaMailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("effpdx@gmail.com");
-            helper.setFrom("effpdx@gmail.com");
-            helper.setSubject("Report Submitted");
-            helper.setText("Your expense report has been submitted to " + email + " for " + project + " for approval");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } finally {}
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo("effpdx@gmail.com");
+		mail.setFrom("effpdx@gmail.com");
+		mail.setSubject("Report Submitted");
+		mail.setText("Your expense report has been submitted to " + email + " for " + project + " for approval");
         javaMailSender.send(mail);
     }
 	
+	/**
+	 * 
+	 * @param email
+	 * @param project
+	 * @author kmatthiesen
+	 */
 	public void reportSubmitted(String email, String project){
-		MimeMessage mail = javaMailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("effpdx@gmail.com");
-            helper.setFrom("effpdx@gmail.com");
-            helper.setSubject("A Report has been Submitted");
-            helper.setText("An expense report has been submitted by " + email + " for " + project);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } finally {}
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo("effpdx@gmail.com");
+		mail.setFrom("effpdx@gmail.com");
+		mail.setSubject("A Report has been Submitted");
+		mail.setText("An expense report has been submitted by " + email + " for " + project);
         javaMailSender.send(mail);
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @param project
+	 * @author kmatthiesen
+	 */
 	public void reportApproved(String email, String project){
-		MimeMessage mail = javaMailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("effpdx@gmail.com");
-            helper.setFrom("effpdx@gmail.com");
-            helper.setSubject("Your Report was Approved");
-            helper.setText("Your expense report for " + project + " has been approved by " + email);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } finally {}
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo("effpdx@gmail.com");
+		mail.setFrom("effpdx@gmail.com");
+		mail.setSubject("Your Report was Approved");
+		mail.setText("Your expense report for " + project + " has been approved by " + email);
         javaMailSender.send(mail);
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @param project
+	 * @param rejection
+	 * @author kmatthiesen
+	 */
 	public void reportRejected(String email, String project, String rejection){
-		MimeMessage mail = javaMailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("effpdx@gmail.com");
-            helper.setFrom("effpdx@gmail.com");
-            helper.setSubject("Your Report was Rejected");
-            helper.setText("Your expense report for " + project + " has been rejected by " + email + ". Reason: " + rejection);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } finally {}
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo("effpdx@gmail.com");
+		mail.setFrom("effpdx@gmail.com");
+        mail.setSubject("Your Report was Rejected");
+        mail.setText("Your expense report for " + project + " has been rejected by " + email + ". Reason: " + rejection);
         javaMailSender.send(mail);
 	}
 

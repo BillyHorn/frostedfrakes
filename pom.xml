@@ -72,6 +72,13 @@
 			<version>4.2.4.RELEASE</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.icegreen</groupId>
+			<artifactId>greenmail</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		
+		
 
 	</dependencies>
   <build>
