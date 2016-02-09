@@ -2,12 +2,10 @@
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
-      
-      <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects" ng-readonly="report.state == submittedState || report.state == approvedState" ng-disabled="report.state == 2 || report.state == 4">>  
+      <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects" ng-readonly="report.state == 2 || report.state == 4" ng-disabled="report.state == 2 || report.state == 4"> <!-- wPerlichek: read only for  submitted or approved reports. disabled project
+                            dropdown for accepted or submitted reports -->
       </select>
-
     </fieldset>
-
     <fieldset class="form-group">
       <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->
       <input type="text" class="form-control" ng-model="report.dev.email" id="inputState" readonly>
@@ -21,10 +19,11 @@
       <textarea type="text" class="form-control" ng-model="report.rejectionNotes" id="inputRejectionNotes" readonly></textarea>
     </fieldset>
     <!-- begin lineitems -->
-    <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1" ng-readonly="report.state == 2">
+    <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1" ng-readonly="report.state == 2 || report.state == 4">
+      <!-- wPerlichek: disabled project dropdown for accepted or submitted reports -->
       <ng-form name="categoryForm" ng-readonly="report.state == 2">
         <label for="category"> Category</label> <span class="horizontal-break"></span> selected category: {{li.category.value}}
-        <select class="line-item-select form-control" name="category" value="report.category.value" ng-model="li.category" ng-options="category as category.value for category in categories" ng-readonly="report.state == 2"> </select>
+        <select class="line-item-select form-control" name="category" value="report.category.value" ng-model="li.category" ng-options="category as category.value for category in categories" ng-readonly="report.state == 2 || report.state == 4" ng-disabled="report.state == 2 || report.state == 4"> </select>
       </ng-form>
       <ng-form name="valueForm">
         <fieldset class="form-group" ng-class="{'has-error' : valueForm.value.$invalid && !valueForm.value.$pristine}">
@@ -35,7 +34,7 @@
       </ng-form>
       <ng-form name="dateForm">
         <label> Date</label>
-        <input type="date" class="form-control" name="date" ng-model="li.date" required ng-readonly="report.state == 2"> </input>s
+        <input type="date" class="form-control" name="date" ng-model="li.date" required ng-readonly="report.state == 2"> </input>
       </ng-form>
       <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)" ng-hide="report.state == 2 || report.state == 4"> Delete Line Item </button>
     </fieldset>
@@ -46,15 +45,11 @@
       <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2 || report.state == 4"   ng-show="report.state > 0"></textarea>
     </fieldset>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-
 <button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2 || report.state == 4">Save</button>
-
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2 || report.state == 4">Submit</button>
-
 <!-- if report state is "saved", hide this button, if "submitted" show the user a button to unsubmit and  change state from submitted back to saved using unSubmit() function. only show this button if the
 report state is 2 @wPerlichek -->
    <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1 || report.state == 4 || report.state == 3" >Unsubmit</button>
-
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
