@@ -2,7 +2,7 @@
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
-      <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects" ng-readonly="report.state == 2">  </select>
+      <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects" ng-readonly="report.state == 2 || report.state == 4">  </select>
     </fieldset>
     <fieldset class="form-group">
       <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->
@@ -31,24 +31,25 @@
       </ng-form>
       <ng-form name="dateForm">
         <label> Date</label>
-        <input type="date" class="form-control" name="date" ng-model="li.date" required ng-readonly="report.state == 2"> </input>
+        <input type="date" class="form-control" name="date" ng-model="li.date" required ng-readonly="report.state == 2"> </input>s
       </ng-form>
-      <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)" ng-hide="report.state == 2"> Delete Line Item </button>
+      <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)" ng-hide="report.state == 2 || report.state == 4"> Delete Line Item </button>
     </fieldset>
-    <button class="btn btn-primary" ng-click="addLineItem()" ng-hide="report.state == 2"> Add Line Item </button>
+    <button class="btn btn-primary" ng-click="addLineItem()" ng-hide="report.state == 2 || report.state == 4"> Add Line Item </button>
     <!-- end lineitems -->
     <fieldset class="form-group">
       <label for="notes">Notes</label>
-      <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2"   ng-show="report.state == 2 || report.state == 1"></textarea>
+      <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2 || report.state == 4"   ng-show="report.state > 0"></textarea>
     </fieldset>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 
-<button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2">Save</button>
+<button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2 || report.state == 4">Save</button>
 
-    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2">Submit</button>
+    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2 || report.state == 4">Submit</button>
 
-<!-- if report state is "saved", hide this button, if "submitted" show the user a button to unsubmit and  change state from submitted back to saved using unSubmit() function @wPerlichek -->
-   <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1" >Unsubmit</button>
+<!-- if report state is "saved", hide this button, if "submitted" show the user a button to unsubmit and  change state from submitted back to saved using unSubmit() function. only show this button if the
+report state is 2 @wPerlichek -->
+   <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1 || report.state == 4 || report.state == 3" >Unsubmit</button>
 
   </form>
 </div> <!-- /container -->

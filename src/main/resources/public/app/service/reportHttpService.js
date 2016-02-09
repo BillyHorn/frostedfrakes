@@ -1,5 +1,5 @@
-angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejectedState',
-  function($http, approvedState, rejectedState){
+angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejectedState', 'savedState',
+  function($http, approvedState, rejectedState, savedState){
 
     // local var to hold end point name
     var reportEndPoint = "/report";
@@ -45,7 +45,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     /* from submitted (2) back to saved */
     function unSubmitReport(report){
       /* change report state to 1 */
-      report.state = 1;
+      report.state = savedState;
       /* put request to update the existing report */
       return $http.put(reportEndPoint, report);
     }
