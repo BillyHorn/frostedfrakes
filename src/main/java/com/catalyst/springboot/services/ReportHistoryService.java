@@ -75,7 +75,7 @@ public class ReportHistoryService {
 	 * @author mKness
 	 */
 	public void createLog(Report rtnReport) {
-		ReportHistory reportHistory = new ReportHistory();
+		ReportHistory reportHistory = this.reportHistoryFactory();
 		reportHistory.setEditingDev(rtnReport.getDev());
 		reportHistory.setTimeStamp(getTimestamp());
 		reportHistory.setReport(rtnReport);
@@ -89,7 +89,7 @@ public class ReportHistoryService {
 	 * @param report the report being logged
 	 */
 	public void updateLog(Report report) {
-		ReportHistory reportHistory = new ReportHistory();
+		ReportHistory reportHistory = this.reportHistoryFactory();
 		reportHistory.setEditingDev(getEditingDev());
 		reportHistory.setTimeStamp(getTimestamp());
 		reportHistory.setReport(report);
@@ -116,24 +116,26 @@ public class ReportHistoryService {
 	 */
 	private String getAction(Report report) {
 		String state = report.getState();
-		/*if(state.equals("1")){
-			state = "Saved";
-		}
-		else if (state.equals("2")) {
-			state = "Submitted";
-		} 
-		else if (state.equals("3")) {
-			state = "Rejected";
-		} 
-		else if (state.equals("4")) {
-			state = "Approved";
-		}*/
 		return state;
 	}
 	
+	/**
+	 * helper function to get the current user from spring security
+	 * @return the current user
+	 * @author mKness
+	 */
 	private Dev getEditingDev()
 	{
 		Authentication authentication = authenticationFacade.getAuthentication();
         return devService.getEmployeeByUsername(authentication.getName());
+	}
+	
+	/**
+	 * creates a new reportHistory object, abstracted for testing
+	 * @return a new reportHistory object
+	 * @author mKness
+	 */
+	ReportHistory reportHistoryFactory() {
+		return new ReportHistory();
 	}
 }

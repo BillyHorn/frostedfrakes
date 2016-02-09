@@ -22,6 +22,7 @@ public class ReportHistoryServiceTest {
 	private ReportHistoryService service;
 	private ReportHistoryDao dao;
 	private Report report;
+	private ReportHistory reportHistory;
 	
 	/**
 	 * pre test setup, initialize instance variables
@@ -33,6 +34,7 @@ public class ReportHistoryServiceTest {
 		dao = mock(ReportHistoryDao.class);
 		service.setReportHistoryDao(dao);
 		report = mock(Report.class);
+		reportHistory = mock(ReportHistory.class);
 	}
 	
 	/** 
@@ -47,5 +49,39 @@ public class ReportHistoryServiceTest {
 		
 		service.getReportHistory(report.getReportId());
 		verify(dao).getReportHistory(report.getReportId());
+	}
+	
+	@Test
+	public void createLogTest() {
+		ReportHistory mockRH = mock(ReportHistory.class);
+		doNothing().when(mockRH).setEditingDev(anyObject());
+		doNothing().when(mockRH).setTimeStamp(anyObject());
+		doNothing().when(mockRH).setReport(anyObject());
+		doNothing().when(mockRH).setAction(anyObject());
+		doNothing().when(dao).createLog(mockRH);
+		when(service.reportHistoryFactory()).thenReturn(mockRH);
+		service.createLog(report);
+		verify(dao).createLog(mockRH);
+	}
+	
+	@Test 
+	public void updateLogTest() {
+		service.updateLog(report);
+		verify(dao).updateLog(reportHistory);
+	}
+	
+	@Test
+	public void getTimestampTest() {
+		
+	}
+	
+	@Test
+	public void getActionTest() {
+		
+	}
+	
+	@Test
+	public void getEditingDevTest() {
+		
 	}
 }

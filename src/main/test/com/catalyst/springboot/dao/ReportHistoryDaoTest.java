@@ -40,6 +40,24 @@ public class ReportHistoryDaoTest {
 	}
 	
 	/**
+	 * test the creating a log function
+	 * @author mKness
+	 */
+	@Test
+	public void createLogTest(){
+		dao.createLog(null);
+		verify(mockEm).persist(null);
+	}
+	
+	/**
+	 * @author mKness
+	 */
+	@Test
+	public void updateLogTest(){
+		dao.updateLog(null);
+		verify(mockEm).persist(null);
+	}
+	/**
 	 * test the get functionality
 	 * @author mKness
 	 */
