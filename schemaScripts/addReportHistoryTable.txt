@@ -1,0 +1,24 @@
+-- Table: reporthistory
+
+-- DROP TABLE reporthistory;
+
+CREATE TABLE reporthistory
+(
+  reporthistoryid serial NOT NULL,
+  "timestamp" timestamp without time zone,
+  devid integer NOT NULL,
+  reportid integer NOT NULL,
+  action character varying(255),
+  CONSTRAINT reporthistory_pkey PRIMARY KEY (reporthistoryid),
+  CONSTRAINT fk9jysghpvo3ppqw2pkp8h3g0c1 FOREIGN KEY (devid)
+      REFERENCES dev (devid) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fkjgk9woi6890r1s8n50b14qej5 FOREIGN KEY (reportid)
+      REFERENCES report (reportid) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE reporthistory
+  OWNER TO postgres;
