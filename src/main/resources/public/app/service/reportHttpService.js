@@ -44,7 +44,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     /* change state of an existing report
     /* from submitted (2) back to saved */
     function unSubmitReport(report){
-      /* change report state to 1 */
+      /* change report state to savedState(1) */
       report.state = savedState;
       /* put request to update the existing report */
       return $http.put(reportEndPoint, report);
