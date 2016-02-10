@@ -31,7 +31,14 @@ public class DevService {
 		this.devdao = devdao;
 	}
 	
-	
+	/**
+	 * @param authenticationFacade the authenticationFacade to set
+	 */
+	public void setAuthenticationFacade(AuthenticationFacade authenticationFacade) {
+		this.authenticationFacade = authenticationFacade;
+	}
+
+
 	/**
 	 * Gets all devs from the database
 	 * 
@@ -74,9 +81,17 @@ public class DevService {
 	}
 	
 	public Dev totpAuth(String totpCode){
+		System.out.println(totpCode+ "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Authy");
 		Authentication authentication = authenticationFacade.getAuthentication();
+		if (authentication == null){
+			System.out.println("I am a stupid little gnoll");
+		}
+		System.out.println(authentication.getName());
+		System.out.println(authentication);
+		System.out.println(authentication.getDetails().toString());
         Dev dev = devdao.getDevByUsername(authentication.getName());
-		
+        System.out.println("After getDev");
+		System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if(dev.getAuthCode().equals(totpCode)){
 			System.out.println("AUTHORIZED");
 		}

@@ -59,7 +59,7 @@ public class DevDao {
 	 * @return The user object minus the password
 	 */
 	public Dev getDevByUsername(String username) {
-		Dev dev = em.createQuery("SELECT d from dev d WHERE d.email = :email", Dev.class)
+		Dev dev = em.createQuery("SELECT d FROM dev d WHERE d.email = :email", Dev.class)
 				.setParameter("email", username).getSingleResult();
 		return dev;
 	}

@@ -14,13 +14,14 @@
 
 	<script type="text/javascript" src="../app/jQuery/login.js"></script>
 	<script type="text/javascript" src="../app/jQuery/loginAnim.js"></script>
-	
+
 	<!-- regestration scripts -->
 	<script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
 	<script type="text/javascript" src="../app/service/registrationFactory.js"></script>
-	
+
 	<!-- totp scripts -->
 	<script type="text/javascript" src="../app/ctrl/totpAuthCtrl.js"></script>
+	<script type="text/javascript" src="../app/service/devHttpService.js"></script>
 
 	<!--  bootstrap  -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -33,18 +34,18 @@
 <div class="container" ng-controller="totpAuthCtrl">
 
 	<div class="form-group">
-		<input type="text" id="totp-user-code" ng-modal="totpCode"
+		<input type="text" id="totp-user-code" ng-model="totpCode"
 		tabindex="1" class="form-control" placeholder="Your Code:"
 		value="">
 	</div>
 	<div class="col-sm-6 col-sm-offset-3">
 		<button type="submit" name="login-submit" id="submitLogin"
-		tabindex="4" class="form-control btn btn-login" 
+		tabindex="4" class="form-control btn btn-login"
 		ui-sref="/logout">Back to Login</button>
 	</div>
 	<div class="col-sm-6 col-sm-offset-3">
 		<button type="submit" name="login-submit" id="submitLogin"
-		tabindex="4" class="form-control btn btn-login" 
+		tabindex="4" class="form-control btn btn-login"
 		ng-click="totp()">Authorize User</button>
 	</div>
 	{{2+1}}

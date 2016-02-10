@@ -59,7 +59,7 @@ public class DevWebServices {
 		return devService.getEmployeeByUsername(principal.getName());
 	}
 	
-	@RequestMapping(value="/totpAuthentication", method = RequestMethod.POST)
+	@RequestMapping(value="/users/validate", method = RequestMethod.POST)
 	public Dev totpAuth(@RequestBody String authCode){
 		return devService.totpAuth(authCode);
 	}
