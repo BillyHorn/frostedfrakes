@@ -84,4 +84,13 @@ public class ReportService {
 	public List<Report> getTechLeadReport(String email) {
 		return reportDao.getTechLeadReport(email);
 	}
+/**
+ * SteffyJ
+ * @param email
+ * @return
+ */
+	public List<Report> getallPreviousReports(String email) {
+
+		return reportDao.getallPreviousReports(email);
+	}
 }

@@ -2,9 +2,13 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 	function($scope, $state, currentUser, reportHttp, $uibModal, submittedState) {
 
 		$scope.user = currentUser.getUser();
-
+		console.log("$scope.user:");
+		console.log($scope.user); // whole object dev (DB) 
+		console.log($scope.user.devId);//1
 		$scope.email = (currentUser.getUser().email);
-
+		console.log("$scope.email:"); 
+		console.log($scope.email); // dev.email
+		
 		$scope.animationsEnabled = true;
 
 		$scope.open = function(currentReport) {
@@ -37,9 +41,45 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 			$scope.myPendingReports = res.data;
 		});
 
-		$scope.approveReport = function(report) {
-			reportHttp.approveReport(report);
+
+		
+		
+		
+		//steffyJ
+
+		
+		
+		$scope.reviewedReport = function() {
+			
+			reportHttp.getApprovedRegectedReport($scope.email).then(
+					function(sucess) {
+						$scope.myreviewedReports = re.data;
+						
+					},
+					function(error) {
+						console.log(error);
+					});
+					
 		};
+		
+		
+//		$scope.myreviewedReports = function() { 
+//			
+//			reportHttp.getApprovedRegectedReport($scope.email);
+//		};
+//		
+		
+//		reportHttp.getApprovedRegectedReport($scope.email).then(function(re){
+//			$timeout(callAtTimeout,3000);
+//			$scope.myreviewedReports = re.data;
+//		});
+		
+		
+		
+		
+		
+		
+		
 }]);
 
 

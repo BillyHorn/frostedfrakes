@@ -55,4 +55,15 @@ public class ReportDao {
 				.setParameter("email", email).getResultList();
 
 	}
+/**
+ * will return all accepted and Rejected reports by a tech lead
+ *SteffyJ
+ * @param email
+ * @return
+ */
+	public List<Report> getallPreviousReports(String email) {
+		//TOCHECK if the email/ID  of TechLead  //AND r.state IN (3,4)
+		return em.createQuery("Select r FROM Report WHERE r.project.techLeadId.email = :email AND r.state IN (3,4) ",Report.class)   
+				.setParameter("email", email).getResultList();
+	}
 }

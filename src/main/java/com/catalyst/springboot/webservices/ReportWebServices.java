@@ -88,4 +88,13 @@ public class ReportWebServices {
 		return reportService.getTechLeadReport(email);
 	}
 	
+	/**
+	 * gets rejected and approved reports with corresponding techlead id/email
+	 * @Steffy 
+	 * 
+	 */
+	@RequestMapping(value="/report/reviewed/{email}", method = RequestMethod.GET)
+	public List<Report> approvedAndRejected(@PathVariable String email){ //TODO can be Leads Id or email
+		return reportService.getallPreviousReports(email);
+	}
 }

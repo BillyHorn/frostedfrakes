@@ -38,6 +38,13 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     {
       return $http.get(reportEndPoint + '/email/' + user);
     }
+    //SteffyJoseph
+    //get all reports for the current techlead email( /ID  ) 
+    function getApprovedRegectedReport(email)
+    {
+    	return $http.get(reportEndPoint + '/reviewed/' + email);
+    	
+    }
 
     return {
       createReport : createReport,
