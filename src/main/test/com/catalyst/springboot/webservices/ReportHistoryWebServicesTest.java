@@ -39,6 +39,6 @@ public class ReportHistoryWebServicesTest {
 		when(reportHistoryWebServices.getReportHistory(report.getReportId())).thenReturn(reportHistory);
 		
 		reportHistoryWebServices.getReportHistory(report.getReportId());
-		verify(reportHistoryWebServices).getReportHistory(report.getReportId());
+		verify(reportHistoryService).getReportHistory(report.getReportId());
 	}
 }

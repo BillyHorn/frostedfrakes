@@ -12,6 +12,7 @@ import com.catalyst.springboot.dao.ReportHistoryDao;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.entities.ReportHistory;
+import com.catalyst.springboot.factories.ReportHistoryFactory;
 
 /**
  * 
@@ -25,11 +26,14 @@ public class ReportHistoryService {
 	ReportHistoryDao reportHistoryDao;
 	
 	@Autowired
+	ReportHistoryFactory reportHistoryFactory;
+	
+	@Autowired
 	DevService devService;
 	
 	@Autowired
-	private IAuthenticationFacade authenticationFacade;
-	
+	IAuthenticationFacade authenticationFacade;
+
 	/**
 	 * simple setter for the reporthistoryDao
 	 * @param reportHistoryDao
@@ -39,6 +43,14 @@ public class ReportHistoryService {
 		this.reportHistoryDao = reportHistoryDao;
 	}
 
+	/**
+	 * 
+	 * @param reportHistoryFactory
+	 */
+	public void setReportHistoryFactory(ReportHistoryFactory reportHistoryFactory){
+		this.reportHistoryFactory = reportHistoryFactory;
+	}
+	
 	/**
 	 * simple setter for the devService
 	 * @param devService
@@ -56,7 +68,6 @@ public class ReportHistoryService {
 	public void setAuthenticationFacade(IAuthenticationFacade authenticationFacade) {
 		this.authenticationFacade = authenticationFacade;
 	}
-	
 	/**
 	 * gets and returns the list of report histories corresponding to the given reportId
 	 * 
@@ -74,12 +85,12 @@ public class ReportHistoryService {
 	 * @param rtnReport the report that is getting logged
 	 * @author mKness
 	 */
-	public void createLog(Report rtnReport) {
-		ReportHistory reportHistory = this.reportHistoryFactory();
-		reportHistory.setEditingDev(rtnReport.getDev());
+	public void createLog(Report report) {
+		ReportHistory reportHistory = reportHistoryFactory.newReportHistory();
+		reportHistory.setEditingDev(getEditingDev());
 		reportHistory.setTimeStamp(getTimestamp());
-		reportHistory.setReport(rtnReport);
-		reportHistory.setAction("0"); // created action
+		reportHistory.setReport(report);
+		reportHistory.setAction("0");
 		reportHistoryDao.createLog(reportHistory);
 	}
 
@@ -89,13 +100,14 @@ public class ReportHistoryService {
 	 * @param report the report being logged
 	 */
 	public void updateLog(Report report) {
-		ReportHistory reportHistory = this.reportHistoryFactory();
+		ReportHistory reportHistory = reportHistoryFactory.newReportHistory();
 		reportHistory.setEditingDev(getEditingDev());
 		reportHistory.setTimeStamp(getTimestamp());
 		reportHistory.setReport(report);
 		reportHistory.setAction(getAction(report));
 		reportHistoryDao.updateLog(reportHistory);
 	}
+	
 	
 	/**
 	 * helper function to get the current time stamp
@@ -128,14 +140,5 @@ public class ReportHistoryService {
 	{
 		Authentication authentication = authenticationFacade.getAuthentication();
         return devService.getEmployeeByUsername(authentication.getName());
-	}
-	
-	/**
-	 * creates a new reportHistory object, abstracted for testing
-	 * @return a new reportHistory object
-	 * @author mKness
-	 */
-	ReportHistory reportHistoryFactory() {
-		return new ReportHistory();
 	}
 }

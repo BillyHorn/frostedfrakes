@@ -37,6 +37,27 @@ public class ReportHistory {
 	private Timestamp timeStamp; 
 	
 	/**
+	 * empty constructor for autowired
+	 * @author mKness
+	 */
+	public ReportHistory() {}
+	
+	/**
+	 * constructor to be used by the reportHistoryFactory
+	 * @param report
+	 * @param editingDev
+	 * @param action
+	 * @param timestamp
+	 * @author mKness
+	 */
+	public ReportHistory( Report report, Dev editingDev, String action, Timestamp timestamp) {
+		this.report = report;
+		this.editingDev = editingDev;
+		this.action = action;
+		this.timeStamp = timestamp;
+	}
+	
+	/**
 	 * @return the reportHistoryId
 	 */
 	@Id
