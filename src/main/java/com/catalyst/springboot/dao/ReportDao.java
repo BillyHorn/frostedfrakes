@@ -1,13 +1,10 @@
 package com.catalyst.springboot.dao;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Component;
-
 import com.catalyst.springboot.entities.Report;
 
 @Transactional
@@ -62,8 +59,11 @@ public class ReportDao {
  * @return
  */
 	public List<Report> getallPreviousReports(String email) {
-		//TOCHECK if the email/ID  of TechLead  //AND r.state IN (3,4)
-		return em.createQuery("Select r FROM Report WHERE r.project.techLeadId.email = :email AND r.state IN (3,4) ",Report.class)   
-				.setParameter("email", email).getResultList();
+
+		
+		return em.createQuery("Select r FROM Report r WHERE r.project.techLeadId.email = :email  AND r.state IN ('3','4')   ",Report.class)   
+		.setParameter("email", email).getResultList();
+
+
 	}
 }

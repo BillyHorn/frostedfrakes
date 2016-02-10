@@ -42,6 +42,6 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
       .state('my-reports.previouslyReviewed', {
           url: '/previouslyReviewed',
           templateUrl: 'views/partials/my-reports/previouslyReviewed.html',
-          controller: 'submittedToMeCtrl'
+          controller: 'previouslyReviewedCtrl'
         });
 }]);

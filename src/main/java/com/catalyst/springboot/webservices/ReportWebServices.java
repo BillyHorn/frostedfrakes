@@ -95,6 +95,8 @@ public class ReportWebServices {
 	 */
 	@RequestMapping(value="/report/reviewed/{email}", method = RequestMethod.GET)
 	public List<Report> approvedAndRejected(@PathVariable String email){ //TODO can be Leads Id or email
+		System.out.println(email);
+		System.out.println(reportService.getallPreviousReports(email));
 		return reportService.getallPreviousReports(email);
 	}
 }

@@ -4,32 +4,8 @@
   <div class="panel-body">
     <div class="list-group">
     
-      <a ng-repeat="report in reviewedReport" ui-sref="" class="list-group-item">{{report.project.name}} <span class="horizontal-break"></span>Report ID: {{report.reportId}}</a>
-     
-      <!-- <div ng-repeat = "report in reviewedReport" >
-      
-      {{report.data}}
-      hhhhh
-       {{myreviewedReports}}
-      {{email}}
-      {{myreviewedReports}}
-      {{reviewedReport}}
-      </div>
-      kkkkk
-          {{report.data}}
-          {{report}}
-      {{myreviewedReports}}
-      {{email}}
-      {{myreviewedReports}}
-      {{reviewedReport}}
-      
-      
-      <a ng-repeat="report in myreviewedReports" ui-sref="viewReport({reportid : report.reportId})" class="list-group-item">{{report.project.name}} <span class="horizontal-break"></span>Report ID: {{report.reportId}}</a>
-      
-     
-     {{report}}
-     
-    </div> -->
+      <a ng-repeat="report in myReviewedReports" ui-sref="viewReport({reportid : report.reportId})" class="list-group-item">{{report.project.name}} <span class="horizontal-break"  ></span>Report ID: {{report.reportId}} {{getStateName( report.state ) }}  </a>
+
   </div>
 </div>
-<!-- ui-sref="viewReport({reportid : report.reportId})"    view Reports by current state     -->
+</div>

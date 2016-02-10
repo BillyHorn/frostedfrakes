@@ -1,18 +1,12 @@
-angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'currentUser', 'reportHttp', '$uibModal', 'submittedState',
+angular.module('app').controller('previouslyReviewedCtrl', ['$scope', '$state', 'currentUser', 'reportHttp', '$uibModal', 'submittedState',
 	function($scope, $state, currentUser, reportHttp, $uibModal, submittedState) {
 
-		$scope.user = currentUser.getUser();
-		console.log("$scope.user:");
-		console.log($scope.user); // whole object dev (DB) 
-		console.log($scope.user.devId);//1
-		$scope.email = (currentUser.getUser().email);
-		console.log("$scope.email:"); 
-		console.log($scope.email); // dev.email
-		
+		$scope.user = currentUser.getUser();	
+		$scope.email = (currentUser.getUser().email);		
 		$scope.animationsEnabled = true;
-
+		$scope.myReviewedReports = {};
+		$scope.id = {};
 		$scope.open = function(currentReport) {
-
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: 'myModalContent.html',
@@ -40,6 +34,24 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 		reportHttp.pendingReports($scope.email).then(function(res){
 			$scope.myPendingReports = res.data;
 		});
+		
+
+		var states = {
+				1: "saved",
+				2: "submitted",
+				3: "rejected",
+				4: "aproved"		
+		};
+		
+	$scope. getStateName = function(id) {			
+			return states[id];		
+		};
+
+		reportHttp
+			.getApprovedRejectedReport($scope.email)
+			.then(function(response) {
+				$scope.myReviewedReports = response.data;
+			});
 		
 }]);
 

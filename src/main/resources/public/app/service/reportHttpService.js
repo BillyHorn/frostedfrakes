@@ -40,7 +40,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     }
     //SteffyJoseph
     //get all reports for the current techlead email( /ID  ) 
-    function getApprovedRegectedReport(email)
+    function getApprovedRejectedReport(email)
     {
     	return $http.get(reportEndPoint + '/reviewed/' + email);
     	
@@ -53,6 +53,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       getReport : getReport,
       getReports : getReports,
       putReport : putReport,
-      pendingReports : pendingReports
+      pendingReports : pendingReports,
+      getApprovedRejectedReport :getApprovedRejectedReport
     }
   }]);
