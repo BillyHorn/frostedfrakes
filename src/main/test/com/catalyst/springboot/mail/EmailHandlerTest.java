@@ -20,6 +20,9 @@ public class EmailHandlerTest {
 		mail = new SimpleMailMessage();
 	}
 	
+	/**
+	 * @author kmatthiesen
+	 */
 	@Test
 	public void youSubmittedTest(){
 		
@@ -32,6 +35,9 @@ public class EmailHandlerTest {
 		verify(mailSender).send(mail);
 	}
 	
+	/**
+	 * @author kmatthiesen
+	 */
 	@Test
 	public void reportSubmittedTest(){
 		
@@ -44,6 +50,9 @@ public class EmailHandlerTest {
 		mailSender.send(mail);
 	}
 	
+	/**
+	 * @author kmatthiesen
+	 */
 	@Test
 	public void reportApprovedTest(){
 		
@@ -56,6 +65,9 @@ public class EmailHandlerTest {
 		mailSender.send(mail);
 	}
 	
+	/**
+	 * @author kmatthiesen
+	 */
 	@Test
 	public void reportRejectedTest(){
 		

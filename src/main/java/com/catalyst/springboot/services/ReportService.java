@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.catalyst.springboot.dao.ReportDao;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.mail.EmailHandler;
 
 
 @Service
@@ -13,6 +14,9 @@ public class ReportService {
 	
 	@Autowired
 	private ReportDao reportDao;
+	
+	@Autowired
+	EmailHandler emailHandler;
 	
 	/**
 	 * @param reportDao the reportDao to set
@@ -22,12 +26,29 @@ public class ReportService {
 	}
 	
 	/**
+	 * @param emailHandler the emailHandler to set
+	 */
+	public void setEmailHandler(EmailHandler emailHandler) {
+		this.emailHandler = emailHandler;
+	}
+	
+	/**
 	 * this function send an update request to the report DAO
 	 * 
 	 * @param report this is the report to be updated.
 	 */
 	public void update(Report report) {
-		reportDao.update(report);
+		Report repor = reportDao.update(report);
+		if (repor.getState().equals("2")){
+			emailHandler.youSubmitted(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName());
+			emailHandler.reportSubmitted(repor.getDev().getEmail(), repor.getProject().getName());
+		}
+		else if (repor.getState().equals("3")){
+			emailHandler.reportRejected(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName(), repor.getRejectionNotes());
+		}
+		else if (repor.getState().equals("4")){
+			emailHandler.reportApproved(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName());
+		}
 	}
 
 	/** ADD
@@ -37,8 +58,6 @@ public class ReportService {
 	 * @return 
 	 */
 	public Report add(Report report) {
-		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
-//		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
 		return reportDao.addReport(report);
 	}	
 	
@@ -52,21 +71,7 @@ public class ReportService {
 	}
 	
 	
-//	public List<Report> getTechLeadReports(List<Project> list) {
-//		List<Report> allReports = reportDao.getReport();  
-//		List<Report> techLeadReports = new ArrayList<Report>();
-//		for (Report report : allReports){
-//			for(Project pro: list){
-//				if(report.getProject().getProjectId() == pro.getProjectId()){
-//					techLeadReports.add(report);
-//				}
-//			}
-//		}
-//		return techLeadReports;
-//	}
-	
 	public List<Report> getReportByDevId(String email) {
-		// TODO Auto-generated method stub
 		return reportDao.getReportByDevId(email);
 	}
 	
