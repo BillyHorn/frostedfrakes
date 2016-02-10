@@ -1,17 +1,12 @@
 package com.catalyst.springboot.dao;
 
 import java.util.List;
-import java.util.Date;
-
-import java.sql.Timestamp;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
-import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.entities.ReportHistory;
 
 /**

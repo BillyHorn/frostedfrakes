@@ -5,7 +5,6 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;

@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.stereotype.Service;
-
 import com.catalyst.springboot.dao.ReportDao;
 import com.catalyst.springboot.entities.Report;
 
