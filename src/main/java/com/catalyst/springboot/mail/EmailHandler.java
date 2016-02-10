@@ -9,6 +9,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+/**
+ * Handles the sending of emails
+ * @author kmatthiesen
+ *
+ */
 @Service
 public class EmailHandler {
 	
