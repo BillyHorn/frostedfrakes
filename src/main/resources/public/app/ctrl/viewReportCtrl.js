@@ -14,9 +14,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
               $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
               $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
             }
-            console.log(JSON.stringify($scope.history));
           });
-    console.log(JSON.stringify($scope.history));
 
     for(var i = 0; i < getLineItems.data.length; i++)
     {

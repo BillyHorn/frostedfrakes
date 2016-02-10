@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: mKness
 Build-Jdk: 1.8.0_60
-=======
-Built-By: atatro
-Build-Jdk: 1.8.0_73
->>>>>>> sprint2
 Created-By: Maven Integration for Eclipse
 
