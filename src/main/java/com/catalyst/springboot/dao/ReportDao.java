@@ -6,9 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.mail.EmailHandler;
 
 @Transactional
 @Component
@@ -16,11 +18,13 @@ public class ReportDao {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	
 
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-	
+
 	public Report addReport(Report report) {
 		em.persist(report);
 		em.flush();
@@ -45,9 +49,11 @@ public class ReportDao {
 	 * 
 	 * @param report this is the report to be updated
 	 */
-	public void update(Report report) {
+	public Report update(Report report) {
 		em.merge(report);
 		em.flush();
+		return report;
+		
 	}
 	
 	public List<Report> getReportByDevId(String email) {

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.catalyst.springboot.dao.ReportDao;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.mail.EmailHandler;
 
 
 @Service
@@ -15,7 +16,11 @@ public class ReportService {
 	private ReportDao reportDao;
 	
 	@Autowired
+	private EmailHandler emailHandler;
+
+	@Autowired
 	private ReportHistoryService reportHistoryService;
+
 	
 	/**
 	 * @param reportDao the reportDao to set
@@ -25,6 +30,13 @@ public class ReportService {
 	}
 	
 	/**
+	 * @param emailHandler the emailHandler to set
+	 */
+	public void setEmailHandler(EmailHandler emailHandler) {
+		this.emailHandler = emailHandler;
+	}
+		
+	/**
 	 * simple setter for report history service
 	 * used for logging creating and editing reports to the reporthistory table
 	 * @param reportHistoryService 
@@ -32,6 +44,7 @@ public class ReportService {
 	 */
 	public void setReportHistoryService(ReportHistoryService reportHistoryService) {
 		this.reportHistoryService = reportHistoryService;
+
 	}
 	
 	/**
@@ -41,8 +54,18 @@ public class ReportService {
 	 * @param report this is the report to be updated.
 	 */
 	public void update(Report report) {
-		reportDao.update(report); // TODO throw in try
+		Report repor = reportDao.update(report);
 		reportHistoryService.updateLog(report);
+		if (repor.getState().equals("2")){
+			emailHandler.youSubmitted(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName());
+			emailHandler.reportSubmitted(repor.getDev().getEmail(), repor.getProject().getName());
+		}
+		else if (repor.getState().equals("3")){
+			emailHandler.reportRejected(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName(), repor.getRejectionNotes());
+		}
+		else if (repor.getState().equals("4")){
+			emailHandler.reportApproved(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName());
+		}		
 	}
 
 	/** ADD
@@ -58,6 +81,7 @@ public class ReportService {
 		Report rtnReport =  reportDao.addReport(report);
 		reportHistoryService.createLog(rtnReport);
 		return rtnReport;
+
 	}	
 	
 	/** GET
@@ -68,7 +92,7 @@ public class ReportService {
 	public List<Report> getReport(){
 		return reportDao.getReport();
 	}
-	
+
 	public List<Report> getReportByDevId(String email) {
 		return reportDao.getReportByDevId(email);
 	}
