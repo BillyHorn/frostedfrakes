@@ -1,11 +1,11 @@
 package com.catalyst.springboot.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -19,11 +19,19 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Entity
 public class Receipt {
 
-	
 	private Integer receiptId;
-	private String images;
+	private String name;
+	private byte[] image;
 	private LineItem lineItem;
 	
+	public Receipt(byte[] byteArray) {
+		this.name = "testname";
+		this.image = byteArray;
+	}
+	
+	public Receipt(){
+		
+	}
 	
 	/**
 	 * @return the reciptId
@@ -39,23 +47,12 @@ public class Receipt {
 	public void setReciptId(Integer reciptId) {
 		this.receiptId = reciptId;
 	}
-	/**
-	 * @return the images
-	 */
-	public String getImages() {
-		return images;
-	}
-	/**
-	 * @param images the images to set
-	 */
-	public void setImages(String images) {
-		this.images = images;
-	}
 	
 	/**
 	 * @return the lineItem
+	 * (optional = false)
 	 */
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@JoinColumn(name="lineItemId")
 	public LineItem getLineItem() {
 		return lineItem;
@@ -86,4 +83,38 @@ public class Receipt {
 		return builder.isEquals();
 		
 	}
+	
+	/**
+	 * 
+	 * @return byte array containing image data
+	 */
+	@Lob
+	public byte[] getImage() {
+		return image;
+	}
+	
+	/**
+	 * 
+	 * @param image image to be set
+	 */
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
+	/**
+	 * 
+	 * @return name of receipt
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * 
+	 * @param name name to be set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
