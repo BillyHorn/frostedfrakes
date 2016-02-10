@@ -25,6 +25,7 @@ public class DevServiceTest {
 	
 	@Test
 	public void getAllDevsTest(){
+		@SuppressWarnings("unchecked")
 		List<Dev> devs = mock(List.class);
 		
 		when(dao.get()).thenReturn(devs);
@@ -32,5 +33,31 @@ public class DevServiceTest {
 		service.get();
 		verify(dao).get();
 		
+	}
+	
+	@Test
+	public void getEmployeeByUsernameTest() {
+		Dev dev = mock(Dev.class);
+		
+		when(dao.getDevByUsername(anyString())).thenReturn(dev);
+		
+		service.getEmployeeByUsername(anyString());
+		verify(dao).getDevByUsername(anyString());
+	}
+	
+	@Test
+	public void checkUserNameTest() {
+		Dev dev = mock(Dev.class);
+		
+		when(dao.getDevByUsername(anyString())).thenReturn(dev);
+		
+		service.checkUserName(anyString());
+		verify(dao).getDevByUsername(anyString());
+	}
+	
+	@Test
+	public void registerTest() {
+		service.register(anyObject());
+		verify(dao).register(anyObject());
 	}
 }
