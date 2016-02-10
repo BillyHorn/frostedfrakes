@@ -19,20 +19,20 @@ public class WebServicesTest {
 	
 	private DevService devService;
 	private ProjectService projectService;
-	private WebServices webService;
+	//private WebServices webService;
 
 	@Before
 	public void setup(){
 		devService = mock(DevService.class);
 		projectService = mock(ProjectService.class);
-		webService = new WebServices();
-		webService.setProjectService(projectService);
-		webService.setService(devService);
+		//webService = new WebServices();
+		//webService.setProjectService(projectService);
+		//webService.setService(devService);
 	}
 	
 	@Test
 	public void createProjectTest(){
-		webService.createProject(null);
+		//webService.createProject(null);
 		verify(projectService).add((Project) eq(null));
 	}
 	
@@ -52,7 +52,7 @@ public class WebServicesTest {
 		
 		when(devService.get()).thenReturn(devs);
 		
-		webService.getUsers();
+		//webService.getUsers();
 		verify(devService).get();
 	}
 }
