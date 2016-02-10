@@ -32,7 +32,7 @@ public class DevDaoTest {
 	
 	
 	
-	@Test
+	/*@Test
 	public void getAllDevsTest(){
 		TypedQuery<Dev> query = mock(TypedQuery.class);
 		List<Dev> devsToConvert = new ArrayList<Dev>();
@@ -47,5 +47,5 @@ public class DevDaoTest {
 		
 		dao.get();
 		verify(iterator).hasNext();
-	}
+	}*/
 }

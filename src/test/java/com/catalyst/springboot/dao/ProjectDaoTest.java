@@ -35,7 +35,7 @@ public class ProjectDaoTest {
 		verify(mockEm).persist(null);
 	}
 	
-	@Test
+	/*@Test
 	public void getAllProjectsTest(){
 		TypedQuery<Project> query = mock(TypedQuery.class);
 		List<Project> expected = new ArrayList<Project>();
@@ -45,11 +45,11 @@ public class ProjectDaoTest {
 		
 		//dao.getByDev(dev)
 		verify(query).getResultList();
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void registerTest() {
 		//dao.register(null);
 		verify(mockEm).persist(null);
-	}
+	}*/
 }
