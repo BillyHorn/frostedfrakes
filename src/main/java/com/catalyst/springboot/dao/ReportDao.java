@@ -4,8 +4,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.mail.EmailHandler;
 
 @Transactional
 @Component
@@ -13,11 +15,13 @@ public class ReportDao {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	
 
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-	
+
 	public Report addReport(Report report) {
 		em.persist(report);
 		em.flush();
@@ -42,9 +46,11 @@ public class ReportDao {
 	 * 
 	 * @param report this is the report to be updated
 	 */
-	public void update(Report report) {
+	public Report update(Report report) {
 		em.merge(report);
 		em.flush();
+		return report;
+		
 	}
 	
 	public List<Report> getReportByDevId(String email) {
@@ -54,12 +60,12 @@ public class ReportDao {
 	}
 /**
  * will return all accepted and Rejected reports by a tech lead
- *SteffyJ
+ * SteffyJ
  * @param email
  * @return
  */
 	public List<Report> getallPreviousReports(String email) {
-
+ 
 		
 		return em.createQuery("Select r FROM Report r WHERE r.project.techLeadId.email = :email  AND r.state IN ('3','4')   ",Report.class)   
 		.setParameter("email", email).getResultList();

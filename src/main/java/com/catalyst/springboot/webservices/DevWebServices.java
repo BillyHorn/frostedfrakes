@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.catalyst.springboot.dao.ProjectDao;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.services.DevService;
 

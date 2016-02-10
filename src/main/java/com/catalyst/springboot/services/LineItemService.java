@@ -19,6 +19,9 @@ public class LineItemService {
 	@Autowired
 	LineItemDao lineItemDao;
 	
+	/**
+	 * simple setter for line item dao
+	 */
 	public void setLineItemDao(LineItemDao lineItemDao) {
 		this.lineItemDao = lineItemDao;
 	}
@@ -48,6 +51,11 @@ public class LineItemService {
 		lineItemDao.deleteLineItem(lineItemId);
 	}
 
+	/**
+	 * 
+	 * @param id the id of the tech lead we are getting pending lineitems for
+	 * @return returns the list of pending lineitems for the corresponding tech lead
+	 */
 	public List<LineItem> getPendingLineItems(Integer id) {
 		return lineItemDao.getPendingLineItems(id);
 	}
