@@ -58,4 +58,23 @@ public class DevWebServices {
 	public Dev currentUser(Principal principal) {
 		return devService.getEmployeeByUsername(principal.getName());
 	}
+	
+	@RequestMapping(value="/totpAuthentication", method = RequestMethod.POST)
+	public Dev totpAuth(@RequestBody String authCode){
+		return devService.totpAuth(authCode);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

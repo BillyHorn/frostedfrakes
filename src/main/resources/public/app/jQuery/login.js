@@ -25,10 +25,9 @@ $(document).ready(function(){
 	    timeout: 1000,
 	    type: 'POST',
 	    url: '/login'
-
 	  }).done(function() {
-	    window.location.href = "/";
-
+	    window.location.href = "/totpAuthentication";
+	    console.log("login succed");
 	  }).fail(function() {
 		$('#errorLog').show();
 		$('#errorLog').empty();

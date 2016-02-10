@@ -77,6 +77,13 @@ public class DevDao {
 		em.flush();
 		return dev;
 	}
+	
+	public Dev loginTotp(Dev dev){
+		em.merge(dev);
+		em.flush();
+
+		return dev;
+	}
 		
 	
 }

@@ -14,6 +14,9 @@ public class EmailHandler {
 	
 	@Autowired
 	private JavaMailSender javaMailSender;
+	
+	@Autowired
+	private TotpAuthentication totpGenerator;
 
 	public void setJavaMailSender(JavaMailSenderImpl javaMailSender) {
 		this.javaMailSender = javaMailSender;
@@ -74,6 +77,20 @@ public class EmailHandler {
             e.printStackTrace();
         } finally {}
         javaMailSender.send(mail);
+	}
+	
+	public String totpAuthentication(){
+		SimpleMailMessage mail = new SimpleMailMessage();
+		String totp = totpGenerator.generateTotp();
+		
+		mail.setTo("blarsen@catalystdevworks.com");
+		mail.setFrom("effpdx@gmail.com");
+		mail.setSubject("Your Authentication Code");
+		mail.setText("Code: " + totp);
+       
+        javaMailSender.send(mail);
+        
+        return totp;
 	}
 
 }

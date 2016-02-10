@@ -31,6 +31,8 @@ public class Dev {
 	private String password;
 	private String role;
 	private Boolean isactive;
+	private Long loginTime;
+	private String authCode;
 		
 	
 	/**
@@ -105,6 +107,35 @@ public class Dev {
 		this.role = role;
 	}
 
+	/**
+	 * @return the loginTime
+	 */
+	public Long getLoginTime() {
+		return loginTime;
+	}
+
+	/**
+	 * @param loginTime the loginTime to set
+	 */
+	public void setLoginTime(Long loginTime) {
+		this.loginTime = loginTime;
+	}
+	
+
+	/**
+	 * @return the authCode
+	 */
+	public String getAuthCode() {
+		return authCode;
+	}
+
+	/**
+	 * @param authCode the authCode to set
+	 */
+	public void setAuthCode(String authCode) {
+		this.authCode = authCode;
+	}
+
 	@Override
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder(31, 17);
@@ -124,4 +155,5 @@ public class Dev {
 		return builder.isEquals();
 		
 	}
+
 }

@@ -41,7 +41,8 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/**").authenticated()
 		    .and().formLogin().loginPage("/loginPage").permitAll()
-		    .usernameParameter("username").passwordParameter("password").loginProcessingUrl("/login").failureHandler(authFailure)
+		    .usernameParameter("username").passwordParameter("password").loginProcessingUrl("/login")
+		    .failureHandler(authFailure)
 		    .and().logout()
 		    .and().headers().cacheControl();
 		http.csrf().disable();
@@ -60,10 +61,9 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	CustomAuthenticationFailureHandler authFailure;
-	CustomAuthenticationFailureHandler authSuccess;
 
 	@Bean
-	CustomAuthenticationFailureHandler authenticationHandler() {
+	CustomAuthenticationFailureHandler authenticationFailureHandler() {
 	    return new CustomAuthenticationFailureHandler();
 	}
 	 
@@ -74,8 +74,5 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	 this.authFailure = authFailure;
 	}
 	
-	public void setAuthSuccess(CustomAuthenticationFailureHandler authSuccess) {
-		this.authSuccess = authSuccess;
-	}
 	
 }

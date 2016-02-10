@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+	<!-- vendor js -->
+	<script type="text/javascript" src="../vendor/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../vendor/angular/angular.js"></script>
+	<script type="text/javascript" src="../vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="../vendor/ui-bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+
+	<!-- site-specific js -->
+	<script type="text/javascript" src="../app/app.js"></script>
+
+	<script type="text/javascript" src="../app/jQuery/login.js"></script>
+	<script type="text/javascript" src="../app/jQuery/loginAnim.js"></script>
+	
+	<!-- regestration scripts -->
+	<script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
+	<script type="text/javascript" src="../app/service/registrationFactory.js"></script>
+	
+	<!-- totp scripts -->
+	<script type="text/javascript" src="../app/ctrl/totpAuthCtrl.js"></script>
+
+	<!--  bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+
+	<!-- site-specific css -->
+	<link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body ng-app="app">
+<div class="container" ng-controller="totpAuthCtrl">
+
+	<div class="form-group">
+		<input type="text" id="totp-user-code" ng-modal="totpCode"
+		tabindex="1" class="form-control" placeholder="Your Code:"
+		value="">
+	</div>
+	<div class="col-sm-6 col-sm-offset-3">
+		<button type="submit" name="login-submit" id="submitLogin"
+		tabindex="4" class="form-control btn btn-login" 
+		ui-sref="/logout">Back to Login</button>
+	</div>
+	<div class="col-sm-6 col-sm-offset-3">
+		<button type="submit" name="login-submit" id="submitLogin"
+		tabindex="4" class="form-control btn btn-login" 
+		ng-click="totp()">Authorize User</button>
+	</div>
+	{{2+1}}
+</div>
+
+</body>
+
+</html>
