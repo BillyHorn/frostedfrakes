@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Handles the sending of emails
- * @author kmatthiesen
- *
+ * 
  */
 @Service
 public class EmailHandler {
@@ -25,9 +24,10 @@ public class EmailHandler {
 	}
 
 	/**
+	 * Sends an email to the submitter of a report upon that report's submission.
 	 * 
-	 * @param email
-	 * @param project
+	 * @param email The email of the person submitting the report.
+	 * @param project The project of the report that was submitted.
 	 * @author kmatthiesen
 	 */
 	public void youSubmitted(String email, String project) {
@@ -40,9 +40,10 @@ public class EmailHandler {
     }
 	
 	/**
+	 * Sends an email to the techlead when a report is submitted.
 	 * 
-	 * @param email
-	 * @param project
+	 * @param email The email of the techlead of the project.
+	 * @param project The project of the report that was submitted.
 	 * @author kmatthiesen
 	 */
 	public void reportSubmitted(String email, String project){
@@ -55,9 +56,10 @@ public class EmailHandler {
 	}
 	
 	/**
+	 * Sends an email to the submitter when the report is approved.
 	 * 
-	 * @param email
-	 * @param project
+	 * @param email The email of the submitter.
+	 * @param project The project of the report that was approved.
 	 * @author kmatthiesen
 	 */
 	public void reportApproved(String email, String project){
@@ -70,10 +72,11 @@ public class EmailHandler {
 	}
 	
 	/**
+	 * Sends an email to the submitter when the report is rejected.
 	 * 
-	 * @param email
-	 * @param project
-	 * @param rejection
+	 * @param email The email of the submitter.
+	 * @param project The project of the report that was rejected.
+	 * @param rejection The reason the report was rejected.
 	 * @author kmatthiesen
 	 */
 	public void reportRejected(String email, String project, String rejection){
