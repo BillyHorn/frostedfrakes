@@ -13,7 +13,18 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   .state('home', {
     url: '/home',
     templateUrl: 'views/partials/home.html',
-    controller: 'homeCtrl'
+    controller: 'homeCtrl',
+    resolve: { 
+      getThisUser: ['loginService', function(loginService) {
+             /* obtain current user */
+             return loginService.currentDev().then(function(response){ 
+             console.log(response.data);
+             var currentUser = response.data;
+             /* return current user */
+             return currentUser; 
+           });
+      }]
+    }
   })
 
   .state('registration', {
