@@ -115,6 +115,10 @@ body {
     margin-bottom: 10px !important;
 }
 
-#container {
-    margin:inherit 10px;
+#auth-form-group {
+    margin-bottom: 0px !important;
+}
+
+#auth-error {
+    text-align: center;
 }

@@ -24,16 +24,6 @@ public class DevWebServices {
 	@Autowired
 	DevService devService;
 	
-	@Autowired
-	private AuthenticationFacade authenticationFacade;
-	
-	/**
-	 * @param authenticationFacade the authenticationFacade to set
-	 */
-	public void setAuthenticationFacade(AuthenticationFacade authenticationFacade) {
-		this.authenticationFacade = authenticationFacade;
-	}
-	
 	/**
 	 * @param service the service to set
 	 */
@@ -78,7 +68,6 @@ public class DevWebServices {
 	@RequestMapping(value="/users/validate", method = RequestMethod.POST)
 	public void totpAuth(@RequestBody String authCode, HttpServletResponse response, Principal principal){
 		devService.totpAuth(authCode, response, principal);
-		
 		
 	}
 }

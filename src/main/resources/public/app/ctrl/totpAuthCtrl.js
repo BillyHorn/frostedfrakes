@@ -5,8 +5,14 @@ angular.module('app').controller('totpAuthCtrl', ['$scope', 'devHttp', '$state',
 		devHttp.totpCode($scope.totpCode).then(function(response){
 	    	window.location.href="/";
 	    }, function(response){
-			alert("it failed");
+			$scope.error=" Invalid code / Code timed out.";
+			$scope.totpCode="";
 	    });
 	};
+
+	$scope.logout = function() {
+		window.location.href="/logout";
+	};
+
 
  }]);

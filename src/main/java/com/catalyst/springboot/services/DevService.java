@@ -79,13 +79,15 @@ public class DevService {
 		System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if(dev.getAuthCode().equals(totpCode) && (System.currentTimeMillis() - dev.getLoginTime() <= 200000)){
 			System.out.println("I passed the test!!!!!!!!!!!!!!!!!!!!!!!!");
-			response.setStatus(HttpServletResponse.SC_OK);	
+			response.setStatus(HttpServletResponse.SC_OK);
+			dev.setIsvalid(true);
 		}
 		else{
 			System.out.println("I failed the test!!!!!!!!!!!!!!!!!!!!!!!!");
 			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			dev.setIsvalid(false);
 		}
-		
+		devdao.loginTotp(dev);
 		return response;
 	}
 }

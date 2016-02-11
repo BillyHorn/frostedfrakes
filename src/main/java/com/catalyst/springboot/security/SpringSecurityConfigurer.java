@@ -43,7 +43,7 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 		    .and().formLogin().loginPage("/loginPage").permitAll()
 		    .usernameParameter("username").passwordParameter("password").loginProcessingUrl("/login")
 		    .failureHandler(authFailure)
-		    .and().logout()
+		    .and().logout().logoutSuccessHandler(logoutHandler).logoutSuccessUrl("/login")
 		    .and().headers().cacheControl();
 		http.csrf().disable();
 	}
@@ -61,10 +61,18 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	CustomAuthenticationFailureHandler authFailure;
+	
+	@Autowired
+	LogoutSuccessHandler logoutHandler;
 
 	@Bean
 	CustomAuthenticationFailureHandler authenticationFailureHandler() {
 	    return new CustomAuthenticationFailureHandler();
+	}
+	
+	@Bean
+	LogoutSuccessHandler newLogoutHandler(){
+		return new LogoutSuccessHandler();
 	}
 	 
 	 /**
@@ -72,6 +80,13 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	  */
 	public void setAuthFailure(CustomAuthenticationFailureHandler authFailure) {
 	 this.authFailure = authFailure;
+	}
+
+	/**
+	 * @param logoutHandler the logoutHandler to set
+	 */
+	public void setLogoutHandler(LogoutSuccessHandler logoutHandler) {
+		this.logoutHandler = logoutHandler;
 	}
 	
 	

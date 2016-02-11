@@ -1,9 +1,6 @@
 angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'loginService', '$state', function($scope, currentUser, loginService, $state) {
 
-    loginService.currentDev().then(function(response){
-        currentUser.setUser(response.data);
-        $scope.currentUser = response.data;
-    });
+    $scope.currentUser = currentUser.getUser();
     $scope.currentUser = {};
     $scope.currentUser.role="user";
 

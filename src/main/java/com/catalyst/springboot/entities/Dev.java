@@ -33,6 +33,7 @@ public class Dev {
 	private Boolean isactive;
 	private Long loginTime;
 	private String authCode;
+	private Boolean isvalid;
 		
 	
 	/**
@@ -134,6 +135,20 @@ public class Dev {
 	 */
 	public void setAuthCode(String authCode) {
 		this.authCode = authCode;
+	}
+
+	/**
+	 * @return the isvalid
+	 */
+	public Boolean getIsvalid() {
+		return isvalid;
+	}
+
+	/**
+	 * @param isvalid the isvalid to set
+	 */
+	public void setIsvalid(Boolean isvalid) {
+		this.isvalid = isvalid;
 	}
 
 	@Override

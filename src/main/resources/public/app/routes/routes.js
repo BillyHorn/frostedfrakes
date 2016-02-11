@@ -3,9 +3,15 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   // redirect from the base myreports state so that only child-states exist
   $urlRouterProvider.when('/my-reports', '/my-reports/saved');
 
-
   // and anything other than a state can send you back to home.
-  $urlRouterProvider.otherwise('/home');
+  //$urlRouterProvider.otherwise('/home');
+
+  $urlRouterProvider.otherwise(function($injector, $location){
+     var $state = $injector.get("$state");
+     if ($location.absUrl() !== "http://localhost:8080/totpAuthentication"){
+         $state.go("home");
+     }
+  });
 
   // states for each necessary route
   $stateProvider
@@ -13,7 +19,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   .state('home', {
     url: '/home',
     templateUrl: 'views/partials/home.html',
-    controller: 'homeCtrl'
+    controller: 'homeCtrl',
+    resolve: {
+        verify: ['currentUser', function(currentUser){
+            return currentUser.validateUser();
+        }]
+    }
   })
 
   .state('registration', {
@@ -59,5 +70,5 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     url: '/create-project',
     templateUrl: 'views/partials/create-project.html',
     controller: "createProjectCtrl"
-  })
+});
 }]);

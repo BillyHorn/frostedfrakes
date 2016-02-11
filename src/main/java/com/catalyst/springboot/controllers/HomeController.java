@@ -1,5 +1,7 @@
 package com.catalyst.springboot.controllers;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -50,11 +52,6 @@ public class HomeController {
 		return "/views/index.html";
 	}
 	
-	/*@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home() {
-		return "/views/partials/home.html";
-	}*/
-	
 	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 	public String loginPage(){
 		System.out.println("request mapping to login");
@@ -62,21 +59,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/totpAuthentication", method = RequestMethod.GET)
-	public String authPage(){
-		Authentication authentication1 = authenticationFacade.getAuthentication();
-        Dev dev = devService.getEmployeeByUsername(authentication1.getName());
-		dev.setLoginTime(System.currentTimeMillis());
-		dev.setAuthCode(emailHandler.totpAuthentication());
-		devService.loginTotp(dev);
-		
+	public String authPage(Principal principal){
+        Dev dev = devService.getEmployeeByUsername(principal.getName());
+        if ((System.currentTimeMillis() - dev.getLoginTime()) > 200000){
+        	dev.setLoginTime(System.currentTimeMillis());
+    		dev.setAuthCode(emailHandler.totpAuthentication());
+    		devService.loginTotp(dev);
+        }
 		return "/views/totpAuth.html";
 	}
-	
-	
-	
-/*	@RequestMapping(value ="/loginPage", method = RequestMethod.POST)
-	public String loginRequest(@RequestParam("username") String username, @RequestParam("password"), String password){
-		System.out.println("request mapping to login");
-		return "/views/partials/login.html";
-	}*/
 }

@@ -15,6 +15,8 @@
 	<script type="text/javascript" src="../app/jQuery/login.js"></script>
 	<script type="text/javascript" src="../app/jQuery/loginAnim.js"></script>
 
+	<script type="text/javascript" src="../app/routes/routes.js"></script>
+
 	<!-- regestration scripts -->
 	<script type="text/javascript" src="../app/ctrl/registrationCtrl.js"></script>
 	<script type="text/javascript" src="../app/service/registrationFactory.js"></script>
@@ -36,7 +38,7 @@
 		<div class="panel-body">
 			<form id="auth-form" ng-submit="totp()" role="form"
 			style="display: block;">
-				<div class="form-group">
+				<div class="form-group col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" id="auth-form-group">
 					<div class="form-group">
 						<input type="text" id="totp-user-code" ng-model="totpCode"
 						tabindex="1" class="form-control" placeholder="Your Code:">
@@ -44,23 +46,27 @@
 				</div>
 				<div class="form-group">
 					<div class="row">
-						<div>
-							<button type="submit" name="auth-submit" id="authBtn"
-							tabindex="4" class="form-control btn btn-login">
-							Authorize User</button>
-						</div>
-					</div>
-					<div class="row">
-						<div>
-							<button type="submit" name="logout" id="logutBtn"
-							tabindex="4" class="form-control btn btn-login"
-							ui-sref="/logout">Back to Login</button>
+						<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+							<div class="col-md-6 col-sm-6">
+								<button type="submit" name="auth-submit" id="authBtn"
+								class="form-control btn btn-login">
+								Authorize User</button>
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<button type="button" name="logout" id="logutBtn"
+								class="form-control btn btn-login"
+								ng-click="logout()">Back to Login</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</form>
+			<div class="alert alert-danger col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" ng-show="error.length" id="auth-error">
+				<strong>Error:</strong>{{error}}
+			</div>
 		</div>
 	</div>
+
 </div>
 
 </body>
