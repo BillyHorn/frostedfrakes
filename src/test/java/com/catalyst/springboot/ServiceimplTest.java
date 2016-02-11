@@ -1,7 +1,5 @@
 package com.catalyst.springboot;
 import org.junit.Before;
-import org.junit.Test;
-
 import com.catalyst.springboot.services.ReportService;
 
 

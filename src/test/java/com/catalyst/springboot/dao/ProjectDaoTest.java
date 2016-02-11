@@ -2,12 +2,7 @@ package com.catalyst.springboot.dao;
 
 
 import static org.mockito.Mockito.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
 import org.junit.Before;
 import org.junit.Test;
 

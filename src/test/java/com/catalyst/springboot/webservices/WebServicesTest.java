@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;
