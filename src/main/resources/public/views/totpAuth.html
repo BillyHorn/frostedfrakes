@@ -31,24 +31,36 @@
 </head>
 
 <body ng-app="app">
-<div class="container" ng-controller="totpAuthCtrl">
-
-	<div class="form-group">
-		<input type="text" id="totp-user-code" ng-model="totpCode"
-		tabindex="1" class="form-control" placeholder="Your Code:"
-		value="">
+<div class="container col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" ng-controller="totpAuthCtrl" id="container">
+	<div class="panel panel-login">
+		<div class="panel-body">
+			<form id="auth-form" ng-submit="totp()" role="form"
+			style="display: block;">
+				<div class="form-group">
+					<div class="form-group">
+						<input type="text" id="totp-user-code" ng-model="totpCode"
+						tabindex="1" class="form-control" placeholder="Your Code:">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div>
+							<button type="submit" name="auth-submit" id="authBtn"
+							tabindex="4" class="form-control btn btn-login">
+							Authorize User</button>
+						</div>
+					</div>
+					<div class="row">
+						<div>
+							<button type="submit" name="logout" id="logutBtn"
+							tabindex="4" class="form-control btn btn-login"
+							ui-sref="/logout">Back to Login</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-	<div class="col-sm-6 col-sm-offset-3">
-		<button type="submit" name="login-submit" id="submitLogin"
-		tabindex="4" class="form-control btn btn-login"
-		ui-sref="/logout">Back to Login</button>
-	</div>
-	<div class="col-sm-6 col-sm-offset-3">
-		<button type="submit" name="login-submit" id="submitLogin"
-		tabindex="4" class="form-control btn btn-login"
-		ng-click="totp()">Authorize User</button>
-	</div>
-	{{2+1}}
 </div>
 
 </body>

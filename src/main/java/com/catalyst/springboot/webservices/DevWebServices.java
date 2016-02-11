@@ -3,6 +3,8 @@ package com.catalyst.springboot.webservices;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.http.protocol.HTTP;
 import org.openqa.selenium.remote.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,8 +76,10 @@ public class DevWebServices {
 	}
 	
 	@RequestMapping(value="/users/validate", method = RequestMethod.POST)
-	public Dev totpAuth(@RequestBody String authCode){
-		return devService.totpAuth(authCode);
+	public void totpAuth(@RequestBody String authCode, HttpServletResponse response, Principal principal){
+		devService.totpAuth(authCode, response, principal);
+		
+		
 	}
 }
 

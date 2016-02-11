@@ -110,3 +110,11 @@ body {
 .panel-body{
 	padding-bottom: 0px;
 }
+
+#authBtn {
+    margin-bottom: 10px !important;
+}
+
+#container {
+    margin:inherit 10px;
+}

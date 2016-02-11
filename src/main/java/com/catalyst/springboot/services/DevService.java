@@ -3,6 +3,8 @@ package com.catalyst.springboot.services;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.openqa.selenium.remote.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -71,31 +73,21 @@ public class DevService {
 		return devdao.loginTotp(dev);
 	}
 	
-	public Dev totpAuth(String totpCode){
+	public HttpServletResponse totpAuth(String totpCode, HttpServletResponse response, Principal principal){
 		System.out.println(totpCode+ "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Authy");
-		List<Dev> devs = devdao.getDevByCode(totpCode);
-		if (!devs.isEmpty()){
-			Dev dev = devs.get(0);
-			System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			if(dev.getAuthCode().equals(totpCode) && (System.currentTimeMillis() - dev.getLoginTime() <= 200000)){
-				System.out.println("I passed the test!!!!!!!!!!!!!!!!!!!!!!!!");
-				return dev;
-			}
-			else{
-				System.out.println("I failed the test!!!!!!!!!!!!!!!!!!!!!!!!");
-				return null;
-			}
+		Dev dev = devdao.getDevByUsername(principal.getName());	
+		System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		if(dev.getAuthCode().equals(totpCode) && (System.currentTimeMillis() - dev.getLoginTime() <= 200000)){
+			System.out.println("I passed the test!!!!!!!!!!!!!!!!!!!!!!!!");
+			response.setStatus(HttpServletResponse.SC_OK);	
+		}
+		else{
+			System.out.println("I failed the test!!!!!!!!!!!!!!!!!!!!!!!!");
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 		}
 		
-		return null;
-		
-		
-		
-		
-		
+		return response;
 	}
-	
-	
 }
 
 

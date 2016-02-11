@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TotpAuthentication {
-	final static String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456789";
+	final static String AB = "0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789abcdefghijkmnopqrstuvwxyz0123456789";
 	Random rnd = new Random();
 	   
 	   public String generateTotp(){
