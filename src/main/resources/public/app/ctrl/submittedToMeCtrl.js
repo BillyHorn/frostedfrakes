@@ -41,6 +41,9 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 			$scope.myPendingReports = res.data;
 		});
 		
+		$scope.approveReport = function(report) {
+			   reportHttp.approveReport(report);
+			  };
 }]);
 
 
