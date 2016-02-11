@@ -16,11 +16,9 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     controller: 'homeCtrl',
     resolve: { 
       getThisUser: ['loginService', function(loginService) {
-             /* obtain current user */
+             /* obtain current user upon page load @wPerlichek */
              return loginService.currentDev().then(function(response){ 
-             console.log(response.data);
              var currentUser = response.data;
-             /* return current user */
              return currentUser; 
            });
       }]

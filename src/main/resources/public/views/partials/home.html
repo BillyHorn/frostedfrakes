@@ -12,9 +12,9 @@
 	</thead>
 	<tbody><a> <!-- link directly to report from home page -->
 		<tr ng-repeat="report in thisUsersReports" ui-sref="viewReport({reportid : report.reportId})" class="clickable"></a>
-		<td>{{report.reportId}}</td>
-		<td>{{report.project.name}}</td>
-		<td>{{report.state}}</td>
+			<td>{{report.reportId}}</td>
+			<td>{{report.project.name}}</td>
+			<td>{{report.state}}</td>
 	</tbody>
 </table>
 
