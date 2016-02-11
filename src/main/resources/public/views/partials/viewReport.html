@@ -44,6 +44,41 @@
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#historyModal"> View History</button>
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
+
+<!-- Modal to display report history-->
+<div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Report History</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th> Dev </th>
+              <th> Action </th>
+              <th> Timestamp </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="h in history">
+              <td>{{h.editingDev.email}}</td>
+              <td>{{h.action}}</td>
+              <td>{{h.date}}</td>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

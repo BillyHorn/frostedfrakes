@@ -2,9 +2,6 @@ package com.catalyst.springboot.entities;
 
 import java.sql.Date;
 
-import java.util.Set;
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,14 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import javax.persistence.OneToMany;
-
 import javax.persistence.OneToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * Models line item

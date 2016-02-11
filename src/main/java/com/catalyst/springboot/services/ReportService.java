@@ -1,11 +1,10 @@
 package com.catalyst.springboot.services;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.catalyst.springboot.dao.ReportDao;
-import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.mail.EmailHandler;
 
 
 @Service
@@ -13,6 +12,13 @@ public class ReportService {
 	
 	@Autowired
 	private ReportDao reportDao;
+	
+	@Autowired
+	private EmailHandler emailHandler;
+
+	@Autowired
+	private ReportHistoryService reportHistoryService;
+
 	
 	/**
 	 * @param reportDao the reportDao to set
@@ -22,24 +28,58 @@ public class ReportService {
 	}
 	
 	/**
+	 * @param emailHandler the emailHandler to set
+	 */
+	public void setEmailHandler(EmailHandler emailHandler) {
+		this.emailHandler = emailHandler;
+	}
+		
+	/**
+	 * simple setter for report history service
+	 * used for logging creating and editing reports to the reporthistory table
+	 * @param reportHistoryService 
+	 * @author mKness
+	 */
+	public void setReportHistoryService(ReportHistoryService reportHistoryService) {
+		this.reportHistoryService = reportHistoryService;
+
+	}
+	
+	/**
 	 * this function send an update request to the report DAO
+	 * also calls the reportHistoryService to create a log of the change @author mKness
 	 * 
 	 * @param report this is the report to be updated.
 	 */
 	public void update(Report report) {
-		reportDao.update(report);
+		Report repor = reportDao.update(report);
+		reportHistoryService.updateLog(report);
+		if (repor.getState().equals("2")){
+			emailHandler.youSubmitted(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName());
+			emailHandler.reportSubmitted(repor.getDev().getEmail(), repor.getProject().getName());
+		}
+		else if (repor.getState().equals("3")){
+			emailHandler.reportRejected(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName(), repor.getRejectionNotes());
+		}
+		else if (repor.getState().equals("4")){
+			emailHandler.reportApproved(repor.getProject().getTechLeadId().getEmail(), repor.getProject().getName());
+		}		
 	}
 
 	/** ADD
 	 * add a new report
+	 * 
+	 * 	also creates an entry in reporthistory for the creation of a report @author mKness
+	 * 
 	 * @param report
 	 * @author wPerlichek
 	 * @return 
 	 */
-	public Report add(Report report) {
-		//report.setUsers(convertDevs(report.getLineItemsToConvert()));
-//		report.setLineItems(convertLineItems(report.getLineItemsToConvert()));
-		return reportDao.addReport(report);
+	public Report add(Report report) { // TODO throw in try
+		Report rtnReport =  reportDao.addReport(report);
+		reportHistoryService.createLog(rtnReport);
+		return rtnReport;
+
 	}	
 	
 	/** GET
@@ -50,23 +90,8 @@ public class ReportService {
 	public List<Report> getReport(){
 		return reportDao.getReport();
 	}
-	
-	
-//	public List<Report> getTechLeadReports(List<Project> list) {
-//		List<Report> allReports = reportDao.getReport();  
-//		List<Report> techLeadReports = new ArrayList<Report>();
-//		for (Report report : allReports){
-//			for(Project pro: list){
-//				if(report.getProject().getProjectId() == pro.getProjectId()){
-//					techLeadReports.add(report);
-//				}
-//			}
-//		}
-//		return techLeadReports;
-//	}
-	
+
 	public List<Report> getReportByDevId(String email) {
-		// TODO Auto-generated method stub
 		return reportDao.getReportByDevId(email);
 	}
 	

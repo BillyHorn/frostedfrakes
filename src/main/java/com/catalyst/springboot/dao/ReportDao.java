@@ -16,11 +16,13 @@ public class ReportDao {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	
 
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-	
+
 	public Report addReport(Report report) {
 		em.persist(report);
 		em.flush();
@@ -45,9 +47,11 @@ public class ReportDao {
 	 * 
 	 * @param report this is the report to be updated
 	 */
-	public void update(Report report) {
+	public Report update(Report report) {
 		em.merge(report);
 		em.flush();
+		return report;
+		
 	}
 	
 	public List<Report> getReportByDevId(String email) {
