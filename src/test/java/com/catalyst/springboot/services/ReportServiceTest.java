@@ -32,13 +32,13 @@ public class ReportServiceTest {
 		report = mock(Report.class);
 	}
 	
-	/*@Test
+	@Test
 	public void updateTest() {
 		doNothing().when(reportHistoryService).updateLog(anyObject());
 		
 		reportService.update(report);
 		verify(reportDao).update(report);
-	}*/
+	}
 	
 	@Test
 	public void addTest() {

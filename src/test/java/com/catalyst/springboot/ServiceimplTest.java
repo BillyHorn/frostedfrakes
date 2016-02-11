@@ -1,5 +1,7 @@
 package com.catalyst.springboot;
 import org.junit.Before;
+import org.junit.Test;
+
 import com.catalyst.springboot.services.ReportService;
 
 
@@ -29,10 +31,10 @@ public class ServiceimplTest {
 	}
 	
 	/* use the Serviceimpl object to add a report verify success */
-	/*@Test
+	@Test
 	public void testAddReport(){
 		serviceTarget.add(null);
 		//verify(mockDao, times(1)).addReport(null);
-	}*/
+	}
 	
 }

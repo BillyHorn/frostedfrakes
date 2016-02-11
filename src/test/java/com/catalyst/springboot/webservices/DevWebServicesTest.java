@@ -31,7 +31,7 @@ public class DevWebServicesTest {
 		dev = mock(Dev.class);
 	}
 
-	/*@Test
+	@Test
 	public void addNewUserTest() {
 		Dev realDev = new Dev();
 		realDev.setEmail("test");
@@ -42,7 +42,7 @@ public class DevWebServicesTest {
 		
 		devWebServices.addNewUser(realDev);
 		verify(devService).register(realDev);
-	}*/
+	}
 	
 	@Test
 	public void getUsersTest() {
@@ -54,8 +54,8 @@ public class DevWebServicesTest {
 		verify(devService).get();
 	}
 	
-	/*@Test
+	@Test
 	public void currentUserTest() {
 		
-	}*/
+	}
 }
