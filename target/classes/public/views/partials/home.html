@@ -1,4 +1,21 @@
- <div ng-model ="thisUserReports" ng-repeat="report in thisUsersReports">
-{{report.reportId}}<br>
-{{report.state}}
- </div>
+<div class="ng-scope" ui-view=""><div class="panel ng-scope panel-default" ng-class="panelType">
+  <div class="panel-heading ng-binding">My Reports</div>
+  <div class="panel-body">
+    <div class="list-group">
+<table class="table table-striped" ng-model="thisUsersReports">
+	<thead>
+		<tr>
+			<th> Report ID </th>
+			<th> Project </th>
+			<th> Status </th>
+		</tr>
+	</thead>
+	<tbody><a> <!-- link directly to report from home page -->
+		<tr ng-repeat="report in thisUsersReports" ui-sref="viewReport({reportid : report.reportId})" class="clickable"></a>
+		<td>{{report.reportId}}</td>
+		<td>{{report.project.name}}</td>
+		<td>{{report.state}}</td>
+	</tbody>
+</table>
+
+
