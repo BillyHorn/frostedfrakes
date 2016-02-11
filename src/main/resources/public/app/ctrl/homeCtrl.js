@@ -1,5 +1,5 @@
-angular.module('app').controller('homeCtrl', ['$scope', 'currentUser', 'reportHttp', 'getThisUser',                              
-  function($scope, currentUser, reportHttp, getThisUser) {
+angular.module('app').controller('homeCtrl', ['$scope', 'stateConverterService', 'currentUser', 'reportHttp', 'getThisUser', 'savedState', 'submittedState',                             
+  function($scope, stateConverterService, currentUser, reportHttp, getThisUser, savedState, submittedState) {
 
 	/* obtain current user data from resolve */
   	$scope.currentEmail = getThisUser.email;
@@ -11,6 +11,8 @@ angular.module('app').controller('homeCtrl', ['$scope', 'currentUser', 'reportHt
 	   reports on the home page */
 	 reportHttp.getReports($scope.currentEmail).then(function(response){
 		  $scope.thisUsersReports = response.data;
+		 /* convert numeric value of state to associated string value */
+		 $scope.thisUsersReports.state = stateConverterService.getString($scope.thisUsersReports.state); 
         }, function(response){
             console.log(response);
         });

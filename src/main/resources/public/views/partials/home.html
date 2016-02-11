@@ -1,7 +1,4 @@
-<ul>
-  <li ng-repeat="report in thisUsersReports" ng-switch on="report.state" >
-    <span ng-switch-when="1" value="saved"</span>
-    <span ng-switch-default>{{report.state}}</span>
-  </li>
-</ul>
-
+ <div ng-model ="thisUserReports" ng-repeat="report in thisUsersReports">
+{{report.reportId}}<br>
+{{report.state}}
+ </div>
