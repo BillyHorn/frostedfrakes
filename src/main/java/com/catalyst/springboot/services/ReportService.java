@@ -1,10 +1,8 @@
 package com.catalyst.springboot.services;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.catalyst.springboot.dao.ReportDao;
-import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.entities.Report;
 import com.catalyst.springboot.mail.EmailHandler;
 

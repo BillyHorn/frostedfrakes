@@ -1,8 +1,4 @@
 package com.catalyst.springboot;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 import org.junit.Before;
 import org.junit.Test;
 import com.catalyst.springboot.services.ReportService;
@@ -33,6 +29,7 @@ public class ServiceimplTest {
 		//serviceTarget.setReportDao(mockDao);
 	}
 	
+<<<<<<< HEAD:src/main/test/com/catalyst/springboot/ServiceimplTest.java
 	/* use the Serviceimpl object to add a report verify success *
 	@Test
 	public void testAddReport(){
@@ -40,4 +37,13 @@ public class ServiceimplTest {
 		//verify(mockDao, times(1)).addReport(null);
 	}
 	*/
+
+	/* use the Serviceimpl object to add a report verify success */
+	/*@Test
+	public void testAddReport(){
+		serviceTarget.add(null);
+		//verify(mockDao, times(1)).addReport(null);
+	}*/
+	
+
 }

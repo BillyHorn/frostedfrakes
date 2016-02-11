@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.stereotype.Service;
-
 import com.catalyst.springboot.dao.ReportDao;
 import com.catalyst.springboot.entities.Report;
 
@@ -34,13 +32,13 @@ public class ReportServiceTest {
 		report = mock(Report.class);
 	}
 	
-	@Test
+	/*@Test
 	public void updateTest() {
 		doNothing().when(reportHistoryService).updateLog(anyObject());
 		
 		reportService.update(report);
 		verify(reportDao).update(report);
-	}
+	}*/
 	
 	@Test
 	public void addTest() {

@@ -2,20 +2,9 @@ package com.catalyst.springboot.dao;
 
 
 import static org.mockito.Mockito.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
 import org.junit.Before;
-import org.junit.Test;
-
 import com.catalyst.springboot.entities.Dev;
-
-import javassist.bytecode.Descriptor.Iterator;
 
 public class DevDaoTest {
 
@@ -34,7 +23,7 @@ public class DevDaoTest {
 	
 	
 	
-	@Test
+	/*@Test
 	public void getAllDevsTest(){
 		TypedQuery<Dev> query = mock(TypedQuery.class);
 		List<Dev> devsToConvert = new ArrayList<Dev>();
@@ -49,5 +38,5 @@ public class DevDaoTest {
 		
 		dao.get();
 		verify(iterator).hasNext();
-	}
+	}*/
 }

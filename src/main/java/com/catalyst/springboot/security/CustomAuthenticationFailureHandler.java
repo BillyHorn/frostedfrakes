@@ -24,7 +24,8 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
   * @param response The response
   * @param exception The exception
   */
- public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+ @Override
+public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
    AuthenticationException exception) throws IOException, ServletException {
   
   response.sendError(403);
