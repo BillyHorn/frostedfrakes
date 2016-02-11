@@ -1,10 +1,13 @@
 package com.catalyst.springboot.services;
 
+import java.security.Principal;
 import java.util.List;
 
+import org.openqa.selenium.remote.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 
 import com.catalyst.springboot.component.AuthenticationFacade;
 import com.catalyst.springboot.dao.DevDao;
@@ -20,9 +23,6 @@ public class DevService {
 	
 	@Autowired 
 	private DevDao devdao;
-	
-	@Autowired
-	private AuthenticationFacade authenticationFacade;
 
 	/**
 	 * @param devdao the devdao to set
@@ -31,14 +31,6 @@ public class DevService {
 		this.devdao = devdao;
 	}
 	
-	/**
-	 * @param authenticationFacade the authenticationFacade to set
-	 */
-	public void setAuthenticationFacade(AuthenticationFacade authenticationFacade) {
-		this.authenticationFacade = authenticationFacade;
-	}
-
-
 	/**
 	 * Gets all devs from the database
 	 * 
@@ -81,24 +73,26 @@ public class DevService {
 	
 	public Dev totpAuth(String totpCode){
 		System.out.println(totpCode+ "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Authy");
-		Authentication authentication = authenticationFacade.getAuthentication();
-		if (authentication == null){
-			System.out.println("I am a stupid little gnoll");
-		}
-		System.out.println(authentication.getName());
-		System.out.println(authentication);
-		System.out.println(authentication.getDetails().toString());
-        Dev dev = devdao.getDevByUsername(authentication.getName());
-        System.out.println("After getDev");
-		System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		if(dev.getAuthCode().equals(totpCode)){
-			System.out.println("AUTHORIZED");
-		}
-		else{
-			System.out.println("FAILURE");
+		List<Dev> devs = devdao.getDevByCode(totpCode);
+		if (!devs.isEmpty()){
+			Dev dev = devs.get(0);
+			System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			if(dev.getAuthCode().equals(totpCode) && (System.currentTimeMillis() - dev.getLoginTime() <= 200000)){
+				System.out.println("I passed the test!!!!!!!!!!!!!!!!!!!!!!!!");
+				return dev;
+			}
+			else{
+				System.out.println("I failed the test!!!!!!!!!!!!!!!!!!!!!!!!");
+				return null;
+			}
 		}
 		
-		return dev;
+		return null;
+		
+		
+		
+		
+		
 	}
 	
 	

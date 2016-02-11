@@ -63,8 +63,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/totpAuthentication", method = RequestMethod.GET)
 	public String authPage(){
-		Authentication authentication = authenticationFacade.getAuthentication();
-        Dev dev = devService.getEmployeeByUsername(authentication.getName());
+		Authentication authentication1 = authenticationFacade.getAuthentication();
+        Dev dev = devService.getEmployeeByUsername(authentication1.getName());
 		dev.setLoginTime(System.currentTimeMillis());
 		dev.setAuthCode(emailHandler.totpAuthentication());
 		devService.loginTotp(dev);

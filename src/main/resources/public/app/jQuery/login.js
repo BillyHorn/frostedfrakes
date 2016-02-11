@@ -15,7 +15,6 @@ $(document).ready(function(){
 	    url: '/login'
 	  }).done(function() {
 	    window.location.href = "/totpAuthentication";
-	    console.log("login succed");
 	  }).fail(function() {
 		$('#errorLog').show();
 		$('#errorLog').empty();

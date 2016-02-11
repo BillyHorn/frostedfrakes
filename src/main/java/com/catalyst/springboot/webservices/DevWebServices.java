@@ -3,12 +3,16 @@ package com.catalyst.springboot.webservices;
 import java.security.Principal;
 import java.util.List;
 
+import org.apache.http.protocol.HTTP;
+import org.openqa.selenium.remote.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalyst.springboot.component.AuthenticationFacade;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.services.DevService;
 
@@ -17,6 +21,16 @@ public class DevWebServices {
 
 	@Autowired
 	DevService devService;
+	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
+	
+	/**
+	 * @param authenticationFacade the authenticationFacade to set
+	 */
+	public void setAuthenticationFacade(AuthenticationFacade authenticationFacade) {
+		this.authenticationFacade = authenticationFacade;
+	}
 	
 	/**
 	 * @param service the service to set
