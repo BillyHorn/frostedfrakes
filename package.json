@@ -1,0 +1,8 @@
+{
+  "name": "frosted-frakes",
+  "version": "0.1.0",
+  "description": "track expense reports",
+  "scripts": {
+    "test":"karma start karma.conf.js --single-run"
+  }
+}
