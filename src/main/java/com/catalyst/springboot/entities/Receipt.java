@@ -34,18 +34,18 @@ public class Receipt {
 	}
 	
 	/**
-	 * @return the reciptId
+	 * @return the receiptId
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer getReciptId() {
+	public Integer getReceiptId() {
 		return receiptId;
 	}
 	/**
-	 * @param reciptId the reciptId to set
+	 * @param receiptId the receiptId to set
 	 */
-	public void setReciptId(Integer reciptId) {
-		this.receiptId = reciptId;
+	public void setReceiptId(Integer receiptId) {
+		this.receiptId = receiptId;
 	}
 	
 	/**

@@ -1,11 +1,14 @@
 package com.catalyst.springboot.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
+import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.entities.Receipt;
 
 @Transactional
@@ -28,9 +31,16 @@ public class ReceiptDao {
 		em.persist(receipt);
 		em.flush();
 	}
+	
+	public Receipt getReceiptById(Integer id) {
+		return em.createQuery("SELECT r FROM Receipt r WHERE r.receiptId = :receiptId", Receipt.class)
+					.setParameter("receiptId", id).getSingleResult();
+	}
 
-	public Receipt getReceipt() {
-		return em.createQuery("SELECT r FROM Receipt r", Receipt.class).getResultList().get(0);
+	public List<Receipt> getReceiptByLineItemId(Integer lineItemId) {
+		return em.createQuery("SELECT r FROM Receipt r WHERE r.lineItem.lineItemId = :lineItemId", Receipt.class)
+				.setParameter("lineItemId", lineItemId)
+				.getResultList();
 	}
 
 }

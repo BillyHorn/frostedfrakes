@@ -1,9 +1,3 @@
-// angular.module('app').controller('homeCtrl', ['$scope', 'currentUser', function($scope, currentUser) {
-//
-//
-//
-// }]);
-
 angular.module('app').directive('fileModel', ['$parse', function ($parse) {
   return {
     restrict: 'A',
@@ -36,15 +30,8 @@ angular.module('app').service('fileUpload', ['$http', function ($http) {
   };
 }]);
 
-angular.module('app').service('fileDownload', ['$http', function($http) {
-  this.downloadFile = function() {
-    return $http.get('/getReceipt').then(function(response){
-      return response.data;
-    });
-  };
-}]);
 
-angular.module('app').controller('homeCtrl', ['$scope', 'fileUpload', 'fileDownload', function($scope, fileUpload, fileDownload){
+angular.module('app').controller('homeCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
   $scope.uploadFile = function(){
     var file = $scope.myFile;
@@ -52,13 +39,5 @@ angular.module('app').controller('homeCtrl', ['$scope', 'fileUpload', 'fileDownl
     console.dir(file);
     fileUpload.uploadFileToUrl(file);
   };
-
-  $scope.showImage = function(){
-    fileDownload.downloadFile().then(function(data){
-      $scope.imageData = data;
-    });
-
-  };
-
 
 }]);

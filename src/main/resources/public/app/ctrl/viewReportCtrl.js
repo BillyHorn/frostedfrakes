@@ -3,18 +3,24 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
 
     $scope.report = getReport.data;
     $scope.projects = getProjects.data;
-    for(var i = 0; i < getLineItems.data.length; i++)
+
+    for(var i = 0; i < getLineItems.length; i++)
     {
-      var tempDate = new Date(getLineItems.data[i].date);
+      var tempDate = new Date(getLineItems[i].date);
       tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
-      getLineItems.data[i].date = tempDate;
+      getLineItems[i].date = tempDate;
     }
-    $scope.lineitems = getLineItems.data;
+
+    $scope.lineitems = getLineItems;
+
     $scope.categories = getCategories.data;
+
     // the index of the reports assoiciated project in the projects array used for default value in the ng-option
     $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
+
     // converts the state from number to a string so it is humanreadable
     $scope.state = stateConverterService.getString($scope.report.state);
+
     // submits the report to the db with either a saved or submitted status based on which button was clicked
     // also will update all lineitems assoicated with the report TODO only update modified line items
     $scope.putReport = function(state){

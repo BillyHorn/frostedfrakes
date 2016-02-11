@@ -1,5 +1,7 @@
 package com.catalyst.springboot.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +33,12 @@ public class ReceiptService {
 		
 	}
 
-	public Receipt getReceipt() {
-		return receiptDao.getReceipt();
+	public List<Receipt> getReceiptByLineItemId(Integer id) {
+		return receiptDao.getReceiptByLineItemId(id);
+	}
+
+	public Receipt getReceiptById(Integer lineItemId) {
+		return receiptDao.getReceiptById(lineItemId);
 	}
 	
 }
