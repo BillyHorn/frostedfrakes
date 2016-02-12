@@ -1,5 +1,11 @@
 <div class="container">
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
+   
+    <fieldset class="form-group">
+      <label for="ReportName">Report Name </label>
+      <input type="text"  class="form-control" name="ReportName" id="inputReportName"  ng-model="report.reportname" > </input>
+    </fieldset>
+    
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
       <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects">  </select>

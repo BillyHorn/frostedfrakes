@@ -4,6 +4,8 @@
   <div class="panel-body">
     <div class="list-group">
       <a ng-repeat="report in filteredReports" ui-sref="viewReport({reportid : report.reportId})" class="list-group-item">{{report.project.name}} <span class="horizontal-break"></span>Report ID: {{report.reportId}}</a>
+  
+  reportid : report.name 
     </div> 
   </div>
 </div>
