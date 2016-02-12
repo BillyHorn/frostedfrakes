@@ -4,7 +4,9 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     $scope.report = getReport.data;
     $scope.projects = getProjects.data;
     $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
-  
+    $scope.report.name = $scope.report.reportname;
+    console.log("$scope.report.name");
+    console.log($scope.report.name);
    
     
     // fetch the history for the report
@@ -36,6 +38,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     $scope.putReport = function(state){
       $scope.report.state = state;
       $scope.report.project = $scope.selectedProject;
+    //  $scope.report.newname = $scope.report.reportname;
       reportHttp.putReport($scope.report);
      
       // iterate through the lineitems and send all of them to update

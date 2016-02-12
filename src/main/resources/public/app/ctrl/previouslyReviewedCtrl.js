@@ -40,10 +40,10 @@ angular.module('app').controller('previouslyReviewedCtrl', ['$scope', '$state', 
 				1: "saved",
 				2: "submitted",
 				3: "rejected",
-				4: "aproved"		
+				4: "approved"		
 		};
 		
-	$scope. getStateName = function(id) {			
+	$scope.getStateName = function(id) {			
 			return states[id];		
 		};
 

@@ -31,7 +31,7 @@ angular.module('app').service('myReportsService', ['reportHttp', 'currentUser', 
       case "my-reports.previouslyReviewed":
     	  return "Reviewed";
       default:
-        return "Something's Gone Wrong";
+        return "";
     }
   }
 

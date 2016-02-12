@@ -58,15 +58,15 @@ public class ReportDao {
 
 	}
 /**
- * will return all accepted and Rejected reports by a tech lead
+ * this will return all accepted and Rejected reports by a tech lead
  * SteffyJ
  * @param email
  * @return
  */
 	public List<Report> getallPreviousReports(String email) {
- 
+ //ORDER BY timeStamp ASC 
 		
-		return em.createQuery("Select r FROM Report r WHERE r.project.techLeadId.email = :email  AND r.state IN ('3','4')   ",Report.class)   
+		return em.createQuery("Select r FROM Report r WHERE r.project.techLeadId.email = :email  AND r.state IN ('3','4') ORDER BY timeStamp DESC  ",Report.class)   
 		.setParameter("email", email).getResultList();
 
 

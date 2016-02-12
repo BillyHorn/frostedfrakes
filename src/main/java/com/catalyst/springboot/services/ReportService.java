@@ -1,5 +1,6 @@
 package com.catalyst.springboot.services;
 import java.util.List;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.catalyst.springboot.dao.ReportDao;
@@ -52,6 +53,9 @@ public class ReportService {
 	 * @param report this is the report to be updated.
 	 */
 	public void update(Report report) {
+	if(report.getState().equals("3")|| report.getState().equals("4")){
+		report.setTimestamp(getTimestamp());
+	}
 		Report repor = reportDao.update(report);
 		reportHistoryService.updateLog(report);
 		if (repor.getState().equals("2")){
@@ -117,5 +121,15 @@ public class ReportService {
 	public List<Report> getallPreviousReports(String email) {
 
 		return reportDao.getallPreviousReports(email);
+	}
+	
+	/**
+	 * helper function to get the current time stamp
+	 * @return the current timestamp
+	 * @author mKness
+	 */
+	private Timestamp getTimestamp() {
+		java.util.Date date = new java.util.Date();
+		return new Timestamp(date.getTime());
 	}
 }
