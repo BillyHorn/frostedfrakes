@@ -2,6 +2,7 @@ package com.catalyst.springboot.services;
 
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -86,11 +87,14 @@ public class ReportHistoryServiceTest {
 	
 	@Test 
 	public void updateLogTest() {
+		List<ReportHistory> history = new ArrayList<ReportHistory>();
+		
 		ReportHistory mockRH = mock(ReportHistory.class);
 		Authentication mockAuth = mock(Authentication.class);
 		when(service.authenticationFacade.getAuthentication()).thenReturn(mockAuth);
 		when(mockAuth.getName()).thenReturn(null);
 		when(service.devService.getEmployeeByUsername(anyString())).thenReturn(mockDev);
+		when(dao.getReportHistory(anyInt())).thenReturn(history);
 		doNothing().when(mockRH).setEditingDev(anyObject());
 		doNothing().when(mockRH).setTimeStamp(anyObject());
 		doNothing().when(mockRH).setReport(anyObject());

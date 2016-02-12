@@ -155,4 +155,12 @@ public class ReportHistory {
 		return builder.isEquals();
 		
 	}
+	
+	/**
+	 * override objects tostring so it provides relevent infromation for debugging
+	 */
+	@Override
+	public String toString(){
+		return "/n/n/n/nREPORT: " + report.getReportId() + "/nACTION: " + this.getAction() + "/nTIMESTAMP: " + this.getTimeStamp();
+	}
 }

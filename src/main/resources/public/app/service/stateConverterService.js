@@ -7,8 +7,8 @@
  *  4 - approved
  */
 
-angular.module('app').service('stateConverterService', ['savedState','submittedState','rejectedState','approvedState',
- function(savedState, submittedState, rejectedState, approvedState){
+angular.module('app').service('stateConverterService', ['savedState','submittedState','rejectedState','approvedState','createdState','unsubmittedState',
+ function(savedState, submittedState, rejectedState, approvedState, createdState, unsubmittedState){
 
   function getString(number) {
     if(number == savedState) {
@@ -22,6 +22,12 @@ angular.module('app').service('stateConverterService', ['savedState','submittedS
     }
     if(number == approvedState) {
       return "approved";
+    }
+    if(number == createdState) {
+      return "created";
+    }
+    if(number == unsubmittedState) {
+      return "unsubmitted";
     }
   }
 
@@ -37,6 +43,12 @@ angular.module('app').service('stateConverterService', ['savedState','submittedS
     }
     if(string == "approved") {
       return approvedState;
+    }
+    if(string == "created") {
+      return createdState;
+    }
+    if(string == "unsubmitted") {
+      return unsubmittedState;
     }
   }
 

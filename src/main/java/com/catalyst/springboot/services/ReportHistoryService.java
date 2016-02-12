@@ -1,6 +1,7 @@
 package com.catalyst.springboot.services;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +91,7 @@ public class ReportHistoryService {
 		reportHistory.setEditingDev(getEditingDev());
 		reportHistory.setTimeStamp(getTimestamp());
 		reportHistory.setReport(report);
-		reportHistory.setAction("0");
+		reportHistory.setAction("0"); // created
 		reportHistoryDao.createLog(reportHistory);
 	}
 
@@ -122,12 +123,23 @@ public class ReportHistoryService {
 	/**
 	 * helper function to return a string based on the state of the given report
 	 * 
+	 * if the state is saved check to see if the previous state was saved (1) and if it was
+	 * then set the action to unsubmitted
+	 * 
 	 * @param report the report being logged
 	 * @return the string representation of the action taken
 	 * @author mKness
 	 */
 	private String getAction(Report report) {
 		String state = report.getState();
+
+		if(state.equals("1")) // saved
+		{
+			if(getLatest(report.getReportId()).getAction().equals("2")) // submitted
+			{
+				state = "-1"; // unsubmitted
+			}
+		}
 		return state;
 	}
 	
@@ -136,9 +148,30 @@ public class ReportHistoryService {
 	 * @return the current user
 	 * @author mKness
 	 */
-	private Dev getEditingDev()
-	{
+	private Dev getEditingDev(){
 		Authentication authentication = authenticationFacade.getAuthentication();
         return devService.getEmployeeByUsername(authentication.getName());
+	}
+	
+	/**
+	 * get all the reporthistories for a report and return the most recent one
+	 * @param reportId the report we are getting reportHistories for
+	 * @return the most recent reporthistory for the given reportId
+	 */
+	private ReportHistory getLatest(Integer reportId){
+		List<ReportHistory> history = reportHistoryDao.getReportHistory(reportId);
+		ReportHistory rtnHistory = null;
+		
+		for(ReportHistory rh : history){
+			if(rtnHistory == null){
+				rtnHistory = rh;
+			}
+			else{
+				if(rh.getTimeStamp().compareTo(rtnHistory.getTimeStamp()) > 0){
+					rtnHistory = rh; 
+				}
+			}
+		}
+		return rtnHistory;
 	}
 }
