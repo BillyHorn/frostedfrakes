@@ -10,13 +10,15 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   $urlRouterProvider.otherwise(function($injector, $location){
      var $state = $injector.get("$state");
      var currentUser = $injector.get("currentUser");
-     if ($location.absUrl() !== "http://localhost:8080/totpAuthentication"){
+     console.log(currentUser.getUser());
+     console.log($location.absUrl());
+     if ($location.absUrl() !== "http://localhost:8080/totpAuthentication" && currentUser.getUser() !== undefined){
          $state.go("home");
      }
      else if ($location.absUrl() === "http://localhost:8080/" && currentUser.getUser() === undefined){
          console.log(currentUser.getUser());
          console.log($location.absUrl());
-         window.location.href="/logout";
+         $state.go("logout");
      }
      else {
          $state.go("totpAuthentication");
