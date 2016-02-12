@@ -92,7 +92,7 @@ public class EmailHandler {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		String totp = totpGenerator.generateTotp();
 		
-		mail.setTo("blarsen@catalystdevworks.com");
+		mail.setTo("effpdx@gmail.com");
 		mail.setFrom("effpdx@gmail.com");
 		mail.setSubject("Your Authentication Code");
 		mail.setText("Code: " + totp);

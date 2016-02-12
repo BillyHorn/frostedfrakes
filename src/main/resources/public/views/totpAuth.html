@@ -11,6 +11,7 @@
 
 	<!-- site-specific js -->
 	<script type="text/javascript" src="../app/app.js"></script>
+	<script type="text/javascript" src="../app/stateLogging.js"></script>
 
 	<script type="text/javascript" src="../app/jQuery/login.js"></script>
 	<script type="text/javascript" src="../app/jQuery/loginAnim.js"></script>
@@ -24,6 +25,8 @@
 	<!-- totp scripts -->
 	<script type="text/javascript" src="../app/ctrl/totpAuthCtrl.js"></script>
 	<script type="text/javascript" src="../app/service/devHttpService.js"></script>
+	<script type="text/javascript" src="../app/service/currentUser.js"></script>
+	<script type="text/javascript" src="../app/service/loginService.js"></script>
 
 	<!--  bootstrap  -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -33,42 +36,7 @@
 </head>
 
 <body ng-app="app">
-<div class="container col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" ng-controller="totpAuthCtrl" id="container">
-	<div class="panel panel-login">
-		<div class="panel-body">
-			<form id="auth-form" ng-submit="totp()" role="form"
-			style="display: block;">
-				<div class="form-group col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" id="auth-form-group">
-					<div class="form-group">
-						<input type="text" id="totp-user-code" ng-model="totpCode"
-						tabindex="1" class="form-control" placeholder="Your Code:">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-							<div class="col-md-6 col-sm-6">
-								<button type="submit" name="auth-submit" id="authBtn"
-								class="form-control btn btn-login">
-								Authorize User</button>
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<button type="button" name="logout" id="logutBtn"
-								class="form-control btn btn-login"
-								ng-click="logout()">Back to Login</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-			<div class="alert alert-danger col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" ng-show="error.length" id="auth-error">
-				<strong>Error:</strong>{{error}}
-			</div>
-		</div>
-	</div>
-
-</div>
-
+	<ui-view></ui-view>
 </body>
 
 </html>

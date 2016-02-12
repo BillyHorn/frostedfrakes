@@ -3,13 +3,23 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   // redirect from the base myreports state so that only child-states exist
   $urlRouterProvider.when('/my-reports', '/my-reports/saved');
 
+
   // and anything other than a state can send you back to home.
   //$urlRouterProvider.otherwise('/home');
 
   $urlRouterProvider.otherwise(function($injector, $location){
      var $state = $injector.get("$state");
+     var currentUser = $injector.get("currentUser");
      if ($location.absUrl() !== "http://localhost:8080/totpAuthentication"){
          $state.go("home");
+     }
+     else if ($location.absUrl() === "http://localhost:8080/" && currentUser.getUser() === undefined){
+         console.log(currentUser.getUser());
+         console.log($location.absUrl());
+         window.location.href="/logout";
+     }
+     else {
+         $state.go("totpAuthentication");
      }
   });
 
@@ -19,14 +29,13 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   .state('home', {
     url: '/home',
     templateUrl: 'views/partials/home.html',
-    controller: 'homeCtrl',
-    resolve: {
-        verify: ['currentUser', '$q', function(currentUser, $q){
-            return $q(function(){
-                return currentUser.validateUser();
-            }, 2000);
-        }]
-    }
+    controller: 'homeCtrl'
+  })
+
+  .state('totpAuthentication', {
+    url:"/totpAuthentication",
+    templateUrl: 'views/partials/totpPartial.html',
+    controller: 'totpAuthCtrl'
   })
 
   .state('registration', {
@@ -37,8 +46,8 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
 
     .state('logout', {
     url: '/logout',
-    controller: function($scope, $route) {
-      $route.reload();
+    controller: function() {
+        window.location.href="/logout";
     }
   })
 
