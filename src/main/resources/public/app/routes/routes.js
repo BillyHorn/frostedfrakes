@@ -21,8 +21,10 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     templateUrl: 'views/partials/home.html',
     controller: 'homeCtrl',
     resolve: {
-        verify: ['currentUser', function(currentUser){
-            return currentUser.validateUser();
+        verify: ['currentUser', '$q', function(currentUser, $q){
+            return $q(function(){
+                return currentUser.validateUser();
+            }, 2000);
         }]
     }
   })

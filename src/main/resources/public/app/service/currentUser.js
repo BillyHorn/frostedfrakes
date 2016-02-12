@@ -21,7 +21,7 @@ angular.module('app').service('currentUser', ['loginService', '$q', function(log
         else if (this.user.isvalid === false) {
             window.location.href="/logout";
         }
-        return $q.defer();
+        return this.user;
 
     }
 
