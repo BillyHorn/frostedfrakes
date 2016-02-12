@@ -24,9 +24,8 @@ function($http){
         getReceipts(i);
       }
 
-      console.log(lineItems);
-      
       return lineItems;
+
     });
   }
 

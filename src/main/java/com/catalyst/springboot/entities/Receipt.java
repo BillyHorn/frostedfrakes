@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.catalyst.springboot.services.LineItemService;
 
 /**
  * an image associated with a line item
@@ -24,8 +27,9 @@ public class Receipt {
 	private byte[] image;
 	private LineItem lineItem;
 	
-	public Receipt(byte[] byteArray) {
-		this.name = "testname";
+	public Receipt(byte[] byteArray, String receiptName, LineItem lineItem) {
+		this.name = receiptName;
+		this.lineItem = lineItem;
 		this.image = byteArray;
 	}
 	

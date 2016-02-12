@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -114,10 +115,10 @@ public class ReceiptWebServices {
 	 * @param response
 	 */
 	@RequestMapping(value = "/addReceipt", method = RequestMethod.POST)
-	public void addReceiptImage(@RequestBody MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
+	public void addReceiptImage(@RequestParam("name") String receiptName, @RequestParam("lineItemId") Integer lineItemId, @RequestBody MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			byte[] imageByteArray = file.getBytes();
-			receiptService.sendImage(imageByteArray);
+			receiptService.sendImage(imageByteArray, receiptName, lineItemId);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

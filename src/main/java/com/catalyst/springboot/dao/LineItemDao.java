@@ -40,6 +40,18 @@ public class LineItemDao {
 		List<LineItem> lineItems = em.createQuery("SELECT l FROM lineitem l", LineItem.class).getResultList();
 		return lineItems;
 	}
+	
+	/**
+	 * This function returns a single line item selected by its id
+	 * 
+	 * @author atatro
+	 * @param lineItemId the id to search for
+	 * @return the line item selected from the above id
+	 */
+	public LineItem getLineItemById(Integer lineItemId){
+		return em.createQuery("SELECT l FROM lineitem l WHERE l.lineItemId = :lineItemId", LineItem.class)
+				.setParameter("lineItemId", lineItemId).getSingleResult();
+	}
 
 	/**
 	 * @param reportID the id of the report that we want to get lineitems for

@@ -45,16 +45,16 @@
       <ng-form name="receiptForm" ng-show="li.receipts.length > 0">
         <label> Attached Receipts</label>
         <div class="row receipts">
-            <div class="col-md-4 receipt-tumbnail" ng-repeat="receipt in li.receipts">
-              <a href="#" class="thumbnail">
-                <p>{{receipt.name}}</p>
-                <img ng-src="http://localhost:8080/getReceipt/image/{{receipt.receiptId}}">
-              </a>
-            </div>
+          <div class="col-md-4 receipt-tumbnail" ng-repeat="receipt in li.receipts">
+            <a href="#" class="thumbnail">
+              <p>{{receipt.name}}</p>
+              <img ng-src="./getReceipt/image/{{receipt.receiptId}}">
+            </a>
+          </div>
         </div>
       </ng-form>
 
-      <button class="add-receipt-btn btn btn-info"> Add Receipt </button>
+      <button class="add-receipt-btn btn btn-info" ng-click="open(lineitems[$index].lineItemId)"> Add Receipt </button>
 
       <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)"> Delete Line Item </button>
 
@@ -76,3 +76,33 @@
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
+
+<!-- below is the receipt modal html -->
+<script type="text/ng-template" id="receiptModal.html">
+
+  <div class="modal-header">
+    <h3 class="modal-title">Add a Receipt</h3>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="upload-btn-container">
+      <span class="btn btn-default btn-file">
+        Browse <input type="file" file-model="myFile" ng-model="fileSelected" fd-input/>
+      </span>
+    </div>
+
+    <div class="name-input-container">
+      <label for="name"> Receipt Name</label>
+      <input type="text" ng-model="receiptName" class="form-control">
+    </div>
+    <br>
+
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok(receiptName)">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+
+</script>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.catalyst.springboot.dao.ReceiptDao;
+import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.Receipt;
 
 @Service
@@ -13,6 +14,13 @@ public class ReceiptService {
 
 	@Autowired
 	ReceiptDao receiptDao;
+	
+	@Autowired
+	private LineItemService lineItemService;
+	
+	private void setLineItemService(LineItemService lineItemService) {
+		this.lineItemService = lineItemService;
+	}
 	
 	/**
 	 * @param receiptDao the Dao to be set
@@ -25,9 +33,11 @@ public class ReceiptService {
 		receiptDao.addReceipt(receipt);
 	}
 
-	public void sendImage(byte[] imageByteArray) {
+	public void sendImage(byte[] imageByteArray, String receiptName, Integer lineItemId) {
 		
-		Receipt receipt = new Receipt(imageByteArray);
+		LineItem lineItem = lineItemService.getLineItemById(lineItemId);
+		
+		Receipt receipt = new Receipt(imageByteArray, receiptName, lineItem);
 		
 		receiptDao.addReceipt(receipt);
 		

@@ -51,5 +51,16 @@ public class LineItemService {
 	public List<LineItem> getPendingLineItems(Integer id) {
 		return lineItemDao.getPendingLineItems(id);
 	}
+	
+	/**
+	 * returns a line item selected by its id
+	 * 
+	 * @author atatro
+	 * @param lineItemId the id to search by
+	 * @return the corresponding line item
+	 */
+	public LineItem getLineItemById(Integer lineItemId) {
+		return lineItemDao.getLineItemById(lineItemId);
+	}
 
 }
