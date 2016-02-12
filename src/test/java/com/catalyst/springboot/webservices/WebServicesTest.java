@@ -5,8 +5,6 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.*;
-
 import org.junit.Before;
 import org.junit.Test;
 

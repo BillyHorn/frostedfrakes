@@ -1,11 +1,11 @@
 package com.catalyst.springboot.dao;
 
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.ReportHistory;
 
 /**
@@ -63,12 +64,17 @@ public class ReportHistoryDaoTest {
 	 */
 	@Test
 	public void getReportHistoryTest() {
-		TypedQuery<ReportHistory> query = mock(TypedQuery.class);
+		@SuppressWarnings("unchecked")
+		TypedQuery<ReportHistory> mockTypedQuery = mock(TypedQuery.class);
+
 		List<ReportHistory> expected = new ArrayList<ReportHistory>();
-		
-		when(mockEm.createQuery(anyString(), eq(ReportHistory.class))).thenReturn(query);
-		when(query.getResultList()).thenReturn(expected);
-		
-		verify(query).getResultList();
+
+		when(mockEm.createQuery(anyString(), eq(ReportHistory.class))).thenReturn(mockTypedQuery);
+		when(mockTypedQuery.setParameter(anyString(), anyInt())).thenReturn(mockTypedQuery);
+		when(mockTypedQuery.getResultList()).thenReturn(expected);
+
+		dao.getReportHistory(1);
+
+		verify(mockTypedQuery).setParameter(eq("reportId"), eq(1));
 	}
 }
