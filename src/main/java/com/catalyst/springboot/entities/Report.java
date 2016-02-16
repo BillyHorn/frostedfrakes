@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  *
  */
 @Entity(name = "Report")
-public class Report {
+public class Report { 
 
 	private Integer reportId;
 	private String name;
