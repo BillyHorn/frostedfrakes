@@ -4,6 +4,7 @@ angular.module('app').controller('homeCtrl', ['$scope', 'stateConverterService',
 	 /* obtain current user data from resolve */
      $scope.currentEmail = getThisUser.email;
 
+     /* distinct model to show appropriate HTML based on user */
      $scope.roleCheck = getThisUser;
      
      /* if the current logged in user is not an admin, show all user reports on the home page */
