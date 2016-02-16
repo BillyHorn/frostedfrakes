@@ -53,7 +53,7 @@ public class ReportDao {
 	}
 	
 	public List<Report> getReportByDevId(String email) {
-		return em.createQuery("SELECT r FROM Report r WHERE r.dev.email = :email ", Report.class)
+		return em.createQuery("SELECT r FROM Report r WHERE r.dev.email = :email ORDER BY timeStamp DESC  ", Report.class)
 				.setParameter("email", email).getResultList();
 
 	}
@@ -64,7 +64,7 @@ public class ReportDao {
  * @return
  */
 	public List<Report> getallPreviousReports(String email) {
- //ORDER BY timeStamp ASC 
+
 		
 		return em.createQuery("Select r FROM Report r WHERE r.project.techLeadId.email = :email  AND r.state IN ('3','4') ORDER BY timeStamp DESC  ",Report.class)   
 		.setParameter("email", email).getResultList();
