@@ -1,0 +1,23 @@
+{
+  "name": "frostedfrakes",
+  "homepage": "https://github.com/artatro/frostedfrakes",
+  "description": "Expense reports",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "^1.1.2",
+    "angular": "^1.5.0",
+    "jquery": "^2.2.0",
+    "angular-mocks": "^1.5.0",
+    "bootstrap": "^3.3.6",
+    "angular-ui-router": "^0.2.18"
+  }
+}
