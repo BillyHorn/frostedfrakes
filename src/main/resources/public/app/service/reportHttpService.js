@@ -38,6 +38,13 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     {
       return $http.get(reportEndPoint + '/email/' + user);
     }
+    //SteffyJoseph
+    //get all reports for the current techlead email( /ID  ) 
+    function getApprovedRejectedReport(email)
+    {
+    	return $http.get(reportEndPoint + '/reviewed/' + email);
+    	
+    }
 
     /* @author wPerlichek
     /* unSubmitReport()
@@ -58,6 +65,10 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       getReports : getReports,
       putReport : putReport,
       pendingReports : pendingReports,
+<<<<<<< HEAD
       unSubmitReport: unSubmitReport
+=======
+      getApprovedRejectedReport :getApprovedRejectedReport
+>>>>>>> sprint2
     }
   }]);

@@ -28,8 +28,10 @@ angular.module('app').service('myReportsService', ['reportHttp', 'currentUser', 
         return "Rejected";
       case "my-reports.approved":
         return "Approved";
+      case "my-reports.previouslyReviewed":
+    	  return "Reviewed";
       default:
-        return "Something's Gone Wrong";
+        return "";
     }
   }
 

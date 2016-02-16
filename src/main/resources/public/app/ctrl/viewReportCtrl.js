@@ -1,8 +1,26 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState',
-  function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState) {
+angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState',
+  function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState) {
 
     $scope.report = getReport.data;
     $scope.projects = getProjects.data;
+    $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
+    $scope.report.name = $scope.report.reportname;
+    console.log("$scope.report.name");
+    console.log($scope.report.name);
+   
+    
+    // fetch the history for the report
+    reportHistoryHttp.getReportHistory($scope.report.reportId)
+          .then(function(response){
+            $scope.history = response.data;
+            // iterate through each entry to change actions to the string version, and change the time stamps into dates
+            for(var i = 0; i < $scope.history.length; i++)
+            {
+              $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
+              $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
+            }
+          });
+
     for(var i = 0; i < getLineItems.data.length; i++)
     {
       var tempDate = new Date(getLineItems.data[i].date);
@@ -20,7 +38,9 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     $scope.putReport = function(state){
       $scope.report.state = state;
       $scope.report.project = $scope.selectedProject;
+    //  $scope.report.newname = $scope.report.reportname;
       reportHttp.putReport($scope.report);
+     
       // iterate through the lineitems and send all of them to update
       for(var i = 0; i < $scope.lineitems.length; i++) {
         $scope.lineitems[i].report = $scope.report;
@@ -71,5 +91,12 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
           return i;
         }
       }
+    }
+
+    // helper function to format timestamp to date
+    function getFormattedDate(timestamp) {
+      var newDate = new Date();
+      newDate.setTime(timestamp);
+      return dateString = newDate.toUTCString();
     }
   }]);

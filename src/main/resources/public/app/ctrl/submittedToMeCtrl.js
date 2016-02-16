@@ -1,10 +1,14 @@
 angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'currentUser', 'reportHttp', '$uibModal', 'submittedState',
-	function($scope, $state, currentUser, reportHttp, $uibModal, $uibModalInstance, submittedState) {
+	function($scope, $state, currentUser, reportHttp, $uibModal, submittedState) {
 
 		$scope.user = currentUser.getUser();
-
+		console.log("$scope.user:");
+		console.log($scope.user); // whole object dev (DB) 
+		console.log($scope.user.devId);//1
 		$scope.email = (currentUser.getUser().email);
-
+		console.log("$scope.email:"); 
+		console.log($scope.email); // dev.email
+		
 		$scope.animationsEnabled = true;
 
 		$scope.open = function(currentReport) {
@@ -20,12 +24,12 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 				}
 			});
 		};
-
+		
 		$scope.toggleAnimation = function () {
 			$scope.animationsEnabled = !$scope.animationsEnabled;
 		};
 
-		$scope.stateCheck = function($report, submittedState){
+		$scope.stateCheck = function($report){
 			if ($report.state == submittedState) {
 				return true;
 			} else {
@@ -36,10 +40,10 @@ angular.module('app').controller('submittedToMeCtrl', ['$scope', '$state', 'curr
 		reportHttp.pendingReports($scope.email).then(function(res){
 			$scope.myPendingReports = res.data;
 		});
-
+		
 		$scope.approveReport = function(report) {
-			reportHttp.approveReport(report);
-		};
+			   reportHttp.approveReport(report);
+			  };
 }]);
 
 

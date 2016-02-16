@@ -1,5 +1,11 @@
 <div class="container">
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
+   
+     <fieldset class="form-group">
+      <label for="ReportName">Report Name </label>
+      <input type="text"  class="form-control" name="ReportName" id="inputReportName" ng-model="report.name" > </input>  <!-- ng-model="report.reportname" -->
+    </fieldset> 
+    
     <fieldset class="form-group">
       <label for="projectName">Project Name </label>
       <select class="form-control" name="projectName" id="inputProjectName" data-ng-init="selectedProject = projects[index]" ng-model="selectedProject" ng-options="project as project.name for project in projects" ng-readonly="report.state == 2 || report.state == 4" ng-disabled="report.state == 2 || report.state == 4"> <!-- wPerlichek: read only for submitted or approved reports. disabled project
@@ -45,11 +51,51 @@
       <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2 || report.state == 4"   ng-show="report.state > 0"></textarea>
     </fieldset>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+<<<<<<< HEAD
 <button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2 || report.state == 4">Save</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2 || report.state == 4">Submit</button>
 <!-- if report state is "saved", hide below button, if "submitted" show the user a button to unsubmit and  change state from submitted back to saved using unSubmit() function. only show this button if the
 report state is 2 @wPerlichek -->
    <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1 || report.state == 4 || report.state == 3" >Unsubmit</button>
+=======
+    <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
+    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#historyModal"> View History</button>
+>>>>>>> sprint2
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
+
+<!-- Modal to display report history-->
+<div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Report History</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th> Dev </th>
+              <th> Action </th>
+              <th> Timestamp </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="h in history">
+              <td>{{h.editingDev.email}}</td>
+              <td>{{h.action}}</td>
+              <td>{{h.date}}</td>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

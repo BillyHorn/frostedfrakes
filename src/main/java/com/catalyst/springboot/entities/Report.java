@@ -1,24 +1,14 @@
 package com.catalyst.springboot.entities;
-import java.util.List;
-import java.util.Set;
+import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * models a report filled with line items
@@ -27,9 +17,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
  *
  */
 @Entity(name = "Report")
-public class Report {
+public class Report { 
 
-	
 	private Integer reportId;
 	private String name;
 	private String notes;
@@ -37,8 +26,22 @@ public class Report {
 	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
-
+	private Timestamp timestamp;
 	
+	
+	/**
+	 * @return the timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	/**
 	 * @return the reportId
 	 */
@@ -47,6 +50,7 @@ public class Report {
 	public Integer getReportId() {
 		return reportId;
 	}
+	
 	/**
 	 * @param reportId the reportId to set
 	 */

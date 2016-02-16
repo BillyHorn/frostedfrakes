@@ -54,7 +54,6 @@ public class DevService {
 
 
 	public void register(Dev dev) {
-		// TODO Auto-generated method stub
 		devdao.register(dev);
 	}
 	

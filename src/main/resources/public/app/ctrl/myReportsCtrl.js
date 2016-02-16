@@ -8,6 +8,8 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
   // an array of reports, filtered by current state
   myReportsService.filterReports(state).then(function(res){
     $scope.filteredReports = res;
+    console.log("$scope.filteredReports");
+    console.log($scope.filteredReports);
   });
 
   // a string containing a bootstrap panel-type, for display purposes
@@ -20,7 +22,8 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
     { heading: "Submitted", route:"my-reports.submitted", active:false },
     { heading: "Approved", route:"my-reports.approved", active:false },
     { heading: "Rejected", route:"my-reports.rejected", active:false },
-    { heading: "Pending", route:"my-reports.submitted-to-me", active:false}
+    { heading: "Pending", route:"my-reports.submitted-to-me", active:false},
+    { heading: "Reviewed", route:"my-reports.previouslyReviewed", active:false}
   ];
 
   // a function for navicating between states
