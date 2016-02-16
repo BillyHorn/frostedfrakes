@@ -1,4 +1,4 @@
-angular.module('app').service('fileUpload', ['$http', function ($http) {
+angular.module('app').service('fileUpload', ['$http', '$state', function ($http, $state) {
 
   this.uploadFileToUrl = function(file, receiptName, lineItemId){
     var fd = new FormData();
@@ -8,7 +8,7 @@ angular.module('app').service('fileUpload', ['$http', function ($http) {
       headers: {'Content-Type': undefined}
     })
     .success(function(){
-      
+      $state.reload();
     })
     .error(function(){
 
