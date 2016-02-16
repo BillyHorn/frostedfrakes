@@ -1,5 +1,9 @@
 package com.catalyst.springboot.webservices;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +59,7 @@ public class ReportWebServices {
 		return reportService.getReportByDevId(email);
 	}
 	
-	/**
+	/** 
 	 * gets a report from the viewReport page and merge it into the db
 	 * 
 	 * @param report to be merged into the db
@@ -86,4 +90,24 @@ public class ReportWebServices {
 		return reportService.getTechLeadReport(email);
 	}
 	
+	/**
+	 * gets rejected and approved reports with corresponding techlead id/email
+	 * @author Steffy 
+	 * 
+	 */
+	@RequestMapping(value="/report/reviewed/{email}", method = RequestMethod.GET)
+	public List<Report> approvedAndRejected(@PathVariable String email){
+		return reportService.getallPreviousReports(email);
+	}
+	
+	/* to be included in ReportwebservicesTest 
+	 
+	 public void approvedAndRejectedTest() throws Exception {
+	 List<Report> reportList = new  ArrayList<Report>();
+	 
+	when(mockreportService.getallPreviousReports(anyString())).thenReturn(reportList);
+	 
+	 }
+	       
+	       */
 }

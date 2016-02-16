@@ -1,4 +1,6 @@
 package com.catalyst.springboot.entities;
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Entity(name = "Report")
 public class Report {
 
-	
 	private Integer reportId;
 	private String name;
 	private String notes;
@@ -25,8 +26,22 @@ public class Report {
 	private Project project;
 	private String rejectionNotes;
 	private String state; /* SAVED: 1, SUBMITTED: 2, REJECTED: 3, APPROVED: 4 */
-
+	private Timestamp timestamp;
 	
+	
+	/**
+	 * @return the timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	/**
 	 * @return the reportId
 	 */
@@ -35,6 +50,7 @@ public class Report {
 	public Integer getReportId() {
 		return reportId;
 	}
+	
 	/**
 	 * @param reportId the reportId to set
 	 */

@@ -3,6 +3,7 @@ package com.catalyst.springboot.webservices;
 
 import static org.mockito.Mockito.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class DevWebServicesTest {
 	private DevWebServices devWebServices;
 	private DevService devService;
 	private Dev dev;
+	private Principal principal;
 	
 	@Before
 	public void setup() {
@@ -29,6 +31,7 @@ public class DevWebServicesTest {
 		devService = mock(DevService.class);
 		devWebServices.setService(devService);
 		dev = mock(Dev.class);
+		principal = mock(Principal.class);
 	}
 
 	/*@Test
@@ -54,8 +57,10 @@ public class DevWebServicesTest {
 		verify(devService).get();
 	}
 	
-	/*@Test
+	@Test
 	public void currentUserTest() {
-		
-	}*/
+		when(principal.getName()).thenReturn("test");
+		devWebServices.currentUser(principal);
+		verify(devService).getEmployeeByUsername("test");
+	}
 }
