@@ -3,7 +3,7 @@
    
      <fieldset class="form-group">
       <label for="ReportName">Report Name </label>
-      <input type="text"  class="form-control" name="ReportName" id="inputReportName" ng-model="report.name" > </input>  <!-- ng-model="report.reportname" -->
+      <input type="text"  class="form-control" name="ReportName" id="inputReportName" ng-model="report.name" ng-readonly="report.state == 2 || report.state == 4" ng-disabled="report.state == 2 || report.state == 4"> </input>  <!-- ng-model="report.reportname" -->
     </fieldset> 
     
     <fieldset class="form-group">
@@ -51,17 +51,12 @@
       <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2 || report.state == 4"   ng-show="report.state > 0"></textarea>
     </fieldset>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-<<<<<<< HEAD
 <button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2 || report.state == 4">Save</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2 || report.state == 4">Submit</button>
 <!-- if report state is "saved", hide below button, if "submitted" show the user a button to unsubmit and  change state from submitted back to saved using unSubmit() function. only show this button if the
 report state is 2 @wPerlichek -->
    <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1 || report.state == 4 || report.state == 3" >Unsubmit</button>
-=======
-    <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
-    <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#historyModal"> View History</button>
->>>>>>> sprint2
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
