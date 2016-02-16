@@ -7,8 +7,6 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,7 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.LineItem;
 
 public class DevDaoTest {
 

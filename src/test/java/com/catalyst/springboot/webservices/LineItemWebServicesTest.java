@@ -9,8 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.catalyst.springboot.entities.LineItem;
-import com.catalyst.springboot.entities.Report;
-import com.catalyst.springboot.entities.ReportHistory;
 import com.catalyst.springboot.services.LineItemService;
 
 /**

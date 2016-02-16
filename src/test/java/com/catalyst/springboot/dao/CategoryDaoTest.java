@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.catalyst.springboot.entities.Category;
-import com.catalyst.springboot.entities.LineItem;
 
 /**
  * 

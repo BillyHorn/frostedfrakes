@@ -1,6 +1,5 @@
 package com.catalyst.springboot.webservices;
 
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.catalyst.springboot.entities.Dev;
-import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.Project;
 import com.catalyst.springboot.services.DevService;
 import com.catalyst.springboot.services.ProjectService;

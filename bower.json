@@ -19,5 +19,6 @@
     "angular-mocks": "^1.5.0",
     "bootstrap": "^3.3.6",
     "angular-ui-router": "^0.2.18"
-  }
+  },
+  "directory" : "src/main/resources/public"
 }

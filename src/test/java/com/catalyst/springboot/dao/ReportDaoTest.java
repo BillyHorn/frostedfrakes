@@ -14,7 +14,6 @@ import javax.persistence.TypedQuery;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.Report;
 
 public class ReportDaoTest {

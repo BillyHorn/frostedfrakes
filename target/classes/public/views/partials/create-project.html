@@ -1,0 +1,33 @@
+<div class="panel">
+
+    <!-- Form for creating a new project -->
+    <form id="create-project" ng-submit="createProject()" novalidate>
+
+        <!-- Area for defining the project name -->
+        <label for="project-name"> Project Name:
+            <input type="text" ng-model="project.name" placeholder="Project Name" name="project-name"/></label>
+
+        <!-- Drop down for the techlead of a project -->
+        <label for="tech-lead">Tech Lead:
+            <select name="tech-lead" ng-model="project.techLeadId" ng-options="user as user.email for user in users | filter : notAdmin"></select>
+        </label>
+
+        <!-- Drop down for adding users to a project -->
+        <label for="tech-lead">Users:
+            <select name="user-person" ng-model="userToAdd" ng-options="user as user.email for user in users | filter : filterId | filter : notAdmin"></select>
+            <button type="button" ng-click="addUser()">Add User</button>
+        </label>
+        <button type="button" type="submit" ng-click="createProject()">Create</button>
+    </form>
+
+    <!-- Shows the currently assigned people on the project -->
+    <div ng-show="project.techLeadId.email.length">
+        Tech Lead: {{project.techLeadId.email}}
+    </div>
+    <div ng-show="project.devsToConvert.length">
+        Users:
+        <div ng-repeat="user in project.devsToConvert">
+            {{user.email}}
+        </div>
+    </div>
+</div>

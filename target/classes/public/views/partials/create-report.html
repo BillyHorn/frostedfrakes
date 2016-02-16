@@ -1,0 +1,24 @@
+<div class="container">
+
+  <!--  create a new report  with a name  -->
+
+  <form id="create-report" ng-submit="createReport()" ng-show="projects.length" class="col-md-offset-3 col-md-6 ng-pristine ng-valid" novalidate="">
+
+    <!-- pull existing projects that can be added to the report -->
+
+    <fieldset class="form-group">
+      <label for="projectName">Project Name </label>
+      <select class="form-control ng-pristine ng-valid ng-touched project" name="projectName" id="inputProjectName" ng-model="report.project" ng-options="project as project.name for project in projects" required><option label="Project">Project</option></select>
+    </fieldset>
+    
+    <button class="btn btn-primary" type="submit">Create Report</button>
+
+  </form>
+
+
+
+  <div ng-show="!projects.length">
+    You are not assigned to any projects
+  </div>
+
+</div>
