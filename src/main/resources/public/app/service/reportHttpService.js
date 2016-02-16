@@ -65,10 +65,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       getReports : getReports,
       putReport : putReport,
       pendingReports : pendingReports,
-<<<<<<< HEAD
-      unSubmitReport: unSubmitReport
-=======
+      unSubmitReport: unSubmitReport,
       getApprovedRejectedReport :getApprovedRejectedReport
->>>>>>> sprint2
     }
   }]);
