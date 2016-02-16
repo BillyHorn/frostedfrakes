@@ -45,16 +45,16 @@
       <ng-form name="receiptForm" ng-show="li.receipts.length > 0">
         <label> Attached Receipts</label>
         <div class="row receipts">
-          <div class="col-md-4 receipt-tumbnail" ng-repeat="receipt in li.receipts">
+          <div class="col-xs-4 receipt-tumbnail" ng-repeat="receipt in li.receipts">
             <a href="#" class="thumbnail">
-              <p>{{receipt.name}}</p>
-              <img ng-src="./getReceipt/image/{{receipt.receiptId}}">
+              <p class="text-center">{{receipt.name}}</p>
+              <img class="img-responsive" ng-src="./getReceipt/image/{{receipt.receiptId}}">
             </a>
           </div>
         </div>
       </ng-form>
 
-      <button class="add-receipt-btn btn btn-info" ng-click="open(lineitems[$index].lineItemId)"> Add Receipt </button>
+      <button class="add-receipt-btn btn btn-primary" ng-click="open(lineitems[$index].lineItemId)"> Add Receipt </button>
 
       <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)"> Delete Line Item </button>
 
@@ -72,10 +72,12 @@
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(1)" >Save</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" >Submit</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#historyModal"> View History</button>
 
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
+
 
 <!-- below is the receipt modal html -->
 <script type="text/ng-template" id="receiptModal.html">
@@ -86,17 +88,22 @@
 
   <div class="modal-body">
 
-    <div class="upload-btn-container">
-      <span class="btn btn-default btn-file">
-        Browse <input type="file" file-model="myFile" ng-model="fileSelected" fd-input/>
-      </span>
-    </div>
-
     <div class="name-input-container">
       <label for="name"> Receipt Name</label>
       <input type="text" ng-model="receiptName" class="form-control">
     </div>
-    <br>
+
+    <div class="upload-btn-container">
+      <label for="image"> Image File</label>
+      <span class="btn btn-default btn-file">
+        Browse <input type="file" accept=".jpg" file-model="myFile" ng-model="fileSelected" ng-file-select="onFileSelect($files)"/>
+      </span>
+    </div>
+
+    <div class="upload-image-preview">
+      <i ng-hide="imageSrc">No image selected</i>
+      <img class="img-responsive" ng-src="{{imageSrc}}" />
+    </div>
 
   </div>
 
@@ -106,3 +113,38 @@
   </div>
 
 </script>
+
+
+<!-- Modal to display report history-->
+<div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Report History</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th> Dev </th>
+              <th> Action </th>
+              <th> Timestamp </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="h in history">
+              <td>{{h.editingDev.email}}</td>
+              <td>{{h.action}}</td>
+              <td>{{h.date}}</td>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -30,14 +30,4 @@ public class CategoryDao {
 	public List<Category> getCategoies() {
 		return em.createQuery("SELECT c FROM category c",Category.class).getResultList();
 	}
-
-	/**
-	 * This function fetches all the line items.
-	 * 
-	 * @return The list of line items from the database.
-	 */
-	public List<LineItem> get(){
-		List<LineItem> lineItems = em.createQuery("SELECT l FROM lineitem l", LineItem.class).getResultList();
-		return lineItems;
-	}
 }

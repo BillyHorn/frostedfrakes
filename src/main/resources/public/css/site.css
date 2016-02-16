@@ -12,6 +12,7 @@ footer {
 .btn-file {
     position: relative;
     overflow: hidden;
+    margin: 5px;
 }
 
 .btn-file input[type=file] {
@@ -77,6 +78,7 @@ footer {
   margin-bottom: 15px;
 }
 
+.add-receipt-btn,
 .remove-line-item-btn {
   margin-top: 15px;
 }
@@ -88,6 +90,20 @@ footer {
 #projectDropdown {
   display: block;
   width: 100%;
+}
+
+.thumbnail{
+  width: 165px;
+  height: 165px;
+}
+
+.receipt-tumbnail {
+  padding-right:5px;
+}
+
+.thumbnail img {
+  max-height: 125px;
+  width: auto;
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {

@@ -1,8 +1,20 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', '$uibModal', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState',
-function($scope, $uibModal, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState) {
+angular.module('app').controller('viewReportCtrl', ['$scope', '$uibModal', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState',
+function($scope, $uibModal, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState) {
 
   $scope.report = getReport.data;
   $scope.projects = getProjects.data;
+
+  // fetch the history for the report
+  reportHistoryHttp.getReportHistory($scope.report.reportId)
+  .then(function(response){
+    $scope.history = response.data;
+    // iterate through each entry to change actions to the string version, and change the time stamps into dates
+    for(var i = 0; i < $scope.history.length; i++)
+    {
+      $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
+      $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
+    }
+  });
 
   for(var i = 0; i < getLineItems.length; i++)
   {
@@ -87,5 +99,12 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
       console.log("hi");
     });
   };
+
+  // helper function to format timestamp to date
+  function getFormattedDate(timestamp) {
+    var newDate = new Date();
+    newDate.setTime(timestamp);
+    return newDate.toUTCString();
+  }
 
 }]);
