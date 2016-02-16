@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import com.catalyst.springboot.dao.ReportDao;
 import com.catalyst.springboot.entities.Report;
+import com.catalyst.springboot.mail.EmailHandler;
 
 /**
  * 
@@ -21,24 +22,31 @@ public class ReportServiceTest {
 	private ReportDao reportDao;
 	private ReportHistoryService reportHistoryService;
 	private Report report;
+	private EmailHandler emailHandler;
 	
 	@Before
 	public void Setup() {
 		reportService = new ReportService();
 		reportDao = mock(ReportDao.class);
 		reportHistoryService = mock(ReportHistoryService.class);
+		emailHandler = mock(EmailHandler.class);
 		reportService.setReportDao(reportDao);
 		reportService.setReportHistoryService(reportHistoryService);
+		reportService.setEmailHandler(emailHandler);
 		report = mock(Report.class);
 	}
 	
-	/*@Test
-	public void updateTest() {
+	@Test
+	public void updateStateSubmittedTest() {
+		report.setState("2");
+		when(reportDao.update(report)).thenReturn(report);
 		doNothing().when(reportHistoryService).updateLog(anyObject());
 		
-		reportService.update(report);
-		verify(reportDao).update(report);
-	}*/
+		// TODO learn to mock chained function calls
+		
+		//reportService.update(report);
+		//verify(reportDao).update(report);
+	}
 	
 	@Test
 	public void addTest() {

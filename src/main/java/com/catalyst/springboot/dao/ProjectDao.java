@@ -54,29 +54,7 @@ public class ProjectDao {
 		return projects;
 	}
 	
-	
-
-	/**
-	 * check if a particular Developer exists
-	 * 
-	 * @param email
-	 * @return
-	 */
-	public Dev checkUserName(String email) {
-
-		try {
-			return em.createQuery("SELECT c FROM dev c WHERE c.email = :email ", Dev.class).setParameter("email", email)
-					.getSingleResult();
-		} catch (NoResultException noResult) {
-			return null;
-		}
-
-	}
-
-	
-
 	public List<Project> getTechLeadProjects(Dev dev) {
-		// TODO Auto-generated method stub
 		return em.createQuery("SELECT p FROM Project p WHERE p.techLeadId = :dev", Project.class)
 				.setParameter("dev", dev).getResultList();
 	}
