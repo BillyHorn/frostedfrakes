@@ -22,8 +22,21 @@ public class ReceiptWebServiceTest {
 		webServices.setReceiptService(service);
 	}
 	
+	// this test is clearly garbage. it's gonna need some love.
+//	@Test
+//	public void getReceiptImageTest(){
+//		
+//	}
+	
 	@Test
-	public void getReceiptImageTest(){
-		assertTrue(true);
+	public void getReceiptByLineItemIdTest(){
+		webServices.getReceiptByLineItemId(anyInt());
+		verify(service).getReceiptByLineItemId(anyInt());
+	}
+	
+	@Test
+	public void getReceiptByIdTest(){
+		webServices.getReceiptById(anyInt());
+		verify(service).getReceiptById(anyInt());
 	}
 }
