@@ -19,9 +19,22 @@ public class EmailHandler {
 	@Autowired
 	private TotpAuthentication totpGenerator;
 
+	/**
+	 * @param totpGenerator the totpGenerator to set
+	 */
+	public void setTotpGenerator(TotpAuthentication totpGenerator) {
+		this.totpGenerator = totpGenerator;
+	}
+
+
+	/**
+	 * @param javaMailSender the javaMailSender to set
+	 */
 	public void setJavaMailSender(JavaMailSenderImpl javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
+	
+	
 
 	/**
 	 * Sends an email to the submitter of a report upon that report's submission.
@@ -88,6 +101,13 @@ public class EmailHandler {
         javaMailSender.send(mail);
 	}
 	
+	
+	/**
+	 * generates a user specific totp code to be used
+	 * attaches it to the email and sends to the user
+	 * 
+	 * @return totp code to db for storage
+	 */
 	public String totpAuthentication(){
 		SimpleMailMessage mail = new SimpleMailMessage();
 		String totp = totpGenerator.generateTotp();
