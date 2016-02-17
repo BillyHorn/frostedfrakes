@@ -65,7 +65,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     $scope.unSubmit = function(){
        reportHttp.unSubmitReport($scope.report);
        /* direct path saved view of the previously submitted report */
-       $state.go('my-reports.saved' + '/' + $scope.reportId);
+       $state.go('viewReport' + '/' + $scope.report.reportId);
     };
 
     // add a new line item to the list

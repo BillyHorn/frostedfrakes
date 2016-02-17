@@ -106,9 +106,6 @@ public class DevDao {
 	 */
 	public List<Dev> getDevByCode(String authCode){
 		List<Dev> dev = null;
-		/* you have to try-catch here because .getSingleResult throws an 
-		 * exception if it doesn't find anything. wtf is that.
-		 */
 		try {
 			dev = em.createQuery("SELECT d from dev d WHERE d.authCode = :authCode", Dev.class)
 					.setParameter("authCode", authCode).getResultList();
