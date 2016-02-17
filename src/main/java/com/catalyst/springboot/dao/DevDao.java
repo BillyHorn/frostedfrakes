@@ -60,17 +60,21 @@ public class DevDao {
 	 * @return The user object minus the password
 	 */
 	public Dev getDevByUsername(String username) {
-	Dev dev = null;
-		/* you have to try-catch here because .getSingleResult throws an 
-		 * exception if it doesn't find anything. wtf is that.
-		 */
+	List<Dev> devs = null;
 		try {
-			dev = em.createQuery("SELECT d from dev d WHERE d.email = :email", Dev.class)
-					.setParameter("email", username).getSingleResult();
+			devs = em.createQuery("SELECT d from dev d WHERE d.email = :email", Dev.class)
+					.setParameter("email", username).getResultList();
+			if (!devs.isEmpty()){
+				return devs.get(0);
+			}
+			else {
+				return null;
+			}
 		} catch (NoResultException exception) {
 			System.out.println("caught that stupid exception");
 		}
-		return dev;
+		return null;
+		
 	}
 	
 	/**

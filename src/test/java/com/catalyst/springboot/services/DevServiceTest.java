@@ -1,8 +1,12 @@
 package com.catalyst.springboot.services;
 
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,5 +62,63 @@ public class DevServiceTest {
 	public void registerTest() {
 		service.register(anyObject());
 		verify(dao).register(anyObject());
+	}
+	
+	@Test
+	public void totpAuthTestSuccess(){
+		Dev dev = mock(Dev.class);
+		Principal principal = mock(Principal.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+		
+		when(principal.getName()).thenReturn("test");
+		when(dao.getDevByUsername(anyString())).thenReturn(dev);
+		when(dev.getAuthCode()).thenReturn("123456");
+		when(dev.getLoginTime()).thenReturn(System.currentTimeMillis()-5000);
+		when(dao.loginTotp(dev)).thenReturn(dev);
+		
+		service.totpAuth("123456", response, principal);
+		verify(dev).setIsvalid(true);
+	}
+	
+	@Test
+	public void totpAuthTestFailedAuthCode(){
+		Dev dev = mock(Dev.class);
+		Principal principal = mock(Principal.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+		
+		when(principal.getName()).thenReturn("test");
+		when(dao.getDevByUsername(anyString())).thenReturn(dev);
+		when(dev.getAuthCode()).thenReturn("123457");
+		when(dev.getLoginTime()).thenReturn(System.currentTimeMillis()-5000);
+		when(dao.loginTotp(dev)).thenReturn(dev);
+		
+		service.totpAuth("123456", response, principal);
+		verify(dev).setIsvalid(false);
+	}
+	
+	@Test
+	public void totpAuthFailedTime(){
+		Dev dev = mock(Dev.class);
+		Principal principal = mock(Principal.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+		
+		when(principal.getName()).thenReturn("test");
+		when(dao.getDevByUsername(anyString())).thenReturn(dev);
+		when(dev.getAuthCode()).thenReturn("123456");
+		when(dev.getLoginTime()).thenReturn(System.currentTimeMillis()-500000);
+		when(dao.loginTotp(dev)).thenReturn(dev);
+		
+		service.totpAuth("123456", response, principal);
+		verify(dev).setIsvalid(false);
+	}
+	
+	@Test
+	public void loginTotp() {
+		Dev dev = mock(Dev.class);
+		
+		when(dao.loginTotp(anyObject())).thenReturn(dev);
+		
+		service.loginTotp(dev);
+		assertEquals(dev, dev);
 	}
 }
