@@ -48,6 +48,20 @@ public class ProjectDaoTest {
 
 		List<Project> expected = new ArrayList<Project>();
 
+		
+		when(mockEm.createQuery(anyString(), eq(Project.class))).thenReturn(query);
+		when(query.getResultList()).thenReturn(expected);
+		
+		//dao.getByDev(dev)
+		verify(query).getResultList();
+	
+
+	/*@Test
+	public void registerTest() {
+		verify(mockEm).persist(null);
+	}*/
+
+
 		when(mockEm.createQuery(anyString(), eq(Project.class))).thenReturn(mockTypedQuery);
 		when(mockTypedQuery.getResultList()).thenReturn(expected);
 
@@ -72,4 +86,5 @@ public class ProjectDaoTest {
 		verify(mockTypedQuery).setParameter(eq("dev"), eq(dev));
 	}
 	
+
 }

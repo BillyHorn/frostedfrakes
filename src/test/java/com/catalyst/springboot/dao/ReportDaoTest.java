@@ -109,4 +109,18 @@ public class ReportDaoTest {
 
 		verify(mockTypedQuery).setParameter(eq("email"), eq("test"));
 	}
+	
+	/**
+	 * @author spallipatt
+	 */
+	@Test
+	public void getallPreviousReportsTest(){
+		
+		TypedQuery<Report> mockTypedQuery = mock(TypedQuery.class);
+		List<Report> expected = new ArrayList<Report>();
+		when(em.createQuery(anyString(), eq(Report.class))).thenReturn(mockTypedQuery);
+		when(mockTypedQuery.getResultList()).thenReturn(expected);
+		
+	}
+	
 }

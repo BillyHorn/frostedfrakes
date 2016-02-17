@@ -1,0 +1,22 @@
+<div class="ng-scope" ui-view=""><div class="panel ng-scope panel-default" ng-class="panelType">
+  <div class="panel-heading ng-binding" ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'>My Reports</div>
+  <div class="panel-body" ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'>
+    <div class="list-group" ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'>
+<table class="table table-striped" ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'>
+	<thead>
+		<tr>
+			<th ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'> Report ID </th>
+			<th ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'> Project </th>
+			<th ng-model='roleCheck' ng-hide='roleCheck.role == "admin"'> Status </th>
+		</tr>
+	</div>
+	</thead>
+	<tbody><a> <!-- link directly to report from home page -->
+		<tr ng-repeat="report in thisUsersReports" ui-sref="viewReport({reportid : report.reportId})" class="clickable"></a>
+			<td>{{report.reportId}}</td>
+			<td>{{report.project.name}}</td>
+			<td>{{report.state}}</td>
+	</tbody>
+</table>
+
+

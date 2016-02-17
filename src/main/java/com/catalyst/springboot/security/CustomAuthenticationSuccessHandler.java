@@ -11,7 +11,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-	@Override
 	public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse response, Authentication arg2)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub

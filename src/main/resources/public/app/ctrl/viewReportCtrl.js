@@ -3,20 +3,22 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
 
   $scope.report = getReport.data;
   $scope.projects = getProjects.data;
+  $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
+  $scope.report.name = $scope.report.reportname;
 
   // fetch the history for the report
   reportHistoryHttp.getReportHistory($scope.report.reportId)
-  .then(function(response){
-    $scope.history = response.data;
-    // iterate through each entry to change actions to the string version, and change the time stamps into dates
-    for(var i = 0; i < $scope.history.length; i++)
-    {
-      $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
-      $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
-    }
+    .then(function(response){
+      $scope.history = response.data;
+      // iterate through each entry to change actions to the string version, and change the time stamps into dates
+      for(var i = 0; i < $scope.history.length; i++)
+      {
+        $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
+        $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
+      }
   });
 
-  for(var i = 0; i < getLineItems.length; i++)
+  for(var i = 0; i < getLineItems.data.length; i++)
   {
     var tempDate = new Date(getLineItems[i].date);
     tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
@@ -27,13 +29,10 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     $scope.lineitems[index].receipts.push({});
   };
 
-  $scope.lineitems = getLineItems;
-
+  $scope.lineitems = getLineItems.data;
   $scope.categories = getCategories.data;
-
   // the index of the reports assoiciated project in the projects array used for default value in the ng-option
   $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
-
   // converts the state from number to a string so it is humanreadable
   $scope.state = stateConverterService.getString($scope.report.state);
 
@@ -42,7 +41,9 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
   $scope.putReport = function(state){
     $scope.report.state = state;
     $scope.report.project = $scope.selectedProject;
+    // $scope.report.newname = $scope.report.reportname;
     reportHttp.putReport($scope.report);
+
     // iterate through the lineitems and send all of them to update
     for(var i = 0; i < $scope.lineitems.length; i++) {
       $scope.lineitems[i].report = $scope.report;
@@ -54,6 +55,19 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     if(state == submittedState){
       $state.go('my-reports.submitted');
     }
+  };
+
+  /* author @wPerlichek
+   * unSubmit();
+   * change state of report from "submitted" (2)
+   * to "saved" (1) when the user clicks the
+   * unsubmit button from the view reports page
+   * send user back to save/edit page
+   */
+  $scope.unSubmit = function(){
+     reportHttp.unSubmitReport($scope.report);
+     /* direct path saved view of the previously submitted report */
+     $state.go('my-reports.saved' + '/' + $scope.reportId);
   };
 
   // add a new line item to the list

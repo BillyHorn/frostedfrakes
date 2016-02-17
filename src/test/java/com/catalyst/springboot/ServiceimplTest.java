@@ -2,6 +2,7 @@ package com.catalyst.springboot;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import com.catalyst.springboot.services.ReportService;
 
 
@@ -18,11 +19,11 @@ import com.catalyst.springboot.services.ReportService;
  */
 public class ServiceimplTest {
 	
-	/* create Serviceimpl and Dao objects */
+	/* create Serviceimpl and Dao objects *
 	private ReportService serviceTarget;
 	//private Daoimpl mockDao;
 	
-	/* assign a mock dao to the Serviceimpl object */
+	/* assign a mock dao to the Serviceimpl object *
 	@Before
 	public void serviceTestSetup(){
 		serviceTarget = new ReportService();
@@ -30,6 +31,15 @@ public class ServiceimplTest {
 		//serviceTarget.setReportDao(mockDao);
 	}
 	
+<<<<<<< HEAD:src/main/test/com/catalyst/springboot/ServiceimplTest.java
+	/* use the Serviceimpl object to add a report verify success *
+	@Test
+	public void testAddReport(){
+		serviceTarget.add(null);
+		//verify(mockDao, times(1)).addReport(null);
+	}
+	*/
+
 	/* use the Serviceimpl object to add a report verify success */
 	@Test
 	public void testAddReport(){
@@ -37,4 +47,5 @@ public class ServiceimplTest {
 		//verify(mockDao, times(1)).addReport(null);
 	}
 	
+
 }
