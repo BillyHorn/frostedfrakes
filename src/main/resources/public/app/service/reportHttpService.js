@@ -1,5 +1,5 @@
-angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejectedState',
-  function($http, approvedState, rejectedState){
+angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejectedState', 'savedState',
+  function($http, approvedState, rejectedState, savedState){
 
     // local var to hold end point name
     var reportEndPoint = "/report";
@@ -38,6 +38,24 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
     {
       return $http.get(reportEndPoint + '/email/' + user);
     }
+    //SteffyJoseph
+    //get all reports for the current techlead email( /ID  ) 
+    function getApprovedRejectedReport(email)
+    {
+    	return $http.get(reportEndPoint + '/reviewed/' + email);
+    	
+    }
+
+    /* @author wPerlichek
+    /* unSubmitReport()
+    /* change state of an existing report
+    /* from submitted (2) back to saved */
+    function unSubmitReport(report){
+      /* change report state to savedState(1) */
+      report.state = savedState;
+      /* put request to update the existing report */
+      return $http.put(reportEndPoint, report);
+    }
 
     return {
       createReport : createReport,
@@ -46,6 +64,8 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       getReport : getReport,
       getReports : getReports,
       putReport : putReport,
-      pendingReports : pendingReports
+      pendingReports : pendingReports,
+      unSubmitReport: unSubmitReport,
+      getApprovedRejectedReport :getApprovedRejectedReport
     }
   }]);

@@ -48,6 +48,7 @@ public class ProjectDao {
 		for (Project proj : list){
 			if (proj.getUsers().contains(dev)){
 				projects.add(proj);
+				
 			}
 		}
 		return projects;

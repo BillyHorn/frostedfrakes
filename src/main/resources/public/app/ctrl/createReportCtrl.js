@@ -24,6 +24,7 @@ angular.module('app').controller('createReportCtrl', ['savedState','$scope', 're
 
 	  projectHttp.getProjects().then(function(response){
 	        $scope.projects = response.data;
+	        console.log( $scope.projects );
 	    });
 
 

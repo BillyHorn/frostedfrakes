@@ -48,11 +48,11 @@ public class ProjectDaoTest {
 
 		List<Project> expected = new ArrayList<Project>();
 
+		
 		when(mockEm.createQuery(anyString(), eq(Project.class))).thenReturn(mockTypedQuery);
 		when(mockTypedQuery.getResultList()).thenReturn(expected);
-
+		
 		dao.getByDev(dev);
-
 		verify(mockTypedQuery).getResultList();
 	}
 
@@ -72,4 +72,5 @@ public class ProjectDaoTest {
 		verify(mockTypedQuery).setParameter(eq("dev"), eq(dev));
 	}
 	
+
 }
