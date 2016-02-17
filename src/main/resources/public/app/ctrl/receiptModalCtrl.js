@@ -1,30 +1,41 @@
 angular.module('app').controller('receiptModalCtrl', ['$http', '$scope', '$uibModalInstance', 'fileUpload', 'lineItemId', 'fileReader', function($http, $scope, $uibModalInstance, fileUpload, lineItemId, fileReader){
 
+  // on close modal
   $scope.ok = function(receiptName){
+    // grab that file
     var file = $scope.myFile;
+    // and its name
     var fileName = file.name.toLowerCase();
+    // and the length of said name...
     var fileNameLength = fileName.length;
+    /* and then pull out the last 4 characters of that name. you'll understand
+       in a minute, I promise. */
     var lastFourCharOfFileName = fileName.substring(fileNameLength-4, fileNameLength);
 
+    // check to see if the filename ends in ".jpg". I told you you'd understand.
     if (lastFourCharOfFileName == ".jpg") {
+      // if it IS a jpg, upload it, and close the modal
       fileUpload.uploadFileToUrl(file, receiptName, lineItemId);
       $uibModalInstance.close();
     } else {
+      // if not, complain.
       alert("sorry, only JPG files are supported right now.");
     }
-    // pass something in here with the commented result.then in viewReportCtrl
-
+    /* if you wanted, you could pass something in here with the commented
+      found in result.then in viewReportCtrl */
   };
 
+  // if you click cancel, the modal closes.
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
 
-
+  // this is for a progress bar. not used yet, but good to have in case.
   $scope.$on("fileProgress", function(e, progress) {
     $scope.progress = progress.loaded / progress.total;
   });
 
+  // this method is for displaying images prior to upload.
   $scope.getFile = function () {
     $scope.progress = 0;
 
@@ -32,59 +43,5 @@ angular.module('app').controller('receiptModalCtrl', ['$http', '$scope', '$uibMo
     .then(function(result) {
       $scope.imageSrc = result;
     });
-  };
-
-
-}]);
-
-
-
-angular.module('app').service('fileReader', ['$q', '$log', function($q, $log) {
-
-  var onLoad = function(reader, deferred, scope) {
-      return function () {
-          scope.$apply(function () {
-              deferred.resolve(reader.result);
-          });
-      };
-  };
-
-  var onError = function (reader, deferred, scope) {
-      return function () {
-          scope.$apply(function () {
-              deferred.reject(reader.result);
-          });
-      };
-  };
-
-  var onProgress = function(reader, scope) {
-      return function (event) {
-          scope.$broadcast("fileProgress",
-              {
-                  total: event.total,
-                  loaded: event.loaded
-              });
-      };
-  };
-
-  var getReader = function(deferred, scope) {
-      var reader = new FileReader();
-      reader.onload = onLoad(reader, deferred, scope);
-      reader.onerror = onError(reader, deferred, scope);
-      reader.onprogress = onProgress(reader, scope);
-      return reader;
-  };
-
-  var readAsDataURL = function (file, scope) {
-      var deferred = $q.defer();
-
-      var reader = getReader(deferred, scope);
-      reader.readAsDataURL(file);
-
-      return deferred.promise;
-  };
-
-  return {
-      readAsDataUrl: readAsDataURL
   };
 }]);

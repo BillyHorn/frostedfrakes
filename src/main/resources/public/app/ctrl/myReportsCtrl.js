@@ -8,8 +8,6 @@ angular.module('app').controller('myReportsCtrl', ['$scope', '$state', 'myReport
   // an array of reports, filtered by current state
   myReportsService.filterReports(state).then(function(res){
     $scope.filteredReports = res;
-    console.log("$scope.filteredReports");
-    console.log($scope.filteredReports);
   });
 
   // a string containing a bootstrap panel-type, for display purposes

@@ -1,3 +1,27 @@
+// <<<<<<< HEAD
+// angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'checkUser', '$uibModal',
+//   function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, checkUser, $uibModal) {
+//
+//     $scope.report = getReport.data;
+//     $scope.projects = getProjects.data;
+//     $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
+//     $scope.report.name = $scope.report.reportname;
+//     $scope.current = checkUser;
+//
+//     // fetch the history for the report
+//     reportHistoryHttp.getReportHistory($scope.report.reportId)
+//           .then(function(response){
+//             $scope.history = response.data;
+//             // iterate through each entry to change actions to the string version, and change the time stamps into dates
+//             for(var i = 0; i < $scope.history.length; i++)
+//             {
+//               $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
+//               $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
+//             }
+//           });
+//
+//     for(var i = 0; i < getLineItems.length; i++)
+
 angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'checkUser', '$uibModal',
   function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, checkUser, $uibModal) {
 
@@ -20,11 +44,12 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
           });
 
     for(var i = 0; i < getLineItems.length; i++)
-    {
-      var tempDate = new Date(getLineItems[i].date);
-      tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
-      getLineItems[i].date = tempDate;
-    }
+  {
+    var tempDate = new Date(getLineItems[i].date);
+    tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
+    getLineItems[i].date = tempDate;
+  }
+
     $scope.lineitems = getLineItems;
     $scope.categories = getCategories.data;
     // the index of the reports assoiciated project in the projects array used for default value in the ng-option
@@ -83,13 +108,34 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     // helper function to find the index of the the obj in the array
     function findIndex(array, obj) {
       for(var i = 0; i < array.length; i++)
-      { 
+      {
         if(array[i] == obj)
         {
           return i;
         }
       }
     }
+
+
+  // openning the modal
+  $scope.open = function (lineItemId) {
+
+    // actually opens it
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'receiptModal.html',
+      controller: 'receiptModalCtrl',
+      size: 'sm',
+      // and passes in the lineItemId
+      resolve: {
+        lineItemId: lineItemId
+      }
+    });
+
+
+    modalInstance.result.then(function() {
+
+    });
 
     $scope.open = function (lineItemId) {
 
@@ -107,7 +153,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
         console.log("hi");
       });
     };
-
+};
     // helper function to format timestamp to date
     function getFormattedDate(timestamp) {
       var newDate = new Date();
