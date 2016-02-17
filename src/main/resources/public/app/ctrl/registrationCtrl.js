@@ -14,7 +14,7 @@ angular.module('app').controller('registrationCtrl',	['$scope','$state','registr
 				.then(
 					function(sucess) {
 						var message = "";
-						if (sucess.data == '') {
+						if (sucess.data === '') {
 							$scope.alert = "alert alert-warning";
 							$scope.type = "Warning: ";
 							$scope.message = "Username Already Exists!";

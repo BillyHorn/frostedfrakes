@@ -1,3 +1,4 @@
+// this service is for... exactly what you think it is for...
 angular.module('app').service('fileUpload', ['$http', '$state', function ($http, $state) {
 
   this.uploadFileToUrl = function(file, receiptName, lineItemId){

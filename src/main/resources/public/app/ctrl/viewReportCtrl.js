@@ -25,10 +25,6 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     getLineItems[i].date = tempDate;
   }
 
-  $scope.addReceipt = function(index) {
-    $scope.lineitems[index].receipts.push({});
-  };
-
   $scope.lineitems = getLineItems.data;
   $scope.categories = getCategories.data;
   // the index of the reports assoiciated project in the projects array used for default value in the ng-option
@@ -97,20 +93,23 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     }
   }
 
+  // openning the modal
   $scope.open = function (lineItemId) {
 
+    // actually opens it
     var modalInstance = $uibModal.open({
       animation: true,
       templateUrl: 'receiptModal.html',
       controller: 'receiptModalCtrl',
       size: 'sm',
+      // and passes in the lineItemId
       resolve: {
         lineItemId: lineItemId
       }
     });
 
     modalInstance.result.then(function() {
-      console.log("hi");
+      
     });
   };
 

@@ -1,3 +1,4 @@
+// this directive is necessary for file uploads.
 angular.module('app').directive('fileModel', ['$parse', function ($parse) {
   return {
     restrict: 'A',
