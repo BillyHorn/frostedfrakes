@@ -1,4 +1,5 @@
 <div class="container">
+
   <form name="reportForm" class="editReportForm col-md-offset-3 col-md-6" ng-submit="submitForm(reportForm.$valid)" novalidate>
 
      <fieldset class="form-group">
@@ -12,18 +13,22 @@
                             dropdown for accepted or submitted reports -->
       </select>
     </fieldset>
+
     <fieldset class="form-group">
       <label for="dev"> Submitter </label> <!-- TODO change to a label since this is never editable @mKness -->
       <input type="text" class="form-control" ng-model="report.dev.email" id="inputState" readonly>
     </fieldset>
+
     <fieldset class="form-group">
       <label for="state"> State </label>
       <input type="text" class="form-control" ng-model="state" id="inputState" ng-hide "report.state == 2" readonly>
     </fieldset>
+
     <fieldset class="form-group" ng-show="report.state == 3"> <!-- only show if rejected -->
       <label for="rejectionNotes"> Rejection Notes </label>
       <textarea type="text" class="form-control" ng-model="report.rejectionNotes" id="inputRejectionNotes" readonly></textarea>
     </fieldset>
+
     <!-- begin lineitems -->
     <fieldset ng-repeat="li in lineitems" class="line-item col-sm-offset-1" ng-readonly="report.state == 2 || report.state == 4">
       <!-- wPerlichek: disabled project dropdown for accepted or submitted reports -->
@@ -31,6 +36,7 @@
         <label for="category"> Category</label> <span class="horizontal-break"></span> selected category: {{li.category.value}}
         <select class="line-item-select form-control" name="category" value="report.category.value" ng-model="li.category" ng-options="category as category.value for category in categories" ng-readonly="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)" ng-disabled="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"> </select>
       </ng-form>
+
       <ng-form name="valueForm">
         <fieldset class="form-group" ng-class="{'has-error' : valueForm.value.$invalid && !valueForm.value.$pristine}">
           <label> Value</label>
@@ -38,18 +44,40 @@
           <p ng-show="valueForm.value.$invalid && !valueForm.value.$pristine" class="help-block"> Must be a dollar value </p>
         </fieldset>
       </ng-form>
+
       <ng-form name="dateForm">
         <label> Date</label>
         <input type="date" class="form-control" name="date" ng-model="li.date" required ng-readonly="report.state == 2" ng-readonly="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)" ng-disabled="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"> </input>
       </ng-form>
+
+      <ng-form name="receiptForm" ng-show="li.receipts.length > 0"> 
+        <label> Attached Receipts</label>
+        <div class="row receipts">
+          <div class="col-xs-4 receipt-tumbnail" ng-repeat="receipt in li.receipts">
+            <a href="#" class="thumbnail">
+              <p class="text-center">{{receipt.name}}</p>
+              <img class="img-responsive" ng-src="./getReceipt/image/{{receipt.receiptId}}">
+            </a>
+          </div>
+        </div>
+      </ng-form>
+
+      <button class="add-receipt-btn btn btn-primary" ng-click="open(lineitems[$index].lineItemId)" ng-hide="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"> Add Receipt </button>
+
       <button class="remove-line-item-btn btn btn-warning" ng-click="deleteLineItem(li)" ng-hide="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"> Delete Line Item </button>
     </fieldset>
+
+    </fieldset>
+
     <button class="btn btn-primary" ng-click="addLineItem()" ng-hide="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"> Add Line Item </button>
+
     <!-- end lineitems -->
+
     <fieldset class="form-group">
       <label for="notes">Notes</label>
       <textarea class="form-control" id="inputNotes" ng-model="report.notes" ng-readonly="report.state == 2 || report.state == 4"   ng-show="report.state > 0" ng-readonly="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)" ng-disabled="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"></textarea>
     </fieldset>
+
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 <button type="button" class="btn btn-primary"  ng-click="putReport(1)" ng-hide="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)">Save</button>
     <button type="button" class="btn btn-primary"  ng-click="putReport(2)" ng-hide="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)">Submit</button>
@@ -57,9 +85,47 @@
 report state is 2 @wPerlichek -->
    <button type="button" class="btn btn-primary"  ng-click="unSubmit()" ng-hide="report.state == 1 || report.state == 4 || report.state == 3" >Unsubmit</button>
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#historyModal"> View History</button>
+
   </form>
 </div> <!-- /container -->
 <!-- ng-disabled="reportForm.$invalid" -->
+
+
+<!-- below is the receipt modal html -->
+<script type="text/ng-template" id="receiptModal.html">
+
+  <div class="modal-header">
+    <h3 class="modal-title">Add a Receipt</h3>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="name-input-container">
+      <label for="name"> Receipt Name</label>
+      <input type="text" ng-model="receiptName" class="form-control">
+    </div>
+
+    <div class="upload-btn-container">
+      <label for="image"> Image File</label>
+      <span class="btn btn-default btn-file">
+        Browse <input type="file" accept=".jpg" file-model="myFile" ng-model="fileSelected" ng-file-select="onFileSelect($files)"/>
+      </span>
+    </div>
+
+    <div class="upload-image-preview">
+      <i ng-hide="imageSrc">No image selected</i>
+      <img class="img-responsive" ng-src="{{imageSrc}}" />
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok(receiptName)">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+
+</script>
+
 
 <!-- Modal to display report history-->
 <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">

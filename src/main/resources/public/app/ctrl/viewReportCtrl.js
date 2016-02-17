@@ -1,15 +1,11 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'currentUser',
-  function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, currentUser) {
+angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'checkUser', '$uibModal',
+  function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, checkUser, $uibModal) {
 
     $scope.report = getReport.data;
     $scope.projects = getProjects.data;
     $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
     $scope.report.name = $scope.report.reportname;
-    $scope.current = currentUser.getUser();
-    console.log("$scope.report.name");
-    console.log($scope.report.name);
-    console.log($scope.report);
-
+    $scope.current = checkUser;
 
     // fetch the history for the report
     reportHistoryHttp.getReportHistory($scope.report.reportId)
@@ -23,13 +19,13 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
             }
           });
 
-    for(var i = 0; i < getLineItems.data.length; i++)
+    for(var i = 0; i < getLineItems.length; i++)
     {
-      var tempDate = new Date(getLineItems.data[i].date);
+      var tempDate = new Date(getLineItems[i].date);
       tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
-      getLineItems.data[i].date = tempDate;
+      getLineItems[i].date = tempDate;
     }
-    $scope.lineitems = getLineItems.data;
+    $scope.lineitems = getLineItems;
     $scope.categories = getCategories.data;
     // the index of the reports assoiciated project in the projects array used for default value in the ng-option
     $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
@@ -87,7 +83,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     // helper function to find the index of the the obj in the array
     function findIndex(array, obj) {
       for(var i = 0; i < array.length; i++)
-      {
+      { 
         if(array[i] == obj)
         {
           return i;
@@ -95,10 +91,28 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
       }
     }
 
+    $scope.open = function (lineItemId) {
+
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'receiptModal.html',
+        controller: 'receiptModalCtrl',
+        size: 'sm',
+        resolve: {
+          lineItemId: lineItemId
+        }
+      });
+
+      modalInstance.result.then(function() {
+        console.log("hi");
+      });
+    };
+
     // helper function to format timestamp to date
     function getFormattedDate(timestamp) {
       var newDate = new Date();
       newDate.setTime(timestamp);
-      return dateString = newDate.toUTCString();
+      return newDate.toUTCString();
     }
+
   }]);

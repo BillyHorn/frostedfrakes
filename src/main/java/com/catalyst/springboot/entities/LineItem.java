@@ -31,6 +31,7 @@ public class LineItem {
 	private Category category;
 	private Report report;
 	
+	
 	/**
 	 * @return the lineItemId
 	 */
