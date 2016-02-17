@@ -120,16 +120,20 @@ public class ReportHistoryService {
 	}
 	
 	/**
-	 * helper function to return a string based on the state of the given report
-	 * 
-	 * @param report the report being logged
-	 * @return the string representation of the action taken
-	 * @author mKness
-	 */
-	private String getAction(Report report) {
-		String state = report.getState();
-		return state;
-	}
+	  * helper function to return a string based on the state of the given report
+	  * 
+	  * @param report the report being logged
+	  * @return the string representation of the action taken
+	  * @author mKness
+	  */
+	 private String getAction(Report report) {
+	  String state = report.getState();
+	  ReportHistory old = getLatestHistory(report.getReportId());
+	  if(state.equals("1") && old.getAction().equals("2")) {
+	   state = "-1";
+	  }
+	  return state;
+	 }
 	
 	/**
 	 * helper function to get the current user from spring security
@@ -141,4 +145,23 @@ public class ReportHistoryService {
 		Authentication authentication = authenticationFacade.getAuthentication();
         return devService.getEmployeeByUsername(authentication.getName());
 	}
+	
+	/**
+	  * helper function 
+	  * @param reportId is the reportId of the report we want the latest history for
+	  * @return 
+	  */
+	 private ReportHistory getLatestHistory(Integer reportId) {
+	  List<ReportHistory> history = reportHistoryDao.getReportHistory(reportId);
+	  ReportHistory rtnHistory = null;
+	  for(ReportHistory rh : history) {
+	   if(rtnHistory == null) {
+	    rtnHistory = rh;
+	   }
+	   else if(rh.getTimeStamp().compareTo(rtnHistory.getTimeStamp()) > 0) {
+	    rtnHistory = rh;
+	   }
+	  }
+	  return rtnHistory;
+	 }
 }

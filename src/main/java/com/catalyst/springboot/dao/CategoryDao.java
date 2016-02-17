@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import com.catalyst.springboot.entities.Category;
-import com.catalyst.springboot.entities.LineItem;
 
 @Transactional
 @Component 

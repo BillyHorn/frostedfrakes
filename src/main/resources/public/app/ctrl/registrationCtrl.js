@@ -6,6 +6,7 @@ angular.module('app').controller('registrationCtrl',	['$scope','$state','registr
 
 		$scope.register.role = "dev";
 		$scope.register.isactive = true;
+		$scope.register.loginTime = 0;
 
 		if ($scope.register.password == $scope.register.verifypassword) {
 			$scope.value = true;

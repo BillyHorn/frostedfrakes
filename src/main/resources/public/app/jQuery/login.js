@@ -1,18 +1,6 @@
 $(document).ready(function(){
 	$('#errorLog').hide();
 
-	$('#login-form').keypress(function(e){
-		if(e.keyCode == 13){
-			$('#submitLogin').click();
-		}
-	});
-
-	$('#register-form').keypress(function(e){
-		if(e.keyCode == 13){
-			$('#createbtn').click();
-		}
-	});
-
 	$("#submitLogin").click(function(event){
 		event.preventDefault();
 		var data = 'username=' + $('#inputUsername').val() + '&password=' + $('#inputPassword').val();
@@ -25,10 +13,8 @@ $(document).ready(function(){
 	    timeout: 1000,
 	    type: 'POST',
 	    url: '/login'
-
 	  }).done(function() {
-	    window.location.href = "/";
-
+	    window.location.href = "/totpAuthentication";
 	  }).fail(function() {
 		$('#errorLog').show();
 		$('#errorLog').empty();

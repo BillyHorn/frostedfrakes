@@ -1,21 +1,23 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', '$uibModal', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState',
-function($scope, $uibModal, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState) {
+
+angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'checkUser', '$uibModal',
+function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, checkUser, $uibModal) {
 
   $scope.report = getReport.data;
   $scope.projects = getProjects.data;
   $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
   $scope.report.name = $scope.report.reportname;
+  $scope.current = checkUser;
 
   // fetch the history for the report
   reportHistoryHttp.getReportHistory($scope.report.reportId)
-    .then(function(response){
-      $scope.history = response.data;
-      // iterate through each entry to change actions to the string version, and change the time stamps into dates
-      for(var i = 0; i < $scope.history.length; i++)
-      {
-        $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
-        $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
-      }
+  .then(function(response){
+    $scope.history = response.data;
+    // iterate through each entry to change actions to the string version, and change the time stamps into dates
+    for(var i = 0; i < $scope.history.length; i++)
+    {
+      $scope.history[i].action = stateConverterService.getString($scope.history[i].action);
+      $scope.history[i].date = getFormattedDate($scope.history[i].timeStamp);
+    }
   });
 
   for(var i = 0; i < getLineItems.length; i++)
@@ -25,6 +27,7 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     getLineItems[i].date = tempDate;
   }
 
+  <<<<<<< HEAD
   $scope.lineitems = getLineItems;
   $scope.categories = getCategories.data;
   // the index of the reports assoiciated project in the projects array used for default value in the ng-option
@@ -54,16 +57,16 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
   };
 
   /* author @wPerlichek
-   * unSubmit();
-   * change state of report from "submitted" (2)
-   * to "saved" (1) when the user clicks the
-   * unsubmit button from the view reports page
-   * send user back to save/edit page
-   */
+  * unSubmit();
+  * change state of report from "submitted" (2)
+  * to "saved" (1) when the user clicks the
+  * unsubmit button from the view reports page
+  * send user back to save/edit page
+  */
   $scope.unSubmit = function(){
-     reportHttp.unSubmitReport($scope.report);
-     /* direct path saved view of the previously submitted report */
-     $state.go('my-reports.saved' + '/' + $scope.reportId);
+    reportHttp.unSubmitReport($scope.report);
+    /* direct path saved view of the previously submitted report */
+    $state.go('my-reports.saved' + '/' + $scope.reportId);
   };
 
   // add a new line item to the list
@@ -93,6 +96,7 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     }
   }
 
+
   // openning the modal
   $scope.open = function (lineItemId) {
 
@@ -108,11 +112,29 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
       }
     });
 
+
     modalInstance.result.then(function() {
 
     });
-  };
 
+    $scope.open = function (lineItemId) {
+
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'receiptModal.html',
+        controller: 'receiptModalCtrl',
+        size: 'sm',
+        resolve: {
+          lineItemId: lineItemId
+        }
+      });
+
+      modalInstance.result.then(function() {
+        console.log("hi");
+      });
+    };
+  };
+  
   // helper function to format timestamp to date
   function getFormattedDate(timestamp) {
     var newDate = new Date();

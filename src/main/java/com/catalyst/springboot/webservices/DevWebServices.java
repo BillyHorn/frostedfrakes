@@ -3,12 +3,18 @@ package com.catalyst.springboot.webservices;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.http.protocol.HTTP;
+import org.openqa.selenium.remote.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalyst.springboot.component.AuthenticationFacade;
 import com.catalyst.springboot.entities.Dev;
 import com.catalyst.springboot.services.DevService;
 
@@ -58,4 +64,24 @@ public class DevWebServices {
 	public Dev currentUser(Principal principal) {
 		return devService.getEmployeeByUsername(principal.getName());
 	}
+	
+	@RequestMapping(value="/users/validate", method = RequestMethod.POST)
+	public void totpAuth(@RequestBody String authCode, HttpServletResponse response, Principal principal){
+		devService.totpAuth(authCode, response, principal);
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

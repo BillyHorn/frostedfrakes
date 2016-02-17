@@ -12,7 +12,7 @@ function($scope, $state, loginService) {
 
      loginService.login($scope.userLogin)
         .then(function(acceptResponse){
-          $state.go("home");
+          console.log("hello");
         },function(response){
           console.log("ERROR MESSAGE: " + response);
      });

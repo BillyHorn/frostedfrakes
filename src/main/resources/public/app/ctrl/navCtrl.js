@@ -1,11 +1,6 @@
 angular.module('app').controller('navCtrl', ['$scope', 'currentUser', 'loginService', '$state', function($scope, currentUser, loginService, $state) {
 
-    loginService.currentDev().then(function(response){
-        currentUser.setUser(response.data);
-        $scope.currentUser = response.data;
-        // declare variable (thisUser)
-        // return that on the resolve (over in routes)
-    });
+    $scope.currentUser = currentUser.getUser();
     $scope.currentUser = {};
     $scope.currentUser.role="user";
 

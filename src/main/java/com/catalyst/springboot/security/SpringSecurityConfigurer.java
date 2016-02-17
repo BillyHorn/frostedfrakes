@@ -41,15 +41,16 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/**").authenticated()
 		    .and().formLogin().loginPage("/loginPage").permitAll()
-		    .usernameParameter("username").passwordParameter("password").loginProcessingUrl("/login").failureHandler(authFailure)
-		    .and().logout()
+		    .usernameParameter("username").passwordParameter("password").loginProcessingUrl("/login")
+		    .failureHandler(authFailure)
+		    .and().logout().logoutSuccessHandler(logoutHandler).logoutSuccessUrl("/login")
 		    .and().headers().cacheControl();
 		http.csrf().disable();
 	}
 	
 	@Override
 	 public void configure(WebSecurity web) throws Exception {
-	  web.ignoring().antMatchers("/css/**", "/vendor/**", "/app/**", "/views/**", "/register");
+	  web.ignoring().antMatchers("/css/**", "/vendor/**", "/app/**", "/views/login.html", "/register");
 	  
 	 }
 	
@@ -60,11 +61,18 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	CustomAuthenticationFailureHandler authFailure;
-	CustomAuthenticationFailureHandler authSuccess;
+	
+	@Autowired
+	LogoutSuccessHandler logoutHandler;
 
 	@Bean
-	CustomAuthenticationFailureHandler authenticationHandler() {
+	CustomAuthenticationFailureHandler authenticationFailureHandler() {
 	    return new CustomAuthenticationFailureHandler();
+	}
+	
+	@Bean
+	LogoutSuccessHandler newLogoutHandler(){
+		return new LogoutSuccessHandler();
 	}
 	 
 	 /**
@@ -73,9 +81,13 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	public void setAuthFailure(CustomAuthenticationFailureHandler authFailure) {
 	 this.authFailure = authFailure;
 	}
-	
-	public void setAuthSuccess(CustomAuthenticationFailureHandler authSuccess) {
-		this.authSuccess = authSuccess;
+
+	/**
+	 * @param logoutHandler the logoutHandler to set
+	 */
+	public void setLogoutHandler(LogoutSuccessHandler logoutHandler) {
+		this.logoutHandler = logoutHandler;
 	}
+	
 	
 }

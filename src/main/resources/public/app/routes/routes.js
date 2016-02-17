@@ -3,9 +3,13 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   // redirect from the base myreports state so that only child-states exist
   $urlRouterProvider.when('/my-reports', '/my-reports/saved');
 
+  $urlRouterProvider.otherwise(function($injector, $location){
+    var $state = $injector.get("$state");
+    if ($location.absUrl() !== "http://localhost:8080/totpAuthentication"){
+         $state.go("home");
+     }
+    });
 
-  // and anything other than a state can send you back to home.
-  $urlRouterProvider.otherwise('/home');
 
   // states for each necessary route
   $stateProvider
@@ -14,34 +18,85 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     url: '/home',
     templateUrl: 'views/partials/home.html',
     controller: 'homeCtrl',
-    resolve: { 
-      getThisUser: ['loginService', function(loginService) {
-             /* obtain current user upon page load @wPerlichek */
-             return loginService.currentDev().then(function(response){ 
-             var currentUser = response.data;
-             return currentUser; 
-           });
-      }]
+    resolve :{
+        checkUser: ['currentUser', 'loginService', function(currentUser, loginService){
+                return loginService.currentDev().then(function(response){
+                    if (currentUser.getUser() === undefined) {
+                        currentUser.setUser(response.data);
+                        if(currentUser.getUser().isvalid === false) {
+                            window.location.href="/logout";
+                        }
+                    }
+                    else if (currentUser.getUser().isvalid === false) {
+                        window.location.href="/logout";
+                    }
+                    else {
+                        return currentUser.getUser();
+                    }
+                });
+            }]
     }
+  })
+
+  .state('totpAuthentication', {
+    url:"/totpAuthentication"
+    // templateUrl: 'views/partials/totpPartial.html',
+    // controller: 'totpAuthCtrl'
   })
 
   .state('registration', {
     url: '/registration',
     templateUrl: 'views/partials/registration.html',
-    controller: "registrationCtrl"
+    controller: "registrationCtrl",
+    resolve :{
+        checkUser: ['currentUser', 'loginService', function(currentUser, loginService){
+                return loginService.currentDev().then(function(response){
+                    if (currentUser.getUser() === undefined) {
+                        currentUser.setUser(response.data);
+                        if(currentUser.getUser().isvalid === false) {
+                            window.location.href="/logout";
+                        }
+                    }
+                    else if (currentUser.getUser().isvalid === false) {
+                        window.location.href="/logout";
+                    }
+                    else {
+                        return currentUser.getUser();
+                    }
+                });
+            }]
+    }
   })
 
     .state('logout', {
     url: '/logout',
-    controller: function($scope, $route) {
-      $route.reload();
+    controller: function() {
+        window.location.href="/logout";
     }
   })
 
   .state('create-report', {
     url: '/create-report',
     templateUrl: 'views/partials/create-report.html',
-    controller: 'createReportCtrl'
+    controller: 'createReportCtrl',
+    resolve :{
+        checkUser: ['currentUser', 'loginService', function(currentUser, loginService){
+                return loginService.currentDev().then(function(response){
+                    if (currentUser.getUser() === undefined) {
+                        currentUser.setUser(response.data);
+                        if(currentUser.getUser().isvalid === false) {
+                            window.location.href="/logout";
+                        }
+                    }
+                    else if (currentUser.getUser().isvalid === false) {
+                        window.location.href="/logout";
+                    }
+                    else {
+                        return currentUser.getUser();
+                    }
+                });
+            }]
+    }
   })
 
   .state('viewReport', {
@@ -60,13 +115,47 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
       }],
       getCategories: ['categoriesHttp', function(categoriesHttp){
         return categoriesHttp.getCategories();
-      }]
+    }],
+        checkUser: ['currentUser', 'loginService', function(currentUser, loginService){
+            return loginService.currentDev().then(function(response){
+                if (currentUser.getUser() === undefined) {
+                    currentUser.setUser(response.data);
+                    if(currentUser.getUser().isvalid === false) {
+                        window.location.href="/logout";
+                    }
+                }
+                else if (currentUser.getUser().isvalid === false) {
+                    window.location.href="/logout";
+                }
+                else {
+                    return currentUser.getUser();
+                }
+            });
+        }]
     }
   })
 
   .state('create-project', {
     url: '/create-project',
     templateUrl: 'views/partials/create-project.html',
-    controller: "createProjectCtrl"
-  })
+    controller: "createProjectCtrl",
+    resolve :{
+        checkUser: ['currentUser', 'loginService', function(currentUser, loginService){
+                return loginService.currentDev().then(function(response){
+                    if (currentUser.getUser() === undefined) {
+                        currentUser.setUser(response.data);
+                        if(currentUser.getUser().isvalid === false) {
+                            window.location.href="/logout";
+                        }
+                    }
+                    else if (currentUser.getUser().isvalid === false) {
+                        window.location.href="/logout";
+                    }
+                    else {
+                        return currentUser.getUser();
+                    }
+                });
+            }]
+    }
+});
 }]);

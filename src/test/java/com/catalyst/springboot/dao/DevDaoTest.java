@@ -67,7 +67,21 @@ public class DevDaoTest {
 
 		verify(mockTypedQuery).setParameter(eq("email"), eq("test"));
 	}
-	 // should add sad path for get dev by username to test catching exception
+	
+	@Test
+	public void getDevByUsernameTestFailure() {
+		@SuppressWarnings("unchecked")
+		TypedQuery<Dev> mockTypedQuery = mock(TypedQuery.class);
+
+		when(mockEm.createQuery(anyString(), eq(Dev.class))).thenReturn(mockTypedQuery);
+		when(mockTypedQuery.setParameter(anyString(), anyInt())).thenReturn(mockTypedQuery);
+		when(mockTypedQuery.getSingleResult()).thenReturn(null);
+
+		dao.getDevByUsername("test");
+
+		verify(System.out).println("caught that stupid exception");
+	}
+	 
 	@Test 
 	public void registerTest() {
 		

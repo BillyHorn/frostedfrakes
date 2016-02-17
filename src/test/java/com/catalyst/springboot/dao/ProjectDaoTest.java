@@ -36,7 +36,7 @@ public class ProjectDaoTest {
 	}
 	
 	@Test
-	public void addTest(){		
+	public void addTest(){
 		dao.add(null);
 		verify(mockEm).persist(null);
 	}
@@ -47,26 +47,11 @@ public class ProjectDaoTest {
 		TypedQuery<Project> mockTypedQuery = mock(TypedQuery.class);
 
 		List<Project> expected = new ArrayList<Project>();
-
 		
-		when(mockEm.createQuery(anyString(), eq(Project.class))).thenReturn(query);
-		when(query.getResultList()).thenReturn(expected);
-		
-		//dao.getByDev(dev)
-		verify(query).getResultList();
-	
-
-	/*@Test
-	public void registerTest() {
-		verify(mockEm).persist(null);
-	}*/
-
-
 		when(mockEm.createQuery(anyString(), eq(Project.class))).thenReturn(mockTypedQuery);
 		when(mockTypedQuery.getResultList()).thenReturn(expected);
-
+		
 		dao.getByDev(dev);
-
 		verify(mockTypedQuery).getResultList();
 	}
 

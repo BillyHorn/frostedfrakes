@@ -1,5 +1,6 @@
 angular.module('app').service('currentUser', function(){
-    var user = {};
+    var user = null;
+
 
     function getUser(){
         return this.user;
@@ -9,8 +10,11 @@ angular.module('app').service('currentUser', function(){
         this.user = user;
     }
 
+
     return {
         getUser : getUser,
         setUser : setUser
     };
+
+
 });
