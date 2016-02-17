@@ -118,17 +118,32 @@ public class ReceiptWebServices {
 	public void addReceiptImage(@RequestParam("name") String receiptName, @RequestParam("lineItemId") Integer lineItemId, @RequestBody MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			byte[] imageByteArray = file.getBytes();
-			receiptService.sendImage(imageByteArray, receiptName, lineItemId);
+			receiptService.sendReceiptData(imageByteArray, receiptName, lineItemId);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * this method provides an endpoint for our front-end to search and
+	 * retrieve a list of lineitems, selected by the id of an associated
+	 * lineitem
+	 * 
+	 * @param lineItemId the lineitem id to be searched for
+	 * @return the associted list of receipts
+	 */
 	@RequestMapping(value= "/getReceipt/lineItem/{lineItemId}", method = RequestMethod.GET)
 	public List<Receipt> getReceiptByLineItemId(@PathVariable Integer lineItemId) {
 		return receiptService.getReceiptByLineItemId(lineItemId);
 	}
 	
+	/**
+	 * this method provides an endpoint for our frontend to retrieve a receipt
+	 * selected by its unique id
+	 * 
+	 * @param id the id to be searched for
+	 * @return the associated receipt
+	 */
 	@RequestMapping(value= "/getReceipt/{id}", method = RequestMethod.GET)
 	public Receipt getReceiptById(@PathVariable Integer id) {
 		return receiptService.getReceiptById(id);

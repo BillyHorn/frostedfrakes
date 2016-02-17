@@ -27,6 +27,14 @@ public class Receipt {
 	private byte[] image;
 	private LineItem lineItem;
 	
+	/**
+	 * this constructor is used by the Receipt Service to build a receipt out
+	 * of its requisite peices.
+	 * 
+	 * @param byteArray the associated image
+	 * @param receiptName the associated name
+	 * @param lineItem the associated lineitem
+	 */
 	public Receipt(byte[] byteArray, String receiptName, LineItem lineItem) {
 		this.name = receiptName;
 		this.lineItem = lineItem;
