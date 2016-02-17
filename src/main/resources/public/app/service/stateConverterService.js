@@ -7,21 +7,27 @@
  *  4 - approved
  */
 
-angular.module('app').service('stateConverterService', ['savedState','submittedState','rejectedState','approvedState',
- function(savedState, submittedState, rejectedState, approvedState){
+angular.module('app').service('stateConverterService', ['savedState','submittedState','rejectedState','approvedState', 'unsubmittedState', 'createdState',
+ function(savedState, submittedState, rejectedState, approvedState, unsubmittedState, createdState){
 
   function getString(number) {
     if(number == savedState) {
       return "saved";
     }
-    if(number == submittedState) {
+    else if(number == submittedState) {
       return "submitted";
     }
-    if(number == rejectedState) {
+    else if(number == rejectedState) {
       return "rejected";
     }
-    if(number == approvedState) {
+    else if(number == approvedState) {
       return "approved";
+    }
+    else if(number == createdState) {
+      return "created";
+    }
+    else if(number == unsubmittedState) {
+      return "unsubmitted";
     }
   }
 
@@ -29,14 +35,20 @@ angular.module('app').service('stateConverterService', ['savedState','submittedS
     if(string == "saved") {
       return savedState;
     }
-    if(string == "submitted") {
+    else if(string == "submitted") {
       return submittedState;
     }
-    if(string == "rejected") {
+    else if(string == "rejected") {
       return rejectedState;
     }
-    if(string == "approved") {
+    else if(string == "approved") {
       return approvedState;
+    }
+    else if(string == "created") {
+      return createdState;
+    }
+    else if(string == "unsubmitted") {
+      return unsubmittedState;
     }
   }
 
