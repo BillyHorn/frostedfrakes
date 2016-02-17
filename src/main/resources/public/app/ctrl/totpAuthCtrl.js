@@ -1,4 +1,4 @@
-angular.module('app').controller('totpAuthCtrl', ['$scope', 'devHttp', 'currentUser', 'loginService', '$state', function($scope, devHttp, currentUser, loginService, $state ){
+angular.module('app').controller('totpAuthCtrl', ['$scope', 'devHttp', 'currentUser', 'loginService', '$state', '$browser',function($scope, devHttp, currentUser, loginService, $state, $browser){
 
 	$scope.totp = function(){
 		console.log("anything");
@@ -11,36 +11,7 @@ angular.module('app').controller('totpAuthCtrl', ['$scope', 'devHttp', 'currentU
 	};
 
 	$scope.logout = function() {
-		$state.go("logout");
+		window.location.href="/logout";
 	};
-
-	window.onbeforeunload = function(event){
-		if (currentUser.getUser() === undefined) {
-            loginService.currentDev().then(function(response){
-                currentUser.setUser(response.data);
-                if(currentUser.getUser().isvalid === false) {
-                    window.location.href="/logout";
-                }
-            });
-        }
-        else if (currentUser.getUser().isvalid === false) {
-            window.location.href="/logout";
-        }
-        return;
-	};
-
-	$scope.$on('$destroy', function() {
-	    delete window.onbeforeunload;
-	});
-
-
-	// $rootScope.$on('$locationChangeStart', function(event){
-	// 	console.log($location);
-	//     event.preventDefault();
-	// 	//currentUser.validateUser();
-	//     // transitionTo() promise will be rejected with
-	//     // a 'transition prevented' error
-	// });
-
 
  }]);
