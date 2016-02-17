@@ -81,4 +81,24 @@ public class EmailHandlerTest {
 	}
 	
 	
+	/**
+	 * @author blarsen
+	 */
+	@Test
+	public void totpAuthenticationTest(){
+		TotpAuthentication mockTotp = mock(TotpAuthentication.class);
+		emailHandler.setTotpGenerator(mockTotp);
+		
+		String totp = mockTotp.generateTotp();
+		
+		mail.setTo("effpdx@gmail.com");
+		mail.setFrom("effpdx@gmail.com");
+		mail.setSubject("Your Authentication Code");
+        mail.setText("Code: " + totp);
+        
+		emailHandler.totpAuthentication();
+		mailSender.send(mail);
+	}
+	
+	
 }

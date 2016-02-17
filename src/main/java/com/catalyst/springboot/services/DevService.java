@@ -74,19 +74,17 @@ public class DevService {
 	}
 	
 	public HttpServletResponse totpAuth(String totpCode, HttpServletResponse response, Principal principal){
-		System.out.println(totpCode+ "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Authy");
-		Dev dev = devdao.getDevByUsername(principal.getName());	
-		System.out.println(dev.getAuthCode() + " Their auth code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		Dev dev = devdao.getDevByUsername(principal.getName());
+		
 		if(dev.getAuthCode().equals(totpCode) && (System.currentTimeMillis() - dev.getLoginTime() <= 200000)){
-			System.out.println("I passed the test!!!!!!!!!!!!!!!!!!!!!!!!");
 			response.setStatus(HttpServletResponse.SC_OK);
 			dev.setIsvalid(true);
 		}
 		else{
-			System.out.println("I failed the test!!!!!!!!!!!!!!!!!!!!!!!!");
 			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			dev.setIsvalid(false);
 		}
+		
 		devdao.loginTotp(dev);
 		return response;
 	}
