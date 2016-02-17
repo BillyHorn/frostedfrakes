@@ -18,14 +18,14 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
       }
   });
 
-  for(var i = 0; i < getLineItems.data.length; i++)
+  for(var i = 0; i < getLineItems.length; i++)
   {
     var tempDate = new Date(getLineItems[i].date);
     tempDate.setDate(tempDate.getDate() + 1); // add one day since the conversion causes it to lose a day
     getLineItems[i].date = tempDate;
   }
 
-  $scope.lineitems = getLineItems.data;
+  $scope.lineitems = getLineItems;
   $scope.categories = getCategories.data;
   // the index of the reports assoiciated project in the projects array used for default value in the ng-option
   $scope.index = projectFinderService.getIndex($scope.projects, $scope.report.project.projectId);
@@ -109,7 +109,7 @@ function($scope, $uibModal, getProjects, getReport, projectFinderService, stateC
     });
 
     modalInstance.result.then(function() {
-      
+
     });
   };
 
