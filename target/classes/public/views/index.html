@@ -30,6 +30,9 @@
       </div>
       <div class="collapse navbar-collapse" ng-init="isCollapsed = true" uib-collapse="isCollapsed" ng-click="isCollapsed = !isCollapsed">
         <ul class="nav navbar-nav">
+            <li>
+                <a ui-sref="home" ng-hide="admin()" ng-cloak>Home</a>
+            </li>
           <li>
             <a ui-sref="create-report" ng-hide="admin()" ng-cloak>Create New Report</a>
           </li>
@@ -98,6 +101,7 @@
   <script type="text/javascript" src="../app/values/savedStateValue.js"></script>
   <script type="text/javascript" src="../app/values/submittedStateValue.js"></script>
   <script type="text/javascript" src="../app/values/createdStateValue.js"></script>
+  <script type="text/javascript" src="../app/values/unsubmittedStateValue.js"></script>
 
   <!-- http services -->
   <script type="text/javascript" src="../app/service/categoriesHttpService.js"></script>
