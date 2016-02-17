@@ -20,17 +20,7 @@ public class HomeController {
 	private EmailHandler emailHandler;
 	
 	@Autowired
-	private AuthenticationFacade authenticationFacade;
-	
-	@Autowired
 	private DevService devService;
-	
-	/**
-	 * @param authenticationFacade the authenticationFacade to set
-	 */
-	public void setAuthenticationFacade(AuthenticationFacade authenticationFacade) {
-		this.authenticationFacade = authenticationFacade;
-	}
 
 	/**
 	 * @param devService the devService to set
@@ -53,7 +43,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 	public String loginPage(){
-		System.out.println("request mapping to login");
 		return "/views/login.html";	
 	}
 	

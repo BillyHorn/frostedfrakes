@@ -1,7 +1,6 @@
 package com.catalyst.springboot.dao;
 
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.catalyst.springboot.entities.Category;
-import com.catalyst.springboot.entities.LineItem;
 
 /**
  * 
