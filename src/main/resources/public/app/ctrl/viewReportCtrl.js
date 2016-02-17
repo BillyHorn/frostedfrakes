@@ -1,14 +1,16 @@
-angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState',
-  function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState) {
+angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'currentUser',
+  function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, currentUser) {
 
     $scope.report = getReport.data;
     $scope.projects = getProjects.data;
     $scope.report.reportname = $scope.report.project.name + " Report ID: " + $scope.report.reportId;
     $scope.report.name = $scope.report.reportname;
+    $scope.current = currentUser.getUser();
     console.log("$scope.report.name");
     console.log($scope.report.name);
-   
-    
+    console.log($scope.report);
+
+
     // fetch the history for the report
     reportHistoryHttp.getReportHistory($scope.report.reportId)
           .then(function(response){
@@ -40,7 +42,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
       $scope.report.project = $scope.selectedProject;
     //  $scope.report.newname = $scope.report.reportname;
       reportHttp.putReport($scope.report);
-     
+
       // iterate through the lineitems and send all of them to update
       for(var i = 0; i < $scope.lineitems.length; i++) {
         $scope.lineitems[i].report = $scope.report;
@@ -57,7 +59,7 @@ angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','get
     /* author @wPerlichek */
     /* unSubmit();
     /* change state of report from "submitted" (2)
-    /* to "saved" (1) when the user clicks the 
+    /* to "saved" (1) when the user clicks the
     /* unsubmit button from the view reports page */
     /* send user back to save/edit page */
     $scope.unSubmit = function(){
