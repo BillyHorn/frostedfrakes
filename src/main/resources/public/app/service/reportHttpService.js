@@ -1,5 +1,5 @@
-angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejectedState', 'savedState',
-  function($http, approvedState, rejectedState, savedState){
+angular.module('app').service('reportHttp', ['$http', '$state', 'approvedState', 'rejectedState', 'savedState',
+  function($http, $state, approvedState, rejectedState, savedState){
 
     // local var to hold end point name
     var reportEndPoint = "/report";
@@ -39,11 +39,11 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       return $http.get(reportEndPoint + '/email/' + user);
     }
     //SteffyJoseph
-    //get all reports for the current techlead email( /ID  ) 
+    //get all reports for the current techlead email( /ID  )
     function getApprovedRejectedReport(email)
     {
     	return $http.get(reportEndPoint + '/reviewed/' + email);
-    	
+
     }
 
     /* @author wPerlichek
@@ -57,6 +57,15 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       return $http.put(reportEndPoint, report);
     }
 
+    // alanray
+    // delete request for receipts
+    function deleteReceipt(receipt) {
+      $http.get('/deleteReceipt/' + receipt.receiptId)
+      .success(function(data){
+        $state.reload();
+      });
+    }
+
     return {
       createReport : createReport,
       approveReport : approveReport,
@@ -66,6 +75,7 @@ angular.module('app').service('reportHttp', ['$http', 'approvedState', 'rejected
       putReport : putReport,
       pendingReports : pendingReports,
       unSubmitReport: unSubmitReport,
-      getApprovedRejectedReport :getApprovedRejectedReport
-    }
+      getApprovedRejectedReport :getApprovedRejectedReport,
+      deleteReceipt : deleteReceipt
+    };
   }]);

@@ -1,4 +1,3 @@
-
 angular.module('app').controller('viewReportCtrl', ['$scope', 'getProjects','getReport', 'projectFinderService', 'stateConverterService', 'reportHttp', 'lineItemsHttp', 'getLineItems', 'getCategories','$state', 'savedState', 'submittedState', 'reportHistoryHttp', 'createdState', 'checkUser', '$uibModal',
 function($scope, getProjects, getReport, projectFinderService, stateConverterService, reportHttp, lineItemsHttp,getLineItems, getCategories, $state, savedState, submittedState, reportHistoryHttp, createdState, checkUser, $uibModal) {
 
@@ -27,7 +26,6 @@ function($scope, getProjects, getReport, projectFinderService, stateConverterSer
     getLineItems[i].date = tempDate;
   }
 
-  <<<<<<< HEAD
   $scope.lineitems = getLineItems;
   $scope.categories = getCategories.data;
   // the index of the reports assoiciated project in the projects array used for default value in the ng-option
@@ -130,11 +128,16 @@ function($scope, getProjects, getReport, projectFinderService, stateConverterSer
       });
 
       modalInstance.result.then(function() {
-        console.log("hi");
       });
     };
   };
-  
+
+  $scope.deleteReceipt = function(receipt){
+    if (confirm("delete this receipt?")) {
+      reportHttp.deleteReceipt(receipt);
+    }
+  };
+
   // helper function to format timestamp to date
   function getFormattedDate(timestamp) {
     var newDate = new Date();

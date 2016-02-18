@@ -44,6 +44,10 @@ public class ReceiptService {
 		this.receiptDao = receiptDao;
 	}
 	
+	public void delete(Integer id) {
+		receiptDao.delete(id);
+	}
+	
 	/**
 	 * this method passes CREATE request to the Dao
 	 * 

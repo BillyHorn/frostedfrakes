@@ -125,6 +125,14 @@ public class ReceiptWebServices {
 	}
 	
 	/**
+	 * this method deletes receipts
+	 */
+	@RequestMapping(value = "/deleteReceipt/{id}", method = RequestMethod.GET)
+	public void deleteReceipt(@PathVariable Integer id) {
+		receiptService.delete(id);
+	}
+	
+	/**
 	 * this method provides an endpoint for our front-end to search and
 	 * retrieve a list of lineitems, selected by the id of an associated
 	 * lineitem

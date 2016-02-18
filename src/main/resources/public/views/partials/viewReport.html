@@ -50,14 +50,14 @@
         <input type="date" class="form-control" name="date" ng-model="li.date" required ng-readonly="report.state == 2" ng-readonly="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)" ng-disabled="report.state == 2 || report.state == 4 || (report.state == 3 && report.dev.devId !== current.devId)"> </input>
       </ng-form>
 
-      <ng-form name="receiptForm" ng-show="li.receipts.length > 0"> 
+      <ng-form name="receiptForm" ng-show="li.receipts.length > 0">
         <label> Attached Receipts</label>
         <div class="row receipts">
           <div class="col-xs-4 receipt-tumbnail" ng-repeat="receipt in li.receipts">
-            <a href="#" class="thumbnail">
+            <div class="thumbnail" ng-click="deleteReceipt(receipt)">
               <p class="text-center">{{receipt.name}}</p>
               <img class="img-responsive" ng-src="./getReceipt/image/{{receipt.receiptId}}">
-            </a>
+            </div>
           </div>
         </div>
       </ng-form>

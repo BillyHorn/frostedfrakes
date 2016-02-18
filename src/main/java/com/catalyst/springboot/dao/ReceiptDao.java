@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import com.catalyst.springboot.entities.Dev;
+import com.catalyst.springboot.entities.LineItem;
 import com.catalyst.springboot.entities.Receipt;
 
 /**
@@ -40,6 +41,12 @@ public class ReceiptDao {
 	 */
 	public void addReceipt(Receipt receipt){
 		em.persist(receipt);
+		em.flush();
+	}
+	
+	public void delete(Integer id) {
+		Receipt receipt = em.find(Receipt.class, id);
+		em.remove(receipt);
 		em.flush();
 	}
 	
