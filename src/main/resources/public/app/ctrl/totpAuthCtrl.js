@@ -3,6 +3,7 @@ angular.module('app').controller('totpAuthCtrl', ['$scope', 'devHttp', 'currentU
 	$scope.totp = function(){
 		console.log("anything");
 		devHttp.totpCode($scope.totpCode).then(function(response){
+			console.log(response);
 	    	window.location.href="/";
 	    }, function(response){
 			$scope.error=" Invalid code / Code timed out.";
